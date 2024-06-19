@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './TopList.css';
 
 interface BoardGameData {
+    id: number;
     title: string;
     genre: string;
     theme: string;
