@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  express-app:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./server:/usr/src/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development //&&
+    networks:
+      - app-network
+    depends_on:
+      - postgres
+    command: sh -c "npm ci && npx nodemon app.js"
+
+  react-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+    command: sh -c "npm ci && npm run dev"
+
+  postgres:
+    image: postgres:15
+    restart: always
+    env_file:
+      - ./server/.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+    ports:
+      - "5432:5432"
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pgdata:
