@@ -4,8 +4,8 @@ import { AuthContext } from '../app/App.tsx';
 
 
 import './Header.css';
-import { Dropdown } from "flowbite-react";
 import UserIcon from '../commons/UserIcon.tsx';
+import DropDown from '../commons/DropDown.tsx';
 
 function Header(): JSX.Element {
     const { user, setUser } = useContext(AuthContext);
@@ -48,16 +48,20 @@ function Header(): JSX.Element {
                     >
                         ТОП-100
                     </NavLink>
-                    <Dropdown className="dropdown-content" label="Мероприятия" inline>
-                        <Dropdown.Item><NavLink to="/events">Игротеки</NavLink>
-                        </Dropdown.Item>
-                        <Dropdown.Item><NavLink to="/camps">Игрокэмпы</NavLink></Dropdown.Item>
-                    </Dropdown>
-                    <Dropdown className="dropdown-content" label="Объявления" inline>
-                        <Dropdown.Item><NavLink to="/localisations">Локализации</NavLink>
-                        </Dropdown.Item>
-                        <Dropdown.Item><NavLink to="/buyers">Байеры</NavLink></Dropdown.Item>
-                    </Dropdown>
+                    <DropDown item={{
+                        name: 'Мероприятия', 
+                        catFirst: 'Игротеки', 
+                        catTwo:'Игрокэмпы',
+                        linkOne: '/events',
+                        linkTwo: '/camps',
+                        }}></DropDown>
+                    <DropDown item={{
+                        name: 'Объявления', 
+                        catFirst: 'Байеры', 
+                        catTwo:'Локализации',
+                        linkOne: '/buyers',
+                        linkTwo: '/localisations',
+                        }}></DropDown>
                 </nav>
                 <div className="account">
                     <div className="account_icon">
@@ -71,7 +75,6 @@ function Header(): JSX.Element {
                                 Войти
                             </NavLink>
                     }
-
                     </div>
                 </div>
             </div>
