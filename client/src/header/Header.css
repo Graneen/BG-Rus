@@ -53,12 +53,12 @@ header {
   .account {
     display: flex;
     align-items: center;
+    gap: 10px;
   }
   .account_text {
     position: relative;
     display: flex;
     justify-content: center;
-    text-shadow: -3px 4px 5px rgb(93, 93, 93);
   }
   .account:hover .account_text,
   .account:focus .account_text {
