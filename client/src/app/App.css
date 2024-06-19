@@ -1,0 +1,45 @@
+:root {
+    --main-color: #0B1D26ff;
+    --main-color-bb: #0B1D26bb;
+    --main-color-00: #0B1D2600;
+    --accent: #FBD784;
+    --goldenbeer: #FFD700;
+  }
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 500ms ease-in-out;
+    scroll-behavior: smooth;
+  }
+  html, body {
+    height: 100vh;
+    margin: 0;
+  }
+  @font-face {
+    font-family: "ROSTOV";
+    src: local("ROSTOV"),
+      local("ROSTOV"),
+      url("../fonts/ROSTOV.woff") format("woff");
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: "Exo-2-Medium";
+    src: local("Exo-2-Medium"),
+      local("Exo-2-Medium"),
+      url("../fonts/Exo2-Medium.woff") format("woff");
+    font-weight: normal;
+  }
+
+  body {
+    background: var(--main-color);
+    color: #fff;
+  }
+  #app {
+    width: 100%;
+    min-width: 1150px;
+    height: 100%;
+  }
+
+

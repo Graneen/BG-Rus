@@ -1,0 +1,118 @@
+.main-content {
+  display: flex;
+  align-items: center;
+  }
+  .guides {
+    margin-left: 10vw;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .guide {  
+    width: 100%;
+    height: 524px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 7em;
+    z-index: 10;
+  }
+  .guide:nth-of-type(2n) .guide_description {
+    order: 2;
+  }
+  .guide_image {
+    order: 1;
+  }
+  .guide_description {
+    width: 53.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 6em 0 6em 6em;
+    z-index: 1;
+    position: relative;
+  }
+  .guide_number {
+    position: absolute;
+    top: 3.5%;
+    left: 0;
+    font-size: 10em;
+    font-family: 'ROSTOV', normal;
+    color: #fff2;
+    z-index: -1;
+  }
+  .hero_pre-text {
+    color: var(--accent);
+    font-family: 'ROSTOV';
+    text-transform: uppercase;
+    font-size: .77em;
+    font-weight: 600;
+    letter-spacing: .37em;
+  }
+  .hero_pre-text::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 4em;
+    height: 1px;
+    background: var(--accent);
+    margin-right: 1.4em;
+  }
+  .guide_description h1 {
+    color: var(--goldenbeer);
+    font-family: 'ROSTOV', normal;
+    font-size: 3em;
+    font-weight: 500;
+  }
+  .guide_text {
+    font-family: 'Exo-2-Medium', normal;
+    font-size: .75rem;
+    font-weight: 600;
+    line-height: 1.9em;
+  }
+  .more {
+    display: flex;
+  }
+  .more_text {
+    font-size: .7rem;
+    margin-right: .6em;
+    color: var(--accent);
+    font-family: 'ROSTOV', normal;
+    transition: all 150ms linear;
+  }
+  .more_icon {
+    width: .9em;
+    margin-top: -.035em;
+    transition: all 200ms ease-in-out;
+  }
+  .more_icon svg {
+    width: 100%;
+  }
+  .more:hover .more_text,
+  .more:focus .more_text {
+    margin-left: .5em;
+  }
+  .more:hover .more_icon,
+  .more:focus .more_icon {
+    transform: rotate(360deg);
+    animation: arrow-active 300ms ease-in-out alternate infinite;
+  }
+  @keyframes arrow-active {
+    from {
+      margin-left: 0;
+    }
+    to {
+      margin-left: .25em;
+    }
+  }
+  .guide_image {
+    width: 38.71%;
+    user-select: none;
+  }
+  .guide_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }

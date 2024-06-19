@@ -1,0 +1,8 @@
+.game-title {
+    color: var(--goldenbeer);
+    font-family: 'ROSTOV', normal;
+}
+.game-descr {
+    font-family: 'Exo-2-Medium', normal;
+    font-size: 0.9rem;
+}
