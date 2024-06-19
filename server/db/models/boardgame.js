@@ -36,7 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       author: DataTypes.STRING,
       description: DataTypes.TEXT,
       difficulty: DataTypes.STRING,
-      components: DataTypes.TEXT,
       players: DataTypes.STRING,
       minPlayers: DataTypes.INTEGER,
       maxPlayers: DataTypes.INTEGER,

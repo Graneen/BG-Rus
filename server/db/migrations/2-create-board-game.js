@@ -42,9 +42,7 @@ module.exports = {
       difficulty: {
         type: Sequelize.STRING,
       },
-      components: {
-        type: Sequelize.TEXT,
-      },
+      
       players: {
         type: Sequelize.STRING,
       },
