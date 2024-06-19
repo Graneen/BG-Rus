@@ -1,16 +1,14 @@
-import UserIcon from '../../commons/UserIcon';
+import ArrowIcon from '../../commons/ArrowIcon';
 import Steps from '../../steps/Steps';
 
 import './mainPage.css'
 
-
-
 function MainPage(): JSX.Element {
-    const header = document.querySelector("header");
-    const heroText = document.querySelector(".hero_description");
-    const heroBG1 = document.querySelector(".bg-layer-1 img");
-    const heroBG4 = document.querySelector(".bg-layer-4 img");
-
+    const header: Element | null = document.querySelector("header");
+    const heroText: Element | null = document.querySelector(".hero_description");
+    const heroBG1: Element | null = document.querySelector(".bg-layer-1 img");
+    const heroBG4: Element | null = document.querySelector(".bg-layer-4 img");
+    console.log({header, heroText, heroBG1, heroBG4})
     window.addEventListener("scroll", () => {
         let value = window.scrollY;
         if (value > 1100) {
@@ -38,9 +36,7 @@ function MainPage(): JSX.Element {
                     <p className="hero_post-text">
                         <span className="scroll-text">крути колесо мыши вниз, и пройди 3 простых шага</span>
                         <span className="scroll-icon">
-                            <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16 16L14.59 14.59L9 20.17V0H7V20.17L1.42 14.58L0 16L8 24L16 16Z" fill="white" />
-                            </svg>
+                            <ArrowIcon/>
                         </span>
                     </p>
                 </div>
