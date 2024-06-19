@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../app/App.tsx';
 
 
-import './Header.css'
-import SearchInput from '../commons/SearchInput.tsx';
+import './Header.css';
+import { Dropdown } from "flowbite-react";
 import UserIcon from '../commons/UserIcon.tsx';
 
 function Header(): JSX.Element {
@@ -20,7 +20,6 @@ function Header(): JSX.Element {
                     'Content-type': 'application/json',
                 },
             })
-            console.log(response.status)
             if (response.ok) {
                 localStorage.removeItem("user");
                 setUser(null)
@@ -36,12 +35,12 @@ function Header(): JSX.Element {
     return (
         <header>
             <div className="header_content">
-            <NavLink
-                        to="/"
-                        className={({ isActive }) => isActive ? "logo active" : "logo unactive"}
-                    >
-                        BGRUS
-                    </NavLink>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) => isActive ? "logo active" : "logo unactive"}
+                >
+                    BGRUS
+                </NavLink>
                 <nav>
                     <NavLink
                         to="/top"
@@ -49,31 +48,28 @@ function Header(): JSX.Element {
                     >
                         ТОП-100
                     </NavLink>
-                    <NavLink
-                        to="/events"
-                        className={({ isActive }) => isActive ? "nav_link active" : "nav_link unactive"}
-                    >
-                        Мероприятия
-                    </NavLink>
-                    <NavLink
-                        to="/ads"
-                        className={({ isActive }) => isActive ? "nav_link active" : "nav_link unactive"}
-                    >
-                        Объявления
-                    </NavLink>
-                    <SearchInput/>
+                    <Dropdown className="dropdown-content" label="Мероприятия" inline>
+                        <Dropdown.Item><NavLink to="/events">Игротеки</NavLink>
+                        </Dropdown.Item>
+                        <Dropdown.Item><NavLink to="/camps">Игрокэмпы</NavLink></Dropdown.Item>
+                    </Dropdown>
+                    <Dropdown className="dropdown-content" label="Объявления" inline>
+                        <Dropdown.Item><NavLink to="/localisations">Локализации</NavLink>
+                        </Dropdown.Item>
+                        <Dropdown.Item><NavLink to="/buyers">Байеры</NavLink></Dropdown.Item>
+                    </Dropdown>
                 </nav>
                 <div className="account">
                     <div className="account_icon">
-                            <UserIcon/>
+                        <UserIcon />
                     </div>
                     <div className="account_text">  {
-                        user ? 
-                        <button onClick={logoutHandler}>Выйти</button>
-                        :
-                        <NavLink to="/login" className={({ isActive }) => isActive ? "active" : "unactive"}>
-                        Войти
-                        </NavLink>
+                        user ?
+                            <button onClick={logoutHandler}>Выйти</button>
+                            :
+                            <NavLink to="/login" className={({ isActive }) => isActive ? "active" : "unactive"}>
+                                Войти
+                            </NavLink>
                     }
 
                     </div>
