@@ -26,6 +26,18 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
       },
+      genre: {
+        type: Sequelize.STRING,
+      },
+      theme: {
+        type: Sequelize.STRING,
+      },
+      minPlayers: {
+        type: Sequelize.STRING,
+      },
+      maxPlayers: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

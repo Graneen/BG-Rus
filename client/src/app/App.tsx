@@ -9,6 +9,7 @@ import Login from '../login/Login.tsx';
 import Register from '../register/Register.tsx';
 import MainPage from "../pages/mainPage/mainPage.tsx";
 import TopList from "../pages/topList/TopList.tsx";
+import GamePage from "../pages/gamePage/gamePage.tsx";
 
  
 export const AuthContext = createContext<AuthState>(defaultAuthState);
@@ -18,7 +19,7 @@ export const AuthContext = createContext<AuthState>(defaultAuthState);
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-    setUser(localStorage.getItem('user'));
+    return setUser(localStorage.getItem('user'));
   }, [user])
   
 
@@ -34,6 +35,7 @@ function App(): JSX.Element {
             <Route path={"login"} element={<Login />} />
             <Route path={"register"} element={<Register/>} />
             <Route path={"top"} element={<TopList/>} />
+            <Route path={"game/:id"} element={<GamePage/>}/>
           </Route>
       </Routes>
       </Router>
