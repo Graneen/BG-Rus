@@ -52,9 +52,9 @@ const TopList: React.FC = () => {
                                             {game.title}
                                         </h2>
                                         <div className="game-descr">
-                                            <p> {game.genre}</p>
-                                            <p> {game.theme}</p>
-                                            <p> {game.difficulty}</p>
+                                            <p> <strong>Жанр: </strong>{game.genre}</p>
+                                            <p> <strong>Тематика: </strong>{game.theme}</p>
+                                            <p> <strong>Сложность: </strong>{game.difficulty}</p>
                                         </div>
                                     </div>
                                 </div>

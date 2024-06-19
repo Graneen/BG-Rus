@@ -8,10 +8,10 @@ import './mainPage.css';
 function MainPage(): JSX.Element {
     useEffect(() => {
         
-        const header: Element | null = document.querySelector("header");
-        const heroText: Element | null = document.querySelector(".hero_description");
-        const heroBG1: Element | null = document.querySelector(".bg-layer-1 img");
-        const heroBG4: Element | null = document.querySelector(".bg-layer-4 img");
+        const header:HTMLElement | null = document.querySelector("header");
+        const heroText: HTMLElement | null = document.querySelector(".hero_description");
+        const heroBG1: HTMLElement | null = document.querySelector(".bg-layer-1 img");
+        const heroBG4: HTMLElement | null = document.querySelector(".bg-layer-4 img");
     
         window.addEventListener("scroll", () => {
             let value = window.scrollY;
@@ -20,7 +20,7 @@ function MainPage(): JSX.Element {
             }
             header !== null ? header.style.top = `${value / 1.08}px` : '';
             if (value > 350) {
-                header !== null ? header.style.top = 0 : '';
+                if (header) header.style.top = '0';
             }
             heroBG1 !== null ? heroBG1.style.top = `-${value / 3}px` : '';
             heroBG4 !== null ? heroBG4.style.top = `${value / 8}px` : '';
