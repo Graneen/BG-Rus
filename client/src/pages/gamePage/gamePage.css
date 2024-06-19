@@ -1,0 +1,28 @@
+.page-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #2E9AFF;
+    justify-content: space-around;
+}
+.page-main {
+    width: 100%;
+    height: 50vh;
+    border: 5px solid #ff932e;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.card-left {
+    width: 30%;
+    height: 50vh;
+    border: 5px solid #2eff51;
+}
+.card-right {
+    width: 30%;
+    height: 100%;
+    border: 5px solid #b6b6b6;
+}

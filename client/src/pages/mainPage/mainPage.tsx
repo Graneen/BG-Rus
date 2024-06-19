@@ -1,27 +1,28 @@
 import ArrowIcon from '../../commons/ArrowIcon';
 import Steps from '../../steps/Steps';
 
-import './mainPage.css'
+import './mainPage.css';
+
 
 function MainPage(): JSX.Element {
     const header: Element | null = document.querySelector("header");
     const heroText: Element | null = document.querySelector(".hero_description");
     const heroBG1: Element | null = document.querySelector(".bg-layer-1 img");
     const heroBG4: Element | null = document.querySelector(".bg-layer-4 img");
-    console.log({header, heroText, heroBG1, heroBG4})
+
     window.addEventListener("scroll", () => {
         let value = window.scrollY;
         if (value > 1100) {
             value = 0;
         }
-        header.style.top = `${value / 1.08}px`;
+        header !== null ? header.style.top = `${value / 1.08}px` : '';
         if (value > 350) {
-            header.style.top = 0;
+            header !== null ? header.style.top = 0 : '';
         }
-        heroBG1.style.top = `-${value / 3}px`;
-        heroBG4.style.top = `${value / 8}px`;
-        heroBG4.style.left = `-${value / 5.5}px`;
-        heroText.style.transform = `translateY(${value / 1.5}px)`;
+        heroBG1 !== null ? heroBG1.style.top = `-${value / 3}px` : '';
+        heroBG4 !== null ? heroBG4.style.top = `${value / 8}px` : '';
+        heroBG4 !== null ? heroBG4.style.left = `-${value / 5.5}px` : '';
+        heroText !== null ? heroText.style.transform = `translateY(${value / 1.5}px)` : '';
     });
 
     return (
