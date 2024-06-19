@@ -6,8 +6,9 @@
     margin: 0px;
     transition: 1s;
 }
-
-
+.dropdown-content {
+  font-size: 0.8rem;
+}
 
 header {
     width: 100%;
@@ -20,6 +21,7 @@ header {
     user-select: none;
     transition: top 200ms linear;
     font-family: 'ROSTOV', normal;
+    text-transform: capitalize;
   }
   .header_content {
     width: 91.67%;
@@ -30,6 +32,7 @@ header {
   }
   .logo {
     color: var(--goldenbeer);
+    text-shadow: -3px 4px 5px rgb(85, 84, 84);
     font-size: 2rem;
     font-family: 'ROSTOV', normal;
     font-weight: 700;
@@ -40,7 +43,7 @@ header {
     justify-content: space-between;
     font-size: clamp(.7rem, .9vw, 2rem);
     font-weight: 500;
-    gap: 5px
+    gap: 20px;
   }
   .nav_link:hover,
   .nav_link:focus {
@@ -55,6 +58,7 @@ header {
     position: relative;
     display: flex;
     justify-content: center;
+    text-shadow: -3px 4px 5px rgb(93, 93, 93);
   }
   .account:hover .account_text,
   .account:focus .account_text {
