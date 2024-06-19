@@ -5,6 +5,7 @@ import { DropMenu } from '../types/types';
 import { NavLink } from 'react-router-dom';
 
 
+
 export default function DropDown({ item }: DropMenu) {
   return (
     <Popover className="relative">
@@ -25,10 +26,10 @@ export default function DropDown({ item }: DropMenu) {
           <div className="max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
             <div className="p-4">
                   <div>
-                    <NavLink className="font-semibold text-gray-900" to={item.linkOne}>{item.catFirst}</NavLink>
+                    <NavLink className="font-semibold text-gray-900" to={item.linkOne as string}>{item.catFirst}</NavLink>
                   </div>
                   <div>
-                    <NavLink className="font-semibold text-gray-900" to={item.linkTwo}>{item.catTwo}</NavLink>
+                    <NavLink className="font-semibold text-gray-900" to={item.linkTwo as string}>{item.catTwo}</NavLink>
                   </div>
             </div>
           </div>

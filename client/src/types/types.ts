@@ -1,10 +1,12 @@
 export interface DropMenu {
+  item: {
   name: String, 
   catFirst: String, 
   catTwo: String,
   linkOne: String,
   linkTwo: String,
 };
+}
 
 export type User = {
     id: number,
