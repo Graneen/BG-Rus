@@ -17,6 +17,15 @@ const ModalCalendar: React.FC<{ setGameSessionDetails: Function, closeModal: Fun
     closeModal();
   };
 
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
+  };
+
+  const handleCalendarIconClick = () => {
+    const datePickerInput = document.getElementsByClassName("react-datepicker__input-container")[0].children[0] as HTMLInputElement;
+    datePickerInput.click();
+  };
+
   return (
     <div className="modal-full">
       <div className="modal-content">
@@ -31,12 +40,12 @@ const ModalCalendar: React.FC<{ setGameSessionDetails: Function, closeModal: Fun
           />
           <FaCalendarAlt 
             className="calendar-icon" 
-            onClick={() => document.getElementsByClassName("react-datepicker__input-container")[0].children[0].click()} 
+            onClick={handleCalendarIconClick} 
           />
         </div>
         <DatePicker
           selected={selectedDate}
-          onChange={(date: Date) => setSelectedDate(date)}
+          onChange={handleDateChange}
           dateFormat="MM/dd/yyyy"
           placeholderText="Select Date"
           customInput={
