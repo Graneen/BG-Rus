@@ -31,5 +31,6 @@ const gameSessionSlice = createSlice({
   },
 });
 
-export const { joinGameSession, createGameSession } = gameSessionSlice.actions;
 export default gameSessionSlice.reducer;
+
+export const { joinGameSession, createGameSession } = gameSessionSlice.actions;

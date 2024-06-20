@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gameSessionReducer from './slice';
+import { rootReducer } from './reducers/root.reducer';
 
-const store = configureStore({
-  reducer: {
-    gameSession: gameSessionReducer,
-    
-  },
+export const store = configureStore({
+  reducer: rootReducer
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export default store;
+export type AppStore = typeof store;
+export type AppDispatch = AppStore["dispatch"];

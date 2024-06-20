@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 export default function DropDown({ item }: DropMenu) {
   return (
     <Popover className="relative">
-      <PopoverButton className="inline-flex items-center gap-x-1 text-sm[0.8rem] text-white font-semibold leading-6 text-gray-900">
+      <PopoverButton className="inline-flex items-center gap-x-1 text-sm[0.8rem] text-white font-semibold leading-6">
         <span>{item.name}</span>
         <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
       </PopoverButton>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { joinGameSession, createGameSession, GameSessionState } from '../../redux/slice'; 
+import { joinGameSession, createGameSession, GameSessionState } from '../../features/gameSessionSlice'; 
 
 const GameMeet: React.FC = () => {
   const [sessionId, setSessionId] = useState('');

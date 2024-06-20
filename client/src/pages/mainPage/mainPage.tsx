@@ -37,7 +37,7 @@ function MainPage(): JSX.Element {
                 <div className="bg-layer-3 MG"><img src="https://res.cloudinary.com/coderabbi/image/upload/v1641892219/MNTN--figma/bg-layer-3_xvue3k.png" alt="Background" /></div>
                 <div className="bg-layer-4 VG"><img src="https://trueimages.ru/img/81/77/3ab71766.png" alt="Background" /></div>
                 <div className="hero_description">
-                    <h1>ДАВАЙ ЗНАКОМИТЬСЯ!</h1>
+                    <h1>ДАВАЙ ЗНАКОМИТЬСЯ?</h1>
                     <p className="hero_post-text">
                         <span className="scroll-text">крути колесо мыши вниз, и пройди 3 простых шага</span>
                         <span className="scroll-icon">
