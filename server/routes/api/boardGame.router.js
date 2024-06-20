@@ -12,4 +12,17 @@ router.get('/api/boardgames', async (req, res) => {
     }
 });
 
+router.get('/api/boardgame/4', async (req, res) => {
+    const id  = 4;
+    console.log(req.params.id)
+    try {
+        const boardGame = await BoardGame.findOne({where: {id}}); 
+        res.json(boardGame);
+        console.log(boardGame)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Внутренняя ошибка сервера' });
+    }
+});
+
 module.exports = router;

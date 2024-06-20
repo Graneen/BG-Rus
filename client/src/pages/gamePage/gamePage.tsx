@@ -1,6 +1,20 @@
+import { useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './gamePage.css'
+import { selectGameCard } from '../../features/gameCardSlice'
 
 function GamePage() {
+    const dispatch = useAppDispatch()
+    const card = useAppSelector(selectGameCard)
+    console.log({card})
+    
+  
+  
+    // useEffect(() => {
+    //   dispatch(selectGameCard())
+    // }, [])
+
+    
     return (
         <>
             <div className="page-container">
