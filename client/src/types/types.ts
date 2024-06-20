@@ -1,10 +1,11 @@
 export interface DropMenu {
-  item: string,
+  item: {
   name: string, 
   catFirst: string, 
   catTwo: string,
   linkOne: string,
   linkTwo: string,
+};
 }
 
 
