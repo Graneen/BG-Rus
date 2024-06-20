@@ -11,6 +11,9 @@ import MainPage from "../pages/mainPage/mainPage.tsx";
 import TopList from "../pages/topList/TopList.tsx";
 import GamePage from "../pages/gamePage/gamePage.tsx";
 import GameMeet from "../pages/gameMeet/GameMeet.tsx";
+import GameCamp from "../pages/gameCamp/GameCamp.tsx";
+
+
 
  
 export const AuthContext = createContext<AuthState>(defaultAuthState);
@@ -42,6 +45,9 @@ function App(): JSX.Element {
             <Route path={"top"} element={<TopList/>} />
             <Route path={"game/:id"} element={<GamePage/>}/>
             <Route path={"events"} element={<GameMeet/>}/>
+            <Route path={"camps"} element={<GameCamp/>}/>
+         
+            
           </Route>
       </Routes>
       </Router>
