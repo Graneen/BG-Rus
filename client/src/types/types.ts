@@ -1,12 +1,12 @@
 export interface DropMenu {
-  item: {
-  name: String, 
-  catFirst: String, 
-  catTwo: String,
-  linkOne: String,
-  linkTwo: String,
-};
+  item: string,
+  name: string, 
+  catFirst: string, 
+  catTwo: string,
+  linkOne: string,
+  linkTwo: string,
 }
+
 
 export interface GameCampType {
   id: number;
@@ -20,6 +20,8 @@ export interface GameCampType {
   image3: string;
   image4: string;
 }
+
+
 
 export type User = {
     id: number,

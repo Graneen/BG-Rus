@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../redux/store/store";
+import { RootState } from "../../redux/store";
 import { updateGameSession } from "../../features/gameSessionSlice";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import ModalMap from "../modalMap/ModalMap";

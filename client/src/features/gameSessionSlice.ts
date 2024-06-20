@@ -1,3 +1,4 @@
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface GameSessionState {
@@ -26,9 +27,12 @@ const gameSessionSlice = createSlice({
     },
     updateGameSession: (state, action: PayloadAction<Partial<GameSessionState>>) => {
       return { ...state, ...action.payload };
+
     },
   },
 });
 
+
 export const { setGameSessionDetails, resetGameSession, updateGameSession } = gameSessionSlice.actions;
 export default gameSessionSlice.reducer;
+

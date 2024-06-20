@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GameCampType } from '../../types/types';
@@ -49,5 +50,7 @@ const GameCamp: React.FC = () => {
     </div>
   );
 };
+
+
 
 export default GameCamp;
