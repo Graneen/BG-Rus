@@ -1,41 +1,71 @@
-// import React, { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { RootState } from '../../redux/store';
-// import { joinGameSession, createGameSession } from '../../redux/slice'; 
 
-// const GameMeet: React.FC = () => {
-//   const [sessionId, setSessionId] = useState('');
-//   const [playerName, setPlayerName] = useState('');
-//   const [sessionName, setSessionName] = useState('');
-//   const [maxPlayers, setMaxPlayers] = useState(0);
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ModalForm from "../../modal/modalForm/ModalForm";
+import { setGameSessionDetails } from "../../features/gameSessionSlice";
+import { useDispatch } from "react-redux";
+import Modal from "react-modal";
+import "./GameMeet.css";
+import ModalCalendar from "../../modal/modalCalendar/ModalCalendar";
 
-//   const gameSession = useSelector((state: RootState) => state.gameSession);
-//   const dispatch = useDispatch();
 
-//   const handleJoinSession = () => {
-//     dispatch(joinGameSession({ sessionId, playerName })); 
-//   };
+const GameMeet: React.FC = () => {
+  const [showCalendarModal, setShowCalendarModal] = useState(false);
+  const [showFormModal, setShowFormModal] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-//   const handleCreateSession = () => {
-//     dispatch(createGameSession({ sessionName, maxPlayers })); 
-//   };
 
-//   return (
-//     <div>
-//       <h2>Join Game Session</h2>
-//       <form onSubmit={handleJoinSession}>
-//         <input type="text" value={sessionId} onChange={(e) => setSessionId(e.target.value)} />
-//         <input type="text" value={playerName} onChange={(e) => setPlayerName(e.target.value)} />
-//         <button type="submit">Join</button>
-//       </form>
-//       <h2>Create Game Session</h2>
-//       <form onSubmit={handleCreateSession}>
-//         <input type="text" value={sessionName} onChange={(e) => setSessionName(e.target.value)} />
-//         <input type="number" value={maxPlayers} onChange={(e) => setMaxPlayers(parseInt(e.target.value))} />
-//         <button type="submit">Create</button>
-//       </form>
-//     </div>
-//   );
-// };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
-// export default GameMeet;
+  const handleCreateSession = () => {
+    if (isButtonActive) {
+      setShowCalendarModal(true);
+    }
+  };
+
+  const handleGameSessionDetails = (details: any) => {
+    dispatch(setGameSessionDetails(details));
+    setShowFormModal(true);
+  };
+
+  const handleViewCalendars = () => {
+    navigate("/calendars");
+  };
+
+  useEffect(() => {
+    const conditionForButton = true;
+    setIsButtonActive(conditionForButton);
+  }, []);
+
+  return (
+    <div className="centered-container">
+      <button
+        className={`button-create ${isButtonActive ? "" : "button-create-inactive"}`}
+        onClick={handleCreateSession}
+        disabled={!isButtonActive}
+      >
+        Создать игровую сессию
+      </button>
+
+      <button className="button-view" onClick={handleViewCalendars}>
+        Записаться на игровую сессию
+      </button>
+
+      <Modal isOpen={showCalendarModal} onRequestClose={() => setShowCalendarModal(false)}>
+        <ModalCalendar setGameSessionDetails={handleGameSessionDetails}
+        closeModal={handleCloseModal} />
+      </Modal>
+
+      <Modal isOpen={showFormModal} onRequestClose={() => setShowFormModal(false)}>
+        <ModalForm />
+      </Modal>
+    </div>
+  );
+};
+
+export default GameMeet;
