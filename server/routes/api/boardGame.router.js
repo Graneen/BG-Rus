@@ -12,9 +12,8 @@ router.get('/api/boardgames', async (req, res) => {
     }
 });
 
-router.get('/api/boardgame/4', async (req, res) => {
-    const id  = 4;
-    console.log(req.params.id)
+router.get('/api/boardgame/:id', async (req, res) => {
+    const {id} = req.params;
     try {
         const boardGame = await BoardGame.findOne({where: {id}}); 
         res.json(boardGame);

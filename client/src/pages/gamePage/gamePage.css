@@ -7,6 +7,14 @@
     border: 5px solid #2E9AFF;
     justify-content: space-around;
 }
+.page-header {
+    color: var(--goldenbeer);
+	font-family: 'ROSTOV', normal;
+	font-size: 4em;
+	font-size: min(9vh, 4em);
+	text-transform: capitalize;
+	text-shadow: -3px 4px 5px rgb(85, 84, 84);
+}
 .page-main {
     width: 100%;
     height: 50vh;
@@ -20,6 +28,9 @@
     width: 30%;
     height: 50vh;
     border: 5px solid #2eff51;
+}
+.main-image {
+    height: 300px;
 }
 .card-right {
     width: 30%;

@@ -49,10 +49,10 @@ const initialState : GameCardState  = {
 }
 
 
-export const getGameCard = createAsyncThunk("cards/getGameCard", async(_, {rejectWithValue})=> { 
+export const getGameCard = createAsyncThunk("cards/getGameCard", async(id, {rejectWithValue})=> { 
     
     try {
-        const card = await axios("http://localhost:3000/api/boardgame/4")
+        const card = await axios(`http://localhost:3000/api/boardgame/${id}`)
         console.log(card.data)
         return card.data
     } catch (error) {
