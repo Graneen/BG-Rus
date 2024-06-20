@@ -1,49 +1,69 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { joinGameSession, createGameSession, GameSessionState } from '../../features/gameSessionSlice'; 
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ModalForm from "../../modal/modalForm/ModalForm";
+import { setGameSessionDetails } from "../../features/gameSessionSlice";
+import { useDispatch } from "react-redux";
+import Modal from "react-modal";
+import "./GameMeet.css";
+import ModalCalendar from "../../modal/modalCalendar/ModalCalendar";
+
 
 const GameMeet: React.FC = () => {
-  const [sessionId, setSessionId] = useState('');
-  const [playerName, setPlayerName] = useState('');
-  const [sessionName, setSessionName] = useState('');
-  const [maxPlayers, setMaxPlayers] = useState(0);
-
-  const gameSession = useSelector((state: RootState) => state.gameSession as GameSessionState);
+  const [showCalendarModal, setShowCalendarModal] = useState(false);
+  const [showFormModal, setShowFormModal] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleJoinSession = (e: React.FormEvent) => {
-    e.preventDefault();
-    dispatch(joinGameSession({ sessionId, playerName, gameSession }));
-    setSessionId(''); 
-    setPlayerName(''); 
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
-  const handleCreateSession = (e: React.FormEvent) => {
-    e.preventDefault();
-    dispatch(createGameSession({ sessionName, maxPlayers, gameSession }));
-    setSessionName(''); 
-    setMaxPlayers(0); 
+  const handleCreateSession = () => {
+    if (isButtonActive) {
+      setShowCalendarModal(true);
+    }
   };
+
+  const handleGameSessionDetails = (details: any) => {
+    dispatch(setGameSessionDetails(details));
+    setShowFormModal(true);
+  };
+
+  const handleViewCalendars = () => {
+    navigate("/calendars");
+  };
+
+  useEffect(() => {
+    const conditionForButton = true;
+    setIsButtonActive(conditionForButton);
+  }, []);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div>
-        <h2>Записаться на игровую сессию</h2>
-        <form onSubmit={handleJoinSession}>
-          <input type="text" value={sessionId} onChange={(e) => setSessionId(e.target.value)} placeholder="Введите ID сессии" />
-          <input type="text" value={playerName} onChange={(e) => setPlayerName(e.target.value)} placeholder="Введите имя игрока" />
-          <button type="submit">Записаться</button>
-        </form>
-      </div>
-      <div>
-        <h2>Создать игровую сессию</h2>
-        <form onSubmit={handleCreateSession}>
-          <input type="text" value={sessionName} onChange={(e) => setSessionName(e.target.value)} placeholder="Название сессии" />
-          <input type="number" value={maxPlayers} onChange={(e) => setMaxPlayers(parseInt(e.target.value))} placeholder="Максимальное количество игроков" />
-          <button type="submit">Создать</button>
-        </form>
-      </div>
+    <div className="centered-container">
+      <button
+        className={`button-create ${isButtonActive ? "" : "button-create-inactive"}`}
+        onClick={handleCreateSession}
+        disabled={!isButtonActive}
+      >
+        Создать игровую сессию
+      </button>
+
+      <button className="button-view" onClick={handleViewCalendars}>
+        Записаться на игровую сессию
+      </button>
+
+      <Modal isOpen={showCalendarModal} onRequestClose={() => setShowCalendarModal(false)}>
+        <ModalCalendar setGameSessionDetails={handleGameSessionDetails}
+        closeModal={handleCloseModal} />
+      </Modal>
+
+      <Modal isOpen={showFormModal} onRequestClose={() => setShowFormModal(false)}>
+        <ModalForm />
+      </Modal>
     </div>
   );
 };
