@@ -36,11 +36,7 @@ services:
       - app-network
     ports:
       - "5432:5432"
-    environment:
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
-      DB_NAME: ${DB_NAME}
-      DB_HOST: ${DB_HOST}
+
 networks:
   app-network:
     driver: bridge
