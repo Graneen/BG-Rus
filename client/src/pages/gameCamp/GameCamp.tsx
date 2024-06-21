@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../app/App';
 import { GameCampType } from '../../types/types';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 const GameCamp: React.FC = () => {
     const  user  = useContext(AuthContext); 
@@ -12,52 +12,54 @@ const GameCamp: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchGameCamps = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get('http://localhost:3000/api/gameCamps');
-                if (Array.isArray(response.data)) {
-                    setGameCamps(response.data);
-                } else {
-                    setError('Invalid response format');
-                }
-                setLoading(false);
-            } catch (err) {
-                setLoading(false);
-                setError(err.message);
-            }
-        };
+      const fetchGameCamps = async () => {
+          try {
+              setLoading(true);
+              const response = await axios.get('http://localhost:3000/api/gameCamps');
+              if (Array.isArray(response.data)) {
+                  setGameCamps(response.data);
+              } else {
+                  setError('Invalid response format');
+              }
+              setLoading(false);
+          } catch (err: unknown) {
+              setLoading(false);
+              if (err instanceof Error) {
+                  setError(err.message);
+              } else {
+                  setError('An unknown error occurred');
+              }
+          }
+      };
+  
+      fetchGameCamps();
+  }, []);
 
-        fetchGameCamps();
-    }, []);
+  const handleApply = async (gameCampId: number) => {
+    try {
+        if (user) {
+            console.log('User ID:', user);
 
-    const handleApply = async (gameCampId: number) => {
-      try {
-        if (user ) {
-          console.log('User ID:', user);
-    
-          const headers = {
-            'Content-Type': 'application/json',
-          };
+            const headers = {
+                'Content-Type': 'application/json',
+            };
 
-          console.log('User ID:', user);
-    
-          const response = await axios.post('http://localhost:3000/api/players', { userId: user.user, gameCampId }, { headers });
-          console.log('Успешно:', response.data);
-          alert('Заявка успешно подана!');
+            const response = await axios.post('http://localhost:3000/api/players', { userId: user.user, gameCampId }, { headers });
+            console.log('Успешно:', response.data);
+            alert('Заявка успешно подана!');
         } else {
-          alert('Ошибка: UserID не найден.');
+            alert('Ошибка: UserID не найден.');
         }
-      } catch (err) {
-        if (err.response) {
-          console.error('Ошибка при отправке заявки:', err.response.data);
-          alert(`Не удалось отправить заявку. Ошибка: ${err.response.data.message}`);
+    } catch (err: unknown) {
+        if (err instanceof AxiosError) {
+            console.error('Ошибка при отправке заявки:', err.response?.data);
+            alert(`Не удалось отправить заявку. Ошибка: ${err.response?.data.message}`);
         } else {
-          console.error('Ошибка при отправке заявки:', err);
-          alert('Не удалось отправить заявку. Попробуйте еще раз.');
+            console.error('Ошибка при отправке заявки:', err);
+            alert('Не удалось отправить заявку. Попробуйте еще раз.');
         }
-      }
-    };
+    }
+};
 
 
   return (
