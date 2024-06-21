@@ -31,7 +31,7 @@ function App(): JSX.Element {
       setUser(JSON.parse(storedUser) as User);
     }
   }, []);
-  
+
 
 
 

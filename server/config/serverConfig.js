@@ -18,7 +18,7 @@ const sessionConfig = {
   },
 };
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://87.228.8.134:5173"],
+  origin: ["http://localhost:5173", "http://87.228.8.134"],
   optionsSuccessStatus: 200,
   credentials: true, // принимать куки от сторонних источников
 };
