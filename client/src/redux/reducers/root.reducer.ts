@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
-import joinGameSessionReducer from '../../features/gameSessionSlice';
-import createGameSessionReducer from '../../features/gameSessionSlice';
+
+import gameSessionReducer from "../../features/gameSessionSlice";
 import getGameCardReducer from '../../features/gameCardSlice';
+import gameCampReducer from '../../features/gameCardSlice'
 
+const rootReducer = combineReducers({
+  gameSession: gameSessionReducer,
+  getGameCard: getGameCardReducer,
+  gameCamp: gameCampReducer,
+});
 
-export const rootReducer = combineReducers({
-    joinGameSession: joinGameSessionReducer,
-    createGameSession: createGameSessionReducer,
-    getGameCard: getGameCardReducer
-})
+export default rootReducer;

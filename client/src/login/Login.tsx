@@ -39,8 +39,8 @@ function LoginForm(): JSX.Element {
 
   return (
     <>
-
-      <div >
+<div className="login-container">
+<div className="login-form">
         <h2>
           Введите данные для входа
         </h2>
@@ -82,6 +82,7 @@ function LoginForm(): JSX.Element {
             Зарегистрироваться
           </a>
         </p>
+      </div>
       </div>
     </>
   )

@@ -56,9 +56,9 @@ export const getGameCard = createAsyncThunk("cards/getGameCard", async(payload: 
         // console.log(card.data);
         return card.data;
     } catch (error) {
-        return rejectWithValue(error)
+        return rejectWithValue(error);
     }
-})
+});
 
 const gameCardSlice = createSlice ({
     name: 'gameCard',

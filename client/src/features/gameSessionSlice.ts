@@ -1,36 +1,38 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, Draft } from "@reduxjs/toolkit";
 
-export interface GameSessionState {
-  
-
-sessionName: string;
+interface GameSessionState {
+  date: string;
+  gameName: string;
   maxPlayers: number;
-  sessionId: string | null;
-  playerName: string | null;
+  venue: string;
 }
 
 const initialState: GameSessionState = {
-  sessionName: '',
+  date: "",
+  gameName: "",
   maxPlayers: 0,
-  sessionId: null,
-  playerName: null,
+  venue: "",
 };
 
 const gameSessionSlice = createSlice({
-  name: 'gameSession',
+  name: "gameSession",
   initialState,
   reducers: {
-    joinGameSession: (state, action: PayloadAction<{ sessionId: string; playerName: string }>) => {
-      state.sessionId = action.payload.sessionId;
-      state.playerName = action.payload.playerName;
+    setGameSessionDetails: (state, action: PayloadAction<GameSessionState>) => {
+      return { ...state, ...action.payload };
     },
-    createGameSession: (state, action: PayloadAction<{ sessionName: string; maxPlayers: number }>) => {
-      state.sessionName = action.payload.sessionName;
-      state.maxPlayers = action.payload.maxPlayers;
+    resetGameSession: (state: Draft<GameSessionState>) => {
+      state.date = "";
+      state.gameName = "";
+      state.maxPlayers = 0;
+      state.venue = "";
+    },
+    updateGameSession: (state: Draft<GameSessionState>, action: PayloadAction<Partial<GameSessionState>>) => {
+      return { ...state, ...action.payload };
     },
   },
 });
 
+export const { setGameSessionDetails, resetGameSession, updateGameSession } = gameSessionSlice.actions;
 export default gameSessionSlice.reducer;
 
-export const { joinGameSession, createGameSession } = gameSessionSlice.actions;

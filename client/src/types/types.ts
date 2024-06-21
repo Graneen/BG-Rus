@@ -1,11 +1,27 @@
 export interface DropMenu {
-  item: string,
+  item: {
   name: string, 
   catFirst: string, 
   catTwo: string,
   linkOne: string,
   linkTwo: string,
+};
 }
+
+
+export interface GameCampType {
+  id: number;
+  title: string;
+  location: string;
+  date: string;
+  description: string;
+  gamesHeadliners: string;
+  image1: string;
+  image2: string;
+  image3: string;
+  image4: string;
+}
+
 
 
 export type User = {

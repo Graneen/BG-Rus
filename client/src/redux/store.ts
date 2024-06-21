@@ -1,10 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from './reducers/root.reducer';
+import { configureStore } from "@reduxjs/toolkit";
+import gameSessionReducer from "../features/gameSessionSlice";
+import gameCardReducer from '../features/gameCardSlice';
+import gameCampReducer from '../features/gameCardSlice';
 
-export const store = configureStore({
-  reducer: rootReducer
+const store = configureStore({
+  reducer: {
+    gameSession: gameSessionReducer,
+    getGameCard: gameCardReducer,
+    gameCamp: gameCampReducer
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppStore = typeof store;
-export type AppDispatch = AppStore["dispatch"];
+export type AppDispatch = typeof store.dispatch;
+export default store;
+

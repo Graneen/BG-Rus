@@ -6,6 +6,7 @@ import "./Register.css"
 
 function RegisterForm(): JSX.Element {
   const { setUser } = useContext(AuthContext);
+  console.log(setUser)
     const [name, setName] = useState ('');
     const [email, setEmail] = useState ('');
     const [password, setPassword] = useState ('');
@@ -31,7 +32,8 @@ function RegisterForm(): JSX.Element {
   }
 }
 return (
-<div className="register-flex">
+<div className="register-container">
+<div className="register-form">
     <h2 >
       Введите данные для регистрации
     </h2>
@@ -77,6 +79,7 @@ return (
         Войти
       </a>
     </p>
+</div>
 </div>
 )
 
