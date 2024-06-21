@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, Draft } from "@reduxjs/toolkit";
 
 interface GameSessionState {
   date: string;
@@ -21,16 +21,17 @@ const gameSessionSlice = createSlice({
     setGameSessionDetails: (state, action: PayloadAction<GameSessionState>) => {
       return { ...state, ...action.payload };
     },
-    resetGameSession: (state) => {
-      return initialState;
+    resetGameSession: (state: Draft<GameSessionState>) => {
+      state.date = "";
+      state.gameName = "";
+      state.maxPlayers = 0;
+      state.venue = "";
     },
-    updateGameSession: (state, action: PayloadAction<Partial<GameSessionState>>) => {
+    updateGameSession: (state: Draft<GameSessionState>, action: PayloadAction<Partial<GameSessionState>>) => {
       return { ...state, ...action.payload };
-
     },
   },
 });
-
 
 export const { setGameSessionDetails, resetGameSession, updateGameSession } = gameSessionSlice.actions;
 export default gameSessionSlice.reducer;
