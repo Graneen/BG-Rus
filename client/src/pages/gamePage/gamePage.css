@@ -7,14 +7,6 @@
     border: 5px solid #2E9AFF;
     justify-content: space-around;
 }
-.page-header {
-    color: var(--goldenbeer);
-	font-family: 'ROSTOV', normal;
-	font-size: 4em;
-	font-size: min(9vh, 4em);
-	text-transform: capitalize;
-	text-shadow: -3px 4px 5px rgb(85, 84, 84);
-}
 .page-main {
     width: 100%;
     height: 50vh;
@@ -35,5 +27,35 @@
 .card-right {
     width: 30%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     border: 5px solid #b6b6b6;
+}
+.page-header {
+    color: var(--goldenbeer);
+	font-family: 'ROSTOV', normal;
+	font-size: 2em;
+	text-transform: capitalize;
+	text-shadow: -3px 4px 5px rgb(85, 84, 84);
+}
+.images-section {
+    flex: 1;
+    padding: 20px;
+}
+.main-image {
+    width: 100%;
+    height: auto;
+}
+.preview-images {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+.preview-image {
+    width: 30%;
+    height: auto;
+}
+.active-prev-img {
+    filter: grayscale(100%);
+    border: 3px solid #b7b7b7;
 }
