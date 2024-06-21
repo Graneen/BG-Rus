@@ -36,6 +36,10 @@ services:
       - app-network
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
 
 networks:
   app-network:
