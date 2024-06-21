@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Map, Placemark, YMaps } from "react-yandex-maps";
+import { Map, Placemark, YMaps } from "@pbe/react-yandex-maps";
 
 interface ModalMapProps {
   isOpen: boolean;
