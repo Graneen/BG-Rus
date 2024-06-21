@@ -6,24 +6,29 @@ import { AuthContext } from '../app/App.tsx';
 import './Header.css'
 import SearchInput from '../commons/SearchInput.tsx';
 import UserIcon from '../commons/UserIcon.tsx';
+import { getCookie } from '../services/Cookie/getCookie.ts';
+import { deleteAllCookies } from '../services/Cookie/deleteCookie.ts';
 
 function Header(): JSX.Element {
     const { user, setUser } = useContext(AuthContext);
 
-
-
-    async function logoutHandler() {
+    async function logoutHandler(): Promise<void> {
         try {
+            const token: string = getCookie();
             const response = await fetch('http://localhost:3000/auth/logout', {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
                 },
+                body: JSON.stringify({ token }),
             })
             console.log(response.status)
             if (response.ok) {
                 localStorage.removeItem("user");
+                localStorage.removeItem("token");
                 setUser(null)
+
+                deleteAllCookies();
             } else {
                 console.log("error");
             }

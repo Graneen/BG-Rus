@@ -10,6 +10,7 @@ import Register from '../register/Register.tsx';
 import MainPage from "../pages/mainPage/mainPage.tsx";
 import TopList from "../pages/topList/TopList.tsx";
 import GamePage from "../pages/gamePage/gamePage.tsx";
+import { checkAuth } from '../services/checkAuthService/checkAuth.service';
 
  
 export const AuthContext = createContext<AuthState>(defaultAuthState);
@@ -18,11 +19,15 @@ export const AuthContext = createContext<AuthState>(defaultAuthState);
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
-  useEffect(() => {
-    return setUser(localStorage.getItem('user'));
-  }, [user])
+  // useEffect(() => {
+  //   return setUser(localStorage.getItem('user'));
+  // }, [user])
   
-
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      checkAuth();
+    }
+  }, [])
 
 
   return (

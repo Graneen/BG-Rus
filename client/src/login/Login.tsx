@@ -25,9 +25,10 @@ function LoginForm(): JSX.Element {
       body: JSON.stringify({ email, password })
     })
     if (response.ok) {
-      const userData = await response.json();
-      setUser(userData.userId)
-      localStorage.setItem('user', userData.userId)
+      const {userId, token} = await response.json();
+      setUser(userId);
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', userId);
       navigate('/');
     }
     else {
@@ -51,6 +52,7 @@ function LoginForm(): JSX.Element {
           </label>
           <input
             value={email} onChange={(e) => setEmail(e.target.value)}
+            className="text-black"
             id="email"
             name="email"
             type="email"
@@ -63,6 +65,7 @@ function LoginForm(): JSX.Element {
           </label>
           <input
             value={password} onChange={(e) => setPassword(e.target.value)}
+            className="text-black"
             id="password"
             name="password"
             type="password"
