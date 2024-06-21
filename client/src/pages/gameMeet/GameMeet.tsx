@@ -7,18 +7,16 @@ import Modal from "react-modal";
 import "./GameMeet.css";
 import ModalCalendar from "../../modal/modalCalendar/ModalCalendar";
 
-
 const GameMeet: React.FC = () => {
   const [showCalendarModal, setShowCalendarModal] = useState(false);
   const [showFormModal, setShowFormModal] = useState(false);
   const [isButtonActive, setIsButtonActive] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const handleCloseModal = () => {
-    setShowModal(false);
+    setShowCalendarModal(false);
+    setShowFormModal(false);
   };
 
   const handleCreateSession = () => {
@@ -55,12 +53,11 @@ const GameMeet: React.FC = () => {
         Записаться на игровую сессию
       </button>
 
-      <Modal isOpen={showCalendarModal} onRequestClose={() => setShowCalendarModal(false)}>
-        <ModalCalendar setGameSessionDetails={handleGameSessionDetails}
-        closeModal={handleCloseModal} />
+      <Modal isOpen={showCalendarModal} onRequestClose={handleCloseModal}>
+        <ModalCalendar setGameSessionDetails={handleGameSessionDetails} closeModal={handleCloseModal} />
       </Modal>
 
-      <Modal isOpen={showFormModal} onRequestClose={() => setShowFormModal(false)}>
+      <Modal isOpen={showFormModal} onRequestClose={handleCloseModal}>
         <ModalForm />
       </Modal>
     </div>

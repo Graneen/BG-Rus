@@ -22,7 +22,9 @@ const ModalForm: React.FC = () => {
         date,
         gameName: gameNameInput,
         maxPlayers: maxPlayersInput,
-        venue: locationAddress,
+        venue: selectedLocation
+          ? `Lat: ${selectedLocation.lat}, Lng: ${selectedLocation.lng}`
+          : locationAddress,
       })
     );
   };
