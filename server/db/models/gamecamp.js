@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       image2: DataTypes.STRING,
       image3: DataTypes.STRING,
       image4: DataTypes.STRING,
-      // geoLocation: DataTypes.GEOMETRY('POINT'),
+     
     },
     {
       sequelize,

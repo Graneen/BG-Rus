@@ -6,8 +6,9 @@
     margin: 0px;
     transition: 1s;
 }
-
-
+.dropdown-content {
+  font-size: 0.8rem;
+}
 
 header {
     width: 100%;
@@ -20,6 +21,7 @@ header {
     user-select: none;
     transition: top 200ms linear;
     font-family: 'ROSTOV', normal;
+    text-transform: capitalize;
   }
   .header_content {
     width: 91.67%;
@@ -27,9 +29,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-shadow: -1px 1px 2px rgb(241, 241, 241);
   }
   .logo {
     color: var(--goldenbeer);
+    text-shadow: -1px 1px 2px rgb(241, 241, 241);
     font-size: 2rem;
     font-family: 'ROSTOV', normal;
     font-weight: 700;
@@ -40,7 +44,7 @@ header {
     justify-content: space-between;
     font-size: clamp(.7rem, .9vw, 2rem);
     font-weight: 500;
-    gap: 5px
+    gap: 20px;
   }
   .nav_link:hover,
   .nav_link:focus {
@@ -50,11 +54,13 @@ header {
   .account {
     display: flex;
     align-items: center;
+    gap: 10px;
   }
   .account_text {
     position: relative;
     display: flex;
     justify-content: center;
+    text-shadow: -1px 1px 2px rgb(241, 241, 241);
   }
   .account:hover .account_text,
   .account:focus .account_text {
@@ -63,6 +69,7 @@ header {
   .account:hover .account_icon svg path,
   .account:focus .account_icon svg path {
     fill: var(--accent);
+    text-shadow: -1px 1px 2px rgb(241, 241, 241);
   }
   .account_text::before {
     content: "";

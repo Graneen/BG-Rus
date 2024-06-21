@@ -10,7 +10,13 @@ import Register from '../register/Register.tsx';
 import MainPage from "../pages/mainPage/mainPage.tsx";
 import TopList from "../pages/topList/TopList.tsx";
 import GamePage from "../pages/gamePage/gamePage.tsx";
+import GameMeet from "../pages/gameMeet/GameMeet.tsx";
+import GameCamp from "../pages/gameCamp/GameCamp.tsx";
 import { checkAuth } from '../services/checkAuthService/checkAuth.service';
+
+import BuyerPage from "../pages/buyerPage/buyerPage.tsx";
+import LocalisationPage from "../pages/localisationPage/localisationPage.tsx";
+
 
  
 export const AuthContext = createContext<AuthState>(defaultAuthState);
@@ -19,10 +25,14 @@ export const AuthContext = createContext<AuthState>(defaultAuthState);
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
-  // useEffect(() => {
-  //   return setUser(localStorage.getItem('user'));
-  // }, [user])
-  
+  useEffect(() => {
+
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser) as User);
+    }
+  }, []);
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       checkAuth();
@@ -41,6 +51,12 @@ function App(): JSX.Element {
             <Route path={"register"} element={<Register/>} />
             <Route path={"top"} element={<TopList/>} />
             <Route path={"game/:id"} element={<GamePage/>}/>
+            <Route path={"events"} element={<GameMeet/>}/>
+            <Route path={"camps"} element={<GameCamp/>}/>
+
+            <Route path={"buyers"} element={<BuyerPage/>}/>
+            <Route path={"localisations"} element={<LocalisationPage/>}/>
+
           </Route>
       </Routes>
       </Router>

@@ -1,10 +1,10 @@
 const express = require("express");
 const morgan = require("morgan");
 const session = require("express-session");
-const CORS = require('cors');
+const CORS = require("cors");
 const cookieParser = require("cookie-parser");
 const FileStore = require("session-file-store")(session);
-const userSession = require('../middlewares/findUser')
+const userSession = require("../middlewares/findUser");
 
 const sessionConfig = {
   store: new FileStore(), // настройка файлового хранилища
@@ -14,14 +14,14 @@ const sessionConfig = {
   saveUninitialized: false, // не создавать сессию без записи в req.session
   cookie: {
     maxAge: 1000 * 60 * 60 * 12, // срок действия куки в миллисекундах
-    httpOnly: true
+    httpOnly: true,
   },
 };
 const corsOptions = {
-	origin: ['http://localhost:5173'],
-	optionsSuccessStatus: 200,
-	credentials: true, // принимать куки от сторонних источников
- };
+  origin: ["http://localhost:5173", "http://87.228.8.134"],
+  optionsSuccessStatus: 200,
+  credentials: true, // принимать куки от сторонних источников
+};
 
 const serverConfig = (app) => {
   app.use(morgan("dev"));
@@ -29,10 +29,9 @@ const serverConfig = (app) => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.static("public"));
   app.use(CORS(corsOptions));
-  app.use(cookieParser())
+  app.use(cookieParser());
   app.use(session(sessionConfig));
   app.use(userSession);
-
 };
 
 module.exports = serverConfig;
