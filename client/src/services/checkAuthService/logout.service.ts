@@ -1,7 +1,7 @@
 import { getCookie } from '../Cookie/getCookie.ts';
 import { deleteAllCookies } from '../Cookie/deleteCookie.ts';
 
-export async function logout(): Promise<void> {
+export default async function logout(): Promise<void> {
     try {
         const token: string = getCookie();
         const response = await fetch('http://localhost:3000/auth/logout', {
@@ -15,7 +15,6 @@ export async function logout(): Promise<void> {
         if (response.ok) {
             localStorage.removeItem("user");
             localStorage.removeItem("token");
-            // setUser(null);
 
             deleteAllCookies();
         } else {
