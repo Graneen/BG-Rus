@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import gameSessionReducer from "../features/gameSessionSlice";
+import gameCardReducer from '../features/gameCardSlice'
 
 const store = configureStore({
   reducer: {
     gameSession: gameSessionReducer,
+    getGameCard: gameCardReducer
   },
 });
 

@@ -5,15 +5,20 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 function GamePage() {
-    const dispatch = useAppDispatch()
-    const card = useAppSelector(selectGameCard)
-    // console.log(card.list)
-    const {id} = useParams();
-  
-    useEffect(() => {
-      dispatch(getGameCard(id))
-    }, [])
+    const dispatch = useAppDispatch();
+    const card = useAppSelector(selectGameCard);
+    const { id } = useParams<{ id: string }>();
 
+    
+    useEffect(() => {
+        if (id) {
+            dispatch(getGameCard(id));
+        }
+    }, [id]);
+
+    if (!card || card.loading || !card.list) {
+        return <div>Loading...</div>;
+    }
     
     return (
         <>
