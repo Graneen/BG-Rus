@@ -6,26 +6,15 @@ import { AuthContext } from '../app/App.tsx';
 import './Header.css';
 import UserIcon from '../commons/UserIcon.tsx';
 import DropDown from '../commons/DropDown.tsx';
+import logout from '../services/checkAuthService/logout.service.ts';
 
 function Header(): JSX.Element {
     const { user, setUser } = useContext(AuthContext);
 
-
-
-    async function logoutHandler() {
+    function logoutHandler(): void {
         try {
-            const response = await fetch('http://localhost:3000/auth/logout', {
-                method: 'GET',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-            })
-            if (response.ok) {
-                localStorage.removeItem("user");
-                setUser(null)
-            } else {
-                console.log("error");
-            }
+            logout();
+            setUser(null);
         } catch (error) {
             console.log({ ERRRRROR: error });
         }

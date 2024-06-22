@@ -12,6 +12,7 @@ import TopList from "../pages/topList/TopList.tsx";
 import GamePage from "../pages/gamePage/gamePage.tsx";
 import GameMeet from "../pages/gameMeet/GameMeet.tsx";
 import GameCamp from "../pages/gameCamp/GameCamp.tsx";
+import { checkAuth } from '../services/checkAuthService/checkAuth.service';
 
 import BuyerPage from "../pages/buyerPage/buyerPage.tsx";
 import LocalisationPage from "../pages/localisationPage/localisationPage.tsx";
@@ -32,7 +33,11 @@ function App(): JSX.Element {
     }
   }, []);
 
-
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      checkAuth();
+    }
+  }, [])
 
 
   return (

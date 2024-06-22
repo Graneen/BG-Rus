@@ -29,7 +29,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-shadow: -1px 1px 2px rgb(241, 241, 241);
+
   }
   .logo {
     color: var(--goldenbeer);
@@ -60,7 +60,6 @@ header {
     position: relative;
     display: flex;
     justify-content: center;
-    text-shadow: -1px 1px 2px rgb(241, 241, 241);
   }
   .account:hover .account_text,
   .account:focus .account_text {
@@ -69,7 +68,6 @@ header {
   .account:hover .account_icon svg path,
   .account:focus .account_icon svg path {
     fill: var(--accent);
-    text-shadow: -1px 1px 2px rgb(241, 241, 241);
   }
   .account_text::before {
     content: "";

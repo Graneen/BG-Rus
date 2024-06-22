@@ -23,8 +23,10 @@ function RegisterForm(): JSX.Element {
             body: JSON.stringify({name, email, password})
         })     
     if (response.ok) {
-      const userData = await response.json();
-      setUser(userData.userId)
+      const {userId, token} = await response.json();
+      setUser(userId);
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', userId);
       navigate('/');
   }
   else {
@@ -41,6 +43,7 @@ return (
     <label htmlFor="name">Name</label>
     <input
           value={name} onChange={(e) => setName(e.target.value)} 
+            className="text-black"
             id="name"
             name="name"
             type="text"
@@ -50,6 +53,7 @@ return (
     <label htmlFor="email">Email</label>
     <input
           value={email} onChange={(e) => setEmail(e.target.value)} 
+            className="text-black"
             id="email"
             name="email"
             type="email"
@@ -59,6 +63,7 @@ return (
           <label htmlFor="password">Пароль</label>
           <input
             value={password} onChange={(e) => setPassword(e.target.value)} 
+            className="text-black"
             id="password"
             name="password"
             type="password"

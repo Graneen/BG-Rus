@@ -16,6 +16,12 @@ module.exports = {
           key: "id",
         },
       },
+      gameName: {
+        type: Sequelize.STRING, 
+      },
+      maxPlayers: {
+        type: Sequelize.INTEGER, 
+      },
       location: {
         type: Sequelize.STRING,
       },

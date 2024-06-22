@@ -4,6 +4,7 @@ import { RootState } from "../../redux/store";
 import { updateGameSession } from "../../features/gameSessionSlice";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import ModalMap from "../modalMap/ModalMap";
+import axios from "axios"; 
 import "./ModalForm.css";
 
 const ModalForm: React.FC = () => {
@@ -15,18 +16,23 @@ const ModalForm: React.FC = () => {
   const [gameNameInput, setGameNameInput] = useState(gameName);
   const [maxPlayersInput, setMaxPlayersInput] = useState(maxPlayers);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(
-      updateGameSession({
-        date,
+    try {
+      const response = await axios.post("http://localhost:3000/game-meetings/news", {
+        game_id: null,
         gameName: gameNameInput,
         maxPlayers: maxPlayersInput,
-        venue: selectedLocation
-          ? `Lat: ${selectedLocation.lat}, Lng: ${selectedLocation.lng}`
-          : locationAddress,
-      })
-    );
+        location: locationAddress,
+        date,
+      });
+      console.log("Game Meeting created:", response.data);
+      
+      setShowMapModal(false); 
+
+    } catch (error) {
+      console.error("Error creating Game Meeting:", error);
+    }
   };
 
   const handleLocationSelected = (location: { lat: number; lng: number }) => {
@@ -50,21 +56,16 @@ const ModalForm: React.FC = () => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <h3>Детали</h3>
+        <h3>Details</h3>
         <form onSubmit={handleFormSubmit}>
           <label>Date: {date}</label>
-          <input type="text" value={gameNameInput} placeholder="Название игры" onChange={handleGameNameChange} />
-          <input
-            type="number"
-            value={maxPlayersInput}
-            placeholder="Количество игроков"
-            onChange={handleMaxPlayersChange}
-          />
+          <input type="text" value={gameNameInput} placeholder="Game Name" onChange={handleGameNameChange} />
+          <input type="number" value={maxPlayersInput} placeholder="Max Players" onChange={handleMaxPlayersChange} />
           <div className="input-with-icon">
             <input
               type="text"
               value={locationAddress}
-              placeholder="Локация"
+              placeholder="Location"
               onChange={handleLocationAddressChange}
             />
             <FaMapMarkerAlt className="map-icon" onClick={() => setShowMapModal(true)} />
@@ -76,7 +77,7 @@ const ModalForm: React.FC = () => {
               onLocationSelected={handleLocationSelected}
             />
           )}
-          <button type="submit">Создать</button>
+          <button type="submit">Create</button>
         </form>
       </div>
     </div>
