@@ -3,7 +3,13 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../db/models');
-
+const {
+    generateToken,
+    saveToken,
+    logoutToken,
+    validateRefreshToken,
+    findToken
+} = require('../../middlewares/token-service');
 
 ///auth
 
@@ -17,7 +23,14 @@ router.post("/login", async(req, res) => {
             const samePassword = await bcrypt.compare(password, user.password);
             if (samePassword) {
                 req.session.user = {id: user.id}
-                return res.json({userId: user.id});
+                
+                const tokens = generateToken({id: user.id, email: user.email});
+                await saveToken(user.id, tokens.refreshToken);
+                res.cookie("refresh_token", tokens.refreshToken, {
+                    maxAge: 30 * 24 * 60 * 60 * 1000,
+                    //? httpOnly: true,
+                });
+                return res.json({userId: user.id, token: tokens.accessToken});
             }
             else {
                 res.status(403).json({message: "Неверный пароль"});
@@ -43,7 +56,14 @@ router.post("/register", async(req, res) => {
                 console.log(user)
                 req.session.user_sid = user.id
                 console.log(req.session.user_sid)
-                res.json({userId: user.id});
+                
+            const tokens = generateToken({id: user.id, email: user.email});
+            await saveToken(user.id, tokens.refreshToken);
+            res.cookie("refresh_token", tokens.refreshToken, {
+                maxAge: 30 * 24 * 60 * 60 * 1000,
+                //? httpOnly: true,
+            });
+            return res.json({userId: user.id, token: tokens.accessToken});
         }
         if (findUser) {
             res.status(403).json({message: "User exists"})
@@ -55,13 +75,44 @@ router.post("/register", async(req, res) => {
     }
 });
 
-router.get('/logout', (req, res) => {
-    req.session.destroy((error) => {
-        if (error) {
-          return res.status(500).json({ message: 'Ошибка при удалении сессии' });
+router.post('/logout', async (req, res) => {
+    try {
+        req.session.destroy((error) => {
+            if (error) {
+              return res.status(500).json({ message: 'Ошибка при удалении сессии' });
+            }
+            res.clearCookie('user_sid');
+        });
+        
+        const { token } = req.body;
+        // const { refreshToken } = req.cookies;
+        await logoutToken(refreshToken = token);
+        res.clearCookie('refresh_token').sendStatus(204);
+    } catch (error) {
+        console.log({error});
+    }
+});
+
+router.post('/refresh', async (req, res) => {
+    try {
+        const { refreshToken } = req.body;
+
+        const validateRT = validateRefreshToken(refreshToken);
+        const userData = await findToken(refreshToken);
+
+        if (!validateRT || !userData) {
+            return res.sendStatus(401);
         }
-        res.clearCookie('user_sid').sendStatus(204);
-      });
-    });
+        const tokens = generateToken({id: userData.id, email: userData.email});
+        await saveToken(userData.id, tokens.refreshToken);
+        res.cookie("refresh_token", tokens.refreshToken, {
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+            //? httpOnly: true,
+        });
+        return res.json({userId: userData.id, token: tokens.accessToken});
+    } catch (error) {
+        console.log({errorRefresh: error});
+    }
+});
 
 module.exports = router;
