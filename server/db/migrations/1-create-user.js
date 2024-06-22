@@ -18,13 +18,19 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      refreshToken: {
+        type: Sequelize.STRING,
+        defaultValue: '',
+      },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: new Date(),
       }
     });
   },
