@@ -42,6 +42,7 @@ const ModalMap: React.FC<ModalMapProps> = ({ isOpen, onClose, onLocationSelected
     const { coords } = e.get("coords");
     setSelectedLocation({ lat: coords[0], lng: coords[1] });
     onLocationSelected({ lat: coords[0], lng: coords[1] });
+    onClose(); 
   };
 
   return (

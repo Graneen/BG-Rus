@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   GameMeeting.init(
     {
       game_id: DataTypes.INTEGER,
+      gameName: DataTypes.STRING, 
+      maxPlayers: DataTypes.INTEGER, 
       location: DataTypes.STRING,
       date: DataTypes.DATE,
     },
