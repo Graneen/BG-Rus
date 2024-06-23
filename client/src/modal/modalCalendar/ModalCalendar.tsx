@@ -3,9 +3,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaCalendarAlt } from "react-icons/fa";
 import './ModalCalendar.css';
+import { useNavigate } from "react-router-dom";
 
-const ModalCalendar: React.FC<{ setGameSessionDetails: Function, closeModal: Function }> = ({ setGameSessionDetails, closeModal }) => {
+interface ModalCalendarProps {
+  setGameSessionDetails: (details: any) => void;
+  closeModal: () => void;
+  
+}
+
+
+const ModalCalendar: React.FC<ModalCalendarProps> = ({ setGameSessionDetails, closeModal }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const navigate = useNavigate();
 
   const handleNext = () => {
     if (selectedDate) {
@@ -15,6 +24,7 @@ const ModalCalendar: React.FC<{ setGameSessionDetails: Function, closeModal: Fun
 
   const handleCloseModal = () => {
     closeModal();
+    navigate("/events");
   };
 
   const handleDateChange = (date: Date | null) => {

@@ -7,11 +7,18 @@ import ModalMap from "../modalMap/ModalMap";
 import axios from "axios"; 
 import "./ModalForm.css";
 
-const ModalForm: React.FC = () => {
+
+interface ModalFormProps {
+  
+ 
+  onCloseModal: () => void;
+  }
+
+  const ModalForm: React.FC<ModalFormProps> = ({ onCloseModal }) => {
   const { date, gameName, maxPlayers, venue } = useSelector((state: RootState) => state.gameSession);
   const dispatch = useDispatch();
   const [showMapModal, setShowMapModal] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState<{ lat: number; lng: number } | null>(null);
+
   const [locationAddress, setLocationAddress] = useState(venue);
   const [gameNameInput, setGameNameInput] = useState(gameName);
   const [maxPlayersInput, setMaxPlayersInput] = useState(maxPlayers);
@@ -28,7 +35,8 @@ const ModalForm: React.FC = () => {
       });
       console.log("Game Meeting created:", response.data);
       
-      setShowMapModal(false); 
+      onCloseModal(); 
+      dispatch(updateGameSession({ gameName: gameNameInput, maxPlayers: maxPlayersInput, venue: locationAddress }));
 
     } catch (error) {
       console.error("Error creating Game Meeting:", error);
@@ -36,7 +44,6 @@ const ModalForm: React.FC = () => {
   };
 
   const handleLocationSelected = (location: { lat: number; lng: number }) => {
-    setSelectedLocation(location);
     setLocationAddress(`Lat: ${location.lat}, Lng: ${location.lng}`);
     setShowMapModal(false);
   };
