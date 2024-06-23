@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Feedback.init({
     user_id: DataTypes.INTEGER,
     game_id: DataTypes.INTEGER,
-    description: DataTypes.STRING
+    description: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Feedback',
