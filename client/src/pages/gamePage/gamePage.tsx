@@ -12,7 +12,7 @@ function GamePage() {
     const { id } = useParams<{ id: string }>();
 
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
-    const photos = [card.list.poster, card.list.image1, card.list.image2];
+    const photos = [card.list.boardGame.poster, card.list.boardGame.image1, card.list.boardGame.image2];
 
     useEffect(() => {
         if (id) {
@@ -23,6 +23,7 @@ function GamePage() {
     if (!card || card.loading || !card.list) {
         return <div>Loading...</div>;
     }
+    // console.log(card.list.feedBackGame)
 
     const handleMainPhotoClick = () => {
         if (mainPhotoIndex === 2) {
@@ -37,7 +38,7 @@ function GamePage() {
             <div className="page-container">
                 <div className="page-main">
                     <div className="block-guide">
-                        <h1 className='page-header'>{card.list.title}</h1>
+                        <h1 className='page-header'>{card.list.boardGame.title}</h1>
                         <div>
                             <div className="image-descr-block">
                                 <div className="card-left">
@@ -63,12 +64,12 @@ function GamePage() {
                                         <StarIcon />
                                         <p>(5 отзывов)</p>
                                     </div>
-                                    <p>Жанр: {card.list.genre}</p>
-                                    <p>Тематика: {card.list.theme}</p>
-                                    <p>Авторы: {card.list.author}</p>
-                                    <p>Год создания: {card.list.year}</p>
+                                    <p>Жанр: {card.list.boardGame.genre}</p>
+                                    <p>Тематика: {card.list.boardGame.theme}</p>
+                                    <p>Авторы: {card.list.boardGame.author}</p>
+                                    <p>Год создания: {card.list.boardGame.year}</p>
                                     <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
-                                        {card.list.description}
+                                        {card.list.boardGame.description}
                                     </p>
                                     <FavoritesButton />
 
@@ -79,7 +80,7 @@ function GamePage() {
                     <section className="block-guide">
                         <div className="video-block">
                             <h2>Видеообзор</h2>
-                            <iframe className="w-full h-[70vh]" src={`https://www.youtube.com/embed/${card.list.video.slice(17)}`}
+                            <iframe className="w-full h-[70vh]" src={`https://www.youtube.com/embed/${card.list.boardGame.video.slice(17)}`}
                                 title="YouTube video player"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
