@@ -1,6 +1,20 @@
+import { useState } from 'react';
+import Modal from "react-modal";
 import './Steps.css'
+import { useNavigate } from 'react-router-dom';
 
 function Steps() {
+    const navigate = useNavigate();
+    // const [showQuizModal, setShowQuizModal] = useState<boolean>(false);
+
+    // function handlerCreateQuizModal() {
+    //     setShowQuizModal(true);
+    // }
+
+    // function handlerCloseQuizModal() {
+    //     setShowQuizModal(false);
+    // }
+
     return (
         <>
             <section className="main-content">
@@ -13,7 +27,12 @@ function Steps() {
                                 <p className="hero_pre-text">КВИЗ</p>
                                 <h1>Какой ты игрок?</h1>
                                 <div className="guide_text">Наш интерактивный квиз поможет определить ваши личные игровые предпочтения. Мы зададим вам несколько вопросов о ваших игровых вкусах и на основе ваших ответов подберем подходящие для вас настольные игры из нашей обширной коллекции.</div>
-                                <a href="#" className="more">
+                                <a 
+                                    // href="/quiz"
+                                    className="more"
+                                    // onClick={handlerCreateQuizModal}
+                                    onClick={() => navigate("/quiz")}
+                                >
                                     <span className="more_text">пройти квиз</span>
                                     <span className="more_icon">
                                         <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +78,16 @@ function Steps() {
                             <div className="guide_image"><img src="https://trueimages.ru/img/ff/c9/ec191766.png" alt="" /></div>
                         </div>
                 </section>
-
+                {/* <Modal isOpen={showQuizModal}  onRequestClose={handlerCloseQuizModal}>
+                   <div className="modal-full quizeContreuner">
+                    <div className="modal-content quizeContreuner">
+                        <div className='text-black'>stranicha</div>
+                        <div className='text-black'>стенааааааааааааааааааааааааааааа аываа ываа ыва</div>
+                        <button onClick={handlerCloseQuizModal} className='text-black'>close</button>
+                    </div>
+                   </div> */}
+                   {/* //! <ModalCalendar setGameSessionDetails={handleGameSessionDetails} closeModal={handleCloseModal} /> */}
+                {/* </Modal> */}
             </section>
         </>
     );

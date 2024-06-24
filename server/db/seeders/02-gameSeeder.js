@@ -18,9 +18,6 @@ module.exports = {
       maxPlayers: 6,
       time: '30-60 мин',
       video: 'https://youtu.be/Uv1nlCNZbEU',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://avatars.mds.yandex.net/get-mpic/4590616/img_id1015776648404349224.png/300x400',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Skvirl/Coup/Perevorot_03-1024x1024-wm.jpg',
@@ -37,9 +34,6 @@ module.exports = {
       maxPlayers: 5,
       time: '10-20 мин',
       video: 'https://youtu.be/qOOcetIc01k',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://nastolka24.ru/wp-content/uploads/2018/06/main.jpg',
       image1: 'https://nastolka24.ru/wp-content/uploads/2018/06/109337.jpg',
@@ -56,9 +50,6 @@ module.exports = {
       maxPlayers: 10,
       time: '15-30 мин',
       video: 'https://youtu.be/sA5CtiLiD7M',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://igrrai.ru/image/catalog/Mattel/UNO%20Flip/1026521265.jpg',
       image1: 'https://contigr.ru/upload/iblock/de4/uno_kartochnaya_igra_uno_flip_3.jpg',
@@ -75,9 +66,6 @@ module.exports = {
       maxPlayers: 10,
       time: '15-30 мин',
       video: 'https://youtu.be/h8Nt1rpVaoI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://static.richfamily.ru/photo/25/49/254984/1.webp',
       image1: 'https://cdn.fishki.net/upload/post/2021/09/27/3956505/822d47b6ad85233ec1eb7994d829eec7.jpg',
@@ -94,9 +82,6 @@ module.exports = {
       maxPlayers: 8,
       time: '20-40 мин',
       video: 'https://youtu.be/Uw3dKVGINVg',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://cdn1.ozone.ru/s3/multimedia-6/6826853094.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/983/7.jpg',
@@ -113,9 +98,6 @@ module.exports = {
       maxPlayers: 7,
       time: '30-60 мин',
       video: 'https://youtu.be/2gdjPOzDbz4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://cdn1.ozone.ru/multimedia/1018901105.jpg',
       image1: 'https://www.igroved.ru/db/games/images/43/743/igroved_ticket-to-ride-rus_04.jpg',
@@ -132,9 +114,6 @@ module.exports = {
       maxPlayers: 5,
       time: '30-60 мин',
       video: 'https://youtu.be/zL592Hzfmt0',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://hobbygames.ru/image/data/HobbyWorld/Karkasson/2022/carcassonne_2022_00.jpg',
       image1: 'https://www.igroved.ru/db/games/images/3/3/igroved_carcasson-classic_05.jpg',
@@ -151,9 +130,6 @@ module.exports = {
       maxPlayers: 5,
       time: '35-60 мин',
       video: 'https://youtu.be/mNW9Iz0zjbs',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Style_Jizny/7_wonders_Duel_ru/7_wonders_Duel_ru-1024x1024-wm.jpg',
       image1: 'https://chel.znaemigraem.ru/upload/iblock/696/696c2039218f71f48c40a599763ecf59.jpg',
@@ -170,9 +146,6 @@ module.exports = {
       maxPlayers: 2,
       time: '30-40 мин',
       video: 'https://youtu.be/ZO_tjDcLF3Q',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Robinzon_Kruzo/Robinzon_Kruzo_Vtoraya_Redakciya00-1024x1024-wm.jpg',
       image1: 'https://um-detki.ru/wp-content/uploads/2019/03/Robinzon-Kruzo2.jpg',
@@ -189,9 +162,6 @@ module.exports = {
       maxPlayers: 5,
       time: '60-120 мин',
       video: 'https://youtu.be/Q4IpknV0tl4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://vsedrugoeshop.ru/upload/ammina.optimizer/jpg-webp/q80/upload/iblock/0d6/0d62e7ab545eb8b577dafe1d5730a03c/6013630596.webp',
       image1: 'https://www.mosigra.ru/image/data/mosigra.product.main/547/209/DSC_8038.jpg',
@@ -208,9 +178,6 @@ module.exports = {
       maxPlayers: 7,
       time: '30-45 мин',
       video: 'https://youtu.be/rZazsycjZd0',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://www.mosigra.ru/image/cache/data/%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%D1%8B/%D0%A1%D1%82%D0%B8%D0%BB%D1%8C%20%D0%96%D0%B8%D0%B7%D0%BD%D0%B8/%D0%9A%D0%BE%D0%BB%D1%8C%D1%82%20%D0%AD%D0%BA%D1%81%D0%BF%D1%80%D0%B5%D1%81%D1%81/DSC_4524-1024x1024-wm.webp',
       image1: 'https://www.igroved.ru/db/games/images/35/2735/igroved_col-express-rus_05.jpg',
@@ -227,9 +194,6 @@ module.exports = {
       maxPlayers: 6,
       time: '30-40 мин',
       video: 'https://youtu.be/RJVSBYFKHkQ',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://www.igroved.ru/db/games/images/66/2766/igroved_war-of-the-ring_01.jpg',
       image1: 'https://vkplay.ru/pre_0x736_resize/hotbox/content_files/Stories/2023/03/23/9ddfe439a5134a8a837194a8cd0665a9.jpg?quality=85',
@@ -246,9 +210,6 @@ module.exports = {
       maxPlayers: 4,
       time: '240 мин',
       video: 'https://youtu.be/F4OkOgptgDI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
   }, {
       poster: 'https://hobbygames.ru/image/data/Magellan/Jackal/Shakal_Ostrov_Sokrovisch/New_photo/shakal_ostrov_sokrovisch.jpg',
       image1: 'https://dragondice.ru/upload/iblock/e4c/e4cb495c2663aee926f49c961b11b56c.jpg',
@@ -265,9 +226,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-120 мин',
       video: 'https://youtu.be/8zXxAR8_JuU',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
  }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Kosmicheskij_kontakt/Cosmic_Encounter_1-1024x1024-wm.jpg',
       image1: 'https://www.mirf.ru/wp-content/uploads/2020/09/Cosmic-Encounter-2008-game.jpg',
@@ -284,9 +242,6 @@ module.exports = {
       maxPlayers: 5,
       time: '60-120 мин',
       video: 'https://youtu.be/1oSElyBXhQg',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
  }, {
       poster: 'https://basket-01.wbbasket.ru/vol87/part8753/8753560/images/big/1.webp',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/4187/2.jpg',
@@ -303,9 +258,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-45 мин',
       video: 'https://youtu.be/Ky1jDFP7kYo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
  }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Star_Wars_Rebellion/zvezdnie-vojni_vosstanie_roznica-1024x1024-wm.jpg',
       image1: 'https://banzgames.ru/image/cache/catalog/games/2717/zvezdnye-voyny-vosstanie-star-wars-rebellion-14-1000x1000.jpg',
@@ -322,9 +274,6 @@ module.exports = {
       maxPlayers: 4,
       time: '240 мин',
       video: 'https://youtu.be/f2nAjYc2HVo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
  }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Lavka_Games/Pokorenie_Marsa/Proekt_Venera/Pokorenie_Marsa-1024x1024-wm.jpg',
       image1: 'https://www.game-house.ru/userfiles/shop/large/2/10351_pokorenie-marsa--terraforming-mars.jpg',
@@ -341,9 +290,6 @@ module.exports = {
       maxPlayers: 5,
       time: '120 мин',
       video: 'https://youtu.be/HJrPwaXfqbg',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
  }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Style_Jizny/7_wonders/2020/7_Chudes-1024x1024-wm.jpg',
       image1: 'https://vsova.ru/upload/resize_cache/iblock/fdd/695_704_10767b57be003ad8420d990246d86ef5f/fdd290d9465d525269a18aad81984482.jpg',
@@ -360,9 +306,6 @@ module.exports = {
       maxPlayers: 7,
       time: '45 мин',
       video: 'https://youtu.be/1Dz8F3irERs',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
  }, {
       poster: 'https://hobbygames.ru/image/data/HobbyWorld/Mezen/HG/Mezen00.JPG',
       image1: 'https://vsova.ru/upload/resize_cache/iblock/77e/543_800_10767b57be003ad8420d990246d86ef5f/mwveffz2w82a2s5mv2f17dgltfhlykoe.jpg',
@@ -379,9 +322,6 @@ module.exports = {
       maxPlayers: 5,
       time: '30-45 мин',
       video: 'https://youtu.be/gsbf5bmR5Fs',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
  }, {
       poster: 'https://hobbygames.ru/image/data/Magellan/Taynye_kamni/taynye_kamni_00.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%D1%8B/Magellan/%D0%A2%D0%B0%D0%B9%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%B0%D0%BC%D0%BD%D0%B8/DSC_3138-1024x1024-wm.webp',
@@ -398,9 +338,6 @@ module.exports = {
       maxPlayers: 5,
       time: '20-30 мин',
       video: 'https://youtu.be/7dk7AaJqsIY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
  }, {
       poster: 'https://content.podarki.ru/goods-images/38c05537-a483-442a-b58b-d84df1df802d.jpg',
       image1: 'https://catalog.detmir.st/media/AQQycrmncapMUKx4A6auc_4nuxi3pX1cqoDdIaGg1Kk=',
@@ -417,9 +354,6 @@ module.exports = {
       maxPlayers: 4,
       time: '5-10 мин',
       video: 'https://youtu.be/33vUqyxIXjc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Zvezdnye_Imperii/zvezdnieImperii2ed-1024x1024-wm.jpg',
       image1: 'https://www.beardgames.ru/wp-content/uploads/2015/11/Star-realms-PC-battle.jpg',
@@ -436,9 +370,6 @@ module.exports = {
       maxPlayers: 6,
       time: '30-60 мин',
       video: 'https://youtu.be/i58wvr5-V7c',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.igroved.ru/db/games/images/46/46/igroved_korova-006-series-korova-006_01.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/mosigra.product.main/548/246/DSC_9897-1024x1024-wm.webp',
@@ -455,9 +386,6 @@ module.exports = {
       maxPlayers: 10,
       time: '30-60 мин',
       video: 'https://youtu.be/1aYqfMszyBw',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/2041/1607673/large_patch.jpg',
       image1: 'https://www.igroved.ru/db/games/images/17/2317/igroved_patchwork_05.jpg',
@@ -474,9 +402,6 @@ module.exports = {
       maxPlayers: 2,
       time: '20-30 мин',
       video: 'https://youtu.be/VkOHklRJzG8',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image//data/Fabrika_Igr/More_sol_bumaga/HG/moresol_00.JPG',
       image1: 'https://22games.net/wp-content/uploads/2023/07/Sea-Salt-and-Paper-2.jpg',
@@ -493,9 +418,6 @@ module.exports = {
       maxPlayers: 4,
       time: '20-30 мин',
       video: 'https://youtu.be/8h7T9tNzNGg',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.mirf.ru/wp-content/uploads/2017/07/ages_box.jpg',
       image1: 'https://cs9.pikabu.ru/post_img/big/2020/05/11/9/1589206054112860720.jpg',
@@ -512,9 +434,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120-240 мин',
       video: 'https://youtu.be/5IlhqFuMoIc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://igrrai.ru/image/magictoolbox_cache/6a44ee90e5b97aaee08cf3ed56b97a08/2/8/2877_product/thumb540x540/1973714213/igroved_the-isle-of-cat-ostrov-koshek_01.jpg',
       image1: 'https://igrrai.ru/image/catalog/GaGa%20Games/Ostrov%20Koshek/the_isle_of_cats_wooden_cat_meeples_1.jpg',
@@ -531,9 +450,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-90 мин',
       video: 'https://youtu.be/PSlCy6_LJ9s',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/CrowD_Games/Blood%20Rage/0.jpg',
       image1: 'https://images.crowdgames.ru/files/1/1881/2508633/original/game1.jpg',
@@ -550,9 +466,6 @@ module.exports = {
       maxPlayers: 4,
       time: '40-90 мин',
       video: 'https://youtu.be/MagkOWQpDhc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.cardplace.ru/uploads/cardplace/c74c4bf0/b35eab39608ce104ce0bec8e972afe3c.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/mosigra.product.main/548/453/DSC_0769-1024x1024-wm.webp',
@@ -569,9 +482,6 @@ module.exports = {
       maxPlayers: 5,
       time: '30-40 мин',
       video: 'https://youtu.be/-jHpAagU78c',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Lavka_Games/Inish/Inish-1024x1024-wm.jpg',
       image1: 'https://bgplanet.ru/wa-data/public/shop/products/14/52/25214/images/5379/Inis-2.970.jpg',
@@ -588,9 +498,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-90 мин',
       video: 'https://youtu.be/xrZfiCBV5zI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/6983/1710919/large_sagrada_new2.png',
       image1: 'https://www.mosigra.ru/image/cache/data/mosigra.product.main/550/052/DSC_6802-1024x1024-wm.webp',
@@ -607,9 +514,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-45 мин',
       video: 'https://youtu.be/maoZ1bpWUqY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://настольные-игры-москва.рф/wa-data/public/shop/products/86/56/15686/images/48069/48069.750x0.jpg',
       image1: 'https://omskzdes.ru/storage/c/2022/01/28/1643368453_584741_52.jpg',
@@ -626,9 +530,6 @@ module.exports = {
       maxPlayers: 6,
       time: '300-480 мин',
       video: 'https://youtu.be/iwbBLzTGjV8',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Eldritch_horror/EH00-1024x1024-wm.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Eldritch_horror/EH_4-1024x1024-wm.jpg',
@@ -645,9 +546,6 @@ module.exports = {
       maxPlayers: 8,
       time: '90-180 мин',
       video: 'https://youtu.be/G4o5Gcs9uHM',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/common/GofTh/agot00-1024x1024-wm.jpg',
       image1: 'https://poisk-podbor.ru/aimg/content/70d7a6c036243cbd0ec4d347520962f4b2c2cef6.jpg',
@@ -664,9 +562,6 @@ module.exports = {
       maxPlayers: 6,
       time: '180 мин',
       video: 'https://youtu.be/XCvqzQLg26E',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.igrotime.ru/upload/t/800-700im/large_foto/codenames.jpg',
       image1: 'https://www.mosigra.ru/image/data/mosigra.product.main/555/304/DSC_3492.jpg',
@@ -683,9 +578,6 @@ module.exports = {
       maxPlayers: 8,
       time: '15-25 мин',
       video: 'https://youtu.be/XCvqzQLg26E',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Zvezda/Azul/Letnij_dvorets/HG/Azul_Rus-1024x1024-wm.jpg',
       image1: 'https://www.igroved.ru/db/games/images/49/3149/igroved_azul-summer-pavilion_02.jpg',
@@ -701,9 +593,7 @@ module.exports = {
       minPlayers: 2,
       maxPlayers: 4,
       time: '30-45 мин',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
+      video: '',
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Voskhodyaschee_Solntse/RSU001-Rising-Sun-3d_box_rozn-1024x1024-wm.jpg',
       image1: 'https://media.lavkaigr.ru/cache/3d/3f/3d3f6e649c627856dedfe42b3a113be0.png',
@@ -720,9 +610,6 @@ module.exports = {
       maxPlayers: 5,
       time: '90-120 мин',
       video: 'https://youtu.be/AtAuPYY-aHU',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/3063/80137207/large_%D0%9A%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B_%D1%81%D0%B0%D0%B9%D1%82.png',
       image1: 'https://images.crowdgames.ru/files/1/5937/5240625/original/pic3196217.jpg',
@@ -739,9 +626,6 @@ module.exports = {
       maxPlayers: 5,
       time: '60-120 мин',
       video: 'https://youtu.be/hap_dYlO6hU',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Gaga/Opasnye_slova/Opasnie_Slova-1024x1024-wm.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/4656/4.jpg',
@@ -758,9 +642,6 @@ module.exports = {
       maxPlayers: 8,
       time: '30-50 мин',
       video: 'https://youtu.be/o4oz6wwKlHs',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/HobbyWorld/Tainy_Arkhama/Tajny_Arkkhehma00.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/mosigra.product.main/554/539/DSC_2856-1024x1024-wm.webp',
@@ -777,9 +658,6 @@ module.exports = {
       maxPlayers: 8,
       time: '60-90 мин',
       video: 'https://youtu.be/pAPAwpNjh_4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Les_skazok/GrimmForest_box-1024x1024-wm.jpg',
       image1: 'https://www.igroved.ru/db/games/images/70/3070/igroved_grimm-forest_04.jpg',
@@ -796,9 +674,6 @@ module.exports = {
       maxPlayers: 4,
       time: '40-60 мин',
       video: 'https://youtu.be/ck9dKi-WX00',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Ujas_Arkhema/UA_cardgame/JKI_UjasArkhama-1024x1024-wm.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/mosigra.product.main/549/595/DSC_4860-1024x1024-wm.webp',
@@ -815,9 +690,6 @@ module.exports = {
       maxPlayers: 8,
       time: '60-120 мин',
       video: 'https://youtu.be/14xhw9nhpTM',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/products/1/4945/793834321/3D_Project-L_RU-2.png',
       image1: 'https://static.insales-cdn.com/files/1/4147/16306227/original/%D1%82%D0%B5%D1%82%D1%80%D0%B8%D1%812.jpg',
@@ -834,9 +706,6 @@ module.exports = {
       maxPlayers: 4,
       time: '20-40 мин',
       video: 'https://youtu.be/9RY_jmJsLVQ',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://ir-4.ozone.ru/s3/multimedia-w/c1000/6309416612.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/mosigra.product.main/557/147/DSC_4530-1024x1024-wm.webp',
@@ -853,9 +722,6 @@ module.exports = {
       maxPlayers: 8,
       time: '45-60 мин',
       video: 'https://youtu.be/5EEmKasyawo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Nemesis/Nemesida-3d_box_rozn-1024x1024-wm.jpg',
       image1: 'https://static.insales-cdn.com/files/1/3981/10473357/original/064c7029-9f37-4bee-86f3-28b9f85de2b8.jpg',
@@ -872,9 +738,6 @@ module.exports = {
       maxPlayers: 5,
       time: '60-120 мин',
       video: 'https://youtu.be/9ZNMDd3iuyc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Zvezda/Ganzeyskiy_Soyuz/HG/Ganezeyskiy_Soyuz-1024x1024-wm.jpg',
       image1: 'https://www.igroved.ru/db/games/images/15/3415/03.jpg',
@@ -891,9 +754,6 @@ module.exports = {
       maxPlayers: 5,
       time: '45-90 мин',
       video: 'https://youtu.be/9VQ7zsv9IMY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://ir.ozone.ru/s3/multimedia-2/c1000/6839090642.jpg',
       image1: 'https://avatars.mds.yandex.net/get-mpic/4721581/img_id742893862916890060.jpeg/orig',
@@ -910,9 +770,6 @@ module.exports = {
       maxPlayers: 5,
       time: '45-60 мин',
       video: 'https://youtu.be/T-qnQzTJSlo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Gaga/Unmatched_Bitva_Legend/UnMatched-1024x1024-wm.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/5293/17.jpg',
@@ -929,9 +786,6 @@ module.exports = {
       maxPlayers: 4,
       time: '20-40 мин',
       video: 'https://youtu.be/jT5P2sMntQ',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.mosigra.ru/image/cache/data/%D0%9F%D1%80%D0%B5%D0%B4%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B/Hobby%20World/%D0%9E%D1%81%D0%BE%D0%B1%D0%BD%D1%8F%D0%BA%D0%B8%20%D0%B1%D0%B5%D0%B7%D1%83%D0%BC%D0%B8%D1%8F/Mansions-of-Madness_box-1024x1024-wm.webp',
       image1: 'https://boardgameby.wordpress.com/wp-content/uploads/2021/04/img_8238.jpg',
@@ -947,10 +801,7 @@ module.exports = {
       minPlayers: 1,
       maxPlayers: 5,
       time: '150 мин',
-    
-      createdAt: new Date(),
-      updatedAt: new Date()
-
+      video: '',
 }, {
       poster: 'https://static.insales-cdn.com/r/8lDM2HppxRk/rs:fit:1000:1000:1/plain/images/products/1/5274/833549466/Base.png@png',
       image1: 'https://mywishboard.com/thumbs/wish/a/n/p/1020x0_jqoifdylytstaqxg_jpg_c105.jpg',
@@ -967,9 +818,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-45 мин',
       video: 'https://youtu.be/5fNy2vGn0Jg',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/-new/niza-gams/kto-nakormit-krakena/hg/kto-nakormit-krakena00-1024x1024-wm.jpg',
       image1: 'https://www.mirf.ru/wp-content/uploads/2023/11/Kraken-2-1024x684.jpg',
@@ -986,9 +834,6 @@ module.exports = {
       maxPlayers: 11,
       time: '30-90 мин',
       video: 'https://youtu.be/XNsWB2LDoZo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://ir.ozone.ru/s3/multimedia-k/c1000/6676535468.jpg',
       image1: 'https://www.igroved.ru/db/games/images/37/2237/03.jpg',
@@ -1005,9 +850,6 @@ module.exports = {
       maxPlayers: 5,
       time: '90-120 мин',
       video: 'https://youtu.be/4jGlVZY7UFE',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://media.lavkaigr.ru/cache/81/04/810472959304458170f05ffc5d4bc9fa.png',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Lavka_Games/Anh_Bogi_Egipta/HG/Ankh_03-1024x1024-wm.jpg',
@@ -1024,9 +866,6 @@ module.exports = {
       maxPlayers: 5,
       time: '90-120 мин',
       video: 'https://youtu.be/2Ccqo5kCb0I',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.igroved.ru/db/games/images/97/3797/igroved_old-world_1.jpg',
       image1: 'https://img.gazeta.ru/files3/334/17179334/Untitled-3-pic_32ratio_1200x800-1200x800-57317.jpg',
@@ -1043,9 +882,6 @@ module.exports = {
       maxPlayers: 5,
       time: '150-180 мин',
       video: 'https://youtu.be/RBLNnOhh0nc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 },  {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Gaga/Sumerechnaya_borba/Sumerechnaya_Borba-1024x1024-wm.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/mosigra.product.main/557/406/DSC_4945-1024x1024-wm.webp',
@@ -1062,9 +898,6 @@ module.exports = {
       maxPlayers: 2,
       time: '180-240 мин',
       video: 'https://youtu.be/nF3BJpZ3Y4U',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYa3B9GDkrqyIh1UhLw0wqZMq-_Y_EPOSFjw&s',
       image1: 'https://tesera.ru/images/items/1677118/810xm/photo.jpg',
@@ -1080,9 +913,7 @@ module.exports = {
       minPlayers: 1,
       maxPlayers: 5,
       time: '150 мин',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
+      video: '',
 }, {
       poster: 'https://tergames.ru/upload/iblock/aa1/aa18ca5fd84c04816512a1ddaf286fee.jpg',
       image1: 'https://www.mosigra.ru/image/data/mosigra.product.main/549/408/DSC_4606.jpg',
@@ -1099,9 +930,6 @@ module.exports = {
       maxPlayers: 6,
       time: '45-90 мин',
       video: 'https://youtu.be/BQSrprpv-w4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://avatars.mds.yandex.net/get-mpic/5228636/img_id7413311490480988163.jpeg/300x400',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/4617/2.jpg',
@@ -1118,9 +946,6 @@ module.exports = {
       maxPlayers: 5,
       time: '60-90 мин',
       video: 'https://youtu.be/X_5oKTigpKQ',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Zvezda/Velikiy_Zapadniy_Put/Vtoroe_izdanie/velikiy_zapadniy_put_2_izdanie-1024x1024-wm.JPG',
       image1: 'https://www.igroved.ru/db/games/images/37/3737/igroved_velikiy-zapadnyy-put-vtoroe-izdanie_02.jpg',
@@ -1136,9 +961,7 @@ module.exports = {
       minPlayers: 1,
       maxPlayers: 4,
       time: '75-150 мин',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
+      video: '',
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/common/bang/bang_box_100-1024x1024-wm.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Bang/Bang/Bang_07-1024x1024-wm.jpg',
@@ -1155,28 +978,22 @@ module.exports = {
       maxPlayers: 7,
       time: '20-90 мин',
       video: 'https://youtu.be/HolQx2yVnqs',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
-    poster: 'https://images.crowdgames.ru/images/products/1/2684/769452668/3.png',
-    image1: 'https://beardgames.ru/wp-content/uploads/2018/01/Brass-Birmingham-04.jpg',
-    image2: 'https://cdn.smartytoys.ru/images/store/18009_1.jpg',
-    title: 'Брасс.Бирмингем',
-    genre: 'Евроигры',
-    theme: 'Экономические, Исторические',
-    year: '2007',
-    author: 'Мартин Уоллес',
-    description: 'Вы перенесётесь в эпоху индустриальной революции в Англии и постараетесь построить собственную промышленную империю. Вместе с соперниками вы создадите изменчивую экономику региона, в которой востребованность ресурсов и предприятий будет зависеть от ваших решений.',
-    difficulty: '3',
-    players: '2-4',
-    minPlayers: 2,
-    maxPlayers: 4,
-    time: '60-120 мин',
-    video: 'https://youtu.be/di6T1FjQDvM',
-    createdAt: new Date(),
-    updatedAt: new Date()
-
+      poster: 'https://images.crowdgames.ru/images/products/1/2684/769452668/3.png',
+      image1: 'https://beardgames.ru/wp-content/uploads/2018/01/Brass-Birmingham-04.jpg',
+      image2: 'https://cdn.smartytoys.ru/images/store/18009_1.jpg',
+      title: 'Брасс.Бирмингем',
+      genre: 'Евроигры',
+      theme: 'Экономические, Исторические',
+      year: '2007',
+      author: 'Мартин Уоллес',
+      description: 'Вы перенесётесь в эпоху индустриальной революции в Англии и постараетесь построить собственную промышленную империю. Вместе с соперниками вы создадите изменчивую экономику региона, в которой востребованность ресурсов и предприятий будет зависеть от ваших решений.',
+      difficulty: '3',
+      players: '2-4',
+      minPlayers: 2,
+      maxPlayers: 4,
+      time: '60-120 мин',
+      video: 'https://youtu.be/di6T1FjQDvM',
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Lavka_Games/Krylya/Krilya-1024x1024-wm.jpg',
       image1: 'https://nizagams.ru/wp-content/uploads/2020/11/5-e1604949774757.jpg',
@@ -1193,9 +1010,6 @@ module.exports = {
       maxPlayers: 5,
       time: '40-70 мин',
       video: 'https://youtu.be/2gW7zzuznyM',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Smallworld/Small-World_3D_roznica-1024x1024-wm.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Smallworld/Smallworld_10-1024x1024-wm.jpg',
@@ -1212,9 +1026,6 @@ module.exports = {
       maxPlayers: 5,
       time: '40-80 мин',
       video: 'https://youtu.be/h3o_ppUYmpc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://nastolki-games.ru/wp-content/uploads/2023/04/Bezymyannyj-174.png',
       image1: 'https://www.creativepuzzle.ru/assets/uploads/images/gh-play.jpg',
@@ -1231,9 +1042,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-120 мин',
       video: 'https://youtu.be/zKwAXCu8124',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://mywishboard.com/thumbs/wish/w/s/o/600x0_vevmovsjhgtncqpr_jpg_b616.jpg',
       image1: 'https://static.insales-cdn.com/images/products/1/2882/483961666/mage_knight_3.jpg',
@@ -1250,9 +1058,6 @@ module.exports = {
       maxPlayers: 5,
       time: '150-300 мин',
       video: 'https://youtu.be/KNproSVmf-Y',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Everdell/Ehverdell00-1024x1024-wm.jpg',
       image1: 'https://www.mirf.ru/wp-content/uploads/2020/04/Everdell-1200h630.jpg',
@@ -1269,9 +1074,6 @@ module.exports = {
       maxPlayers: 4,
       time: '40-80 мин',
       video: 'https://youtu.be/EZN-ApnS2VoY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Gaga/Ruines_of_Arnak/Arnaks-1024x1024-wm.jpg',
       image1: 'https://www.igroved.ru/db/games/images/60/3460/02.jpg',
@@ -1288,9 +1090,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-120 мин',
       video: 'https://youtu.be/4UEFqHEvDJw',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.igroved.ru/db/games/images/44/3344/igroved_res-arcana_01.jpg',
       image1: 'https://www.mirf.ru/wp-content/uploads/2021/02/Res-Arcana-2-1024x576.jpg',
@@ -1306,9 +1105,7 @@ module.exports = {
       minPlayers: 2,
       maxPlayers: 4,
       time: '30-60 мин',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
+      video: '',
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Black_Rose_War/Base/HG/voyny_chyornoy_rozy-1024x1024-wm.jpg',
       image1: 'https://sun9-12.userapi.com/impg/ZlIxIblHTMfgGJJJc5awlZZhnNCNHnx3XNvRDg/QokZgY1VimI.jpg?size=604x472&quality=95&sign=08cbedd6e0849b393a398ed29100cb6f&type=album',
@@ -1325,9 +1122,6 @@ module.exports = {
       maxPlayers: 4,
       time: '90-180 мин',
       video: 'https://youtu.be/W96Hxof4Clo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/7564/89013644/large_Pax_Rennesans_1.png',
       image1: 'https://i.redd.it/jrz0q44zqwe91.jpg',
@@ -1344,9 +1138,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-120 мин',
       video: 'https://youtu.be/4bKJzD81X5A',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://kzn.znaemigraem.ru/upload/iblock/8fd/9xl3tmm3ief9n98gl4cgirmn8b6uh2mx/32e09d596033a97d71762ec680209110.jpg',
       image1: 'https://s1-frame.ozstatic.by/1000/861/292/101/101292861_0.jpg',
@@ -1363,9 +1154,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-60 мин',
       video: 'https://youtu.be/p1dnjQGde2k',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.mosigra.ru/image/cache/data/Photo/6105657266-1024x1024-wm.webp',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/5741/2.jpg',
@@ -1382,9 +1170,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-60 мин',
       video: 'https://youtu.be/Qxjpl9cyqFI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://sun9-67.userapi.com/impf/c624227/v624227132/4dab5/eBAwgm7QzJw.jpg?size=277x300&quality=96&sign=d33771e878f53ee2df36d3740426f570&type=album',
       image1: 'https://media.lavkaigr.ru/cache/39/c2/39c2b45b93481b257616e0f4539a2b3b.png',
@@ -1401,9 +1186,6 @@ module.exports = {
       maxPlayers: 6,
       time: '120-240 мин',
       video: 'https://youtu.be/s18Xex2q0g4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/HobbyWorld/Neon/HG/Neon_00.JPG',
       image1: 'https://hobbygames.ru/image/data/HobbyWorld/Neon/oformlenie/components.jpg',
@@ -1420,9 +1202,6 @@ module.exports = {
       maxPlayers: 6,
       time: '60-120 мин',
       video: 'https://youtu.be/uZvfIR5RbO0',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/CrowD_Games/Sunduk_Voyny/Sunduk_Voini-1024x1024-wm.jpg',
       image1: 'https://images.crowdgames.ru/files/1/582/13926982/original/%D1%81%D0%B0%D0%B9%D1%82_%D1%81%D0%BC%D0%BE%D0%BB%D0%BB.jpg',
@@ -1439,9 +1218,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-60 мин',
       video: 'https://youtu.be/WYitVZrgREk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/5889/7509761/large_%D0%9F%D0%BB_%D1%81%D0%B0%D0%B9%D1%82.jpg',
       image1: 'https://pronastolki.wordpress.com/wp-content/uploads/2021/07/img_4797.jpeg',
@@ -1458,9 +1234,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120-180 мин',
       video: 'https://youtu.be/xH7CHW8T2EY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Fabrika_Igr/Keyflower1-1024x1024-wm.jpg',
       image1: 'https://cdn.smartytoys.ru/images/store/17044_1.jpg',
@@ -1477,9 +1250,6 @@ module.exports = {
       maxPlayers: 6,
       time: '90-120 мин',
       video: 'https://youtu.be/T-L7VIZ9lJo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Runebound_3ed/Runebound_3ed_3D_roznica-1024x1024-wm.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/3149/3.jpg',
@@ -1496,9 +1266,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120-180 мин',
       video: 'https://youtu.be/fN5kMu5QIsI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://cdn.gaga-games.com/wp-content/uploads/2022/05/ST-1-_1.png',
       image1: 'https://gaga.ru/gaga/files/images/w1380/6341/16.jpg',
@@ -1515,9 +1282,6 @@ module.exports = {
       maxPlayers: 5,
       time: '90 мин',
       video: 'https://youtu.be/jRqw0Jd3a7A',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/6831/2374319/large_%D0%93%D0%B0_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82.jpg',
       image1: 'https://www.mirf.ru/wp-content/uploads/2020/10/Oskvernyonnyj-Graal-vsya-igra-1024x683.jpg',
@@ -1534,9 +1298,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120-240 мин',
       video: 'https://youtu.be/0MIAsW-581k',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://gaga.ru/gaga/files/images/fullsize/4941/1.jpg',
       image1: 'https://images.firma-gamma.ru/images/6/f/g62326639004u_4.jpg',
@@ -1553,9 +1314,6 @@ module.exports = {
       maxPlayers: 7,
       time: '30-60 мин',
       video: 'https://youtu.be/RS2deKTq194',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/-new/hobby-world/kolonizatori/catan-2024/catan-00-1024x1024-wm.jpg',
       image1: 'https://vsedrugoeshop.ru/upload/ammina.optimizer/jpg-webp/q80/upload/iblock/eb9/eb908fdce1810002a9240e01ef2c63e7/DSC_2210_1024x1024_wm.webp',
@@ -1572,9 +1330,6 @@ module.exports = {
       maxPlayers: 4,
       time: '45-90 мин',
       video: 'https://youtu.be/mwLL374Ftm4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://main-cdn.sbermegamarket.ru/big1/hlr-system/-1/90/76/04/87/91/29/100027599301b0.jpg',
       image1: 'https://static.insales-cdn.com/images/products/1/3346/354757906/1543396437172244053.jpg',
@@ -1591,9 +1346,6 @@ module.exports = {
       maxPlayers: 5,
       time: '15-120 мин',
       video: 'https://youtu.be/G6yc3lxgnZw',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://avatars.mds.yandex.net/get-mpic/4412310/img_id4148048740518892385.png/300x400',
       image1: 'https://www.mosigra.ru/image/data/mosigra.product.main/548/432/DSC_0761.jpg',
@@ -1610,9 +1362,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-45 мин',
       video: 'https://youtu.be/PO2DkLJfmb0',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://mirnastolok.ru/image/cache/catalog/r-y/citadeli-1-1200x800.jpg',
       image1: 'https://www.igroved.ru/db/games/images/48/148/igroved_citadels_08.jpg',
@@ -1629,9 +1378,6 @@ module.exports = {
       maxPlayers: 7,
       time: '30-60 мин',
       video: 'https://youtu.be/WXpHbBNxdTk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Gaga/Watergate/Uotergate-1024x1024-wm.jpg',
       image1: 'https://beardgames.ru/wp-content/uploads/2020/04/Watergate-03.jpg',
@@ -1648,9 +1394,6 @@ module.exports = {
       maxPlayers: 2,
       time: '30-60 мин',
       video: 'https://youtu.be/etybz2F5dqk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Choo_Choo_Games/Camel_Up/hg/camel_up-1024x1024-wm.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/%D0%9F%D1%80%D0%B5%D0%B4%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B/Choo%20Choo%20Games/Camel%20Up/camel_up_01-1024x1024-wm.webp',
@@ -1667,9 +1410,6 @@ module.exports = {
       maxPlayers: 8,
       time: '30-60 мин',
       video: 'https://youtu.be/YFLauycgy0g',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.firma-gamma.ru/images/0/1/g92250482524p.jpg',
       image1: 'https://images.firma-gamma.ru/images/6/f/g92250482524u_3.jpg',
@@ -1686,9 +1426,6 @@ module.exports = {
       maxPlayers: 5,
       time: '50-100 мин',
       video: 'https://youtu.be/CJE7iuWYSRI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/-new/lavka-games/djuna-imperija/djuna-imperija-00-1024x1024-wm.jpg',
       image1: 'https://www.igrotime.ru/upload/t/800-700im/albums/8864/o1kZ_bSEEpg.jpg',
@@ -1705,9 +1442,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-120 мин',
       video: 'https://youtu.be/_hcFEPxHDfYI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Style_Jizny/Roskosh/Roskosh-1024x1024-wm.jpg',
       image1: 'https://www.igroved.ru/db/games/images/68/1768/igroved_splendor_04.jpg',
@@ -1724,9 +1458,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-60 мин',
       video: 'https://youtu.be/qyEAQD_vwqk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://ir.ozone.ru/s3/multimedia-1/c1000/6736721041.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/tovari/stil-zhizni/venecianskaya-mozaika/venecianskaya-mozaika4-1024x1024-wm.jpg',
@@ -1743,9 +1474,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-90 мин',
       video: 'https://youtu.be/u-LALY7Q7Tw',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Descent_Legends_of_the_Dark/descent_legends_of_the_dark_00-1024x1024-wm.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Descent_Legends_of_the_Dark/HG/descent_skazania_tmy_03-1024x1024-wm.jpg',
@@ -1762,9 +1490,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120-180 мин',
       video: 'https://youtu.be/TZEQM26Thgk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://nastolki-games.ru/wp-content/uploads/2023/05/Bezymyannyj2-1.png',
       image1: 'https://cf.geekdo-images.com/medium/img/TC8xof_Ty1hXS7_9eDKVI1T2Wrg=/fit-in/500x500/filters:no_upscale()/pic5534430.jpg',
@@ -1781,9 +1506,6 @@ module.exports = {
       maxPlayers: 4,
       time: '45-60 мин',
       video: 'https://youtu.be/TZEQM26Thgk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/-new/lavka-games/klank/podzemnoe-prikljuchenie/podzemnoe-prikljuchenie-00.jpg',
       image1: 'https://banzgames.ru/image/cache/catalog/games/3821/klank-podzemnoe-priklyuchenie-7-1000x1000.jpg',
@@ -1800,9 +1522,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-90 мин',
       video: 'https://youtu.be/NcDk41Vn5tk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/-new/hobby-world/gonka-zhara-na-trasse/jara-na-trasse-00.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/7462/6.jpg',
@@ -1819,9 +1538,6 @@ module.exports = {
       maxPlayers: 6,
       time: '60-90 мин',
       video: 'https://youtu.be/yTOZm_XTrKY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Ostrov_Duhov/Ostrov_duhov_3D_roznica-1024x1024-wm.jpg',
       image1: 'https://avatars.mds.yandex.net/get-mpic/4794494/img_id6941413747910468860.jpeg/orig',
@@ -1838,9 +1554,6 @@ module.exports = {
       maxPlayers: 4,
       time: '90-120 мин',
       video: 'https://youtu.be/LHh_GrFzijw',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Lavka_Games/Nova_Luna/HG/Nova_Luna-1024x1024-wm.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/5990/6.jpg',
@@ -1857,9 +1570,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-60 мин',
       video: 'https://youtu.be/ImDv4qk0Heo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Lavka_Games/Tirany_Podzemya/tirany_podzemeliya-1024x1024-wm.JPG',
       image1: 'https://www.beardgames.ru/wp-content/uploads/2017/05/Tyrants-of-the-underdark-06.jpg',
@@ -1876,9 +1586,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-90 мин',
       video: 'https://youtu.be/RnmVrTTeHTY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/2371/1608003/large_Box_MarkoPolo_3D_0.png',
       image1: 'https://cdn.smartytoys.ru/images/store/15928_1.jpg',
@@ -1895,9 +1602,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-120 мин',
       video: 'https://youtu.be/2CtWptBC_Nc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Zvezda/Azul/Sad_Korolevi/HG/Azul_Sad_Korolevi-1024x1024-wm.jpg',
       image1: 'https://igrrai.ru/image/catalog/Zvezda/Azul%20Sad%20Korolevy/photo.jpg',
@@ -1914,9 +1618,6 @@ module.exports = {
       maxPlayers: 4,
       time: '45-60 мин',
       video: 'https://youtu.be/Ws1udZ9UfVQ',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Zvezda/Azul_vitrajy/Azul_Vitraji_Cintri-1024x1024-wm.jpg',
       image1: 'https://funmill.ru/upload/delight.webpconverter/upload/resize_cache/iblock/323/1000_1000_181f6576abe2ff66c620de4c1169f126d/21.jpg.webp?1611022611129444',
@@ -1933,9 +1634,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-45 мин',
       video: 'https://youtu.be/FyXmDcGQUFw',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Lavka_Games/Spyashie_Bogi/spyashye_bogi-1024x1024-wm.JPG',
       image1: 'https://spgames.lv/image/cache/catalog/products/spjashije-bogi/101202367_0%20(1)-700x700-product_popup.jpg',
@@ -1952,9 +1650,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-120 мин',
       video: 'https://youtu.be/RoNscDQ9bJM',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://ir.ozone.ru/s3/multimedia-1-k/c1000/6945613292.jpg',
       image1: 'https://www.cardplace.ru/uploads/cardplace/3187b170/61a61d4aec3dcfedddae957deb95d385.png',
@@ -1971,9 +1666,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-60 мин',
       video: 'https://youtu.be/GSNfUpLXeXc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Gaga/The_Beast/Zver_00-1024x1024-wm.JPG',
       image1: 'https://www.mirf.ru/wp-content/uploads/2023/08/Zver-nastolka-7-1024x571.jpg',
@@ -1990,9 +1682,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-75 мин',
       video: 'https://youtu.be/xZJnWKZlr4Y',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/8010/1793866/large_Sherlok-3.png',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/4444/1.jpg',
@@ -2009,9 +1698,6 @@ module.exports = {
       maxPlayers: 5,
       time: '30-60 мин',
       video: 'https://youtu.be/Rwy8PlcFV3Y',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/-new/hobby-world/nechto-nastolnaja-igra/nechto-00-1024x1024-wm.jpg',
       image1: 'https://www.mirf.ru/wp-content/uploads/2022/05/Pil_Nechto_01-1024x464.jpg',
@@ -2028,9 +1714,6 @@ module.exports = {
       maxPlayers: 8,
       time: '60-120 мин',
       video: 'https://youtu.be/C-UfAh6MoNk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Ekonomikuc/Pisma_Prizraka/Pisma_Prizraka-1024x1024-wm.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/%D0%A2%D0%BE%D0%B2%D0%B0%D1%80%D1%8B/%D0%AD%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D1%83%D1%81/%D0%9F%D0%B8%D1%81%D1%8C%D0%BC%D0%B0%20%D0%BF%D1%80%D0%B8%D0%B7%D1%80%D0%B0%D0%BA%D0%B0/DSC_2641-1024x1024-wm.webp',
@@ -2047,9 +1730,6 @@ module.exports = {
       maxPlayers: 12,
       time: '30-60 мин',
       video: 'https://youtu.be/mETKYHr9sykk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://media.lavkaigr.ru/catalog/2024/04/garri-potter-bitva-za-khogvarts.png',
       image1: 'https://static.insales-cdn.com/files/1/3535/13602255/original/photo__12__c71f95ddc63e70fe94c61d02c4524c4b.jpg',
@@ -2066,9 +1746,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30-60 мин',
       video: 'https://youtu.be/QB_XRQkgFhM',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Nahodka_dlya_shpiona/spyfall_new_100-1024x1024-wm.jpg',
       image1: 'https://hobbyworld.cdnvideo.ru/image/cache/hobbyworld/data/HobbyWorld/Nahodka_dlya_shpiona/Spyfall/Spyfall01-1200x800.jpg',
@@ -2085,9 +1762,6 @@ module.exports = {
       maxPlayers: 8,
       time: '15-60 мин',
       video: 'https://youtu.be/tzI_6X1qb9A',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://basket-10.wbbasket.ru/vol1347/part134733/134733301/images/big/1.webp',
       image1: 'https://www.cardplace.ru/uploads/cardplace/62dad6e2/6e0dafcde68c2d94dcff610cd6c2abd1.jpg',
@@ -2104,9 +1778,6 @@ module.exports = {
       maxPlayers: 6,
       time: '120-180 мин',
       video: 'https://youtu.be/jGzhqnJSbqI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Magellan/Resistance/Soprotivlenie-1024x1024-wm.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/1242/12.jpg',
@@ -2123,9 +1794,6 @@ module.exports = {
       maxPlayers: 10,
       time: '30-60 мин',
       video: 'https://youtu.be/LToH_i2SgAY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/HobbyWorld/Munchkin/Munchkin/Munchkin00.jpg',
       image1: 'https://static-ru.insales.ru/images/articles/1/3130/150586/munchkin1.jpg?1504076588',
@@ -2142,9 +1810,6 @@ module.exports = {
       maxPlayers: 6,
       time: '30-120 мин',
       video: 'https://youtu.be/Q-jDJtF1A_U',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Mafia/1000/Mafiya_Vsya_Semya_V_Sbore_Maski00-1024x1024-wm.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Mafia_semja/Mafia_semja3-1024x1024-wm.jpg',
@@ -2161,9 +1826,6 @@ module.exports = {
       maxPlayers: 6,
       time: '30-90 мин',
       video: 'https://youtu.be/RPE26H98lwc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.igroved.ru/db/games/images/62/62/igroved_alias_01.jpg',
       image1: 'https://basket-01.wbbasket.ru/vol21/part2145/2145959/images/big/1.webp',
@@ -2180,9 +1842,6 @@ module.exports = {
       maxPlayers: 40,
       time: '45-90 мин',
       video: 'https://youtu.be/AJ7TteM8EjI',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/hg/3/2/32457-1024x1024-wm.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/812/6.jpg',
@@ -2199,9 +1858,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120-240 мин',
       video: 'https://youtu.be/Swx2nX2DHBA',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.igroved.ru/db/games/images/31/3431/01.jpg',
       image1: 'https://22games.net/wp-content/uploads/2021/12/Clash-of-Cultures-8.jpg',
@@ -2218,9 +1874,6 @@ module.exports = {
       maxPlayers: 4,
       time: '180-240 мин',
       video: 'https://youtu.be/IPsK1JsnAAk',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Zombicide/Zombicide_2nd_Edition/Zombicide_2ed_00-1024x1024-wm.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Zombicide/Zombicide_2nd_Edition/Zombicide_2th_19-1024x1024-wm.jpg',
@@ -2237,9 +1890,6 @@ module.exports = {
       maxPlayers: 6,
       time: '60-90 мин',
       video: 'https://youtu.be/lzFAno8Qbys',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://main-cdn.sbermegamarket.ru/big1/hlr-system/1572399414/100024037934b0.jpg',
       image1: 'https://vsova.ru/upload/resize_cache/iblock/72b/900_664_10767b57be003ad8420d990246d86ef5f/72b99c451c7b260cd340e40cbea7f94c.jpg',
@@ -2256,9 +1906,6 @@ module.exports = {
       maxPlayers: 4,
       time: '40 мин',
       video: 'https://youtu.be/0lHdtlvwSrs',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvcN0hD9FEV-89xaNnVgH-uwx1uf-77vDe8g&s',
       image1: 'https://www.mirf.ru/wp-content/uploads/2021/06/photo_2021-06-11_02-21-13.jpg',
@@ -2275,9 +1922,6 @@ module.exports = {
       maxPlayers: 6,
       time: '180-240 мин',
       video: 'https://youtu.be/8VHV_jO-AzM',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Lavka_Games/Brazilia/brazilia-1024x1024-wm.JPG',
       image1: 'https://nizagams.ru/wp-content/uploads/2022/06/DSC09471-scaled.jpg',
@@ -2294,9 +1938,6 @@ module.exports = {
       maxPlayers: 4,
       time: '100-120 мин',
       video: 'https://youtu.be/B8yrQfCVESU',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Gaga/Korolevstvo_krolikov/Korolevstvo_Krolikov-1024x1024-wm.jpg',
       image1: 'https://vsova.ru/upload/resize_cache/iblock/767/800_529_10767b57be003ad8420d990246d86ef5f/767ad83449539dd239569e9cfc560fb9.jpg',
@@ -2313,9 +1954,6 @@ module.exports = {
       maxPlayers: 4,
       time: '45-60 мин',
       video: 'https://youtu.be/5IefbTHkJ8M',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/Gaga/Orlean/Orlean00.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Gaga/Orlean/Orlean_04-1024x1024-wm.jpg',
@@ -2332,9 +1970,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-90 мин',
       video: 'https://youtu.be/BUtLbeYtuns',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://www.igroved.ru/db/games/images/78/2778/igroved_welcome_01.jpg',
       image1: 'https://www.igroved.ru/db/games/images/78/2778/igroved_welcome_04.jpg',
@@ -2351,9 +1986,6 @@ module.exports = {
       maxPlayers: 100,
       time: '30-120 мин',
       video: 'https://youtu.be/RYjes8tt5kg',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/Choo_Choo_Games/Captain_Sonar_2nd_ed/HG/Captain_Sonar_00.JPG',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/4386/4.jpg',
@@ -2370,9 +2002,6 @@ module.exports = {
       maxPlayers: 8,
       time: '45-60 мин',
       video: 'https://youtu.be/vPiei2cnj0w',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/Choo_Choo_Games/La_Cosa_Nostra/hg/la_cosa_nostra.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Choo_Choo_Games/La_Cosa_Nostra/hg/la_cosa_nostra_03-1024x1024-wm.jpg',
@@ -2389,9 +2018,6 @@ module.exports = {
       maxPlayers: 5,
       time: '90-120 мин',
       video: 'https://youtu.be/OY_nLq-TMXc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/HobbyWorld/V_Poiskah_Planety_Iks/V_Poiskah_Planety_Iks00.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/6178/11.jpg',
@@ -2408,9 +2034,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-75 мин',
       video: 'https://youtu.be/yd2igQvW4HY',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/-new/niza-gams/jukatan/jukatan00.jpg',
       image1: 'https://i.ytimg.com/vi/ud_TnGjy2PU/sddefault.jpg',
@@ -2427,9 +2050,6 @@ module.exports = {
       maxPlayers: 4,
       time: '45-60 мин',
       video: 'https://youtu.be/Vclgg_VgwVQ',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://avatars.mds.yandex.net/get-mpic/5313128/img_id481576248662810512.jpeg/9hq',
       image1: 'https://pronastolki.wordpress.com/wp-content/uploads/2022/01/img_0171.jpeg?w=756',
@@ -2446,9 +2066,6 @@ module.exports = {
       maxPlayers: 4,
       time: '30 мин',
       video: 'https://youtu.be/ZtGJ1cfWUms',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://gaga.ru/gaga/files/images/fullsize/6259/1.jpg',
       image1: 'https://www.mirf.ru/wp-content/uploads/2023/02/Maksimum-Apokalipsis-DSC04827.jpg',
@@ -2465,9 +2082,6 @@ module.exports = {
       maxPlayers: 6,
       time: '60-120мин',
       video: 'https://youtu.be/tF0p9jyWfCM',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://images.crowdgames.ru/images/collections/1/7937/2408193/large_DoW_C-%D1%81%D0%B0%D0%B9%D1%82.png',
       image1: 'https://znaemigraem.ru/upload/iblock/c35/eusnj38miloci0r6gor67on3zoc1jr48/1.jpg',
@@ -2484,9 +2098,6 @@ module.exports = {
       maxPlayers: 5,
       time: '60-120 мин',
       video: 'https://youtu.be/SHeOwCd9CR8',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2o5AfwFdte3I708v2pwrhupFrEmbAyGBpTw&s',
       image1: 'https://tesera.ru/images/items/1825509/1600x1200xsxy/photo.jpg',
@@ -2503,9 +2114,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120-180 мин',
       video: 'https://youtu.be/H3cFQiiHkOA',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://ir.ozone.ru/s3/multimedia-x/c1000/6406932081.jpg',
       image1: 'https://cs14.pikabu.ru/post_img/big/2021/08/23/8/1629720635167638480.jpg',
@@ -2522,9 +2130,6 @@ module.exports = {
       maxPlayers: 50,
       time: '30-120 мин',
       video: 'https://youtu.be/FL8E7tysZbU',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://catalog.detmir.st/media/Sl1h1QI5qpUbFtMH__FKYOT3wT-CB5pz_3luCE6FZwE=',
       image1: 'https://images.firma-gamma.ru/images/4/3/g27800012622u.jpg',
@@ -2541,9 +2146,6 @@ module.exports = {
       maxPlayers: 6,
       time: '20-30 мин',
       video: 'https://youtu.be/vDW6ymjOxdo',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://ir.ozone.ru/s3/multimedia-d/c1000/6606469921.jpg',
       image1: 'https://gaga.ru/gaga/files/images/fullsize/396/1.jpg',
@@ -2560,9 +2162,6 @@ module.exports = {
       maxPlayers: 6,
       time: '20-30 мин',
       video: 'https://youtu.be/8FWO7lFBvR4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/Zvezda/Spartacus/Spartacus-1024x1024-wm.jpg',
       image1: 'https://sun9-38.userapi.com/impg/6sdyZ_sVy59nBgMNJdTfMrTXYyv2sGGfZkOM8A/ym_Ta_BV3o4.jpg?size=604x378&quality=95&sign=4ced87bce8fe845f1e1fa877b5c3a142&c_uniq_tag=YOqgFPHDR96GOu9Hj8cZACij-Hu_lqWnrOhmLbm6Sso&type=album',
@@ -2579,9 +2178,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120 мин',
       video: 'https://youtu.be/8FWO7lFBvR4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://gaga.ru/gaga/files/images/fullsize/4566/1.jpg',
       image1: 'https://www.igroved.ru/db/games/images/18/3118/igroved_lords-of-hellas_03.jpg',
@@ -2598,9 +2194,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-180 мин',
       video: 'https://youtu.be/K32qk_kgsWU',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/-new/hobby-world/ivan-groznij-pervij-car/ivan-groznij-pervij-car-00.jpg',
       image1: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/-new/hobby-world/ivan-groznij-pervij-car/ivan-groznij-pervij-car-004-1024x1024-wm.jpg',
@@ -2617,9 +2210,6 @@ module.exports = {
       maxPlayers: 4,
       time: '120-180 мин',
       video: 'https://youtu.be/HSnw8zAcx5A',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/-new/hobby-world/ticket-to-ride/nasledie-legendi-zapada/ttr-01.jpg',
       image1: 'https://funmill.ru/upload/resize_cache/iblock/b35/wpy9jt9qa57s5dm6c1tufhiupm74e704/1000_1000_181f6576abe2ff66c620de4c1169f126d/2.jpg',
@@ -2636,9 +2226,6 @@ module.exports = {
       maxPlayers: 5,
       time: '20-90 мин',
       video: 'https://youtu.be/SoGpjd4hzmc',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/data/HobbyWorld/Explosive_Kitten/2022/HG/vzryvnye_kotyata_2022.jpg',
       image1: 'https://www.mosigra.ru/image/data/mosigra.product.main/559/025/DSC_6570.jpg',
@@ -2655,9 +2242,6 @@ module.exports = {
       maxPlayers: 5,
       time: '15-30 мин',
       video: 'https://youtu.be/o9z2G6y-2Bg',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Mesto_prestuplenia/Mesto_Prestupleniya00-1024x1024-wm.jpg',
       image1: 'https://www.mosigra.ru/image/cache/data/mosigra.product.main/558/887/DSC_6514-1024x1024-wm.webp',
@@ -2674,9 +2258,6 @@ module.exports = {
       maxPlayers: 4,
       time: '60-90 мин',
       video: 'https://youtu.be/DZZaMy9dJx8',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
 }, {
       poster: 'https://hobbyworld.cdnvideo.ru/image/cache/hobbyworld/data/HobbyWorld/LOTR_stranstviya_v_sredizemye/LotR_journey-in-middle-earth-1200x800-wm.jpg',
       image1: 'https://www.mirf.ru/wp-content/uploads/2020/04/Pil_LOTR_Stranstvia_V_Sredizeme_09-1024x788.jpg',
@@ -2693,10 +2274,7 @@ module.exports = {
       maxPlayers: 5,
       time: '60-120 мин',
       video: 'https://youtu.be/pFXfugNubV4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-
-},    {
+}, {
       poster: 'https://cdn1.ozone.ru/s3/multimedia-c/6488990820.jpg',
       image1: 'https://lifestyleltd.ru/assets/images/products/1551/lifestyleltd-dobro-pozhalovat-na-lunu-2.jpg',
       image2: 'https://www.igroved.ru/db/games/images/36/3536/igroved_moon-dobro-pozhalovat-na-lunu_9.jpg',
@@ -2712,8 +2290,6 @@ module.exports = {
       maxPlayers: 6,
       time: '25-30 мин',
       video: '',
-      createdAt: new Date(),
-      updatedAt: new Date()
   }], {});
 },
 
