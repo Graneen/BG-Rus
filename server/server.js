@@ -10,7 +10,9 @@ const gameMeetNewMeet = require("./routes/api/gameNewMeet.routes");
 const specialistRouter = require("./routes/views/specialist.routes");
 const bayerOrderRouter = require("./routes/api/bayerOrder.router");
 const localizationOrderRouter = require("./routes/views/localization.router");
+const favoritesRouter = require("./routes/api/favorites.router");
 const profileRouter = require("./routes/api/profile.router");
+
 
 const app = express();
 const PORT = 3000;
@@ -26,6 +28,8 @@ app.use("/", specialistRouter);
 app.use("/", bayerOrderRouter);
 app.use("/", localizationOrderRouter);
 app.use("/", profileRouter);
+app.use('/', favoritesRouter)
+
 
 app.listen(PORT, () => {
   console.log(`Server started port: ${PORT}`);

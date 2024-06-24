@@ -13,9 +13,7 @@ module.exports = {
         image2: 'https://hobbygames.ru/image/data/-new/01/news/2024/01/igrokjemp-v-mae/osen-2023-2.jpg',
         image3: 'https://hobbygames.ru/image/data/-new/01/news/2024/01/igrokjemp-v-mae/osen-2023-1.jpg',
         image4: 'https://hobbygames.ru/image/data/-new/01/news/2024/01/igrokjemp-v-mae/vesna-2023-1.jpg',
-        // geoLocation: Sequelize.fn('ST_GeomFromText', 'POINT(55.938407, 37.323261)'), 
-        createdAt: new Date(),
-        updatedAt: new Date()
+        // geoLocation: Sequelize.fn('ST_GeomFromText', 'POINT(55.938407, 37.323261)'),
       },
       
     ], {});
