@@ -17,7 +17,7 @@ import { checkAuth } from '../services/checkAuthService/checkAuth.service';
 import BuyerPage from "../pages/buyerPage/buyerPage.tsx";
 import LocalisationPage from "../pages/localisationPage/localisationPage.tsx";
 
-
+import Profile from "../pages/Profile/Profile.tsx";
  
 export const AuthContext = createContext<AuthState>(defaultAuthState);
 
@@ -53,7 +53,7 @@ function App(): JSX.Element {
             <Route path={"game/:id"} element={<GamePage/>}/>
             <Route path={"events"} element={<GameMeet/>}/>
             <Route path={"camps"} element={<GameCamp/>}/>
-
+            <Route path={"profile"} element={<Profile/>}/>
             <Route path={"buyers"} element={<BuyerPage/>}/>
             <Route path={"localisations"} element={<LocalisationPage/>}/>
 
