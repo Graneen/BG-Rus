@@ -2,6 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { RootState } from "../../src/redux/store";
 
+export interface estimationGame {
+    id: number;
+    user_id: number;
+    game_id: number;
+    value: number;
+}
+
 export interface feedBack {
     createdAt: string;
     description: string;
@@ -32,6 +39,7 @@ export interface GameCard {
 
 export interface boardGame {
     boardGame: GameCard;
+    estimationGame: estimationGame[];
     feedBackGame: feedBack[];
 }
 
@@ -60,6 +68,7 @@ const initialState : boardGameState  = {
             maxPlayers: 0,
             time: ""
         },
+        estimationGame: [],
         feedBackGame: []
     },
     loading: false,
