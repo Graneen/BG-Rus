@@ -1,9 +1,9 @@
 :root {
     --main-color: #0B1D26ff;
     --main-color-bb: #0B1D26bb;
-    --main-color-00: #0B1D2600;
+    --main-color-00: #0b1d2600;
     --accent: #FBD784;
-    --goldenbeer: #FFD700;
+    --goldenbeer: rgb(255, 215, 0);
   }
   *, *::before, *::after {
     margin: 0;

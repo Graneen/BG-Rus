@@ -9,6 +9,7 @@ const playerCampRouter = require("./routes/api/playerCamp.router");
 const gameMeetNewMeet = require("./routes/api/gameNewMeet.routes");
 const specialistRouter = require("./routes/views/specialist.routes");
 const bayerOrderRouter = require("./routes/api/bayerOrder.router");
+const localizationOrderRouter = require("./routes/views/localization.router");
 const profileRouter = require("./routes/api/profile.router");
 
 const app = express();
@@ -23,6 +24,7 @@ app.use("/", playerCampRouter);
 app.use("/", gameMeetNewMeet);
 app.use("/", specialistRouter);
 app.use("/", bayerOrderRouter);
+app.use("/", localizationOrderRouter);
 app.use("/", profileRouter);
 
 app.listen(PORT, () => {
