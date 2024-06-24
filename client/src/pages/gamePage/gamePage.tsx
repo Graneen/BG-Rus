@@ -1,14 +1,17 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './gamePage.css'
-import { getGameCard, selectGameCard } from '../../features/gameCardSlice'
-import { useEffect, useState } from 'react'
+import { getGameCard, selectGameCard, takeFavorites } from '../../features/gameCardSlice'
+import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import StarIcon from '../../commons/StarIcon'
 import FavoritesButton from '../../commons/FavoritesButton'
 import { Spinner } from "flowbite-react";
 import MenuTab from '../../commons/menuTab/MenuTab'
+import { AuthContext } from '../../app/App'
+
 
 function GamePage() {
+    const { user } = useContext(AuthContext);
     const dispatch = useAppDispatch();
     const card = useAppSelector(selectGameCard);
     const { id } = useParams<{ id: string }>();
@@ -64,7 +67,7 @@ function GamePage() {
                                 </div>
                                 <div className="card-right">
                                     <div className="stars-container">
-                                        Рейтинг: {estimation && estimation > 0 ? card.list.estimationGame.map(() => <StarIcon />) : ''} <StarIcon />
+                                        Рейтинг: {estimation && estimation > 0 ? card.list.estimationGame.map((index) => <StarIcon />) : ''} <StarIcon />
 
                                         <p>{estimation > 0 ? `${estimation} (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
                                     </div>
@@ -75,7 +78,7 @@ function GamePage() {
                                     <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
                                         {card.list.boardGame.description}
                                     </p>
-                                    <FavoritesButton />
+                                    <FavoritesButton handler={() => dispatch(takeFavorites({ id: id, user_id: user }))}/>
 
                                 </div>
                             </div>
