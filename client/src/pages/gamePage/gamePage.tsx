@@ -36,7 +36,9 @@ function GamePage() {
         }
     };
 
-    // console.log(card.list.feedBackGame)
+    const estimation: number = Number((card.list.estimationGame.reduce((acc, curr) => {
+        return acc + curr.value
+    }, 0) / card.list.estimationGame.length).toFixed(1))
 
     return (
         <>
@@ -62,12 +64,9 @@ function GamePage() {
                                 </div>
                                 <div className="card-right">
                                     <div className="stars-container">
-                                        <StarIcon />
-                                        <StarIcon />
-                                        <StarIcon />
-                                        <StarIcon />
-                                        <StarIcon />
-                                        <p>(5 отзывов)</p>
+                                        Рейтинг: {estimation && estimation > 0 ? card.list.estimationGame.map(() => <StarIcon />) : ''} <StarIcon />
+
+                                        <p>{estimation > 0 ? `${estimation} (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
                                     </div>
                                     <p>Жанр: {card.list.boardGame.genre}</p>
                                     <p>Тематика: {card.list.boardGame.theme}</p>
