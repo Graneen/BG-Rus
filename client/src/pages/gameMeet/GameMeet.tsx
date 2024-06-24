@@ -17,6 +17,7 @@ const GameMeet: React.FC = () => {
   const handleCloseModal = () => {
     setShowCalendarModal(false);
     setShowFormModal(false);
+
   };
 
   const handleCreateSession = () => {
@@ -28,6 +29,11 @@ const GameMeet: React.FC = () => {
   const handleGameSessionDetails = (details: any) => {
     dispatch(setGameSessionDetails(details));
     setShowFormModal(true);
+  };
+
+  const handleSuccessfulFormSubmit = () => {
+    setShowFormModal(false); 
+    setShowCalendarModal(false);
   };
 
   const handleViewCalendars = () => {
@@ -58,7 +64,7 @@ const GameMeet: React.FC = () => {
       </Modal>
 
       <Modal isOpen={showFormModal} onRequestClose={handleCloseModal}>
-        <ModalForm />
+      <ModalForm onCloseModal={handleSuccessfulFormSubmit} />
       </Modal>
     </div>
   );

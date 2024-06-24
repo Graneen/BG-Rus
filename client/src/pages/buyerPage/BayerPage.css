@@ -1,0 +1,67 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .center-content {
+    display: flex;
+    justify-content: space-between;
+    width: 80%; /* Ширина центрального контейнера */
+  }
+  
+  .specialists-container {
+    margin-bottom: 20px;
+  }
+  
+  .add-advert-container,
+  .bayer-orders-container {
+    width: 45%; /* Ширина блоков "Добавить объявление" и "Все объявления" */
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .specialists-container {
+    margin-right: 20px; /* Отступ справа для раздела специалистов */
+  }
+  
+  .add-advert-container,
+  .bayer-orders-container {
+    width: 50%; /* Занимают половину ширины */
+  }
+  
+  .expert-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 200px; 
+  }
+  
+  .expert-card img {
+    width: 100%;
+    height: auto;
+    max-height: 150px; 
+    object-fit: cover; 
+  }
+  
+ 
+  
+  .advert-form label {
+    margin-bottom: 10px;
+  }
+  
+  .advert-form button {
+    margin-top: 10px;
+  }
+  
+  .bayer-order-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 250px; 
+  }

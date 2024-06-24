@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TopList.css';
+import FavoritesButton from '../../commons/FavoritesButton';
 
 interface BoardGameData {
     id: number;
@@ -18,7 +19,8 @@ const TopList: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/boardgames');
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/boardgames`);
+
                 if (response.ok) {
                     const data: BoardGameData[] = await response.json();
                     setBoardGameData(data);
@@ -52,7 +54,8 @@ const TopList: React.FC = () => {
                                         <h2 className="game-title">
                                             {game.title}
                                         </h2>
-                                        <div className="game-descr">
+                                        <FavoritesButton />
+                                        <div className="game-descr pt-[1vh]">
                                             <p> <strong>Жанр: </strong> {game.genre}</p>
                                             <p> <strong>Тематика: </strong>{ game.theme}</p>
                                             <p> <strong>Сложность: </strong> {game.difficulty}</p>
