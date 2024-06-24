@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { Favorites } = require("./../../db/models"); 
+const { FavoriteGames } = require("../../db/models"); 
 
-router.post("/game-meetings/news", async (req, res) => {
+router.post("/api/favorites/add", async (req, res) => {
   try {
-    const { game_id,  } = req.body; 
-
-    const newFavoritePare = await Favorites.create({
-      game_id,
-
+    const { id, user_id } = req.body; 
+      console.log(req.body)
+    const newFavoritePare = await FavoriteGames.create({
+      user_id,
+      game_id: id
     });
 
     return res.status(201).json(newFavoritePare); 
