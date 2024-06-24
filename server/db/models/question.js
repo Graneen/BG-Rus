@@ -19,11 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       user_id: DataTypes.INTEGER,
       game_id: DataTypes.INTEGER,
       description: DataTypes.STRING,
-      theme: DataTypes.STRING,
-      genre: DataTypes.STRING,
-      minPlayers: DataTypes.STRING,
-      maxPlayers: DataTypes.STRING,
-      
     },
     {
       sequelize,
