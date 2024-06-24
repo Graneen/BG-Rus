@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("PlayerCamps", {
+    await queryInterface.createTable("Questions", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,24 +16,29 @@ module.exports = {
           key: "id",
         },
       },
-      gameCamp_id: {
+      game_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: "GameCamps",
+          model: "BoardGames",
           key: "id",
         },
+      },
+      description: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("PlayerCamps");
+    await queryInterface.dropTable("Questions");
   },
 };

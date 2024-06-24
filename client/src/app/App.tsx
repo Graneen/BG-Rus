@@ -16,6 +16,7 @@ import { checkAuth } from '../services/checkAuthService/checkAuth.service';
 
 import BuyerPage from "../pages/buyerPage/buyerPage.tsx";
 import LocalisationPage from "../pages/localisationPage/localisationPage.tsx";
+import QuizPage from "../pages/QuizPage/QuizPage.tsx";
 
 
  
@@ -56,6 +57,7 @@ function App(): JSX.Element {
 
             <Route path={"buyers"} element={<BuyerPage/>}/>
             <Route path={"localisations"} element={<LocalisationPage/>}/>
+            <Route path={"quiz"} element={<QuizPage/>}/>
 
           </Route>
       </Routes>
