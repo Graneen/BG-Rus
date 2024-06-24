@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "user_id",
         through: "Questions",
       });
+      this.belongsToMany(BoardGame, {
+        foreignKey: "user_id",
+        through: "Estimation",
+      });
       this.hasMany(Question, {
         foreignKey: "user_id",
       });

@@ -4,15 +4,14 @@ const serverConfig = require("./config/serverConfig");
 const mainRouter = require("./routes/api/main.router");
 const authRouter = require("./routes/api/auth.router");
 const boardGameRouter = require("./routes/views/boardGame.router");
-const gameCampsRouter = require('./routes/views/gameCamp.routes');
+const gameCampsRouter = require("./routes/views/gameCamp.routes");
 const playerCampRouter = require("./routes/api/playerCamp.router");
 const gameMeetNewMeet = require("./routes/api/gameNewMeet.routes");
 const specialistRouter = require("./routes/views/specialist.routes");
 const bayerOrderRouter = require("./routes/api/bayerOrder.router");
 const localizationOrderRouter = require("./routes/views/localization.router");
 const favoritesRouter = require("./routes/api/favorites.roter");
-
-
+const profileRouter = require("./routes/api/profile.router");
 
 
 const app = express();
@@ -22,12 +21,13 @@ serverConfig(app);
 app.use("/", mainRouter);
 app.use("/auth", authRouter);
 app.use("/", boardGameRouter);
-app.use('/', gameCampsRouter);
-app.use('/', playerCampRouter);
-app.use('/', gameMeetNewMeet);
-app.use('/', specialistRouter);
-app.use('/', bayerOrderRouter);
-app.use('/', localizationOrderRouter);
+app.use("/", gameCampsRouter);
+app.use("/", playerCampRouter);
+app.use("/", gameMeetNewMeet);
+app.use("/", specialistRouter);
+app.use("/", bayerOrderRouter);
+app.use("/", localizationOrderRouter);
+app.use("/", profileRouter);
 app.use('/', favoritesRouter)
 
 
