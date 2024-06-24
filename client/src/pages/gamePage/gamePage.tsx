@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import StarIcon from '../../commons/StarIcon'
 import FavoritesButton from '../../commons/FavoritesButton'
+import { Spinner } from "flowbite-react";
+import MenuTab from '../../commons/menuTab/MenuTab'
 
 function GamePage() {
     const dispatch = useAppDispatch();
@@ -18,12 +20,13 @@ function GamePage() {
         if (id) {
             dispatch(getGameCard(id));
         }
-    }, [id]);
+    }, [dispatch, id]);
 
     if (!card || card.loading || !card.list) {
-        return <div>Loading...</div>;
+        return <div className="loading-spinner">
+            <Spinner color="warning" aria-label="Loading..." size="xl" />
+        </div>;
     }
-    // console.log(card.list.feedBackGame)
 
     const handleMainPhotoClick = () => {
         if (mainPhotoIndex === 2) {
@@ -32,6 +35,8 @@ function GamePage() {
             setMainPhotoIndex(mainPhotoIndex + 1);
         }
     };
+
+    // console.log(card.list.feedBackGame)
 
     return (
         <>
@@ -78,16 +83,10 @@ function GamePage() {
                         </div>
                     </div>
                     <section className="block-guide">
-                        <div className="video-block">
-                            <h2>Видеообзор</h2>
-                            <iframe className="w-full h-[70vh]" src={`https://www.youtube.com/embed/${card.list.boardGame.video.slice(17)}`}
-                                title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
+                        <MenuTab card={card} />
+                    </section>
+                    <section className="block-guide">
+
                     </section>
                 </div>
             </div>
