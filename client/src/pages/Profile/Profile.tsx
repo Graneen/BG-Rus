@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { GameCampType } from "../../types/types";
+
 import axios from "axios";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import MenuTab from '../../commons/profileMenuTab/ProfileMenuTab'
 
 const Profile: React.FC = () => {
   const user = localStorage.getItem("user");
-  const [userFavoriteGames, setUserFavoriteGames] = useState([]); //<GameCampType[]>
+  const [userFavoriteGames, setUserFavoriteGames] = useState([]);
   const [userFeedbacks, setUserFeedbacks] = useState([]);
   const [userQuestionsAndAnswers, setUserQuestionsAndAnswers] = useState([]);
   const [userMeetings, setUserMeetings] = useState([]);
@@ -41,9 +45,9 @@ const Profile: React.FC = () => {
   // console.log("---userCamps---", userCamps);
 
   return (
-    <div>
-      <h2>труляля</h2>
-    </div>
+    <section className="block-guide">
+    <MenuTab card={card} />
+</section>
   );
 };
 
