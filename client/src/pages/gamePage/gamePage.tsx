@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './gamePage.css'
-import { getGameCard, selectGameCard, takeFavorites } from '../../features/gameCardSlice'
+import { getGameCard, selectGameCard } from '../../features/gameCardSlice';
+import { selectFavoritesCard, takeFavorites } from '../../features/addToFavoritesSlice';
 import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import StarIcon from '../../commons/StarIcon'
@@ -14,6 +15,7 @@ function GamePage() {
     const { user } = useContext(AuthContext);
     const dispatch = useAppDispatch();
     const card = useAppSelector(selectGameCard);
+    const takeTheFavorites = useAppSelector(selectFavoritesCard);
     const { id } = useParams<{ id: string }>();
 
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
@@ -42,6 +44,8 @@ function GamePage() {
     const estimation: number = Number((card.list.estimationGame.reduce((acc, curr) => {
         return acc + curr.value
     }, 0) / card.list.estimationGame.length).toFixed(1))
+    
+    console.log(takeTheFavorites)
 
     return (
         <>

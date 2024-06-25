@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TopList.css';
 import FavoritesButton from '../../commons/FavoritesButton';
-import { getGameCard, takeFavorites } from '../../features/gameCardSlice';
+import { selectFavoritesCard, takeFavorites } from '../../features/addToFavoritesSlice';
 import { useAppDispatch } from '../../hooks/redux';
 import { AuthContext } from '../../app/App';
 
