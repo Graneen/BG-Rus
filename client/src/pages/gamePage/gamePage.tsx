@@ -45,7 +45,7 @@ function GamePage() {
         return acc + curr.value
     }, 0) / card.list.estimationGame.length).toFixed(1))
     
-    console.log(takeTheFavorites)
+    // console.log(takeTheFavorites)
 
     return (
         <>
@@ -82,7 +82,7 @@ function GamePage() {
                                     <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
                                         {card.list.boardGame.description}
                                     </p>
-                                    <FavoritesButton handler={() => dispatch(takeFavorites({ id: id, user_id: user }))}/>
+                                    <FavoritesButton handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))} favorites={undefined}/>
 
                                 </div>
                             </div>

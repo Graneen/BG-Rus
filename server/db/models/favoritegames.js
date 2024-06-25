@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   FavoriteGames.init({
     user_id: DataTypes.INTEGER,
-    game_id: DataTypes.INTEGER
+    game_id: DataTypes.INTEGER,
+    toggler: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'FavoriteGames',

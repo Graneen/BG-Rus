@@ -7,7 +7,9 @@ router.post("/api/favorites/add", async (req, res) => {
     const { id, user_id } = req.body; 
       // console.log(req.body)
     const findCouple = await FavoriteGames.findOne({where: {user_id, game_id: id }});
+    console.log(findCouple)
       if (!findCouple) {
+        console.log('ne nashel')
         const newFavoriteCouple = await FavoriteGames.create({
           user_id,
           game_id: id
@@ -15,6 +17,7 @@ router.post("/api/favorites/add", async (req, res) => {
         return res.status(201).json(true); 
       }
       if (findCouple) {
+        console.log('nashel')
           await FavoriteGames.destroy({where: { user_id, game_id: id }});
         return res.json(false);
   }
