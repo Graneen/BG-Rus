@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import Modal from "react-modal";
 import $api from "../../services/axiosConfig/axiosConfig";
 import { AuthContext } from "../../app/App";
-import { useNavigate } from "react-router-dom";
 
 type typeSelectedValues = {
     id: number,
@@ -25,14 +24,13 @@ const titleTheme: string[] = ["Исторические", "Экономичес�
 const initGenres = titleGenre.map(callbackMap);
 const initTheme = titleTheme.map(callbackMap);
 
-function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boolean>>}) {
+function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boolean>> | null}) {
     const [genres, setGenres] = useState<typeSelectedValues[]>(initGenres);
     const [themes, setThemes] = useState<typeSelectedValues[]>(initTheme);
     const [players, setPlayers] = useState<string>('1');
     const [showQuizModal, setShowQuizModal] = useState<boolean>(false);
     const [titleModal, setTitleModal] = useState<string>("");
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
     
     function handlerCreateQuizModal(title: string) {
         setTitleModal(title);
@@ -103,7 +101,6 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
 
         if (apiResoult.status === 200) {
             handlerCreateQuizModal("completed");
-            // navigate("/profile");
         } else {
             console.log({apiResoult});
         }
