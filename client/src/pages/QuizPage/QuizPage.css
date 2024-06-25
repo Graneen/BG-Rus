@@ -1,4 +1,4 @@
-h1 {
+h1, .bbb {
     color: var(--goldenbeer);
     font-family: 'ROSTOV', normal;
 }
