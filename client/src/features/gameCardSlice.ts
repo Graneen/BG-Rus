@@ -2,6 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { RootState } from "../../src/redux/store";
 
+export interface data {
+    id: string;
+    user_id: number;
+}
+
 export interface estimationGame {
     id: number;
     user_id: number;
@@ -79,7 +84,17 @@ const initialState : boardGameState  = {
 export const getGameCard = createAsyncThunk("cards/getGameCard", async(payload: string, {rejectWithValue})=> { 
     
     try {
-        const card = await axios(`http://localhost:3000/api/boardgame/${payload}`);
+        const card = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/boardgame/${payload}`);
+        return card.data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
+export const takeFavorites = createAsyncThunk("cards/takeFavorites", async(data, {rejectWithValue})=> { 
+    
+    try {
+        const card = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/favorites/add`, data);
+        console.log(card.data)
         return card.data;
     } catch (error) {
         return rejectWithValue(error);
@@ -107,7 +122,19 @@ const gameCardSlice = createSlice ({
             state.error = action.payload as string,
             state.loading = false
         }))
-       
+        .addCase(takeFavorites.pending, (state => {
+            state.loading = true,
+            state.error = null
+        }))
+        .addCase(takeFavorites.fulfilled, ((state, action) => {
+            state.loading = false,
+            state.error = null,
+            state.list = action.payload
+        }))
+        .addCase(takeFavorites.rejected, ((state, action) => {
+            state.error = action.payload as string,
+            state.loading = false
+        }))
     }
 })
 
