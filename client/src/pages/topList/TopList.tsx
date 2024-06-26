@@ -21,7 +21,7 @@ const TopList: React.FC = () => {
     const takeTheFavorites = useAppSelector(selectFavoritesCard);
     const [boardGameData, setBoardGameData] = useState<BoardGameData[] | null>(null);
     const navigate = useNavigate();
-    console.log(takeTheFavorites)
+    // console.log(takeTheFavorites)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -62,7 +62,7 @@ const TopList: React.FC = () => {
                                         <h2 className="game-title">
                                             {game.title}
                                         </h2>
-                                        <FavoritesButton favorites={game.Users.length} handler={() => dispatch(takeFavorites({ id: game.id, user_id: user }))} />
+                                        <FavoritesButton favorites={game.Users.length} handler={() => dispatch(takeFavorites({ id: `${game.id}`, user_id: user, toggler: true }))} />
                                         <div className="game-descr pt-[1vh]">
                                             <p> <strong>Жанр: </strong> {game.genre}</p>
                                             <p> <strong>Тематика: </strong>{ game.theme}</p>

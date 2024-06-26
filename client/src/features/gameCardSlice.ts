@@ -49,6 +49,12 @@ export interface boardGameState {
     loading: boolean,
     error: null | string
 }
+
+export interface takeFavorite {
+    statusFav: boolean,
+}
+
+
 const initialState : boardGameState  = {
     list: {
         boardGame: {
@@ -86,16 +92,17 @@ export const getGameCard = createAsyncThunk("cards/getGameCard", async(payload: 
         return rejectWithValue(error);
     }
 });
-// export const takeFavorites = createAsyncThunk("cards/takeFavorites", async(data, {rejectWithValue})=> { 
+
+export const takeFavorite = createAsyncThunk("cards/takeFavorite", async(data, {rejectWithValue})=> { 
     
-//     try {
-//         const inFavorites = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/favorites/add`, data);
-//         console.log(inFavorites.data)
-//         return inFavorites.data;
-//     } catch (error) {
-//         return rejectWithValue(error);
-//     }
-// });
+    try {
+        const inFavorite = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/favorites`, data);
+        console.log(inFavorite.data)
+        return inFavorite.data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
 
 const gameCardSlice = createSlice ({
     name: 'gameCard',
@@ -118,25 +125,19 @@ const gameCardSlice = createSlice ({
             state.error = action.payload as string,
             state.loading = false
         }))
-        // .addCase(takeFavorites.pending, (state => {
-        //     state.loading = true,
-        //     state.error = null
-        // }))
-        // .addCase(takeFavorites.fulfilled, ((state, action) => {
-        //     state.loading = false,
-        //     state.error = null,
-        //     state.statusFav = action.payload
-        // }))
-        // .addCase(takeFavorites.rejected, ((state, action) => {
-        //     state.error = action.payload as string,
-        //     state.loading = false
-        // }))
+        .addCase(takeFavorite.fulfilled, ((state, action) => {
+            state.statusFav = action.payload
+        }))
+
     }
 })
 
 export default gameCardSlice.reducer
 
+
 export const selectGameCard = (state: RootState) => state.getGameCard
+
+export const selectFavorite = (state: RootState) => state.takeFavorite
 
 export const selectGameCardError = (state: RootState) => state.getGameCard.error
 

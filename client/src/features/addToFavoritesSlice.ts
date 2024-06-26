@@ -7,15 +7,19 @@ export interface data {
     user_id: number;
     toggler: boolean;
 }
-
+export interface statusFav {
+    game_id: number;
+    toggler: boolean;
+}
 
 export interface favoritesState {
-    gameId: string,
-    statusFav: boolean,
+    statusFav: statusFav,
 }
 const initialState : favoritesState  = {
-    gameId: '',
-    statusFav: false,
+    statusFav: {
+        game_id: 0,
+        toggler: false
+    },
 }
 
 export const takeFavorites = createAsyncThunk("cards/takeFavorites", async(data, {rejectWithValue})=> { 
@@ -27,7 +31,7 @@ export const takeFavorites = createAsyncThunk("cards/takeFavorites", async(data,
         return rejectWithValue(error);
     }
 });
-console.log(takeFavorites)
+// console.log(takeFavorites)
 const takeFavoritesSlice = createSlice ({
     name: 'inFavorites',
     initialState,
