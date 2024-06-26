@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './gamePage.css'
-import { getGameCard, selectGameCard, takeFavorites } from '../../features/gameCardSlice'
+import { getGameCard, selectGameCard } from '../../features/gameCardSlice';
+import { selectFavoritesCard, takeFavorites, takeFavorite, getFavoriteStatus } from '../../features/addToFavoritesSlice';
 import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import StarIcon from '../../commons/StarIcon'
@@ -14,6 +15,7 @@ function GamePage() {
     const { user } = useContext(AuthContext);
     const dispatch = useAppDispatch();
     const card = useAppSelector(selectGameCard);
+    const takeTheFavorites = useAppSelector(selectFavoritesCard);
     const { id } = useParams<{ id: string }>();
 
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
@@ -22,8 +24,10 @@ function GamePage() {
     useEffect(() => {
         if (id) {
             dispatch(getGameCard(id));
+            dispatch(takeFavorite({id: id, user_id: user}))
         }
-    }, [dispatch, id]);
+    }, [dispatch, id, user]);
+
 
     if (!card || card.loading || !card.list) {
         return <div className="loading-spinner">
@@ -67,7 +71,7 @@ function GamePage() {
                                 </div>
                                 <div className="card-right">
                                     <div className="stars-container">
-                                        Рейтинг: {estimation && estimation > 0 ? card.list.estimationGame.map((index) => <StarIcon />) : ''} <StarIcon />
+                                        Рейтинг: {estimation && estimation > 0 ? card.list.estimationGame.map(() => <StarIcon />) : ''} <StarIcon />
 
                                         <p>{estimation > 0 ? `${estimation} (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
                                     </div>
@@ -78,7 +82,8 @@ function GamePage() {
                                     <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
                                         {card.list.boardGame.description}
                                     </p>
-                                    <FavoritesButton handler={() => dispatch(takeFavorites({ id: id, user_id: user }))}/>
+                                    <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
+                                                     handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))}/>
 
                                 </div>
                             </div>
