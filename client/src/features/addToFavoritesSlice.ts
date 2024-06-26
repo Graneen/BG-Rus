@@ -2,11 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { RootState } from "../redux/store";
 
-export interface data {
-    id: string;
-    user_id: number;
-    toggler: boolean;
-}
 export interface statusFav {
     game_id: number;
     toggler: boolean;

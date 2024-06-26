@@ -3,7 +3,7 @@
     --main-color-bb: #0B1D26bb;
     --main-color-00: #0b1d2600;
     --accent: #FBD784;
-    --goldenbeer: rgb(255, 215, 0);
+    --goldenbeer: #ffd700;
   }
   *, *::before, *::after {
     margin: 0;

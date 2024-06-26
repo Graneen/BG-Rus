@@ -26,7 +26,7 @@ const TopList: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/boardgames`);
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/boardgames/${user}`);
 
                 if (response.ok) {
                     const data: BoardGameData[] = await response.json();

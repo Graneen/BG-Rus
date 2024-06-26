@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { User, BoardGame, Feedback, Estimation, FavoriteGames } = require('../../db/models'); 
 
-router.get('/api/boardgames', async (req, res) => {
-    const id = 1
+router.get('/api/boardgames/:id', async (req, res) => {
+    const {id} = req.params;
     try {
         const boardGames = await BoardGame.findAll({
             include: {
@@ -17,7 +17,7 @@ router.get('/api/boardgames', async (req, res) => {
                 }
             }
         }); 
-        console.log(JSON.parse(JSON.stringify(boardGames)).filter((el) => el.id === 41))
+        // console.log(JSON.parse(JSON.stringify(boardGames)).filter((el) => el.id === 41))
         res.json(boardGames);
     } catch (error) {
         console.error(error);
