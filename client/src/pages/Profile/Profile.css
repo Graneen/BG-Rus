@@ -1,0 +1,19 @@
+.profile-page-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+
+}
+.middle-block {
+    display: flex;
+    flex-direction: wrap;
+    gap: 5vw;
+}
+.meeting-camp-box{
+    border: 1px solid red;
+    padding: 5px;
+    margin: 5px;
+}
