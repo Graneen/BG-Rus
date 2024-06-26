@@ -11,7 +11,7 @@ const store = configureStore({
     gameSession: gameSessionReducer,
     getGameCard: gameCardReducer,
     takeFavorites: inFavoritesReducer,
-    takeFavorite: gameCardReducer,
+    takeFavorite: inFavoritesReducer,
     gameCamp: gameCampReducer,
     localization: localizationReducer
   },

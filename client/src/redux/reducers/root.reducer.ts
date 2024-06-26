@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   gameSession: gameSessionReducer,
   getGameCard: getGameCardReducer,
   takeFavorites: inFavoritesReducer,
-  takeFavorite: getGameCardReducer,
+  takeFavorite: inFavoritesReducer,
   gameCamp: gameCampReducer,
   localization: localizationReducer
 });

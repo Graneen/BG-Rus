@@ -1,4 +1,4 @@
-function FavoritesButton({handler, favorites}) {
+function FavoritesButton({handler, favorites, favorite}) {
     return ( 
         <a
         title=""

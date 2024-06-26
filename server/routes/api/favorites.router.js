@@ -3,7 +3,7 @@ const router = express.Router();
 const { FavoriteGames } = require("../../db/models"); 
 
 
-router.get("/api/favorites/", async (req, res) => {
+router.get("/api/favorite/", async (req, res) => {
   const { id, user_id } = req.body; 
     try {
       const findFav = await FavoriteGames.findOne({where: {user_id, game_id: Number(id) }});

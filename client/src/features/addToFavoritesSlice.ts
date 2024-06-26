@@ -21,7 +21,16 @@ const initialState : favoritesState  = {
         toggler: false
     },
 }
-
+export const takeFavorite = createAsyncThunk("cards/takeFavorite", async(data, {rejectWithValue})=> { 
+    
+    try {
+        const inFavorite = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/favorite`, data);
+        console.log(inFavorite.data)
+        return inFavorite.data;
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
 export const takeFavorites = createAsyncThunk("cards/takeFavorites", async(data, {rejectWithValue})=> { 
     
     try {
@@ -31,7 +40,7 @@ export const takeFavorites = createAsyncThunk("cards/takeFavorites", async(data,
         return rejectWithValue(error);
     }
 });
-// console.log(takeFavorites)
+console.log(takeFavorite)
 const takeFavoritesSlice = createSlice ({
     name: 'inFavorites',
     initialState,
@@ -43,9 +52,14 @@ const takeFavoritesSlice = createSlice ({
         .addCase(takeFavorites.fulfilled, ((state, action) => {
             state.statusFav = action.payload
         }))
+        .addCase(takeFavorite.fulfilled, ((state, action) => {
+            state.statusFav = action.payload
+        }))
     }
 })
 
 export default takeFavoritesSlice.reducer
 
 export const selectFavoritesCard = (state: RootState) => state.takeFavorites
+
+export const getFavoriteStatus = (state: RootState) => state.takeFavorite

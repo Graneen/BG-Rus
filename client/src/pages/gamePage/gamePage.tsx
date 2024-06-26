@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './gamePage.css'
-import { getGameCard, selectGameCard, takeFavorite } from '../../features/gameCardSlice';
-import { selectFavoritesCard, takeFavorites } from '../../features/addToFavoritesSlice';
+import { getGameCard, selectGameCard } from '../../features/gameCardSlice';
+import { selectFavoritesCard, takeFavorites, takeFavorite, getFavoriteStatus } from '../../features/addToFavoritesSlice';
 import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import StarIcon from '../../commons/StarIcon'
@@ -16,8 +16,9 @@ function GamePage() {
     const dispatch = useAppDispatch();
     const card = useAppSelector(selectGameCard);
     const takeTheFavorites = useAppSelector(selectFavoritesCard);
+    const takeTheFavorite = useAppSelector(getFavoriteStatus);
     const { id } = useParams<{ id: string }>();
-    // console.log(takeTheFavorites)
+    console.log(takeTheFavorites)
 
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
     const photos = [card.list.boardGame.poster, card.list.boardGame.image1, card.list.boardGame.image2];
@@ -27,7 +28,8 @@ function GamePage() {
             dispatch(getGameCard(id));
             dispatch(takeFavorite({id: id, user_id: user}))
         }
-    }, [dispatch, id]);
+    }, [dispatch, id, user]);
+
 
     if (!card || card.loading || !card.list) {
         return <div className="loading-spinner">
@@ -82,7 +84,9 @@ function GamePage() {
                                     <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
                                         {card.list.boardGame.description}
                                     </p>
-                                    <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null } handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))}/>
+                                    <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
+                                                     favorite={takeTheFavorite.statusFav.toggler} 
+                                                     handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))}/>
 
                                 </div>
                             </div>

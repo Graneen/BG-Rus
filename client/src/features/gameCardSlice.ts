@@ -50,9 +50,6 @@ export interface boardGameState {
     error: null | string
 }
 
-export interface takeFavorite {
-    statusFav: boolean,
-}
 
 
 const initialState : boardGameState  = {
@@ -93,16 +90,16 @@ export const getGameCard = createAsyncThunk("cards/getGameCard", async(payload: 
     }
 });
 
-export const takeFavorite = createAsyncThunk("cards/takeFavorite", async(data, {rejectWithValue})=> { 
+// export const takeFavorite = createAsyncThunk("cards/takeFavorite", async(data, {rejectWithValue})=> { 
     
-    try {
-        const inFavorite = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/favorites`, data);
-        console.log(inFavorite.data)
-        return inFavorite.data;
-    } catch (error) {
-        return rejectWithValue(error);
-    }
-});
+//     try {
+//         const inFavorite = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/favorites`, data);
+//         console.log(inFavorite.data)
+//         return inFavorite.data;
+//     } catch (error) {
+//         return rejectWithValue(error);
+//     }
+// });
 
 const gameCardSlice = createSlice ({
     name: 'gameCard',
@@ -125,9 +122,9 @@ const gameCardSlice = createSlice ({
             state.error = action.payload as string,
             state.loading = false
         }))
-        .addCase(takeFavorite.fulfilled, ((state, action) => {
-            state.statusFav = action.payload
-        }))
+        // .addCase(takeFavorite.fulfilled, ((state, action) => {
+        //     state.statusFav = action.payload
+        // }))
 
     }
 })
@@ -137,7 +134,7 @@ export default gameCardSlice.reducer
 
 export const selectGameCard = (state: RootState) => state.getGameCard
 
-export const selectFavorite = (state: RootState) => state.takeFavorite
+// export const selectFavorite = (state: RootState) => state.takeFavorite
 
 export const selectGameCardError = (state: RootState) => state.getGameCard.error
 
