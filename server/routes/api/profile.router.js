@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+
+const { Op } = require("sequelize");
+
 const {
   User,
   FavoriteGames,
@@ -11,6 +14,7 @@ const {
   GameMeeting,
   PlayerCamp,
   GameCamp,
+  Quiz,
 } = require("../../db/models");
 
 router.get("/api/profile/:id", async (req, res) => {
@@ -31,7 +35,6 @@ router.get("/api/profile/:id", async (req, res) => {
       },
     });
     const userMeetings = JSON.parse(JSON.stringify(meetings));
-    console.log("userMeeting", userMeetings);
     //Игрокемпы
     const searchCampsId = await PlayerCamp.findAll({
       where: { user_id: Number(user) },
@@ -113,6 +116,25 @@ router.get("/api/profile/:id", async (req, res) => {
       };
       return data;
     });
+    //рекомендуемые игры
+    const userQuiz = await Quiz.findOne({ where: { user_id: Number(user) } });
+    const userQuizResult = JSON.parse(JSON.stringify(userQuiz));
+    const quizTheme = userQuizResult.theme.split(",");
+    const quizGenre = userQuizResult.genre.split(",");
+
+    const userSearchGames = await BoardGame.findAll({
+      where: {
+        minPlayers: { [Op.lte]: userQuizResult.players },
+        maxPlayers: { [Op.gte]: userQuizResult.players },
+      },
+    });
+    const searchGames = JSON.parse(JSON.stringify(userSearchGames));
+    const recommendedGames = searchGames.filter((game) => {
+      return (
+        quizTheme.some((theme) => game.theme.includes(theme)) ||
+        quizGenre.some((genre) => game.genre.includes(genre))
+      );
+    });
     res.status(200).json({
       currentUser,
       favoriteGames,
@@ -120,6 +142,7 @@ router.get("/api/profile/:id", async (req, res) => {
       questionsAndAnswers,
       userMeetings,
       userCamps,
+      recommendedGames,
     });
   } catch (error) {
     console.error("Error while get profile first data:", error);

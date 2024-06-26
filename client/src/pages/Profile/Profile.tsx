@@ -9,12 +9,12 @@ const Profile: React.FC = () => {
   const [userFavoriteGames, setUserFavoriteGames] = useState([]);
   const [userFeedbacks, setUserFeedbacks] = useState([]);
   const [userQuestionsAndAnswers, setUserQuestionsAndAnswers] = useState([]);
+  const [userRecommendedGames, setUserRecommendedGames] = useState([]);
 
   const [userMeetings, setUserMeetings] = useState([]);
   const [userCamps, setUserCamps] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
 
-  currentUser;
   useEffect(() => {
     const profileData = async () => {
       try {
@@ -28,6 +28,7 @@ const Profile: React.FC = () => {
           setUserMeetings(response.data.userMeetings);
           setUserCamps(response.data.userCamps);
           setCurrentUser(response.data.currentUser);
+          setUserRecommendedGames(response.data.recommendedGames);
         } else {
           console.error("Ошибка при получении данных");
         }
@@ -37,9 +38,6 @@ const Profile: React.FC = () => {
     };
     profileData();
   }, []);
-
-  // console.log("---userFavoriteGame---", userFavoriteGames);
-
   return (
     <>
       {user ? (
@@ -52,27 +50,39 @@ const Profile: React.FC = () => {
           </div>
           <div className="middle-block">
             <div>
-              <h2>Вы зарегитсрированы на игротеки:</h2>
-              {userMeetings.map((userMeeting) => (
-                <div className="meeting-camp-box">
-                  <h2>{userMeeting.gameName}</h2>
-                  <p>
-                    Дата проведения:{" "}
-                    {userMeeting.date.replace("T", " ").replace(".000Z", "")}
-                  </p>
-                  <p>Место проведения: {userMeeting.location}</p>
-                </div>
-              ))}
+              {userMeetings && userMeetings.length ? (
+                <>
+                  <h2>Вы зарегитсрированы на игротеки:</h2>
+                  {userMeetings.map((userMeeting) => (
+                    <div className="meeting-camp-box">
+                      <h2>{userMeeting.gameName}</h2>
+                      <p>
+                        Дата проведения:{" "}
+                        {userMeeting.date
+                          .replace("T", " ")
+                          .replace(".000Z", "")}
+                      </p>
+                      <p>Место проведения: {userMeeting.location}</p>
+                    </div>
+                  ))}
+                </>
+              ) : null}
             </div>
             <div>
-              <h2>Вы зарегитсрированы на игрокемпы:</h2>
-              {userCamps.map((userCamp) => (
-                <div className="meeting-camp-box">
-                  <h2>{userCamp.title}</h2>
-                  <p>{userCamp.date.replace("T", " ").replace(".000Z", "")}</p>
-                  <p>{userCamp.location}</p>
-                </div>
-              ))}
+              {userCamps && userCamps.length ? (
+                <>
+                  <h2>Вы зарегитсрированы на игрокемпы:</h2>
+                  {userCamps.map((userCamp) => (
+                    <div className="meeting-camp-box">
+                      <h2>{userCamp.title}</h2>
+                      <p>
+                        {userCamp.date.replace("T", " ").replace(".000Z", "")}
+                      </p>
+                      <p>{userCamp.location}</p>
+                    </div>
+                  ))}
+                </>
+              ) : null}
             </div>
           </div>
           <section className="block-guide">
@@ -80,6 +90,7 @@ const Profile: React.FC = () => {
               userFavoriteGames={userFavoriteGames}
               userFeedbacks={userFeedbacks}
               userQuestionsAndAnswers={userQuestionsAndAnswers}
+              userRecommendedGames={userRecommendedGames}
             />
           </section>
         </div>

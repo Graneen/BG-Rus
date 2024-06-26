@@ -36,8 +36,8 @@ export default function ProfileMenuTab({
   userFavoriteGames,
   userFeedbacks,
   userQuestionsAndAnswers,
+  userRecommendedGames
 }) {
-  ////////////////////////////
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -70,7 +70,13 @@ export default function ProfileMenuTab({
         ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        // // // //
+      {userRecommendedGames.map((userRecommendedGame) => (
+          <div className="meeting-camp-box">
+            <h2>Игра: {userRecommendedGame.title}</h2>
+            <p>Описание: {userRecommendedGame.description}</p>
+            <p>Время игры: {userRecommendedGame.time}</p>
+          </div>
+        ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         {userFeedbacks.map((userFeedback) => (
