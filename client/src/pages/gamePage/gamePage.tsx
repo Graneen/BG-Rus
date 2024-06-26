@@ -1,14 +1,21 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './gamePage.css'
-import { getGameCard, selectGameCard } from '../../features/gameCardSlice'
-import { useEffect, useState } from 'react'
+import { getGameCard, selectGameCard } from '../../features/gameCardSlice';
+import { selectFavoritesCard, takeFavorites, takeFavorite, getFavoriteStatus } from '../../features/addToFavoritesSlice';
+import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import StarIcon from '../../commons/StarIcon'
 import FavoritesButton from '../../commons/FavoritesButton'
+import { Spinner } from "flowbite-react";
+import MenuTab from '../../commons/menuTab/MenuTab'
+import { AuthContext } from '../../app/App'
+
 
 function GamePage() {
+    const { user } = useContext(AuthContext);
     const dispatch = useAppDispatch();
     const card = useAppSelector(selectGameCard);
+    const takeTheFavorites = useAppSelector(selectFavoritesCard);
     const { id } = useParams<{ id: string }>();
 
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
@@ -17,13 +24,16 @@ function GamePage() {
     useEffect(() => {
         if (id) {
             dispatch(getGameCard(id));
+            dispatch(takeFavorite({id: id, user_id: user}))
         }
-    }, [id]);
+    }, [dispatch, id, user]);
+
 
     if (!card || card.loading || !card.list) {
-        return <div>Loading...</div>;
+        return <div className="loading-spinner">
+            <Spinner color="warning" aria-label="Loading..." size="xl" />
+        </div>;
     }
-    // console.log(card.list.feedBackGame)
 
     const handleMainPhotoClick = () => {
         if (mainPhotoIndex === 2) {
@@ -32,6 +42,10 @@ function GamePage() {
             setMainPhotoIndex(mainPhotoIndex + 1);
         }
     };
+
+    const estimation: number = Number((card.list.estimationGame.reduce((acc, curr) => {
+        return acc + curr.value
+    }, 0) / card.list.estimationGame.length).toFixed(1))
 
     return (
         <>
@@ -57,12 +71,9 @@ function GamePage() {
                                 </div>
                                 <div className="card-right">
                                     <div className="stars-container">
-                                        <StarIcon />
-                                        <StarIcon />
-                                        <StarIcon />
-                                        <StarIcon />
-                                        <StarIcon />
-                                        <p>(5 отзывов)</p>
+                                        Рейтинг: {estimation && estimation > 0 ? card.list.estimationGame.map(() => <StarIcon />) : ''} <StarIcon />
+
+                                        <p>{estimation > 0 ? `${estimation} (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
                                     </div>
                                     <p>Жанр: {card.list.boardGame.genre}</p>
                                     <p>Тематика: {card.list.boardGame.theme}</p>
@@ -71,23 +82,18 @@ function GamePage() {
                                     <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
                                         {card.list.boardGame.description}
                                     </p>
-                                    <FavoritesButton />
+                                    <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
+                                                     handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))}/>
 
                                 </div>
                             </div>
                         </div>
                     </div>
                     <section className="block-guide">
-                        <div className="video-block">
-                            <h2>Видеообзор</h2>
-                            <iframe className="w-full h-[70vh]" src={`https://www.youtube.com/embed/${card.list.boardGame.video.slice(17)}`}
-                                title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
+                        <MenuTab card={card} />
+                    </section>
+                    <section className="block-guide">
+
                     </section>
                 </div>
             </div>

@@ -1,6 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TopList.css';
+import FavoritesButton from '../../commons/FavoritesButton';
+import { selectFavoritesCard, takeFavorites } from '../../features/addToFavoritesSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { AuthContext } from '../../app/App';
 
 interface BoardGameData {
     id: number;
@@ -12,13 +16,18 @@ interface BoardGameData {
 }
 
 const TopList: React.FC = () => {
+    const { user } = useContext(AuthContext);
+    const dispatch = useAppDispatch();
+    const takeTheFavorites = useAppSelector(selectFavoritesCard);
     const [boardGameData, setBoardGameData] = useState<BoardGameData[] | null>(null);
     const navigate = useNavigate();
+    // console.log(takeTheFavorites)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/boardgames');
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/boardgames`);
+
                 if (response.ok) {
                     const data: BoardGameData[] = await response.json();
                     setBoardGameData(data);
@@ -31,7 +40,8 @@ const TopList: React.FC = () => {
         }
 
         fetchData();
-    }, []);
+    }, [takeTheFavorites]);
+
 
     return (
         <>
@@ -40,19 +50,20 @@ const TopList: React.FC = () => {
                     <h2 className="text-2xl p-4 font-bold tracking-tight text-gray-900">TOP-100 лучших игр</h2>
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         {boardGameData && boardGameData.map((game, index) => (
-                            <button key={index} className=" group relative p-4" onClick={() => navigate(`/game/${game.id}`)}>
-                                <div className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
+                            <div className=" group relative p-4">
+                                <button key={index} onClick={() => navigate(`/game/${game.id}`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
                                     <img
                                         src={game.poster}
                                         className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
                                     />
-                                </div>
+                                </button>
                                 <div className="mt-4 flex justify-between">
                                     <div>
                                         <h2 className="game-title">
                                             {game.title}
                                         </h2>
-                                        <div className="game-descr">
+                                        <FavoritesButton favorites={game.Users.length} handler={() => dispatch(takeFavorites({ id: `${game.id}`, user_id: user, toggler: true }))} />
+                                        <div className="game-descr pt-[1vh]">
                                             <p> <strong>Жанр: </strong> {game.genre}</p>
                                             <p> <strong>Тематика: </strong>{ game.theme}</p>
                                             <p> <strong>Сложность: </strong> {game.difficulty}</p>
@@ -60,7 +71,7 @@ const TopList: React.FC = () => {
                                     </div>
                                 </div>
 
-                            </button>
+                            </div>
                         ))}
                     </div>
                 </div>

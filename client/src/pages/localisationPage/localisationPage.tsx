@@ -10,6 +10,7 @@ import './LocalizationPage.css'
       description: string;
       comments: Comment[];
       User: User;
+      replies: Reply[];
     }
 
     interface Comment {
@@ -122,16 +123,18 @@ import './LocalizationPage.css'
         try {
           const response = await axios.get<Order[]>('http://localhost:3000/localization-orders');
           setAllOrders(response.data);
+          console.log(response.data, 'aaaa')
         } catch (error) {
           console.error('Error fetching orders:', error);
+          
         }
-      };
+      }
 
         useEffect(() => {
           fetchOrders();
         }, []);
 
-
+  
       return (
         <>
       <div className="flex justify-center items-center flex-col">
@@ -181,11 +184,12 @@ import './LocalizationPage.css'
             {order.comments && order.comments.map((comment: Comment) => (
               <div key={comment.commentId} className="bg-yellow-100 p-2 rounded-md mt-2">
                 <p className="text-sm text-black">{comment.userName && comment.userName}: {comment.comment}</p>
-                {comment.replies && comment.replies.map((reply, index) => (
+                {order.replies && order.replies.map((reply, index) => (
                   <div key={`${comment.id}-${index}`} className="bg-yellow-50 p-2 rounded-md ml-4 mt-2">
-                    <p className="text-xs text-black">{reply.userName && reply.userName}: {reply.comment}</p>
+                    <p className="text-xs text-black">{reply.userName && reply.userName}: {reply.replies}</p>
                   </div>
                 ))}
+            
                 {replyingToComment === comment.commentId ? (
                   <div className="mt-2">
                     <input

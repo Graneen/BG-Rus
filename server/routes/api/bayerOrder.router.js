@@ -21,7 +21,9 @@ router.post('/bayer-orders', async (req, res) => {
 
 router.get('/allBayersOrders', async (req, res) => {
     try {
-      const allOrders =  await BayerOrder.findAll();
+      const allOrders = await BayerOrder.findAll({
+      order: [['createdAt', 'DESC']]
+    });
       res.status(200).json(allOrders); 
     } catch (error) {
       console.error('Error fetching all Bayer Orders:', error);

@@ -1,6 +1,14 @@
+import { useState } from 'react';
 import './Steps.css'
+import QuizPage from '../pages/QuizPage/QuizPage';
 
 function Steps() {
+    const [ quiz, setQuiz ] = useState<boolean>(false);
+
+    function quizHandler() {
+        quiz ? setQuiz(false) : setQuiz(true);
+    }
+
     return (
         <>
             <section className="main-content">
@@ -13,7 +21,10 @@ function Steps() {
                                 <p className="hero_pre-text">КВИЗ</p>
                                 <h1>Какой ты игрок?</h1>
                                 <div className="guide_text">Наш интерактивный квиз поможет определить ваши личные игровые предпочтения. Мы зададим вам несколько вопросов о ваших игровых вкусах и на основе ваших ответов подберем подходящие для вас настольные игры из нашей обширной коллекции.</div>
-                                <a href="#" className="more">
+                                <a 
+                                    className="more"
+                                    onClick={quizHandler}
+                                >
                                     <span className="more_text">пройти квиз</span>
                                     <span className="more_icon">
                                         <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,6 +35,7 @@ function Steps() {
                             </div>
                             <div className="guide_image"><img src='https://trueimages.ru/img/e6/18/46b71766.png' alt="" /></div>
                         </div>
+                        {quiz ? <QuizPage setQuiz={setQuiz} /> : <></>}
                         <div className="guide" id="guide2">
                             <div className="guide_description">
                                 <div className="guide_number">02</div>
@@ -59,7 +71,6 @@ function Steps() {
                             <div className="guide_image"><img src="https://trueimages.ru/img/ff/c9/ec191766.png" alt="" /></div>
                         </div>
                 </section>
-
             </section>
         </>
     );

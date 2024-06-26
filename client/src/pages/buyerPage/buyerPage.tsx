@@ -34,6 +34,7 @@ const BuyerPage: React.FC = () => {
   const [comments, setComments] = useState<Record<number, Comment[]>>({});
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:3000/specialists')
@@ -72,24 +73,28 @@ const BuyerPage: React.FC = () => {
   }, [selectedOrderId]);
 
   const handleAddAdvertisement = async (event: React.FormEvent) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (!user) {
-      console.error('User or user property is undefined');
-      return;
-    }
+  if (!user) {
+    console.error('User or user property is undefined');
+    return;
+  }
 
-    try {
-      const response = await axios.post('http://localhost:3000/bayer-orders', {
-        userId: Number(user), 
-        name: yourName,
-        nameboard: gameTitle
-      });
-      console.log('Advertisement created:', response.data);
-    } catch (error) {
-      console.error('Error creating advertisement:', error);
-    }
-  };
+  try {
+    const response = await axios.post('http://localhost:3000/bayer-orders', {
+      userId: Number(user), 
+      name: yourName,
+      nameboard: gameTitle
+    });
+
+    setAllBayersOrders(prevOrders => [...prevOrders, response.data]);
+    setGameTitle('');
+    setYourName('');
+    console.log('Advertisement created:', response.data);
+  } catch (error) {
+    console.error('Error creating advertisement:', error);
+  }
+};
 
   const handleAddComment = async () => {
     if (!user) {
@@ -115,22 +120,57 @@ const BuyerPage: React.FC = () => {
     }
   };
 
+  const handleBookSpecialist = async (specialistId: number) => {
+    try {
+      const user = localStorage.getItem('user');
+      if (!user) {
+        console.error('User or user property is undefined');
+        return;
+      }
+  
+      const response = await axios.post(`http://localhost:3000/specialists/${specialistId}`, {
+        user_id: Number(user),
+      });
+  
+      console.log(response.data.message);
+      setShowSuccessMessage(true);
+
+      const timer = setTimeout(() => {
+        setShowSuccessMessage(false);
+        return () => clearTimeout(timer);
+      }, 2000);
+    } catch (error) {
+      console.error('Error booking specialist:', error);
+    }
+  };
 
   return (
+    <>
     <div className="main-container p-4 bg-gray-800 text-white">
-      <div className="specialists-container">
-        <h1 className="text-2xl font-bold text-center mb-4">Наши Специалисты</h1>
-        {specialists.map((specialist) => (
-          <div key={specialist.id} className="flex items-center justify-between bg-gray-900 p-4 mb-4 rounded shadow">
-            <img src={specialist.photo} alt={specialist.firstName} className="w-16 h-16 rounded-full" />
-            <div className="expert-details flex-grow mx-4">
-              <p className="font-semibold">{`${specialist.firstName} ${specialist.lastName}`}</p>
-              <p>{specialist.country}</p>
-            </div>
-            <button className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded">Воспользоваться услугами</button>
-          </div>
-        ))}
+  <div className="specialists-container">
+    <h1 className="text-2xl font-bold text-center mb-4">Наши Специалисты</h1>
+    {specialists.map((specialist) => (
+      <div key={specialist.id} className="flex items-center justify-between bg-gray-900 p-4 mb-4 rounded shadow">
+        <img src={specialist.photo} alt={specialist.firstName} className="w-16 h-16 rounded-full" />
+        <div className="expert-details flex-grow mx-4">
+          <p className="font-semibold">{`${specialist.firstName} ${specialist.lastName}`}</p>
+          <p>{specialist.country}</p>
+        </div>
+        <button
+          className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded"
+          onClick={handleBookSpecialist.bind(null, specialist.id)}
+        >
+          Воспользоваться услугами
+        </button>
       </div>
+    ))}
+  </div>
+  {showSuccessMessage && (
+    <div className="fixed top-0 left-0 w-full bg-yellow-500 text-white py-4 px-6 text-center">
+      Ваше обращение поступило специалисту
+    </div>
+  )}
+</div>
   
       <div className="center-content flex justify-between items-start">
         <div className="add-advert-container bg-gray-900 text-white p-4 rounded shadow">
@@ -138,11 +178,11 @@ const BuyerPage: React.FC = () => {
           <form className="advert-form" onSubmit={handleAddAdvertisement}>
             <label className="mb-2">
               <span className="font-semibold block mb-1">Название игры:</span>
-              <input type="text" value={gameTitle} onChange={(e) => setGameTitle(e.target.value)} className="w-full rounded px-2 py-1" />
+              <input type="text" value={gameTitle} onChange={(e) => setGameTitle(e.target.value)} className="w-full rounded px-2 py-1 text-black" />
             </label>
             <label className="mb-2">
               <span className="font-semibold block mb-1">Ваше имя:</span>
-              <input type="text" value={yourName} onChange={(e) => setYourName(e.target.value)} className="w-full rounded px-2 py-1" />
+              <input type="text" value={yourName} onChange={(e) => setYourName(e.target.value)} className="w-full rounded px-2 py-1 text-black" />
             </label>
             <button type="submit" className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded">Добавить объявление</button>
           </form>
@@ -184,7 +224,8 @@ const BuyerPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    
+    </>
   );
 }
 export default BuyerPage;

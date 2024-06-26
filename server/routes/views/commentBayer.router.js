@@ -3,6 +3,7 @@ const router = express.Router();
 const { BayerOrder, User } = require('../../db/models');
 
 router.post('/bayer-orders/:id/comments', async (req, res) => {
+  console.log('req.params.id:', req.params.id);
   try {
     const order = await BayerOrder.findByPk(req.params.id);
     
