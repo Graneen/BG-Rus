@@ -1,22 +1,25 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from 'react-redux';
-import gameSessionReducer from "../features/gameSessionSlice";
-import gameCardReducer from '../features/gameCardSlice';
-import gameCampReducer from '../features/gameCardSlice';
-import localizationReducer from '../features/localizationSlice'
+import gameSessionReducer, { GameSessionState } from "../features/gameSessionSlice";
+import gameCardReducer, { boardGameState } from '../features/gameCardSlice';
+import localizationReducer, { LocalizationState } from '../features/localizationSlice'
 
 const store = configureStore({
   reducer: {
     gameSession: gameSessionReducer,
     getGameCard: gameCardReducer,
-    gameCamp: gameCampReducer,
     localization: localizationReducer
-    
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = {
+  gameSession: GameSessionState;
+  getGameCard: boardGameState;
+  localization: LocalizationState;
+};
+
 export type AppDispatch = typeof store.dispatch;
-export default store;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+export default store;
 

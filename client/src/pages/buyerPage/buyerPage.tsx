@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import './BayerPage.css';
 
 interface Specialist {
@@ -18,13 +19,13 @@ interface BayerOrder {
 
 interface Comment {
   id: number;
+  userId: number;
+  userName: string;
   text: string;
-  User: {
-    name: string;
-  };
 }
 
 const BuyerPage: React.FC = () => {
+  const user = localStorage.getItem("user");
   const [specialists, setSpecialists] = useState<Specialist[]>([]);
   const [allBayersOrders, setAllBayersOrders] = useState<BayerOrder[]>([]);
   const [gameTitle, setGameTitle] = useState('');
@@ -52,11 +53,35 @@ const BuyerPage: React.FC = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/bayer-orders/${selectedOrderId}/comments`);
+        setComments(prevComments => ({
+          ...prevComments,
+          [selectedOrderId!]: response.data
+        }));
+      } catch (error) {
+        console.error('Error fetching comments:', error);
+      }
+    };
+
+    if (selectedOrderId) {
+      fetchComments();
+    }
+  }, [selectedOrderId]);
+
   const handleAddAdvertisement = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (!user) {
+      console.error('User or user property is undefined');
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:3000/bayerOrders', {
+      const response = await axios.post('http://localhost:3000/bayer-orders', {
+        userId: Number(user), 
         name: yourName,
         nameboard: gameTitle
       });
@@ -67,17 +92,22 @@ const BuyerPage: React.FC = () => {
   };
 
   const handleAddComment = async () => {
+    if (!user) {
+      console.error('User or user property is undefined');
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:3000/comments', {
-        orderId: selectedOrderId,
-        text: newCommentText
+      const response = await axios.post(`http://localhost:3000/bayer-orders/${selectedOrderId}/comments`, {
+        userId: Number(user),
+        comment: newCommentText
       });
 
       setComments(prevComments => ({
         ...prevComments,
         [selectedOrderId!]: [...(prevComments[selectedOrderId!] || []), response.data]
       }));
-      
+
       setNewCommentText('');
       setShowCommentInput(false);
     } catch (error) {
@@ -85,70 +115,76 @@ const BuyerPage: React.FC = () => {
     }
   };
 
+
   return (
-    <div className="main-container">
+    <div className="main-container p-4 bg-gray-800 text-white">
       <div className="specialists-container">
-        <h1>Наши Специалисты</h1>
+        <h1 className="text-2xl font-bold text-center mb-4">Наши Специалисты</h1>
         {specialists.map((specialist) => (
-          <div key={specialist.id} className="expert-card">
-            <img src={specialist.photo} alt={specialist.firstName} />
-            <div className="expert-details">
-              <p>{`${specialist.firstName} ${specialist.lastName}`}</p>
+          <div key={specialist.id} className="flex items-center justify-between bg-gray-900 p-4 mb-4 rounded shadow">
+            <img src={specialist.photo} alt={specialist.firstName} className="w-16 h-16 rounded-full" />
+            <div className="expert-details flex-grow mx-4">
+              <p className="font-semibold">{`${specialist.firstName} ${specialist.lastName}`}</p>
               <p>{specialist.country}</p>
             </div>
-            <button>Воспользоваться услугами</button>
+            <button className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded">Воспользоваться услугами</button>
           </div>
         ))}
       </div>
-
-      <div className="center-content">
-        <div className="add-advert-container">
-          <h2>Добавить объявление</h2>
+  
+      <div className="center-content flex justify-between items-start">
+        <div className="add-advert-container bg-gray-900 text-white p-4 rounded shadow">
+          <h2 className="text-xl font-bold mb-4">Добавить объявление</h2>
           <form className="advert-form" onSubmit={handleAddAdvertisement}>
-            <label>
-              Название игры:
-              <input type="text" value={gameTitle} onChange={(e) => setGameTitle(e.target.value)} />
+            <label className="mb-2">
+              <span className="font-semibold block mb-1">Название игры:</span>
+              <input type="text" value={gameTitle} onChange={(e) => setGameTitle(e.target.value)} className="w-full rounded px-2 py-1" />
             </label>
-            <br />
-            <label>
-              Ваше имя:
-              <input type="text" value={yourName} onChange={(e) => setYourName(e.target.value)} />
+            <label className="mb-2">
+              <span className="font-semibold block mb-1">Ваше имя:</span>
+              <input type="text" value={yourName} onChange={(e) => setYourName(e.target.value)} className="w-full rounded px-2 py-1" />
             </label>
-            <br />
-            <button type="submit">Добавить объявление</button>
+            <button type="submit" className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded">Добавить объявление</button>
           </form>
         </div>
-
+  
         <div className="bayer-orders-container">
-          <h1>Все объявления</h1>
-          {allBayersOrders.map((order) => (
-            <div key={order.id} className="bayer-order-card">
-              <p>Имя: {order.name}</p>
-              <p>Название игры: {order.nameboard}</p>
-              
-              {showCommentInput && selectedOrderId === order.id && (
-                <div>
-                  <input type="text" value={newCommentText} onChange={(e) => setNewCommentText(e.target.value)} />
-                  <button onClick={handleAddComment}>Добавить</button>
+        <h1 className="text-4xl font-bold font-serif text-yellow-500">Все объявления</h1>
+          <div className="bayer-orders-grid grid grid-cols-1 gap-4">
+            {allBayersOrders.map((order) => (
+              <div key={order.id} className="bayer-order-card bg-gray-900 p-4 rounded shadow">
+                <div className="bayer-order-header mb-4">
+                  <h3 className="text-lg font-semibold">{order.name}</h3>
+                  <p>Название игры: {order.nameboard}</p>
                 </div>
-              )}
-
-              <button onClick={() => {
-                setShowCommentInput(true);
-                setSelectedOrderId(order.id);
-              }}>Добавить комментарий</button>
-
-              <div>
-                {comments[order.id] && comments[order.id].map((comment) => (
-                  <p key={comment.id}><strong>{comment.User.name}:</strong> {comment.text}</p>
-                ))}
+                <div className="bayer-order-comments">
+                  {comments[order.id] && comments[order.id].map((comment, index) => (
+                    <div key={`${order.id}-${index}`} className="bayer-order-comment">
+                      <strong>{comment.userName || 'Unknown User'}:</strong> {comment.text}
+                    </div>
+                  ))}
+                  {showCommentInput && selectedOrderId === order.id && (
+                    <div className="bayer-order-comment-input mt-4">
+                      <input type="text" value={newCommentText} onChange={(e) => setNewCommentText(e.target.value)} className="w-3/4 rounded px-2 py-1 mr-2" />
+                      <button onClick={handleAddComment} className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded">Добавить</button>
+                    </div>
+                  )}
+                  <button
+                    className="bayer-order-add-comment bg-yellow-500 text-white font-semibold py-2 px-4 rounded mt-4"
+                    onClick={() => {
+                      setShowCommentInput(true);
+                      setSelectedOrderId(order.id);
+                    }}
+                  >
+                    Добавить комментарий
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
+}
 export default BuyerPage;

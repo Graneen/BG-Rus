@@ -46,25 +46,25 @@ const GameMeet: React.FC = () => {
   }, []);
 
   return (
-    <div className="centered-container">
-      <button
-        className={`button-create ${isButtonActive ? "" : "button-create-inactive"}`}
-        onClick={handleCreateSession}
-        disabled={!isButtonActive}
-      >
-        Создать игровую сессию
-      </button>
-
-      <button className="button-view" onClick={handleViewCalendars}>
+    <div className="centered-container flex flex-col items-center space-y-6 font-rostov">
+            <button
+                className={`button-create ${isButtonActive ? "" : "button-create-inactive"}`}
+                onClick={handleCreateSession}
+                disabled={!isButtonActive}
+              >
+              Создать игровую сессию
+            </button>
+        
+      <button className="bg-black hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded shadow-xl" onClick={handleViewCalendars}>
         Записаться на игровую сессию
       </button>
-
+  
       <Modal isOpen={showCalendarModal} onRequestClose={handleCloseModal}>
         <ModalCalendar setGameSessionDetails={handleGameSessionDetails} closeModal={handleCloseModal} />
       </Modal>
-
+  
       <Modal isOpen={showFormModal} onRequestClose={handleCloseModal}>
-      <ModalForm onCloseModal={handleSuccessfulFormSubmit} />
+        <ModalForm onCloseModal={handleSuccessfulFormSubmit} />
       </Modal>
     </div>
   );
