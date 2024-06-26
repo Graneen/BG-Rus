@@ -40,7 +40,7 @@ export const takeFavorites = createAsyncThunk("cards/takeFavorites", async(data,
         return rejectWithValue(error);
     }
 });
-console.log(takeFavorite)
+
 const takeFavoritesSlice = createSlice ({
     name: 'inFavorites',
     initialState,

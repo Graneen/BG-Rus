@@ -3,16 +3,15 @@ const router = express.Router();
 const { FavoriteGames } = require("../../db/models"); 
 
 
-router.get("/api/favorite/", async (req, res) => {
+router.post("/api/favorite/", async (req, res) => {
   const { id, user_id } = req.body; 
     try {
       const findFav = await FavoriteGames.findOne({where: {user_id, game_id: Number(id) }});
         if (!findFav) { 
-          console.log(findFav)
           return res.json(false);
         }
         if (findFav) {
-          return res.json(true);
+          return res.json(findFav);
         }
     } catch (error) {
       console.error("Error when try to get new Favorite:", error);

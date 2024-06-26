@@ -16,9 +16,7 @@ function GamePage() {
     const dispatch = useAppDispatch();
     const card = useAppSelector(selectGameCard);
     const takeTheFavorites = useAppSelector(selectFavoritesCard);
-    const takeTheFavorite = useAppSelector(getFavoriteStatus);
     const { id } = useParams<{ id: string }>();
-    console.log(takeTheFavorites)
 
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
     const photos = [card.list.boardGame.poster, card.list.boardGame.image1, card.list.boardGame.image2];
@@ -85,7 +83,6 @@ function GamePage() {
                                         {card.list.boardGame.description}
                                     </p>
                                     <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
-                                                     favorite={takeTheFavorite.statusFav.toggler} 
                                                      handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))}/>
 
                                 </div>
