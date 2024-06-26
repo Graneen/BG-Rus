@@ -3,7 +3,6 @@
   color: var(--accent);
 }
 .unactive {
-    margin: 0px;
     transition: 1s;
 }
 .dropdown-content {
