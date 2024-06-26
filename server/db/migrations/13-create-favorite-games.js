@@ -21,15 +21,21 @@ module.exports = {
         references: {
           model: "BoardGames",
           key: "id",
-        },
+        }
+      },
+      toggler: {
+          type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
+        
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
     });
   },

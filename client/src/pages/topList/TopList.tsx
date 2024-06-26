@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TopList.css';
 import FavoritesButton from '../../commons/FavoritesButton';
-import { getGameCard, takeFavorites } from '../../features/gameCardSlice';
-import { useAppDispatch } from '../../hooks/redux';
+import { selectFavoritesCard, takeFavorites } from '../../features/addToFavoritesSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AuthContext } from '../../app/App';
 
 interface BoardGameData {
@@ -18,8 +18,10 @@ interface BoardGameData {
 const TopList: React.FC = () => {
     const { user } = useContext(AuthContext);
     const dispatch = useAppDispatch();
+    const takeTheFavorites = useAppSelector(selectFavoritesCard);
     const [boardGameData, setBoardGameData] = useState<BoardGameData[] | null>(null);
     const navigate = useNavigate();
+    // console.log(takeTheFavorites)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,7 +40,7 @@ const TopList: React.FC = () => {
         }
 
         fetchData();
-    }, []);
+    }, [takeTheFavorites]);
 
 
     return (
@@ -60,7 +62,7 @@ const TopList: React.FC = () => {
                                         <h2 className="game-title">
                                             {game.title}
                                         </h2>
-                                        <FavoritesButton handler={() => dispatch(takeFavorites({ id: game.id, user_id: user }))} />
+                                        <FavoritesButton favorites={game.Users.length} handler={() => dispatch(takeFavorites({ id: `${game.id}`, user_id: user, toggler: true }))} />
                                         <div className="game-descr pt-[1vh]">
                                             <p> <strong>Жанр: </strong> {game.genre}</p>
                                             <p> <strong>Тематика: </strong>{ game.theme}</p>
