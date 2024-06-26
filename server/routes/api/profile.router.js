@@ -117,24 +117,28 @@ router.get("/api/profile/:id", async (req, res) => {
       return data;
     });
     //рекомендуемые игры
+    let recommendedGames = [];
     const userQuiz = await Quiz.findOne({ where: { user_id: Number(user) } });
     const userQuizResult = JSON.parse(JSON.stringify(userQuiz));
-    const quizTheme = userQuizResult.theme.split(",");
-    const quizGenre = userQuizResult.genre.split(",");
+    if (userQuizResult) {
+      const quizTheme = userQuizResult.theme.split(",");
+      const quizGenre = userQuizResult.genre.split(",");
 
-    const userSearchGames = await BoardGame.findAll({
-      where: {
-        minPlayers: { [Op.lte]: userQuizResult.players },
-        maxPlayers: { [Op.gte]: userQuizResult.players },
-      },
-    });
-    const searchGames = JSON.parse(JSON.stringify(userSearchGames));
-    const recommendedGames = searchGames.filter((game) => {
-      return (
-        quizTheme.some((theme) => game.theme.includes(theme)) ||
-        quizGenre.some((genre) => game.genre.includes(genre))
-      );
-    });
+      const userSearchGames = await BoardGame.findAll({
+        where: {
+          minPlayers: { [Op.lte]: userQuizResult.players },
+          maxPlayers: { [Op.gte]: userQuizResult.players },
+        },
+      });
+      const searchGames = JSON.parse(JSON.stringify(userSearchGames));
+      recommendedGames = searchGames.filter((game) => {
+        return (
+          quizTheme.some((theme) => game.theme.includes(theme)) ||
+          quizGenre.some((genre) => game.genre.includes(genre))
+        );
+      });
+    }
+
     res.status(200).json({
       currentUser,
       favoriteGames,
