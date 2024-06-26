@@ -1,19 +1,13 @@
 import { useState } from 'react';
-import Modal from "react-modal";
 import './Steps.css'
-import { useNavigate } from 'react-router-dom';
+import QuizPage from '../pages/QuizPage/QuizPage';
 
 function Steps() {
-    const navigate = useNavigate();
-    // const [showQuizModal, setShowQuizModal] = useState<boolean>(false);
+    const [ quiz, setQuiz ] = useState<boolean>(false);
 
-    // function handlerCreateQuizModal() {
-    //     setShowQuizModal(true);
-    // }
-
-    // function handlerCloseQuizModal() {
-    //     setShowQuizModal(false);
-    // }
+    function quizHandler() {
+        quiz ? setQuiz(false) : setQuiz(true);
+    }
 
     return (
         <>
@@ -28,10 +22,8 @@ function Steps() {
                                 <h1>Какой ты игрок?</h1>
                                 <div className="guide_text">Наш интерактивный квиз поможет определить ваши личные игровые предпочтения. Мы зададим вам несколько вопросов о ваших игровых вкусах и на основе ваших ответов подберем подходящие для вас настольные игры из нашей обширной коллекции.</div>
                                 <a 
-                                    // href="/quiz"
                                     className="more"
-                                    // onClick={handlerCreateQuizModal}
-                                    onClick={() => navigate("/quiz")}
+                                    onClick={quizHandler}
                                 >
                                     <span className="more_text">пройти квиз</span>
                                     <span className="more_icon">
@@ -43,6 +35,7 @@ function Steps() {
                             </div>
                             <div className="guide_image"><img src='https://trueimages.ru/img/e6/18/46b71766.png' alt="" /></div>
                         </div>
+                        {quiz ? <QuizPage setQuiz={setQuiz} /> : <></>}
                         <div className="guide" id="guide2">
                             <div className="guide_description">
                                 <div className="guide_number">02</div>
@@ -78,16 +71,6 @@ function Steps() {
                             <div className="guide_image"><img src="https://trueimages.ru/img/ff/c9/ec191766.png" alt="" /></div>
                         </div>
                 </section>
-                {/* <Modal isOpen={showQuizModal}  onRequestClose={handlerCloseQuizModal}>
-                   <div className="modal-full quizeContreuner">
-                    <div className="modal-content quizeContreuner">
-                        <div className='text-black'>stranicha</div>
-                        <div className='text-black'>стенааааааааааааааааааааааааааааа аываа ываа ыва</div>
-                        <button onClick={handlerCloseQuizModal} className='text-black'>close</button>
-                    </div>
-                   </div> */}
-                   {/* //! <ModalCalendar setGameSessionDetails={handleGameSessionDetails} closeModal={handleCloseModal} /> */}
-                {/* </Modal> */}
             </section>
         </>
     );
