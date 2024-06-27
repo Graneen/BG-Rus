@@ -14,7 +14,7 @@ const localizationOrderRouter = require("./routes/views/localization.router");
 const favoritesRouter = require("./routes/api/favorites.router");
 const profileRouter = require("./routes/api/profile.router");
 const quizRouter = require("./routes/api/quiz.router");
-
+const estimatesRouter = require("./routes/api/estimates.router")
 
 const app = express();
 const PORT = 3000;
@@ -31,6 +31,7 @@ app.use("/", bayerOrderRouter);
 app.use("/", localizationOrderRouter);
 app.use("/", profileRouter);
 app.use('/', favoritesRouter);
+app.use('/', estimatesRouter);
 app.use('/', commentBayersRouter);
 app.use("/api/quiz", quizRouter);
 

@@ -4,9 +4,9 @@ const { FavoriteGames } = require("../../db/models");
 
 
 router.post("/api/favorite/", async (req, res) => {
-  const { id, user_id } = req.body; 
+  const { user_id, game_id } = req.body;
     try {
-      const findFav = await FavoriteGames.findOne({where: {user_id, game_id: Number(id) }});
+      const findFav = await FavoriteGames.findOne({where: {user_id, game_id: Number(game_id) }});
         if (!findFav) { 
           return res.json(false);
         }
@@ -22,21 +22,20 @@ router.post("/api/favorite/", async (req, res) => {
 
 router.post("/api/favorites/add", async (req, res) => {
   try {
-    const { id, user_id, toggler } = req.body; 
-      console.log(req.body)
-    const findCouple = await FavoriteGames.findOne({where: {user_id, game_id: Number(id) }});
+    const { user_id, game_id, toggler } = req.body; 
+    const findCouple = await FavoriteGames.findOne({where: {user_id, game_id: Number(game_id) }});
       if (!findCouple) {
         const newFavoriteCouple = await FavoriteGames.create({
           user_id,
-          game_id: Number(id),
+          game_id: Number(game_id),
           toggler
         });
         return res.json(newFavoriteCouple); 
       }
       if (findCouple) {
-          await FavoriteGames.destroy({where: { user_id, game_id: Number(id) }});
+          await FavoriteGames.destroy({where: { user_id, game_id: Number(game_id) }});
           return res.json({
-          game_id: Number(id),
+          game_id: Number(game_id),
           toggler: false
         });
   }

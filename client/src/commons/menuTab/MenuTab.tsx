@@ -63,14 +63,14 @@ export default function MenuTab({ card }: { card: boardGameState }) {
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
             {card.list.feedBackGame && card.list.feedBackGame.length > 0 ? card.list.feedBackGame.map((el: feedBack, i) => (
-            <>
+            <div key={i}>
             <h2>
                 Отзыв №{i + 1} пользователя user-{el.user_id} от {el.createdAt.slice(0, 10)}
             </h2>
             <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
                 {el.description}
             </div>
-            </>
+            </div>
             )) 
             : <div> Никто пока не писал отзывов на эту игру, будьте первым!</div>}
             </CustomTabPanel>
