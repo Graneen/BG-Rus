@@ -6,12 +6,12 @@ function Search() {
     return (
         <div>
             { 
-                !openSearch ? <div onClick={() => setOpenSearch(true)}>Поиск игры</div>
+                !openSearch ? <div onClick={() => setOpenSearch(true)} className="w-56">Поиск интересующей игры</div>
                 : 
-                <>
-                    <input type="text" className="text-black rounded-lg" />
+                <div className="w-56">
+                    <input type="text" className="text-black rounded-lg w-48" />
                     <span className="text-sky bg-gray-900 rounded-full p-2 cursor-pointer" onClick={() => setOpenSearch(false)}>x</span>
-                </>
+                </div>
             }
             
         </div>

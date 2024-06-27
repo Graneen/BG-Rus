@@ -49,9 +49,9 @@ const TopList: React.FC = () => {
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <h2 className="text-2xl p-4 font-bold tracking-tight text-gray-900">TOP-100 лучших игр</h2>
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        {boardGameData && boardGameData.map((game, index) => (
-                            <div className=" group relative p-4">
-                                <button key={index} onClick={() => navigate(`/game/${game.id}`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
+                        {boardGameData && boardGameData.map((game) => (
+                            <div key={game.id} className=" group relative p-4">
+                                <button onClick={() => navigate(`/game/${game.id}`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
                                     <img
                                         src={game.poster}
                                         className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
