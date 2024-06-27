@@ -23,6 +23,7 @@ function Steps() {
                                 <h1>Какой ты игрок?</h1>
                                 <div className="guide_text">Наш интерактивный квиз поможет определить ваши личные игровые предпочтения. Мы зададим вам несколько вопросов о ваших игровых вкусах и на основе ваших ответов подберем подходящие для вас настольные игры из нашей обширной коллекции.</div>
                                 <a 
+                                    href='#quiz'
                                     className="more"
                                     onClick={quizHandler}
                                 >
@@ -36,7 +37,7 @@ function Steps() {
                             </div>
                             <div className="guide_image"><img src='https://trueimages.ru/img/e6/18/46b71766.png' alt="" /></div>
                         </div>
-                        {quiz ? <QuizPage setQuiz={setQuiz} /> : <></>}
+                        {quiz ? <div id="quiz"><QuizPage setQuiz={setQuiz} /></div> : <></>}
                         <div className="guide" id="guide2">
                             <div className="guide_description">
                                 <div className="guide_number">02</div>
