@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
+import axios from "axios";
 import { getCookie } from "../Cookie/getCookie";
 import { AuthResponce } from "../checkAuthService/checkAuth.service";
 import logout from "../checkAuthService/logout.service";
@@ -9,13 +9,11 @@ const $api = axios.create({
     // baseURL: API_URL,
 });
 
-//? типизация config: AxiosRequestConfig
 $api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
     return config;
 });
 
-//? типизация config: AxiosResponse
 $api.interceptors.response.use((config) => {
     return config;
 }, ( async (error) => {

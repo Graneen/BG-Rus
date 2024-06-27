@@ -7,6 +7,7 @@ import './Header.css';
 import UserIcon from '../commons/UserIcon.tsx';
 import DropDown from '../commons/DropDown.tsx';
 import logout from '../services/checkAuthService/logout.service.ts';
+import Search from '../commons/Search/Search.tsx';
 
 function Header(): JSX.Element {
     const { user, setUser } = useContext(AuthContext);
@@ -53,6 +54,7 @@ function Header(): JSX.Element {
                         }}></DropDown>
                 </nav>
                 <div className="account">
+                    <Search/>
                     <div className="account_icon">
                         <UserIcon />
                     </div>
