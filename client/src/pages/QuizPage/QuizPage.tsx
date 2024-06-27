@@ -170,17 +170,17 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
                     <div className="modal-content bg-neutral-900 text-center">
                         {titleModal === "completed" ?
                             <>
-                                <div className='text-black text-yellow-500'>{"Квиз пройден. Поздравляю!"}</div>
-                                <button onClick={handlerCloseQuizModal} className='text-black text-yellow-500 rounded-full border-double bg-neutral-700 p-1 mt-2'>
+                                <div className='text-black text-yellow-400'>{"Квиз пройден. Поздравляю!"}</div>
+                                <button onClick={handlerCloseQuizModal} className='text-black text-yellow-400 rounded-full border-double bg-neutral-700 p-1 mt-2'>
                                     <p>{"Ураа!"}</p>
                                 </button>
                                 
                             </>
                             :
                             <>
-                                { titleModal === "minText" ? <div className='text-black text-yellow-500'>{"Дорогой друг ты что-то пропустил, давай вернёмся и выясним что именно было пропущенно"}</div> : <></> }
-                                { titleModal === "maxText" ? <div className='text-black text-yellow-500'>{"Что ты делаешь? Мы же с тобой договорились, не более 3 пунктов"}</div> : <></> }
-                                <button onClick={handlerCloseQuizModal} className='text-black text-yellow-500 rounded-full border-double bg-neutral-700 p-1 mt-2'>
+                                { titleModal === "minText" ? <div className='text-black text-yellow-400'>{"Дорогой друг ты что-то пропустил, давай вернёмся и выясним что именно было пропущенно"}</div> : <></> }
+                                { titleModal === "maxText" ? <div className='text-black text-yellow-400'>{"Что ты делаешь? Мы же с тобой договорились, не более 3 пунктов"}</div> : <></> }
+                                <button onClick={handlerCloseQuizModal} className='text-black text-yellow-400 rounded-full border-double bg-neutral-700 p-1 mt-2'>
                                     <p>{"Больше так не буду..."}</p>
                                 </button>
                             </>
