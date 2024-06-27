@@ -34,6 +34,7 @@ interface ModalFormProps {
         date,
       });
       console.log("Game Meeting created:", response.data);
+      window.alert("Игровая сессия создана!");
       
       onCloseModal(); 
       dispatch(updateGameSession({ gameName: gameNameInput, maxPlayers: maxPlayersInput, venue: locationAddress }));
@@ -61,34 +62,35 @@ interface ModalFormProps {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h3>Details</h3>
-        <form onSubmit={handleFormSubmit}>
-          <label>Date: {date}</label>
-          <input type="text" value={gameNameInput} placeholder="Game Name" onChange={handleGameNameChange} />
-          <input type="number" value={maxPlayersInput} placeholder="Max Players" onChange={handleMaxPlayersChange} />
-          <div className="input-with-icon">
-            <input
-              type="text"
-              value={locationAddress}
-              placeholder="Location"
-              onChange={handleLocationAddressChange}
-            />
-            <FaMapMarkerAlt className="map-icon" onClick={() => setShowMapModal(true)} />
-          </div>
-          {showMapModal && (
-            <ModalMap
-              isOpen={showMapModal}
-              onClose={() => setShowMapModal(false)}
-              onLocationSelected={handleLocationSelected}
-            />
-          )}
-          <button type="submit">Create</button>
-        </form>
-      </div>
+    <div className="modal bg-black-200 px-4 py-4"> 
+    <div className="modal-content bg-yellow-200 p-4 rounded-md shadow-md">  
+      <h3 className="text-black">Детали</h3>
+      <form onSubmit={handleFormSubmit} className="text-black">
+        <label>Данные: {date}</label>
+        <input type="text" value={gameNameInput} placeholder="Название игры" onChange={handleGameNameChange} className="mt-2 px-3 py-2 border rounded w-full" />
+        <input type="number" value={maxPlayersInput} placeholder="Количество игроков" onChange={handleMaxPlayersChange} className="mt-2 px-3 py-2 border rounded w-full" />
+        <div className="input-with-icon mt-2">
+          <input
+            type="text"
+            value={locationAddress}
+            placeholder="Место проведения"
+            onChange={handleLocationAddressChange}
+            className="px-3 py-2 border rounded w-full"
+          />
+          <FaMapMarkerAlt className="map-icon text-yellow-500 cursor-pointer" onClick={() => setShowMapModal(true)} />
+        </div>
+        {showMapModal && (
+          <ModalMap
+            isOpen={showMapModal}
+            onClose={() => setShowMapModal(false)}
+            onLocationSelected={handleLocationSelected}
+          />
+        )}
+        <button type="submit" className="mt-4 bg-yellow-500 text-white font-semibold py-2 px-4 rounded">Создать</button>
+      </form>
     </div>
+  </div>
   );
-};
+  }
 
 export default ModalForm;

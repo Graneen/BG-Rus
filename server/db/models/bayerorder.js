@@ -25,8 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING, 
       allowNull: false
     },
-    comment: {
-      type: DataTypes.TEXT 
+    
+    comments: { 
+      type: DataTypes.JSONB 
     },
     createdAt: {
       type: DataTypes.DATE,

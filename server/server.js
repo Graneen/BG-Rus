@@ -9,6 +9,7 @@ const playerCampRouter = require("./routes/api/playerCamp.router");
 const gameMeetNewMeet = require("./routes/api/gameNewMeet.routes");
 const specialistRouter = require("./routes/views/specialist.routes");
 const bayerOrderRouter = require("./routes/api/bayerOrder.router");
+const commentBayersRouter = require("./routes/views/commentBayer.router")
 const localizationOrderRouter = require("./routes/views/localization.router");
 const favoritesRouter = require("./routes/api/favorites.router");
 const profileRouter = require("./routes/api/profile.router");
@@ -31,7 +32,9 @@ app.use("/", localizationOrderRouter);
 app.use("/", profileRouter);
 app.use('/', favoritesRouter);
 app.use('/', estimatesRouter);
+app.use('/', commentBayersRouter);
 app.use("/api/quiz", quizRouter);
+
 
 
 app.listen(PORT, () => {

@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import Modal from "react-modal";
 import $api from "../../services/axiosConfig/axiosConfig";
 import { AuthContext } from "../../app/App";
+import { useNavigate } from "react-router-dom";
 
 type typeSelectedValues = {
     id: number,
@@ -31,6 +32,7 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
     const [showQuizModal, setShowQuizModal] = useState<boolean>(false);
     const [titleModal, setTitleModal] = useState<string>("");
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     
     function handlerCreateQuizModal(title: string) {
         setTitleModal(title);
@@ -88,6 +90,8 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
     }
     
     async function handlerFinaly() {
+        if (!user && !Number(localStorage.getItem("user"))) return navigate("/login");
+
         const finalyData = {
             user_id: user || Number(localStorage.getItem("user")),
             theme: arrayReduction(themes),
