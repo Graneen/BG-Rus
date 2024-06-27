@@ -7,7 +7,7 @@ import image2Url from "../Images/3D/два.png";
 import image3Url from "../Images/3D/три.png";
 import image4Url from "../Images/3D/четыре.png";
 import image5Url from "../Images/3D/пять.png";
-import image6Url from "../Images/3D/шесть.png";
+import image6Url from "../Images/3D/89.png";
 
 interface Models3DProps {
   className?: string;
@@ -46,25 +46,26 @@ const Models3D: React.FC<Models3DProps> = () => {
     earth.position.z = -5;
     scene.add(earth);
 
-    const image1Texture = new THREE.TextureLoader().load(image1Url);
+    const image1Texture = new THREE.TextureLoader().load(image4Url);
     const image2Texture = new THREE.TextureLoader().load(image2Url);
     const image3Texture = new THREE.TextureLoader().load(image3Url);
-    const image4Texture = new THREE.TextureLoader().load(image4Url);
+    const image4Texture = new THREE.TextureLoader().load(image1Url);
     const image5Texture = new THREE.TextureLoader().load(image5Url);
     const image6Texture = new THREE.TextureLoader().load(image6Url);
 
     const materials = [
-      new THREE.MeshStandardMaterial({ map: image1Texture }),
-      new THREE.MeshStandardMaterial({ map: image2Texture }),
-      new THREE.MeshStandardMaterial({ map: image3Texture }),
-      new THREE.MeshStandardMaterial({ map: image4Texture }),
-      new THREE.MeshStandardMaterial({ map: image5Texture }),
-      new THREE.MeshStandardMaterial({ map: image6Texture }),
+      new THREE.MeshStandardMaterial({ map: image1Texture, emissive: 0xffffff, emissiveIntensity: 0 }),
+      new THREE.MeshStandardMaterial({ map: image2Texture, emissive: 0xffffff, emissiveIntensity: 0 }),
+      new THREE.MeshStandardMaterial({ map: image3Texture, emissive: 0xffffff, emissiveIntensity: 0 }),
+      new THREE.MeshStandardMaterial({ map: image4Texture, emissive: 0xffffff, emissiveIntensity: 0 }),
+      new THREE.MeshStandardMaterial({ map: image5Texture, emissive: 0xffffff, emissiveIntensity: 0 }),
+      new THREE.MeshStandardMaterial({ map: image6Texture, emissive: 0xffffff, emissiveIntensity: 0 }),
     ];
 
     const cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
     const cube = new THREE.Mesh(cubeGeometry, materials);
     cube.position.set(2, 0, -5);
+    
     scene.add(cube);
 
     function animate() {

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { AuthContext } from "../app/App";
 
 
@@ -11,8 +11,17 @@ function LoginForm(): JSX.Element {
   const { setUser } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage('');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
 
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -31,13 +40,10 @@ function LoginForm(): JSX.Element {
       localStorage.setItem('token', token);
       localStorage.setItem('user', userId);
       navigate('/');
-    }
-    else {
-      const userData = await response.json();
-      console.log(userData)
-      alert('Ничего не вышло!')
-    }
+    } else {
+    setErrorMessage('Ничего не вышло! Попробуйте снова!');
   }
+}
 
   return (
     <>
@@ -50,6 +56,11 @@ function LoginForm(): JSX.Element {
           <h2 className="text-black text-2xl font-bold mb-4 w-150">
             Введите данные для входа
           </h2>
+          {errorMessage && (
+            <div className="bg-red-100 text-red-700 p-4 rounded-md mb-4">
+              {errorMessage}
+            </div>
+          )}
           <form className="login-flex" onSubmit={handleSubmit}>
   
             <label htmlFor="email" className="text-black">

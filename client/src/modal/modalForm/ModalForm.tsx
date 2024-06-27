@@ -18,7 +18,6 @@ interface ModalFormProps {
   const { date, gameName, maxPlayers, venue } = useSelector((state: RootState) => state.gameSession);
   const dispatch = useDispatch();
   const [showMapModal, setShowMapModal] = useState(false);
-
   const [locationAddress, setLocationAddress] = useState(venue);
   const [gameNameInput, setGameNameInput] = useState(gameName);
   const [maxPlayersInput, setMaxPlayersInput] = useState(maxPlayers);
