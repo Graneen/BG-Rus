@@ -59,7 +59,7 @@ function Header(): JSX.Element {
             }}
           ></DropDown>
         </nav>
-        <div className="account">
+        <div className="flex flex-row items-center gap-x-4">
           <Search/>
           <div className="account_icon">
             {user?
@@ -72,18 +72,20 @@ function Header(): JSX.Element {
               <UserIcon />
             </NavLink>:null}
           </div>
-          <div className="account_text">
-            {" "}
-            {user ? (
-              <button onClick={logoutHandler}>Выйти</button>
-            ) : (
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? "active" : "unactive")}
-              >
-                Войти
-              </NavLink>
-            )}
+          <div className="account">
+            <div className="account_text">
+              {" "}
+              {user ? (
+                <button onClick={logoutHandler}>Выйти</button>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) => (isActive ? "active" : "unactive")}
+                >
+                  Войти
+                </NavLink>
+              )}
+            </div>
           </div>
         </div>
       </div>
