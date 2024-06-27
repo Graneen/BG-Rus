@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../app/App';
 import { GameCampType } from '../../types/types';
 import axios, { AxiosError } from 'axios';
+import './GameCamp.css'
 
 const GameCamp: React.FC = () => {
     const  user  = useContext(AuthContext); 
@@ -62,30 +63,39 @@ const GameCamp: React.FC = () => {
 };
 
 
-  return (
-    <div className="game-camp-container">
-      {loading ? (
-        <div>Loading...</div>
-      ) : error ? (
-        <div>Error: {error}</div>
-      ) : (
-        gameCamps.map((gameCamp: GameCampType) => (
-          <div key={gameCamp.id} className="game-camp-card">
-            <img src={gameCamp.image1} alt={gameCamp.title} /> 
-            <img src={gameCamp.image2} alt={gameCamp.title} />
-            <img src={gameCamp.image3} alt={gameCamp.title} />
-            <img src={gameCamp.image4} alt={gameCamp.title} />
-            <h3>{gameCamp.title}</h3>
-            <p>{gameCamp.location}</p>
-            <p>{gameCamp.date}</p>
-            <p>{gameCamp.description}</p>
-            <p>Games Headliners: {gameCamp.gamesHeadliners}</p>
-            <button onClick={() => handleApply(gameCamp.id)}>Подать заявку</button>
+
+return (
+  <div className="game-camp-container mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-8 lg:px-8">
+    {loading ? (
+      <div>Loading...</div>
+    ) : error ? (
+      <div>Error: {error}</div>
+    ) : (
+      gameCamps.map((gameCamp) => (
+        <div key={gameCamp.id} className="game-camp-card lg:grid lg:grid-cols-2 lg:gap-8">
+          <div className="lg:col-span-2 lg:row-span-1">
+            <img src={gameCamp.image1} alt={gameCamp.title} className="rounded-lg shadow-lg w-full h-full" />
           </div>
-        ))
-      )}
-    </div>
-  );
+          <div className="lg:col-span-1 lg:row-span-2 flex flex-col justify-between">
+            <img src={gameCamp.image2} alt={gameCamp.title} className="rounded-lg shadow-lg mb-4" />
+            <img src={gameCamp.image3} alt={gameCamp.title} className="rounded-lg shadow-lg" />
+          </div>
+          <div className="lg:col-span-1 lg:row-span-1">
+            <img src={gameCamp.image4} alt={gameCamp.title} className="rounded-lg shadow-lg" />
+          </div>
+          <div className="lg:col-span-1 mt-4 bg-yellow-100 shadow-md border border-yellow-300 rounded-lg p-6">
+          <h3 className="text-lg font-semibold mb-2">{gameCamp.title}</h3>
+          <p className="text-gray-600 mb-2">{gameCamp.location}</p>
+          <p className="text-gray-600 mb-2">{gameCamp.date}</p>
+          <p className="text-gray-800 mb-4">{gameCamp.description}</p>
+          <p className="text-gray-800 mb-2">Games Headliners: {gameCamp.gamesHeadliners}</p>
+          <button className="mt-4 bg-yellow-500 hover:bg-yellow-700 text-white font-semibold py-2 px-4 rounded border border-yellow-500" onClick={() => handleApply(gameCamp.id)}>Подать заявку</button>
+        </div>
+        </div>
+      ))
+    )}
+  </div>
+);
 };
 
 export default GameCamp;

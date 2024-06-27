@@ -17,9 +17,15 @@ module.exports = {
         allowNull: false
       },
       comments: {
-        type: Sequelize.JSON, 
-        defaultValue: [] 
+        type: Sequelize.JSONB 
       },
+      commentId: {
+        type: Sequelize.INTEGER
+      },
+      replies: {
+        type: Sequelize.JSONB
+          },
+     
       user_id: {
         type: Sequelize.INTEGER,
         references: {

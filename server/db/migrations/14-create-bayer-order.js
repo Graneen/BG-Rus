@@ -9,22 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nameboard: {
-        type: Sequelize.STRING, 
-        allowNull: false 
+        type: Sequelize.STRING,
+        allowNull: false
       },
       name: {
-        type: Sequelize.STRING, 
-        allowNull: false 
+        type: Sequelize.STRING,
+        allowNull: false
       },
       user_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users', 
+          model: 'Users',
           key: 'id'
         }
       },
-      comment: {
-        type: Sequelize.TEXT 
+      comments: {
+        type: Sequelize.JSONB 
       },
       createdAt: {
         allowNull: false,
