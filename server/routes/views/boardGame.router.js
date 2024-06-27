@@ -9,7 +9,7 @@ router.get('/api/boardgames/:id', async (req, res) => {
             include: {
                 model: User,
                 required: false,
-                where: { id: Number(id)},
+                where: { id: Number(id)  || 0},
                 attributes: ['name'],
                 through: {
                     model: FavoriteGames,
@@ -29,7 +29,10 @@ router.get('/api/boardgame/:id', async (req, res) => {
     const {id} = req.params;
     try {
         const boardGame = await BoardGame.findOne({where: { id }});
-        const estimationGame = await Estimation.findAll({where: { game_id: id }});  
+        const estimationArr = await Estimation.findAll({where: { game_id: id }});
+        const estimationGame = (estimationArr.reduce((acc, curr) => {
+            return acc + Number(curr.value)
+          }, 0) / estimationArr.length).toFixed(1); 
         const feedBackGame = await Feedback.findAll({where: { game_id: id }});
         res.json({ boardGame, estimationGame, feedBackGame });
     } catch (error) {

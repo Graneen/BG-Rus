@@ -62,7 +62,7 @@ const TopList: React.FC = () => {
                                         <h2 className="game-title">
                                             {game.title}
                                         </h2>
-                                        <FavoritesButton favorites={game.Users.length} handler={() => dispatch(takeFavorites({ id: `${game.id}`, user_id: user, toggler: true }))} />
+                                        <FavoritesButton favorites={game.Users.length} handler={() => dispatch(takeFavorites({ user_id: user, game_id: `${game.id}`, toggler: true }))} />
                                         <div className="game-descr pt-[1vh]">
                                             <p> <strong>Жанр: </strong> {game.genre}</p>
                                             <p> <strong>Тематика: </strong>{ game.theme}</p>

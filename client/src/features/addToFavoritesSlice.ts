@@ -20,7 +20,6 @@ export const takeFavorite = createAsyncThunk("cards/takeFavorite", async(data, {
     
     try {
         const inFavorite = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/favorite`, data);
-        console.log(inFavorite.data)
         return inFavorite.data;
     } catch (error) {
         return rejectWithValue(error);

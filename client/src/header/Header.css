@@ -11,7 +11,7 @@
 
 header {
     width: 100%;
-    height: 15vh;
+    height: 100px;
     display: flex;
     justify-content: center;
     position: absolute;
@@ -41,8 +41,7 @@ header {
     width: max(13rem, 16%);
     display: flex;
     justify-content: space-between;
-    font-size: clamp(.7rem, .9vw, 2rem);
-    font-weight: 500;
+    font-weight: 600;
     gap: 20px;
   }
   .nav_link:hover,
@@ -59,6 +58,7 @@ header {
     position: relative;
     display: flex;
     justify-content: center;
+    font-weight: 600;
   }
   .account:hover .account_text,
   .account:focus .account_text {

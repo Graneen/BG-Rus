@@ -20,18 +20,29 @@ function GamePage() {
     const { id } = useParams<{ id: string }>();
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
     const photos = [card.list.boardGame.poster, card.list.boardGame.image1, card.list.boardGame.image2];
-    const estimation: number = Number((card.list.estimationGame.reduce((acc, curr) => {
-        return acc + curr.value
-    }, 0) / card.list.estimationGame.length).toFixed(1))
-    const [rate, setRate] = useState(card.list.estimationGame ? Number((card.list.estimationGame.reduce((acc, curr) => {
-        return acc + curr.value
-    }, 0) / card.list.estimationGame.length).toFixed(1)) : 1);
-    console.log(rate)
-    console.log(card.list.estimationGame ? Number((card.list.estimationGame.reduce((acc, curr) => {
-        return acc + curr.value
-    }, 0) / card.list.estimationGame.length).toFixed(1)) : 1)
-    // const [rate, setRate] = useState(2)
 
+    const estimation: number = Number(card.list.estimationGame)
+
+    const [rate, setRate] = useState(estimation);
+
+    useEffect(() => {
+        if (id) {
+            dispatch(getGameCard(id));
+        }
+    }, [dispatch, id, user]);
+
+    
+    useEffect(() => {
+        if (id) {
+            dispatch(takeFavorite({user_id: user, game_id: id}))
+        }
+    }, [user]);
+
+    if (!card || card.loading || !card.list) {
+        return <div className="loading-spinner">
+            <Spinner color="warning" aria-label="Loading..." size="xl" />
+        </div>;
+    }
 
     function changeRateHandler(value: number) {
         const fetchData = async () => {
@@ -45,28 +56,6 @@ function GamePage() {
             }
         }
         fetchData();
-    }
-
-    useEffect(() => {
-        if (id) {
-            dispatch(getGameCard(id));
-        }
-    }, []);
-    useEffect(() => {
-        if (id) {
-            dispatch(takeFavorite({id: id, user_id: user}))
-        }
-    }, [takeTheFavorites]);
-
-
-    // useEffect(() => {
-
-    // }, [rate]);
-
-    if (!card || card.loading || !card.list) {
-        return <div className="loading-spinner">
-            <Spinner color="warning" aria-label="Loading..." size="xl" />
-        </div>;
     }
 
     const handleMainPhotoClick = () => {
@@ -92,16 +81,16 @@ function GamePage() {
                                         </div>
                                         <div className="preview-images">
                                             {photos.map((photo, index) => (
-                                                <div className={mainPhotoIndex === index ? `active-prev-img rounded-lg  image-bg` : `image-bg rounded-lg`}>
-                                                    <img key={index} className="preview-image" src={photo} alt={`Альтернативное изображение ${index}`} />
+                                                <div key={index} className={mainPhotoIndex === index ? `active-prev-img rounded-lg  image-bg` : `image-bg rounded-lg`}>
+                                                    <img className="preview-image" src={photo} alt={`Альтернативное изображение ${index}`} />
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="card-right">
-                                        <p>Рейтинг: <Rate allowHalf value={ rate ? rate : 3 } onChange={changeRateHandler}/></p>
-                                        <p className="stars-container">{estimation > 0 ? `${estimation} (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
+                                        <p>Рейтинг: <Rate allowHalf defaultValue={estimation} value={ rate ? rate : estimation } onChange={changeRateHandler}/></p>
+                                        <p className="stars-container">{estimation > 0 ? `${rate ? rate : estimation } (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
                                     <p>Жанр: {card.list.boardGame.genre}</p>
                                     <p>Тематика: {card.list.boardGame.theme}</p>
                                     <p>Авторы: {card.list.boardGame.author}</p>
@@ -113,7 +102,7 @@ function GamePage() {
                                     <p className="text-[#ffd700]">Возможное количество игроков: {card.list.boardGame.players} чел.</p>
                                     <p className="text-[#ffd700]">Среднее время игры: {card.list.boardGame.time}</p>
                                     <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
-                                                     handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))}/>
+                                                     handler={() => dispatch(takeFavorites({ user_id: user, game_id: card.list.boardGame.id, toggler: true}))}/>
 
                                 </div>
                             </div>
