@@ -40,7 +40,6 @@ function App(): JSX.Element {
     }
   }, [])
 
-
   return (
     <>
      <AuthContext.Provider value={{user, setUser}}>
