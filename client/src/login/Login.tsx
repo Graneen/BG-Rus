@@ -4,6 +4,7 @@ import { AuthContext } from "../app/App";
 
 import "./Login.css"
 import { useNavigate } from 'react-router-dom';
+import Models3D from '../commons/Models3D';
 
 
 function LoginForm(): JSX.Element {
@@ -40,52 +41,58 @@ function LoginForm(): JSX.Element {
 
   return (
     <>
-<div className="login-container">
-<div className="login-form">
-        <h2>
-          Введите данные для входа
-        </h2>
-        <form className="login-flex" onSubmit={handleSubmit}>
-
-          <label htmlFor="email">
-            Email
-          </label>
-          <input
-            value={email} onChange={(e) => setEmail(e.target.value)}
-            className="text-black"
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-          />
-
-          <label htmlFor="password">
-            Пароль
-          </label>
-          <input
-            value={password} onChange={(e) => setPassword(e.target.value)}
-            className="text-black"
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            required
-          />
-          <button
-            type="submit"
-          >
-            Войти
-          </button>
-        </form>
-
-        <p>
-          Еще не зарегистрированы?{' '}
-          <a onClick={() => navigate('/register')}>
-            Зарегистрироваться
-          </a>
-        </p>
-      </div>
+    <div className="canvas-container">
+          <Models3D className="models-3d"/>
+        </div>
+      <div className="login-container">
+     
+      <div className="login-form bg-yellow-100 p-8 rounded-lg shadow-md mt-20 max-w-md">
+          <h2 className="text-black text-2xl font-bold mb-4 w-150">
+            Введите данные для входа
+          </h2>
+          <form className="login-flex" onSubmit={handleSubmit}>
+  
+            <label htmlFor="email" className="text-black">
+              Email
+            </label>
+            <input
+              value={email} onChange={(e) => setEmail(e.target.value)}
+              className="text-black border-b-2 border-black w-full mt-2 py-3 px-4"
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+            />
+  
+            <label htmlFor="password" className="text-black mt-4">
+              Пароль
+            </label>
+            <input
+              value={password} onChange={(e) => setPassword(e.target.value)}
+              className="text-black border-b-2 border-black w-full mt-2 py-3 px-4"
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-black text-yellow-200 py-2 px-4 mt-4 rounded-md"
+            >
+              Войти
+            </button>
+          </form>
+  
+          <p className="text-black mt-4">
+            Еще не зарегистрированы?{' '}
+            <a onClick={() => navigate('/register')} className="text-black font-bold hover:underline cursor-pointer">
+              Зарегистрироваться
+            </a>
+          </p>
+        </div>
+        
       </div>
     </>
   )
