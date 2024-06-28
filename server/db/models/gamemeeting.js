@@ -15,9 +15,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       game_id: DataTypes.INTEGER,
       name: DataTypes.STRING,
+      contacts: DataTypes.STRING,
       gameName: DataTypes.STRING, 
       maxPlayers: DataTypes.INTEGER, 
       location: DataTypes.STRING,
+      img: DataTypes.STRING,
+      place: DataTypes.ARRAY(DataTypes.NUMERIC),
       date: DataTypes.DATE,
       time: DataTypes.TIME,
     },

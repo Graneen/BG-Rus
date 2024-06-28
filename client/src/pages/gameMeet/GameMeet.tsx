@@ -6,11 +6,31 @@ import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 import "./GameMeet.css";
 import ModalCalendar from "../../modal/modalCalendar/ModalCalendar";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+
+import { differenceInCalendarDays } from 'date-fns';
+
+interface gameMeetsData {
+  id: number;
+  game_id: number;
+  name: string;
+  contacts: string;
+  gameName: string; 
+  maxPlayers: number; 
+  location: string;
+  img: string;
+  place: number[];
+  date: Date;
+  time: string;
+}
+
 
 const GameMeet: React.FC = () => {
   const [showCalendarModal, setShowCalendarModal] = useState(false);
   const [showFormModal, setShowFormModal] = useState(false);
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [gameMeets, setGameMeets] = useState<gameMeetsData[]>([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,8 +65,84 @@ const GameMeet: React.FC = () => {
     setIsButtonActive(conditionForButton);
   }, []);
 
+
+  
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/meets`);
+
+            if (response.ok) {
+                const data: gameMeetsData[] = await response.json();
+                setGameMeets(data);
+            } else {
+                console.error('Ошибка при загрузке данных');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    fetchData();
+}, []);
+
+
+ 
+
+type ValuePiece = Date | null;
+type Value = ValuePiece | ValuePiece[];
+
+const [value, setValue] = useState<Value>(new Date());
+
+
+useEffect(() => {
+  const temp: Value = gameMeets.map(obj => obj.date)
+  setValue(temp)
+}, [gameMeets]);
+
+
+
   return (
-    <div className="centered-container flex flex-col items-center space-y-6 font-rostov">
+    <div >
+                <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                  <h2 className="text-3xl p-4 text-[#ffd700]">ВСЕ ИГРОТЕКИ МОСКВЫ</h2>
+                  <Calendar value={value}/>
+                  <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-6">
+                        {gameMeets && gameMeets.map((game, index) => { 
+                            return (
+                              // <MediaCard key={ index } game={ game }/>
+                            <div className=" group relative p-4">
+                                <button key={index} onClick={() => navigate(`/game/${game.game_id}`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                    <img
+                                        src={game.img}
+                                        className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
+                                    />
+                                </button>
+                                <div className="mt-4 flex justify-between">
+                                    <div>
+                                        <h2 className="game-title">
+                                            {game.gameName}
+                                        </h2>
+                                        {/* <FavoritesButton favorites={game.Users.length} handler={() => dispatch(takeFavorites({ user_id: user, game_id: game.id, toggler: true }))} /> */}
+                                        <div className="game-descr pt-[1vh]">
+                                            <p> <strong>Место проведения: </strong> {game.location}</p>
+                                            <p> <strong>Запланированное число участников: </strong>{ game.maxPlayers}</p>
+                                            <p> <strong>Организатор: </strong> {game.name}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        )})}
+                    </div>
+                </div>
+            
+            
+            
+            
+            
+            
+            
             <button
                 className={`button-create ${isButtonActive ? "" : "button-create-inactive"}`}
                 onClick={handleCreateSession}

@@ -16,14 +16,14 @@ module.exports = {
           key: "id",
         },
       },
-      gameName: {
-        type: Sequelize.STRING, 
-      },
       name: {
         type: Sequelize.STRING, 
       },
-      time: {
-        type: Sequelize.TIME, 
+      contacts: {
+        type: Sequelize.STRING, 
+      },
+      gameName: {
+        type: Sequelize.STRING, 
       },
       maxPlayers: {
         type: Sequelize.INTEGER, 
@@ -31,8 +31,17 @@ module.exports = {
       location: {
         type: Sequelize.STRING,
       },
+      img: {
+        type: Sequelize.STRING,
+      },
+      place: {
+        type: Sequelize.ARRAY(Sequelize.NUMERIC),
+      },
       date: {
         type: Sequelize.DATE,
+      },
+      time: {
+        type: Sequelize.TIME, 
       },
       createdAt: {
         allowNull: false,
