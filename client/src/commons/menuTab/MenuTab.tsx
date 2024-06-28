@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { boardGameState, feedBack } from '../../features/gameCardSlice';
+import QAComponent from './QA/QAComponent';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -75,7 +76,7 @@ export default function MenuTab({ card }: { card: boardGameState }) {
             : <div> Никто пока не писал отзывов на эту игру, будьте первым!</div>}
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-                Item Three
+            <QAComponent gameId={card.list.boardGame.id} />
             </CustomTabPanel>
         </Box>
     );
