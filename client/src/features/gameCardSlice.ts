@@ -4,10 +4,8 @@ import { RootState } from "../../src/redux/store";
 
 
 export interface estimationGame {
-    id: number;
-    user_id: number;
-    game_id: number;
-    value: number;
+    result: number; 
+    rateArr: number;
 }
 
 export interface feedBack {
@@ -40,8 +38,9 @@ export interface GameCard {
 
 export interface boardGame {
     boardGame: GameCard;
-    estimationGame: estimationGame[];
+    estimationGame: estimationGame;
     feedBackGame: feedBack[];
+    
 }
 
 export interface boardGameState {
@@ -72,7 +71,10 @@ const initialState : boardGameState  = {
             maxPlayers: 0,
             time: ""
         },
-        estimationGame: [],
+        estimationGame: {
+            result: 0,
+            rateArr: 0,
+        },
         feedBackGame: []
     },
     loading: false,
