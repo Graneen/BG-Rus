@@ -25,9 +25,7 @@ function GamePage() {
     const estimationLength: number = Number(card.list.estimationGame.rateArr)
 
     const [rate, setRate] = useState(estimation);
-    console.log(card.list.estimationGame.result)
-    console.log(estimation)
-    console.log(rate)
+
     useEffect(() => {
         if (id) {
             dispatch(getGameCard(id));
@@ -37,7 +35,7 @@ function GamePage() {
     
     useEffect(() => {
         if (id) {
-            dispatch(takeFavorite({user_id: user, game_id: id}))
+            dispatch(takeFavorite({user_id: user, game_id: Number(id)}))
         }
     }, [user]);
 
@@ -50,7 +48,7 @@ function GamePage() {
     function changeRateHandler(value: number) {
         const fetchData = async () => {
             try {
-                const rating = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/rates`, {user_id: user, game_id: id, value: value});
+                const rating = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/rates`, {user_id: user, game_id: Number(id), value: value});
 
                 setRate(rating.data.result)
                 return rating.data;
