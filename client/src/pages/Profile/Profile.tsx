@@ -4,16 +4,73 @@ import axios from "axios";
 
 import ProfileMenuTab from "../../commons/profileMenuTab/ProfileMenuTab";
 
+export interface User {
+  name: string;
+  email: string;
+}
+export interface userMeeting {
+  id: number;
+  game_id: number;
+  gameName: string;
+  maxPlayers: number;
+  location: string;
+  date: string;
+}
+
+export interface userCamps {
+  id: number;
+  title: string;
+  location: string;
+  date: string;
+}
+
+export interface BoardGame {
+  title: string;
+}
+
+export interface userFeedbacks {
+  BoardGame: BoardGame;
+  description: string;
+  game_id: number;
+}
+export interface userFavoriteGames {
+  players: string;
+  time: string;
+  title: string;
+  id: number;
+}
+export interface userRecommendedGames {
+  title: string;
+  id: number;
+  description: string;
+  time: string;
+}
+export interface question {
+  answers: string[];
+  question: string;
+}
+export interface userQuestionsAndAnswers {
+  game: string;
+  game_id: number;
+  questions: question[];
+}
+
 const Profile: React.FC = () => {
   const user = localStorage.getItem("user");
-  const [userFavoriteGames, setUserFavoriteGames] = useState([]);
-  const [userFeedbacks, setUserFeedbacks] = useState([]);
-  const [userQuestionsAndAnswers, setUserQuestionsAndAnswers] = useState([]);
-  const [userRecommendedGames, setUserRecommendedGames] = useState([]);
+  const [userFavoriteGames, setUserFavoriteGames] = useState<
+    userFavoriteGames[]
+  >([]);
+  const [userFeedbacks, setUserFeedbacks] = useState<userFeedbacks[]>([]);
+  const [userQuestionsAndAnswers, setUserQuestionsAndAnswers] = useState<
+    userQuestionsAndAnswers[]
+  >([]);
+  const [userRecommendedGames, setUserRecommendedGames] = useState<
+    userRecommendedGames[]
+  >([]);
 
-  const [userMeetings, setUserMeetings] = useState([]);
-  const [userCamps, setUserCamps] = useState([]);
-  const [currentUser, setCurrentUser] = useState([]);
+  const [userMeetings, setUserMeetings] = useState<userMeeting[]>([]);
+  const [userCamps, setUserCamps] = useState<userCamps[]>([]);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
     const profileData = async () => {
@@ -38,9 +95,10 @@ const Profile: React.FC = () => {
     };
     profileData();
   }, []);
+
   return (
     <>
-      {user ? (
+      {currentUser ? (
         <div className="profile-page-container">
           <div className="upper-block">
             <h2>Данные пользователя:</h2>
@@ -54,7 +112,7 @@ const Profile: React.FC = () => {
                 <>
                   <h2>Вы зарегитсрированы на игротеки:</h2>
                   {userMeetings.map((userMeeting) => (
-                    <div className="meeting-camp-box">
+                    <div key={userMeeting.id} className="meeting-camp-box">
                       <h2>{userMeeting.gameName}</h2>
                       <p>
                         Дата проведения:{" "}
@@ -73,7 +131,7 @@ const Profile: React.FC = () => {
                 <>
                   <h2>Вы зарегитсрированы на игрокемпы:</h2>
                   {userCamps.map((userCamp) => (
-                    <div className="meeting-camp-box">
+                    <div key={userCamp.id} className="meeting-camp-box">
                       <h2>{userCamp.title}</h2>
                       <p>
                         {userCamp.date.replace("T", " ").replace(".000Z", "")}
