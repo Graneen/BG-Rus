@@ -5,11 +5,10 @@ import { setGameSessionDetails } from "../../features/gameSessionSlice";
 import { useDispatch } from "react-redux";
 import Modal from "react-modal";
 import "./GameMeet.css";
-import ModalCalendar from "../../modal/modalCalendar/ModalCalendar";
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 
-import { differenceInCalendarDays } from 'date-fns';
+import ModalCalendar from "../../modal/modalCalendar/ModalCalendar";
+
+
 
 interface gameMeetsData {
   id: number;
@@ -100,14 +99,14 @@ useEffect(() => {
   setValue(temp)
 }, [gameMeets]);
 
-
+console.log(gameMeets)
 
   return (
     <div >
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                   <h2 className="text-3xl p-4 text-[#ffd700]">ВСЕ ИГРОТЕКИ МОСКВЫ</h2>
-                  <Calendar value={value}/>
-                  <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-6">
+                    {/* <Calendar /> */}
+                  <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-4">
                         {gameMeets && gameMeets.map((game, index) => { 
                             return (
                               // <MediaCard key={ index } game={ game }/>
