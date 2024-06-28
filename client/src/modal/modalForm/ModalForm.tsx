@@ -21,16 +21,21 @@ interface ModalFormProps {
   const [locationAddress, setLocationAddress] = useState(venue);
   const [gameNameInput, setGameNameInput] = useState(gameName);
   const [maxPlayersInput, setMaxPlayersInput] = useState(maxPlayers);
+  const [timeInput, setTimeInput] = useState("");
+  const [nameInput, setNameInput] = useState("");
+
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/game-meetings/news", {
         game_id: null,
+        name: nameInput,
         gameName: gameNameInput,
         maxPlayers: maxPlayersInput,
         location: locationAddress,
         date,
+        time: timeInput,
       });
       console.log("Game Meeting created:", response.data);
       window.alert("Игровая сессия создана!");
@@ -60,14 +65,24 @@ interface ModalFormProps {
     setMaxPlayersInput(parseInt(e.target.value));
   };
 
+  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTimeInput(e.target.value);
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNameInput(e.target.value);
+  };
+
   return (
     <div className="modal bg-black-200 px-4 py-4"> 
     <div className="modal-content bg-yellow-200 p-4 rounded-md shadow-md">  
       <h3 className="text-black">Детали</h3>
       <form onSubmit={handleFormSubmit} className="text-black">
         <label>Данные: {date}</label>
+        <input type="text" value={nameInput} placeholder="Имя организатора" onChange={handleNameChange} className="mt-2 px-3 py-2 border rounded w-full" />
         <input type="text" value={gameNameInput} placeholder="Название игры" onChange={handleGameNameChange} className="mt-2 px-3 py-2 border rounded w-full" />
         <input type="number" value={maxPlayersInput} placeholder="Количество игроков" onChange={handleMaxPlayersChange} className="mt-2 px-3 py-2 border rounded w-full" />
+        <input type="time" value={timeInput} placeholder="Время (ЧЧ:ММ)" onChange={handleTimeChange} className="mt-2 px-3 py-2 border rounded w-full" />
         <div className="input-with-icon mt-2">
           <input
             type="text"

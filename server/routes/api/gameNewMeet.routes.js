@@ -4,14 +4,16 @@ const { GameMeeting } = require("./../../db/models");
 
 router.post("/game-meetings/news", async (req, res) => {
   try {
-    const { game_id, gameName, maxPlayers, location, date } = req.body; 
+    const { game_id, name, gameName, maxPlayers, location, date, time } = req.body; 
 
     const newGameMeeting = await GameMeeting.create({
       game_id,
+      name,
       gameName,
       maxPlayers,
       location,
       date,
+      time,
     });
 
     return res.status(201).json(newGameMeeting); 

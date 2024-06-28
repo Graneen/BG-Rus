@@ -19,6 +19,12 @@ module.exports = {
       gameName: {
         type: Sequelize.STRING, 
       },
+      name: {
+        type: Sequelize.STRING, 
+      },
+      time: {
+        type: Sequelize.TIME, 
+      },
       maxPlayers: {
         type: Sequelize.INTEGER, 
       },
