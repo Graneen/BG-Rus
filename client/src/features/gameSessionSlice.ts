@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction, Draft } from "@reduxjs/toolkit";
 
-interface GameSessionState {
+export interface GameSessionState {
   date: string;
   gameName: string;
   maxPlayers: number;
   venue: string;
 }
 
-const initialState: GameSessionState = {
+export const initialState: GameSessionState = {
   date: "",
   gameName: "",
   maxPlayers: 0,

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../app/App";
 
 import "./Register.css"
+import Models3D from '../commons/Models3D';
 
 function RegisterForm(): JSX.Element {
   const { setUser } = useContext(AuthContext);
@@ -34,61 +35,72 @@ function RegisterForm(): JSX.Element {
   }
 }
 return (
-<div className="register-container">
-<div className="register-form">
-    <h2 >
-      Введите данные для регистрации
-    </h2>
-    <form className="register-flex" onSubmit={handleSubmit}>
-    <label htmlFor="name">Name</label>
-    <input
+  <>
+  <div className="canvas-container">
+  <Models3D className="models-3d"/>
+</div>
+<div className="login-container">
+  <div className="register-form bg-black-100 p-2 flex justify-center items-center h-screen">
+    <div className="bg-yellow-300 p-8 rounded-lg shadow-md max-w-md w-full">
+      <h2 className="text-black text-2xl font-bold mb-4">
+        Введите данные для регистрации
+      </h2>
+      <form className="register-flex" onSubmit={handleSubmit}>
+        <label htmlFor="name" className="text-black block">
+          Имя
+        </label>
+        <input
           value={name} onChange={(e) => setName(e.target.value)} 
-            className="text-black"
-            id="name"
-            name="name"
-            type="text"
-            autoComplete="name"
-            required
-          />
-    <label htmlFor="email">Email</label>
-    <input
+          className="text-black border-b-2 border-black w-full mt-2 py-3 px-4"
+          id="name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          required
+        />
+        <label htmlFor="email" className="text-black block mt-4">
+          Email
+        </label>
+        <input
           value={email} onChange={(e) => setEmail(e.target.value)} 
-            className="text-black"
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-          />
-          <label htmlFor="password">Пароль</label>
-          <input
-            value={password} onChange={(e) => setPassword(e.target.value)} 
-            className="text-black"
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            required
-            
-          />
+          className="text-black border-b-2 border-black w-full mt-2 py-3 px-4"
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+        />
+        <label htmlFor="password" className="text-black block mt-4">
+          Пароль
+        </label>
+        <input
+          value={password} onChange={(e) => setPassword(e.target.value)} 
+          className="text-black border-b-2 border-black w-full mt-2 py-3 px-4"
+          id="password"
+          name="password"
+          type="password"
+          autoComplete="current-password"
+          required
+        />
         <button
           type="submit"
-          
+          className="bg-black text-yellow-200 py-2 px-4 mt-4 rounded-md"
         >
           Зарегистрироваться и войти
         </button>
-    </form>
-    <p>
-      Уже зарегистрированы?{' '}
-      <a onClick={() => navigate('/login')}>
-        Войти
-      </a>
-    </p>
-</div>
-</div>
-)
-
+      </form>
+      <p className="text-black mt-4">
+        Уже зарегистрированы?{' '}
+        <a onClick={() => navigate('/login')} className="text-black font-bold hover:underline cursor-pointer">
+          Войти
+        </a>
+      </p>
+    </div>
+  </div>
+  </div>
+  </>
+);
 
 }
 
-export default RegisterForm 
+export default RegisterForm;

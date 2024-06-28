@@ -1,67 +1,162 @@
 .main-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.specialists-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 100px;
+}
+
+@media (min-width: 768px) {
+  .specialists-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     align-items: center;
   }
-  
-  .center-content {
-    display: flex;
-    justify-content: space-between;
-    width: 80%; /* Ширина центрального контейнера */
-  }
-  
-  .specialists-container {
-    margin-bottom: 20px;
-  }
-  
-  .add-advert-container,
-  .bayer-orders-container {
-    width: 45%; /* Ширина блоков "Добавить объявление" и "Все объявления" */
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .specialists-container {
-    margin-right: 20px; /* Отступ справа для раздела специалистов */
-  }
-  
-  .add-advert-container,
-  .bayer-orders-container {
-    width: 50%; /* Занимают половину ширины */
-  }
-  
-  .expert-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 200px; 
-  }
-  
-  .expert-card img {
-    width: 100%;
-    height: auto;
-    max-height: 150px; 
-    object-fit: cover; 
-  }
-  
- 
-  
-  .advert-form label {
-    margin-bottom: 10px;
-  }
-  
-  .advert-form button {
-    margin-top: 10px;
-  }
-  
-  .bayer-order-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 250px; 
-  }
+}
+
+.expert-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 200px;
+}
+
+.expert-card img {
+  width: 100%;
+  height: auto;
+  max-height: 150px; 
+  object-fit: cover; 
+  margin-bottom: 10px; 
+}
+
+.expert-details {
+  margin-bottom: 10px;
+}
+
+.expert-details p {
+  margin: 0; 
+}
+
+button {
+  background-color: #007bff; 
+  color: white; 
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+ /* button:hover {
+   background-color: #0056b3;  
+ }  */
+
+ .center-content {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.add-advert-container {
+  width: 45%;
+  color: #333;
+}
+
+.bayer-orders-container {
+  padding: 20px;
+}
+
+.bayer-orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 10px;
+  margin-bottom: 50px;
+}
+
+.bayer-order-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.bayer-order-header {
+  background-color: #f0f0f0;
+  padding: 16px;
+}
+
+.bayer-order-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.bayer-order-header p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.bayer-order-comments {
+  padding: 16px;
+  color: #333;
+}
+
+.bayer-order-comment {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.bayer-order-comment strong {
+  font-weight: 600;
+}
+
+.bayer-order-comment-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.bayer-order-comment-input input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.bayer-order-comment-input button {
+  margin-left: 8px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.bayer-order-add-comment {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}

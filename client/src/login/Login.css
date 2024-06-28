@@ -1,20 +1,27 @@
-.login-flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-}
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .login-form {
-    background-color: #0b2a9a;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+}
+
+.models-3d {
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.login-form {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  left: 150px;  
+}
+.models-3d canvas {
+  transform: scale(0.5); 
+}

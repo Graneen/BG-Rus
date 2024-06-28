@@ -6,28 +6,21 @@ export interface Order {
   userId: number | null;
   gameTitle: string;
   description: string;
-  comment: string | null;
-  User: {
-    name: string;
-  };
-  comments: {
-    id: number;
-    userId: number;
-    comment: string;
-  }[];
+  comments: Comment[];
 }
 
-
-
+export interface Comment {
+  id: number;
+  userId: number;
+  comment: string;
+}
 
 interface User {
-    id: number;
-    name: string;
-   
-  }
+  id: number;
+  name: string;
+}
 
-
-export interface LocalizationState {
+interface LocalizationState {
   allOrders: Order[];
   gameTitle: string;
   translationNeed: string;
@@ -39,18 +32,15 @@ export const fetchOrders = createAsyncThunk('localization/fetchOrders', async ()
   return response.data;
 });
 
-export const addOrder = createAsyncThunk('localization/addOrder',  async ({ userId, gameTitle, description }: { userId: User | null; gameTitle: string; description: string }) => {
-    const response = await axios.post('http://localhost:3000/localization-orders', { userId: userId?.id, gameTitle, description });
-    return response.data;
+export const addOrder = createAsyncThunk('localization/addOrder', async ({ userId, gameTitle, description }: { userId: User | null; gameTitle: string; description: string }) => {
+  const response = await axios.post('http://localhost:3000/localization-orders', { userId: userId?.id, gameTitle, description });
+  return response.data;
 });
 
-export const addComment = createAsyncThunk(
-    'localization/addComment',
-    async ({ orderId, userId, comment }: { orderId: number; userId: number | null; comment: string }) => {
-        const response = await axios.post(`http://localhost:3000/localization-orders/${orderId}/comments`, { userId, comment });
-        return { orderId, comments: response.data };
-    }
-  );
+export const addComment = createAsyncThunk('localization/addComment', async ({ orderId, userId, comment }: { orderId: number; userId: number; comment: string }) => {
+  const response = await axios.post(`http://localhost:3000/localization-orders/${orderId}/comments`, { userId, comment });
+  return response.data; 
+});
 
 const localizationSlice = createSlice({
   name: 'localization',
@@ -81,10 +71,10 @@ const localizationSlice = createSlice({
         state.translationNeed = '';
       })
       .addCase(addComment.fulfilled, (state, action) => {
-        state.comment = '';
+        state.comment = ''; 
         state.allOrders = state.allOrders.map((order) => {
-          if (order.id === action.payload.orderId) {
-            return { ...order, comments: action.payload.comments };
+          if (order.id === action.payload.id) {
+            return action.payload;
           }
           return order;
         });

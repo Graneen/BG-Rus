@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Estimation.init({
     user_id: DataTypes.INTEGER,
     game_id: DataTypes.INTEGER,
-    value: DataTypes.INTEGER
+    value: DataTypes.NUMERIC
   }, {
     sequelize,
     modelName: 'Estimation',

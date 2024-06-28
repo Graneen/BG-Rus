@@ -24,10 +24,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    comments: {
-      type: DataTypes.JSON, 
-      defaultValue: [] 
+    comments: { 
+      type: DataTypes.JSONB 
     },
+    commentId: {
+      type: DataTypes.INTEGER
+    },
+    replies: {
+      type: DataTypes.JSONB
+        },
+   
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: literal('CURRENT_TIMESTAMP')

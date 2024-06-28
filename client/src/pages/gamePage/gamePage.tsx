@@ -1,14 +1,15 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './gamePage.css'
 import { getGameCard, selectGameCard } from '../../features/gameCardSlice';
-import { selectFavoritesCard, takeFavorites, takeFavorite, getFavoriteStatus } from '../../features/addToFavoritesSlice';
+import { selectFavoritesCard, takeFavorites, takeFavorite } from '../../features/addToFavoritesSlice';
 import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import StarIcon from '../../commons/StarIcon'
+import { Rate } from 'antd';
 import FavoritesButton from '../../commons/FavoritesButton'
 import { Spinner } from "flowbite-react";
 import MenuTab from '../../commons/menuTab/MenuTab'
 import { AuthContext } from '../../app/App'
+import axios from 'axios';
 
 
 function GamePage() {
@@ -17,22 +18,47 @@ function GamePage() {
     const card = useAppSelector(selectGameCard);
     const takeTheFavorites = useAppSelector(selectFavoritesCard);
     const { id } = useParams<{ id: string }>();
-
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
     const photos = [card.list.boardGame.poster, card.list.boardGame.image1, card.list.boardGame.image2];
 
+    const estimation: number = Number(card.list.estimationGame.result)
+    const estimationLength: number = Number(card.list.estimationGame.rateArr)
+
+    const [rate, setRate] = useState(estimation);
+    console.log(card.list.estimationGame.result)
+    console.log(estimation)
+    console.log(rate)
     useEffect(() => {
         if (id) {
             dispatch(getGameCard(id));
-            dispatch(takeFavorite({id: id, user_id: user}))
         }
-    }, [dispatch, id, user]);
+    }, [dispatch, id, user, rate]);
 
+    
+    useEffect(() => {
+        if (id) {
+            dispatch(takeFavorite({user_id: user, game_id: id}))
+        }
+    }, [user]);
 
     if (!card || card.loading || !card.list) {
         return <div className="loading-spinner">
             <Spinner color="warning" aria-label="Loading..." size="xl" />
         </div>;
+    }
+
+    function changeRateHandler(value: number) {
+        const fetchData = async () => {
+            try {
+                const rating = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/rates`, {user_id: user, game_id: id, value: value});
+
+                setRate(rating.data.result)
+                return rating.data;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();
     }
 
     const handleMainPhotoClick = () => {
@@ -42,10 +68,6 @@ function GamePage() {
             setMainPhotoIndex(mainPhotoIndex + 1);
         }
     };
-
-    const estimation: number = Number((card.list.estimationGame.reduce((acc, curr) => {
-        return acc + curr.value
-    }, 0) / card.list.estimationGame.length).toFixed(1))
 
     return (
         <>
@@ -62,19 +84,16 @@ function GamePage() {
                                         </div>
                                         <div className="preview-images">
                                             {photos.map((photo, index) => (
-                                                <div className={mainPhotoIndex === index ? `active-prev-img rounded-lg  image-bg` : `image-bg rounded-lg`}>
-                                                    <img key={index} className="preview-image" src={photo} alt={`Альтернативное изображение ${index}`} />
+                                                <div key={index} className={mainPhotoIndex === index ? `active-prev-img rounded-lg  image-bg` : `image-bg rounded-lg`}>
+                                                    <img className="preview-image" src={photo} alt={`Альтернативное изображение ${index}`} />
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="card-right">
-                                    <div className="stars-container">
-                                        Рейтинг: {estimation && estimation > 0 ? card.list.estimationGame.map(() => <StarIcon />) : ''} <StarIcon />
-
-                                        <p>{estimation > 0 ? `${estimation} (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
-                                    </div>
+                                        <p>Рейтинг: <Rate allowHalf defaultValue={rate ? rate : estimation} value={ rate ? rate : estimation} onChange={changeRateHandler}/></p>
+                                        <p className="stars-container">{estimationLength > 0 ? `${rate ? rate : estimation} (на основании ${estimationLength} оценок)` : 'Нет оценок' }</p>
                                     <p>Жанр: {card.list.boardGame.genre}</p>
                                     <p>Тематика: {card.list.boardGame.theme}</p>
                                     <p>Авторы: {card.list.boardGame.author}</p>
@@ -82,8 +101,11 @@ function GamePage() {
                                     <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
                                         {card.list.boardGame.description}
                                     </p>
+                                    <p className="text-[#ffd700]">Рейтинг сложности: {card.list.boardGame.difficulty}</p>
+                                    <p className="text-[#ffd700]">Возможное количество игроков: {card.list.boardGame.players} чел.</p>
+                                    <p className="text-[#ffd700]">Среднее время игры: {card.list.boardGame.time}</p>
                                     <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
-                                                     handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))}/>
+                                                     handler={() => dispatch(takeFavorites({ user_id: user, game_id: card.list.boardGame.id, toggler: true}))}/>
 
                                 </div>
                             </div>
