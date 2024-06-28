@@ -10,6 +10,12 @@ interface TabPanelProps {
     index: number;
     value: number;
 }
+const tabStyler = {
+    color: 'var(--goldenbeer)',
+    fontFamily: 'ROSTOV',
+    fontSize: '2.2em',
+    textTransform: 'capitalize'
+}
 
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
@@ -39,13 +45,6 @@ export default function MenuTab({ card }: { card: boardGameState }) {
     const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-
-    const tabStyler = {
-        color: 'var(--goldenbeer)',
-        fontFamily: 'ROSTOV',
-        fontSize: '2.2em',
-        textTransform: 'capitalize'
-    }
 
     return (
         <Box sx={{ width: '100%' }}>
