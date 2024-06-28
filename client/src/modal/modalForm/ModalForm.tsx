@@ -17,12 +17,20 @@ interface ModalFormProps {
   const ModalForm: React.FC<ModalFormProps> = ({ onCloseModal }) => {
   const { date, gameName, maxPlayers, venue } = useSelector((state: RootState) => state.gameSession);
   const dispatch = useDispatch();
+  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
   const [showMapModal, setShowMapModal] = useState(false);
   const [locationAddress, setLocationAddress] = useState(venue);
   const [gameNameInput, setGameNameInput] = useState(gameName);
   const [maxPlayersInput, setMaxPlayersInput] = useState(maxPlayers);
   const [timeInput, setTimeInput] = useState("");
   const [nameInput, setNameInput] = useState("");
+
+  const displayMessage = (msg: string) => {
+    setMessage(msg);
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 3000);
+  };
 
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,14 +45,19 @@ interface ModalFormProps {
         date,
         time: timeInput,
       });
+  
+      displayMessage("Игровая сессия успешно создана!");
       console.log("Game Meeting created:", response.data);
-      window.alert("Игровая сессия создана!");
-      
-      onCloseModal(); 
+  
       dispatch(updateGameSession({ gameName: gameNameInput, maxPlayers: maxPlayersInput, venue: locationAddress }));
-
+  
+      
+      setTimeout(() => {
+        onCloseModal(); 
+      }, 3000);
     } catch (error) {
       console.error("Error creating Game Meeting:", error);
+      displayMessage("Ошибка при создании игровой сессии.");
     }
   };
 
@@ -75,7 +88,8 @@ interface ModalFormProps {
 
   return (
     <div className="modal bg-black-200 px-4 py-4"> 
-    <div className="modal-content bg-yellow-200 p-4 rounded-md shadow-md">  
+    <div className="modal-content bg-yellow-200 p-4 rounded-md shadow-md">
+    {showMessage && <div className="message">{message}</div>}  
       <h3 className="text-black">Детали</h3>
       <form onSubmit={handleFormSubmit} className="text-black">
         <label>Данные: {date}</label>
