@@ -15,6 +15,8 @@ const favoritesRouter = require("./routes/api/favorites.router");
 const profileRouter = require("./routes/api/profile.router");
 const quizRouter = require("./routes/api/quiz.router");
 const estimatesRouter = require("./routes/api/estimates.router")
+const searchGamesRouter = require("./routes/views/searchGames.router");
+
 
 const app = express();
 const PORT = 3000;
@@ -34,6 +36,8 @@ app.use('/', favoritesRouter);
 app.use('/', estimatesRouter);
 app.use('/', commentBayersRouter);
 app.use("/api/quiz", quizRouter);
+app.use("/search_game", searchGamesRouter);
+
 
 
 

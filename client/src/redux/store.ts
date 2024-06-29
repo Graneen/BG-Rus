@@ -5,6 +5,7 @@ import gameCardReducer from '../features/gameCardSlice';
 import inFavoritesReducer from '../features/addToFavoritesSlice';
 import gameCampReducer from '../features/gameCardSlice';
 import localizationReducer from '../features/localizationSlice'
+import gamesForSearchReducer from "../features/gamesForSearchSlice";
 
 
 const store = configureStore({
@@ -14,7 +15,8 @@ const store = configureStore({
     takeFavorites: inFavoritesReducer,
     takeFavorite: inFavoritesReducer,
     gameCamp: gameCampReducer,
-    localization: localizationReducer
+    localization: localizationReducer,
+    gamesForSearch: gamesForSearchReducer
   },
 });
 
