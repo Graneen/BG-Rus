@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Steps.css'
 import QuizPage from '../pages/QuizPage/QuizPage';
 import { NavLink } from 'react-router-dom';
+import ProfileModal from '../modal/modalUserData/modalUserData';
 
 function Steps() {
     const [ quiz, setQuiz ] = useState<boolean>(false);

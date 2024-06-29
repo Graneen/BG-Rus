@@ -1,0 +1,16 @@
+.profile-modal{
+color:black;
+gap: 5px;
+display: flex;
+flex-direction: column;
+border-radius: 5px;
+background-color:rgb(177, 177, 43)!important ;
+};
+.profile-modal-input{
+
+    border-radius: 5px!important ;
+}
+.profile-modal-button{
+border:1px solid black!important;
+color:black!important ;
+}
