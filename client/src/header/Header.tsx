@@ -60,7 +60,7 @@ function Header(): JSX.Element {
           ></DropDown>
         </nav>
         <div className="flex flex-row items-center gap-x-4">
-          <Search/>
+          {user ? <Search/> : <></>}
           <div className="account_icon">
             {user?
             <NavLink

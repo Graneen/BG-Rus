@@ -1,7 +1,6 @@
 import { MouseEventHandler } from "react";
 
 function FavoritesButton({handler, favorites}: {handler: MouseEventHandler<HTMLAnchorElement>, favorites: number | null}) {
-    // console.log(favorites)
     return ( 
         <a
         title=""

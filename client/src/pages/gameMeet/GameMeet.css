@@ -5,6 +5,14 @@
     align-items: center;
     height: 100vh; 
   }
+.sessions-buttons-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content:flex-start;
+  gap: 5vw;
+}
+  
   
   .button-create {
     background-color: #FFD700; 
