@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import './Steps.css'
 import QuizPage from '../pages/QuizPage/QuizPage';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ProfileModal from '../modal/modalUserData/modalUserData';
 
 function Steps() {
     const [ quiz, setQuiz ] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     function quizHandler() {
-        quiz ? setQuiz(false) : setQuiz(true);
+        const user = localStorage.getItem("user");
+        if (user) {
+            quiz ? setQuiz(false) : setQuiz(true);
+        } else {
+            navigate("/login");
+        }
     }
 
     return (
