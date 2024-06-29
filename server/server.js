@@ -14,8 +14,11 @@ const localizationOrderRouter = require("./routes/views/localization.router");
 const favoritesRouter = require("./routes/api/favorites.router");
 const profileRouter = require("./routes/api/profile.router");
 const quizRouter = require("./routes/api/quiz.router");
-const estimatesRouter = require("./routes/api/estimates.router")
+const estimatesRouter = require("./routes/api/estimates.router");
 const searchGamesRouter = require("./routes/views/searchGames.router");
+const gameMeetsRouter = require("./routes/views/gameMeets.router");
+const QARouter = require("./routes/views/QA.routes")
+
 
 
 const app = express();
@@ -37,6 +40,8 @@ app.use('/', estimatesRouter);
 app.use('/', commentBayersRouter);
 app.use("/api/quiz", quizRouter);
 app.use("/search_game", searchGamesRouter);
+app.use('/', gameMeetsRouter);
+app.use("/", QARouter);
 
 
 

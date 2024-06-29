@@ -21,7 +21,8 @@ function GamePage() {
     const [mainPhotoIndex, setMainPhotoIndex] = useState(0);
     const photos = [card.list.boardGame.poster, card.list.boardGame.image1, card.list.boardGame.image2];
 
-    const estimation: number = Number(card.list.estimationGame)
+    const estimation: number = Number(card.list.estimationGame.result)
+    const estimationLength: number = Number(card.list.estimationGame.rateArr)
 
     const [rate, setRate] = useState(estimation);
 
@@ -29,12 +30,12 @@ function GamePage() {
         if (id) {
             dispatch(getGameCard(id));
         }
-    }, [dispatch, id, user]);
+    }, [dispatch, id, user, rate]);
 
     
     useEffect(() => {
         if (id) {
-            dispatch(takeFavorite({user_id: user, game_id: id}))
+            dispatch(takeFavorite({user_id: user, game_id: Number(id)}))
         }
     }, [user]);
 
@@ -47,9 +48,9 @@ function GamePage() {
     function changeRateHandler(value: number) {
         const fetchData = async () => {
             try {
-                const rating = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/rates`, {user_id: user, game_id: id, value: value});
-                console.log(rating.data)
-                setRate(rating.data)
+                const rating = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/rates`, {user_id: user, game_id: Number(id), value: value});
+
+                setRate(rating.data.result)
                 return rating.data;
             } catch (error) {
                 console.error(error);
@@ -89,8 +90,8 @@ function GamePage() {
                                     </div>
                                 </div>
                                 <div className="card-right">
-                                        <p>Рейтинг: <Rate allowHalf defaultValue={estimation} value={ rate ? rate : estimation } onChange={changeRateHandler}/></p>
-                                        <p className="stars-container">{estimation > 0 ? `${rate ? rate : estimation } (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
+                                        <p>Рейтинг: <Rate allowHalf defaultValue={rate ? rate : estimation} value={ rate ? rate : estimation} onChange={changeRateHandler}/></p>
+                                        <p className="stars-container">{estimationLength > 0 ? `${rate ? rate : estimation} (на основании ${estimationLength} оценок)` : 'Нет оценок' }</p>
                                     <p>Жанр: {card.list.boardGame.genre}</p>
                                     <p>Тематика: {card.list.boardGame.theme}</p>
                                     <p>Авторы: {card.list.boardGame.author}</p>

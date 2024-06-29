@@ -33,7 +33,7 @@ import './LocalizationPage.css'
       replies: string;
     }
 
-    interface User {
+    export interface User {
       id: number;
       name: string;
     }

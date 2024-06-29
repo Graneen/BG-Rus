@@ -70,3 +70,12 @@
   .map-icon:hover {
     color: #0056b3;
   }
+  .message {
+    background-color: #4caf50; 
+    color: white; 
+    padding: 1rem; 
+    border-radius: 4px; 
+    text-align: center; 
+    margin-top: 1rem; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }

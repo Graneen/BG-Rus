@@ -3,11 +3,18 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { boardGameState, feedBack } from '../../features/gameCardSlice';
+import QAComponent from './QA/QAComponent';
 
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
+}
+const tabStyler = {
+    color: 'var(--goldenbeer)',
+    fontFamily: 'ROSTOV',
+    fontSize: '2.2em',
+    textTransform: 'capitalize'
 }
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -35,16 +42,9 @@ function a11yProps(index: number) {
 
 export default function MenuTab({ card }: { card: boardGameState }) {
     const [value, setValue] = React.useState(0);
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-
-    const tabStyler = {
-        color: 'var(--goldenbeer)',
-        fontFamily: 'ROSTOV',
-        fontSize: '2.2em',
-        textTransform: 'capitalize'
-    }
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -75,7 +75,7 @@ export default function MenuTab({ card }: { card: boardGameState }) {
             : <div> Никто пока не писал отзывов на эту игру, будьте первым!</div>}
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-                Item Three
+            <QAComponent gameId={card.list.boardGame.id} />
             </CustomTabPanel>
         </Box>
     );

@@ -3,6 +3,7 @@ const router = express.Router();
 const { User, BoardGame, Feedback, Estimation, FavoriteGames } = require('../../db/models'); 
 
 router.get('/api/boardgames/:id', async (req, res) => {
+    // console.log(req.params)
     const {id} = req.params;
     try {
         const boardGames = await BoardGame.findAll({
@@ -30,9 +31,11 @@ router.get('/api/boardgame/:id', async (req, res) => {
     try {
         const boardGame = await BoardGame.findOne({where: { id }});
         const estimationArr = await Estimation.findAll({where: { game_id: id }});
-        const estimationGame = (estimationArr.reduce((acc, curr) => {
+        const rateArr = estimationArr.length;
+        const result = (estimationArr.reduce((acc, curr) => {
             return acc + Number(curr.value)
-          }, 0) / estimationArr.length).toFixed(1); 
+          }, 0) / rateArr).toFixed(1);
+        const estimationGame = {result, rateArr}
         const feedBackGame = await Feedback.findAll({where: { game_id: id }});
         res.json({ boardGame, estimationGame, feedBackGame });
     } catch (error) {

@@ -32,7 +32,7 @@ header {
   }
   .logo {
     color: var(--goldenbeer);
-    text-shadow: -1px 1px 2px rgb(241, 241, 241);
+    text-shadow: -1px 1px 2px #f1f1f1;
     font-size: 2rem;
     font-family: 'ROSTOV', normal;
     font-weight: 700;

@@ -13,9 +13,7 @@ function Steps() {
     return (
         <>
             <section className="main-content">
-
                 <section className="guides">
-
                         <div className="guide" id="guide1">
                             <div className="guide_description">
                                 <div className="guide_number">01</div>
@@ -35,7 +33,7 @@ function Steps() {
                                     </span>
                                 </a>
                             </div>
-                            <div className="guide_image"><img src='https://trueimages.ru/img/e6/18/46b71766.png' alt="" /></div>
+                            <div className="guide_image"><img className="shadow-2xl shadow-[#f1f1f1]" src='https://trueimages.ru/img/e6/18/46b71766.png' alt="" /></div>
                         </div>
                         {quiz ? <div id="quiz"><QuizPage setQuiz={setQuiz} /></div> : <></>}
                         <div className="guide" id="guide2">
@@ -53,7 +51,7 @@ function Steps() {
                                     </span>
                                 </a>
                             </div>
-                            <div className="guide_image"><img src="https://trueimages.ru/img/5f/f7/87191766.png" alt="" /></div>
+                            <div className="guide_image"><img className="shadow-2xl shadow-[#f1f1f1]" src="https://trueimages.ru/img/5f/f7/87191766.png" alt="" /></div>
                         </div>
                         <div className="guide" id="guide3">
                             <div className="guide_description">
@@ -70,7 +68,7 @@ function Steps() {
                                     </span>
                                 </a>
                             </div>
-                            <div className="guide_image"><img src="https://trueimages.ru/img/ff/c9/ec191766.png" alt="" /></div>
+                            <div className="guide_image"><img className="shadow-2xl  shadow-[#f1f1f1]" src="https://gdeigra.ru/images/about/2.jpg" alt="" /></div>
                         </div>
                 </section>
             </section>
