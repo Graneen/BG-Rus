@@ -99,7 +99,7 @@ export default function ProfileMenuTab({
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        {userFavoriteGames.map((userFavoriteGame) => (
+        {userFavoriteGames&&userFavoriteGames.length?userFavoriteGames.map((userFavoriteGame) => (
           <div key={userFavoriteGame.id} className="profile-game-box">
             <div className="profile-block-guide">
               <h1 className="page-header">{userFavoriteGame.title}</h1>
@@ -165,7 +165,7 @@ export default function ProfileMenuTab({
               </div>
             </div>
           </div>
-        ))}
+        )):null}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <div className="recom-head-block" ><h2 className="recom-head-block-h2">Мы выбираем случайные 10 игр на основании ваших предпочтений</h2>
@@ -173,7 +173,7 @@ export default function ProfileMenuTab({
           <button className="quiz-button">Изменить выборку игр</button>
         </NavLink></div>
         
-        {userRecommendedGames.map((userRecommendedGame) => (
+        {userRecommendedGames&&userRecommendedGames.length?userRecommendedGames.map((userRecommendedGame) => (
           <div key={userRecommendedGame.id} className="profile-game-box">
             <div className="profile-block-guide">
               <h1 className="page-header">{userRecommendedGame.title}</h1>
@@ -239,10 +239,10 @@ export default function ProfileMenuTab({
               </div>
             </div>
           </div>
-        ))}
+        )):null}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        {userFeedbacks.map((userFeedback) => (
+        {userFeedbacks&&userFeedbacks.length?userFeedbacks.map((userFeedback) => (
           <div key={userFeedback.game_id} className="meeting-camp-box">
             <NavLink to={`/game/${userFeedback.game_id}`}>
               <h2 className="h2-profile">Игра: {userFeedback.BoardGame.title}</h2>
@@ -252,10 +252,10 @@ export default function ProfileMenuTab({
               <h3>Ваш отзыв:</h3> {userFeedback.description}
             </p>
           </div>
-        ))}
+        )):null}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-        {userQuestionsAndAnswers.map((userQuestionAndAnswers) => (
+        {userQuestionsAndAnswers&&userQuestionsAndAnswers.length?userQuestionsAndAnswers.map((userQuestionAndAnswers) => (
           <div
             key={userQuestionAndAnswers.game_id}
             className="meeting-camp-box"
@@ -270,7 +270,7 @@ export default function ProfileMenuTab({
               )
             )}
           </div>
-        ))}
+        )):null}
       </CustomTabPanel>
     </Box>
   );

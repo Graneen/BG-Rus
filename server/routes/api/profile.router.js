@@ -117,7 +117,7 @@ router.get("/api/profile/:id", async (req, res) => {
       return data;
     });
     //рекомендуемые игры
-
+    let recommendedGames = [];
     const userQuiz = await Quiz.findOne({ where: { user_id: Number(user) } });
     const userQuizResult = JSON.parse(JSON.stringify(userQuiz));
     if (userQuizResult) {
@@ -132,8 +132,7 @@ router.get("/api/profile/:id", async (req, res) => {
       });
       const searchGames = JSON.parse(JSON.stringify(userSearchGames));
 
-      let recommendedAndAddGames = [];
-      recommendedAndAddGames = searchGames.filter((game) => {
+      const recommendedAndAddGames = searchGames.filter((game) => {
         return (
           quizTheme.some((theme) => game.theme.includes(theme)) ||
           quizGenre.some((genre) => game.genre.includes(genre))
@@ -144,7 +143,6 @@ router.get("/api/profile/:id", async (req, res) => {
         .sort(() => Math.random() - 0.5)
         .slice(0, 10);
     }
-
     res.status(200).json({
       currentUser,
       favoriteGames,
