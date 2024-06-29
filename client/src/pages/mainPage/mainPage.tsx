@@ -32,9 +32,9 @@ function MainPage(): JSX.Element {
     return (
         <>
             <section className="hero" id="hero">
-                <div className="bg-layer-1 HG"><img src="https://res.cloudinary.com/coderabbi/image/upload/v1641892210/MNTN--figma/bg-layer-1_e7t1bk.png" alt="Background" /></div>
+                <div className="bg-layer-1 HG"><img src="https://furman.top/uploads/posts/2023-04/1682858362_furman-top-p-oboi-na-telefon-oblaka-belie-vkontakte-5.jpg" alt="Background" /></div>
                 <div className="bg-layer-2 BG Hero"></div>
-                <div className="bg-layer-3 MG"><img src="https://res.cloudinary.com/coderabbi/image/upload/v1641892219/MNTN--figma/bg-layer-3_xvue3k.png" alt="Background" /></div>
+                <div className="bg-layer-3 MG"><img className="shadow-2xl" src="https://trueimages.ru/img/8c/46/d4710866.png" alt="Background" /></div>
                 <div className="bg-layer-4 VG"><img src="https://trueimages.ru/img/81/77/3ab71766.png" alt="Background" /></div>
                 <div className="hero_description">
                     <h1>ДАВАЙ ЗНАКОМИТЬСЯ?</h1>
