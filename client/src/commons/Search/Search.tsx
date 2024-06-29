@@ -29,8 +29,6 @@ function Search() {
         navigate(`/game/${gameId}`);
     }
 
-    // console.log({date: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`, archiveGame});
-
     useEffect(() => {
         dispatch(getGames());
     }, [])
