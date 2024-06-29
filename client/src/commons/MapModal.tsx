@@ -2,6 +2,7 @@
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
+import dateRedactor from '../services/dateRedactor';
 
 
 const style = {
@@ -33,6 +34,7 @@ console.log({setMapModal, meetModal})
           <Box sx={style}>
             <div className=" group relative p-4">
               <button onClick={() => navigate(`/game/${meetModal.game_id}`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
+              <div className="text-3xl rounded-lg m-2 shadow-md p-2 bg-[orange] text-[black] absolute bg-white">{dateRedactor(meetModal.date)}</div>
                 <img
                   src={meetModal.img}
                   className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
@@ -43,6 +45,7 @@ console.log({setMapModal, meetModal})
                   <h2 className="meetModal-title">
                     {meetModal.gameName}
                   </h2>
+                  <p>Начало игры:{meetModal.time.slice(0, 5)}</p>
                   <div className="meetModal-descr pt-[1vh]">
                     <p> <strong>Место проведения: </strong> {meetModal.location}</p>
                     <p> <strong>Запланированное число участников: </strong>{meetModal.maxPlayers}</p>
