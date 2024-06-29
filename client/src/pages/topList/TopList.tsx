@@ -76,7 +76,7 @@ const TopList: React.FC = () => {
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         { sortGames 
                             ?
-                            (sortGames && sortGames.length && sortGames.map((game) => { 
+                            (sortGames && sortGames.map((game) => {
                                 return (
                                     <div key={game.id} className=" group relative p-4">
                                         <button onClick={() => navigate(`/game/${game.id}`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
