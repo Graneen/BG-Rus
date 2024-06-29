@@ -35,6 +35,9 @@ const BuyerPage: React.FC = () => {
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [selectedSpecialist, setSelectedSpecialist] = useState<Specialist | null>(null);
 
   useEffect(() => {
     axios.get('http://localhost:3000/specialists')
@@ -120,7 +123,17 @@ const BuyerPage: React.FC = () => {
     }
   };
 
-  const handleBookSpecialist = async (specialistId: number) => {
+  const handleBookSpecialist = (specialistId: number) => {
+    const selectedSpecialist = specialists.find((s) => s.id === specialistId);
+    setSelectedSpecialist(selectedSpecialist || null);
+    
+    
+  setShowModal(true);
+  };
+
+  const handleModalSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
     try {
       const user = localStorage.getItem('user');
       if (!user) {
@@ -128,21 +141,31 @@ const BuyerPage: React.FC = () => {
         return;
       }
   
+      const form = new FormData(e.currentTarget);
+      const specialistId = form.get('specialistId');
+
+      if (specialistId !== null && selectedSpecialist) {
       const response = await axios.post(`http://localhost:3000/specialists/${specialistId}`, {
         user_id: Number(user),
+        phone: phoneNumber
       });
+    
+      
   
-      console.log(response.data.message);
+      console.log(response.data.message); 
+    }
       setShowSuccessMessage(true);
-
+  
       const timer = setTimeout(() => {
         setShowSuccessMessage(false);
+        setShowModal(false);
         return () => clearTimeout(timer);
       }, 2000);
     } catch (error) {
       console.error('Error booking specialist:', error);
     }
   };
+
 
   return (
     <>
@@ -170,7 +193,22 @@ const BuyerPage: React.FC = () => {
       Ваше обращение поступило специалисту
     </div>
   )}
-</div>
+{showModal && (
+      <div className="modal">
+        <form className="modal-content" onSubmit={handleModalSubmit}>
+          <span className="close" onClick={() => setShowModal(false)}>&times;</span>
+          <h2>Введите ваш номер телефона</h2>
+          <input
+            type="text"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            placeholder="Номер телефона"
+          />
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    )}
+  </div>
   
       <div className="center-content flex justify-between items-start">
         <div className="add-advert-container bg-gray-900 text-white p-4 rounded shadow">

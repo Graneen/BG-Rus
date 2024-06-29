@@ -15,7 +15,8 @@ const favoritesRouter = require("./routes/api/favorites.router");
 const profileRouter = require("./routes/api/profile.router");
 const quizRouter = require("./routes/api/quiz.router");
 const estimatesRouter = require("./routes/api/estimates.router");
-const QARouter = require("./routes/views/QA.routes")
+const QARouter = require("./routes/views/QA.routes");
+const feedbackRouter= require("./routes/views/feedback.router");
 
 const app = express();
 const PORT = 3000;
@@ -36,6 +37,7 @@ app.use('/', estimatesRouter);
 app.use('/', commentBayersRouter);
 app.use("/api/quiz", quizRouter);
 app.use("/", QARouter);
+app.use("/", feedbackRouter);
 
 
 

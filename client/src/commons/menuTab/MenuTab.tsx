@@ -4,48 +4,118 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { boardGameState, feedBack } from '../../features/gameCardSlice';
 import QAComponent from './QA/QAComponent';
+import axios from 'axios';
 
 interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
+  children?: React.ReactNode;
+  index: number;
+  value: number;
 }
 
 function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props;
 
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-        </div>
-    );
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
 }
 
 function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
 }
 
-export default function MenuTab({ card }: { card: boardGameState }) {
-    const [value, setValue] = React.useState(0);
-    const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
+export default function MenuTab({
+  card,
+  updateGameCardState,
+}: {
+  card: boardGameState;
+  updateGameCardState: (updatedCard: boardGameState) => void;
+}) {
+  const [value, setValue] = React.useState(0);
+  const [reviews, setReviews] = React.useState<feedBack[]>([]);
+  const [newReview, setNewReview] = React.useState('');
+  const user = localStorage.getItem('user');
 
-    const tabStyler = {
-        color: 'var(--goldenbeer)',
-        fontFamily: 'ROSTOV',
-        fontSize: '2.2em',
-        textTransform: 'capitalize'
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  const tabStyler = {
+    color: 'var(--goldenbeer)',
+    fontFamily: 'ROSTOV',
+    fontSize: '2.2em',
+    textTransform: 'capitalize',
+  };
+
+  const submitReview = async () => {
+    if (newReview.trim() !== '') {
+      if (user) {
+        try {
+          const newFeedback = {
+            user_id: user,
+            game_id: card.list.boardGame.id,
+            description: newReview,
+          };
+
+          console.log(newFeedback);
+
+          const response = await axios.post(
+            'http://localhost:3000/api/feedbacks',
+            newFeedback
+          );
+          const newReviewData: feedBack = {
+            id: response.data.id,
+            user_id: response.data.user_id,
+            game_id: response.data.game_id,
+            description: response.data.description,
+            createdAt: response.data.createdAt,
+            updatedAt: response.data.updatedAt,
+          };
+          setReviews([...reviews, newReviewData]);
+          updateGameCardState({
+            ...card,
+            list: {
+              ...card.list,
+              feedBackGame: [...card.list.feedBackGame, newReviewData],
+            },
+          });
+          console.log(response, 'FEEDBACKS');
+          setNewReview('');
+        } catch (error) {
+          console.error('Error submitting review:', error);
+        }
+      } else {
+        console.error('User data not found in localStorage');
+      }
     }
+  };
+
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/feedbacks/${card.list.boardGame.id}`
+      );
+      setReviews(response.data);
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchReviews();
+  }, [card.list.boardGame.id]);
+    
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -63,21 +133,33 @@ export default function MenuTab({ card }: { card: boardGameState }) {
                 </iframe>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-            {card.list.feedBackGame && card.list.feedBackGame.length > 0 ? card.list.feedBackGame.map((el: feedBack, i) => (
-            <div key={i}>
-            <h2>
-                Отзыв №{i + 1} пользователя user-{el.user_id} от {el.createdAt.slice(0, 10)}
-            </h2>
-            <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
-                {el.description}
-            </div>
-            </div>
-            )) 
-            : <div> Никто пока не писал отзывов на эту игру, будьте первым!</div>}
-            </CustomTabPanel>
+            {reviews.length > 0 ? reviews.map((el: feedBack, i: number) => (
+  <div key={i}>
+    <h2>Отзыв №{i + 1} от {el.User ? el.User.name : 'Анонимный пользователь'}</h2>
+    <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
+      {el.description}
+    </div>
+  </div>
+)) : <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>}
+        <div>
+            <input
+            type="text"
+            value={newReview}
+            onChange={(e) => setNewReview(e.target.value)}
+            placeholder="Оставьте отзыв"
+            className="border border-gray-300 rounded-md p-2 w-full text-black"
+            />
+            <button
+            onClick={submitReview}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2"
+            >
+            Оставить отзыв
+            </button>
+        </div>
+        </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
             <QAComponent gameId={card.list.boardGame.id} />
-            </CustomTabPanel>
+        </CustomTabPanel>
         </Box>
     );
 }
