@@ -22,8 +22,9 @@
   .guide:nth-of-type(2n) .guide_description {
     order: 2;
   }
-  .guide_image {
+  .guide_image img{
     order: 1;
+    border-radius: 50%;
   }
   .guide_description {
     width: 53.5%;
@@ -68,7 +69,7 @@
   }
   .guide_text {
     font-family: 'Exo-2-Medium', normal;
-    font-size: .75rem;
+    font-size: 1.2rem;
     font-weight: 600;
     line-height: 1.9em;
   }

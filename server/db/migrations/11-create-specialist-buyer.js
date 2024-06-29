@@ -21,6 +21,9 @@ module.exports = {
       country: {
         type: Sequelize.STRING
       },
+      phone: {
+        type: Sequelize.STRING
+      },
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: true,

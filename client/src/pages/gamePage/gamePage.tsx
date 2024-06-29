@@ -37,7 +37,7 @@ function GamePage() {
     
     useEffect(() => {
         if (id) {
-            dispatch(takeFavorite({user_id: user, game_id: id}))
+            dispatch(takeFavorite({user_id: user, game_id: Number(id)}))
         }
     }, [user]);
 
@@ -50,7 +50,7 @@ function GamePage() {
     function changeRateHandler(value: number) {
         const fetchData = async () => {
             try {
-                const rating = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/rates`, {user_id: user, game_id: id, value: value});
+                const rating = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/rates`, {user_id: user, game_id: Number(id), value: value});
 
                 setRate(rating.data.result)
                 return rating.data;

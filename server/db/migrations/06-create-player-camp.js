@@ -23,6 +23,9 @@ module.exports = {
           key: "id",
         },
       },
+      email: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

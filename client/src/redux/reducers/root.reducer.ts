@@ -7,7 +7,7 @@ import inFavoritesReducer from '../../features/addToFavoritesSlice';
 import gameCampReducer from '../../features/gameCardSlice'
 
 import localizationReducer from "../../features/localizationSlice";
-
+import gamesForSearchReducer from "../../features/gamesForSearchSlice";
 
 const rootReducer = combineReducers({
   gameSession: gameSessionReducer,
@@ -15,7 +15,8 @@ const rootReducer = combineReducers({
   takeFavorites: inFavoritesReducer,
   takeFavorite: inFavoritesReducer,
   gameCamp: gameCampReducer,
-  localization: localizationReducer
+  localization: localizationReducer,
+  gamesForSearch: gamesForSearchReducer
 });
 
 

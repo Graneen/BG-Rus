@@ -33,7 +33,7 @@ import './LocalizationPage.css'
       replies: string;
     }
 
-    interface User {
+    export interface User {
       id: number;
       name: string;
     }
@@ -137,11 +137,17 @@ import './LocalizationPage.css'
   
       return (
         <>
-      <div className="flex justify-center items-center flex-col">
-      <h1 className="text-2xl text-yellow-500 mb-4">Локализация</h1>
+       <div className="flex justify-center items-center flex-col">
+      <div className="bg-yellow-300 rounded-lg p-6 shadow-lg max-w-lg mx-auto mb-8 mt-20" style={{ width: '90%' }}>
+        <h1 className="text-2xl text-black mb-4">Что такое локализация и как пользователи могут взаимодействовать?</h1>
+        <div className="text-black">
+          <p>Локализация - это процесс адаптации игры или программы к языку, культуре и требованиям конкретного регионального рынка, чтобы сделать продукт доступным и понятным для местных пользователей.</p>
+          <p>На этой странице пользователи могут добавлять новые объявления о локализации игр, комментировать и отвечать на комментарии по объявлениям, участвуя в обсуждениях и совместном сотрудничестве по переводу игрового контента.</p>
+        </div>
+      </div>
 
-      <form onSubmit={handleAddOrder} className="text-center mt-8 w-1/2 p-4 border border-yellow-500 rounded">
-        <label className="block mb-4">
+        <form onSubmit={handleAddOrder} className="text-center mt-8 w-1/2 p-4 border border-yellow-500 rounded bg-yellow-200">
+        <label className="block mb-4 text-black">
           Название игры:
           <input
             type="text"
@@ -150,7 +156,7 @@ import './LocalizationPage.css'
             className="w-full px-3 py-2 rounded border border-black text-black"
           />
         </label>
-        <label className="block mb-4">
+        <label className="block mb-4 text-black">
           Что перевести:
           <textarea
             value={translationNeed}

@@ -1,3 +1,4 @@
+//! POST path "/api/quiz"
 const express = require("express");
 const { Quiz } = require("../../db/models");
 
