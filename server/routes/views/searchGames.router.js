@@ -1,14 +1,13 @@
 //! GET path "/search_game"
 const express = require("express");
 const { BoardGame } = require("../../db/models");
-const authMiddleware = require("../../middlewares/authorization.headers");
 
 const searchGamesRouter = express.Router();
 
-searchGamesRouter.get("/", authMiddleware, async (req, res) => {
+searchGamesRouter.get("/", async (req, res) => {
     try {
         const allGame = JSON.parse(JSON.stringify(
-            await BoardGame.findAll({ attributes: ["id", "title", "genre", "theme", "year", "difficulty", "minPlayers", "maxPlayers"], })
+            await BoardGame.findAll({ attributes: ["id", "title"], })
         ));
 
         res.status(200).json(allGame);
