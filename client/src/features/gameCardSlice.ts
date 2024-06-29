@@ -9,6 +9,7 @@ export interface estimationGame {
 }
 
 export interface feedBack {
+    [x: string]: any;
     createdAt: string;
     description: string;
     game_id: number;

@@ -21,7 +21,16 @@ router.get('/specialists', async (req, res) => {
 router.post('/specialists/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { user_id } = req.body;
+    const { user_id, phone } = req.body;
+
+    if (!user_id || !phone) {
+      return res.status(400).json({ error: 'Invalid user_id or phone value' });
+    }
+
+    const userIdInt = parseInt(user_id);
+    if (isNaN(userIdInt)) {
+      return res.status(400).json({ error: 'Invalid user_id value' });
+    }
 
    
     const specialist = await SpecialistBuyer.findByPk(id, {
@@ -38,6 +47,7 @@ router.post('/specialists/:id', async (req, res) => {
     
     await specialist.update({ user_id });
     await specialist.setUser(await User.findByPk(user_id));
+    await specialist.update({ phone });
 
    
     res.json({ message: 'Specialist booked successfully' });

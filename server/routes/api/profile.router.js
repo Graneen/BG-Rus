@@ -77,7 +77,7 @@ router.get("/api/profile/:id", async (req, res) => {
     });
     const questions = JSON.parse(JSON.stringify(userQuestion));
     //------------------------------------------------------отбираем игры по которым задавались вопросы
-    const boardGamesId = questions.map((obj) => obj.id);
+    const boardGamesId = questions.map((obj) => obj.game_id);
     const gamesWithQuestionsArr = await BoardGame.findAll({
       where: {
         id: boardGamesId,
@@ -87,7 +87,7 @@ router.get("/api/profile/:id", async (req, res) => {
       JSON.stringify(gamesWithQuestionsArr)
     );
     //----------------------------------------------------------Отбираем ответы на вопросы
-    const questionsId = questions.map((obj) => obj.game_id);
+    const questionsId = questions.map((obj) => obj.id);
     const answersToQuestionsArr = await Answer.findAll({
       where: {
         question_id: questionsId,
@@ -131,14 +131,18 @@ router.get("/api/profile/:id", async (req, res) => {
         },
       });
       const searchGames = JSON.parse(JSON.stringify(userSearchGames));
-      recommendedGames = searchGames.filter((game) => {
+
+      const recommendedAndAddGames = searchGames.filter((game) => {
         return (
           quizTheme.some((theme) => game.theme.includes(theme)) ||
           quizGenre.some((genre) => game.genre.includes(genre))
         );
       });
-    }
 
+      recommendedGames = recommendedAndAddGames
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 10);
+    }
     res.status(200).json({
       currentUser,
       favoriteGames,

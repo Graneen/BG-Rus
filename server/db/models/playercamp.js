@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     user_id: DataTypes.INTEGER,
-    gameCamp_id: DataTypes.INTEGER
+    gameCamp_id: DataTypes.INTEGER,
+    email: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'PlayerCamp',
