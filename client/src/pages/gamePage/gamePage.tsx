@@ -25,9 +25,9 @@ function GamePage() {
     const estimationLength: number = Number(card.list.estimationGame.rateArr)
 
     const [rate, setRate] = useState(estimation);
-    console.log(card.list.estimationGame.result)
-    console.log(estimation)
-    console.log(rate)
+    // console.log(card.list.estimationGame.result)
+    // console.log(estimation)
+    // console.log(rate)
     useEffect(() => {
         if (id) {
             dispatch(getGameCard(id));

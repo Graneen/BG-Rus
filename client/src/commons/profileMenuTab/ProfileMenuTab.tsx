@@ -4,14 +4,18 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import "./ProfileMenuTab.css";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import {
-  userFavoriteGames,
+  GameCard,
   userFeedbacks,
   userQuestionsAndAnswers,
-  userRecommendedGames,
 } from "../../pages/Profile/Profile";
-
-import { selectFavoritesCard, takeFavorites, takeFavorite, getFavoriteStatus } from '../../features/addToFavoritesSlice';
+// import { selectFavoritesCard, takeFavorites, takeFavorite, getFavoriteStatus } from '../../features/addToFavoritesSlice';
+// import FavoritesButton from '../../commons/FavoritesButton'
+// import { useAppDispatch, useAppSelector } from '../../../src/hooks/redux'
+// const dispatch = useAppDispatch();
+// const user = localStorage.getItem("user");
+// const takeTheFavorites = useAppSelector(selectFavoritesCard);
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -21,7 +25,6 @@ interface TabPanelProps {
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -48,10 +51,10 @@ export default function ProfileMenuTab({
   userQuestionsAndAnswers,
   userRecommendedGames,
 }: {
-  userFavoriteGames: userFavoriteGames[];
+  userFavoriteGames: GameCard[];
   userFeedbacks: userFeedbacks[];
   userQuestionsAndAnswers: userQuestionsAndAnswers[];
-  userRecommendedGames: userRecommendedGames[];
+  userRecommendedGames: GameCard[];
 }) {
   const [value, setValue] = React.useState(0);
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -65,6 +68,22 @@ export default function ProfileMenuTab({
     textTransform: "capitalize",
   };
 
+  function getImages(userRecommendedGame: GameCard) {
+    return [
+      userRecommendedGame.poster,
+      userRecommendedGame.image1,
+      userRecommendedGame.image2,
+    ];
+  }
+  const [mainPhotoIndex, setMainPhotoIndex] = useState<number>(0);
+
+  const handleMainPhotoClick = () => {
+    if (mainPhotoIndex === 2) {
+      setMainPhotoIndex(0);
+    } else {
+      setMainPhotoIndex(mainPhotoIndex + 1);
+    }
+  };
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -81,60 +100,144 @@ export default function ProfileMenuTab({
       </Box>
       <CustomTabPanel value={value} index={0}>
         {userFavoriteGames.map((userFavoriteGame) => (
-          <div className="meeting-camp-box">
-            <h2>название: {userFavoriteGame.title}</h2>
-            <p>Количество игроков: {userFavoriteGame.players}</p>
-            <p>Время игры: {userFavoriteGame.time}</p>
+          <div key={userFavoriteGame.id} className="profile-game-box">
+            <div className="profile-block-guide">
+              <h1 className="page-header">{userFavoriteGame.title}</h1>
+              <NavLink to={`/game/${userFavoriteGame.id}`}>
+                <button className="game-button-profile">Страница игры</button>
+              </NavLink>
+              <div>
+                <div className="profile-image-descr-block">
+                  <div className="card-left">
+                    <div className="images-section">
+                      <div
+                        className="main-image image-bg rounded-lg"
+                        onClick={handleMainPhotoClick}
+                      >
+                        <img
+                          src={getImages(userFavoriteGame)[mainPhotoIndex]}
+                          className="main-img"
+                          alt="Заглавное изображение"
+                        />
+                      </div>
+                      <div className="preview-images">
+                        {getImages(userFavoriteGame).map((photo, index) => (
+                          <div
+                            key={index}
+                            className={
+                              mainPhotoIndex === index
+                                ? `profile-active-prev-img rounded-lg  image-bg`
+                                : `image-bg rounded-lg`
+                            }
+                          >
+                            <img
+                              className="profile-preview-image"
+                              src={photo}
+                              alt={`Альтернативное изображение ${index}`}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="card-right">
+                    <p>Жанр: {userFavoriteGame.genre}</p>
+                    <p>Тематика: {userFavoriteGame.theme}</p>
+                    <p>Авторы: {userFavoriteGame.author}</p>
+                    <p>Год создания: {userFavoriteGame.year}</p>
+                    <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
+                      {userFavoriteGame.description}
+                    </p>
+                    <p className="text-[#ffd700]">
+                      Рейтинг сложности: {userFavoriteGame.difficulty}
+                    </p>
+                    <p className="text-[#ffd700]">
+                      Возможное количество игроков: {userFavoriteGame.players}{" "}
+                      чел.
+                    </p>
+                    <p className="text-[#ffd700]">
+                      Среднее время игры: {userFavoriteGame.time}
+                    </p>
+                    {/* <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
+                                                     handler={() => dispatch(takeFavorites({ user_id: user, game_id: userRecommendedGame.id, toggler: true}))}/> */}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <h2>Мы выбираем случайные 10 игр на основании ваших предпочтений</h2>
+        <div className="recom-head-block" ><h2 className="recom-head-block-h2">Мы выбираем случайные 10 игр на основании ваших предпочтений</h2>
         <NavLink to="/quiz">
           <button className="quiz-button">Изменить выборку игр</button>
-        </NavLink>
+        </NavLink></div>
+        
         {userRecommendedGames.map((userRecommendedGame) => (
-          <div key={userRecommendedGame.id} className="meeting-camp-box">
-//////////////////////////////////////////////////////////////////////------------------------------------------------------
-<div className="block-guide">
-                        <h1 className='page-header'>{card.list.boardGame.title}</h1>
-                        <div>
-                            <div className="image-descr-block">
-                                <div className="card-left">
-                                    <div className="images-section">
-                                        <div className="main-image image-bg rounded-lg" onClick={handleMainPhotoClick}>
-                                            <img src={photos[mainPhotoIndex]} className="main-img" alt="Заглавное изображение" />
-                                        </div>
-                                        <div className="preview-images">
-                                            {photos.map((photo, index) => (
-                                                <div className={mainPhotoIndex === index ? `active-prev-img rounded-lg  image-bg` : `image-bg rounded-lg`}>
-                                                    <img key={index} className="preview-image" src={photo} alt={`Альтернативное изображение ${index}`} />
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card-right">
-                                    <div className="stars-container">
-                                        Рейтинг: {estimation && estimation > 0 ? card.list.estimationGame.map(() => <StarIcon />) : ''} <StarIcon />
-
-                                        <p>{estimation > 0 ? `${estimation} (на основании ${card.list.estimationGame.length} оценок)` : 'Нет оценок' }</p>
-                                    </div>
-                                    <p>Жанр: {card.list.boardGame.genre}</p>
-                                    <p>Тематика: {card.list.boardGame.theme}</p>
-                                    <p>Авторы: {card.list.boardGame.author}</p>
-                                    <p>Год создания: {card.list.boardGame.year}</p>
-                                    <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
-                                        {card.list.boardGame.description}
-                                    </p>
-                                    <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
-                                                     handler={() => dispatch(takeFavorites({ id: id, user_id: user, toggler: true}))}/>
-
-                                </div>
-                            </div>
-                        </div>
+          <div key={userRecommendedGame.id} className="profile-game-box">
+            <div className="profile-block-guide">
+              <h1 className="page-header">{userRecommendedGame.title}</h1>
+              <NavLink to={`/game/${userRecommendedGame.id}`}>
+                <button className="game-button-profile">Страница игры</button>
+              </NavLink>
+              <div>
+                <div className="profile-image-descr-block">
+                  <div className="card-left">
+                    <div className="images-section">
+                      <div
+                        className="main-image image-bg rounded-lg"
+                        onClick={handleMainPhotoClick}
+                      >
+                        <img
+                          src={getImages(userRecommendedGame)[mainPhotoIndex]}
+                          className="main-img"
+                          alt="Заглавное изображение"
+                        />
+                      </div>
+                      <div className="preview-images">
+                        {getImages(userRecommendedGame).map((photo, index) => (
+                          <div
+                            key={index}
+                            className={
+                              mainPhotoIndex === index
+                                ? `profile-active-prev-img rounded-lg  image-bg`
+                                : `image-bg rounded-lg`
+                            }
+                          >
+                            <img
+                              className="profile-preview-image"
+                              src={photo}
+                              alt={`Альтернативное изображение ${index}`}
+                            />
+                          </div>
+                        ))}
+                      </div>
                     </div>
-/////////////////////////////////////////////////////////////////////////////////---------------------------------------------------------------
+                  </div>
+                  <div className="card-right">
+                    <p>Жанр: {userRecommendedGame.genre}</p>
+                    <p>Тематика: {userRecommendedGame.theme}</p>
+                    <p>Авторы: {userRecommendedGame.author}</p>
+                    <p>Год создания: {userRecommendedGame.year}</p>
+                    <p className="game-desc mb-6 text-gray-400 dark:text-gray-400">
+                      {userRecommendedGame.description}
+                    </p>
+                    <p className="text-[#ffd700]">
+                      Рейтинг сложности: {userRecommendedGame.difficulty}
+                    </p>
+                    <p className="text-[#ffd700]">
+                      Возможное количество игроков:{" "}
+                      {userRecommendedGame.players} чел.
+                    </p>
+                    <p className="text-[#ffd700]">
+                      Среднее время игры: {userRecommendedGame.time}
+                    </p>
+                    {/* <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
+                                                     handler={() => dispatch(takeFavorites({ user_id: user, game_id: userRecommendedGame.id, toggler: true}))}/> */}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </CustomTabPanel>
@@ -142,7 +245,7 @@ export default function ProfileMenuTab({
         {userFeedbacks.map((userFeedback) => (
           <div key={userFeedback.game_id} className="meeting-camp-box">
             <NavLink to={`/game/${userFeedback.game_id}`}>
-              <h2>Игра: {userFeedback.BoardGame.title}</h2>
+              <h2 className="h2-profile">Игра: {userFeedback.BoardGame.title}</h2>
             </NavLink>
             <p>
               {" "}
@@ -158,7 +261,7 @@ export default function ProfileMenuTab({
             className="meeting-camp-box"
           >
             <NavLink to={`/game/${userQuestionAndAnswers.game_id}`}>
-              <h2>Игра: {userQuestionAndAnswers.game}</h2>
+              <h2 className="h2-profile" >Игра: {userQuestionAndAnswers.game}</h2>
             </NavLink>
             <p>Ваш вопрос: {userQuestionAndAnswers.questions[0].question}</p>
             {userQuestionAndAnswers.questions[0].answers.map(

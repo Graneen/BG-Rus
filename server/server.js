@@ -9,12 +9,13 @@ const playerCampRouter = require("./routes/api/playerCamp.router");
 const gameMeetNewMeet = require("./routes/api/gameNewMeet.routes");
 const specialistRouter = require("./routes/views/specialist.routes");
 const bayerOrderRouter = require("./routes/api/bayerOrder.router");
-const commentBayersRouter = require("./routes/views/commentBayer.router")
+const commentBayersRouter = require("./routes/views/commentBayer.router");
 const localizationOrderRouter = require("./routes/views/localization.router");
 const favoritesRouter = require("./routes/api/favorites.router");
 const profileRouter = require("./routes/api/profile.router");
 const quizRouter = require("./routes/api/quiz.router");
-const estimatesRouter = require("./routes/api/estimates.router")
+const estimatesRouter = require("./routes/api/estimates.router");
+const updateUserRouter = require("./routes/api/updateuser.router");
 
 const app = express();
 const PORT = 3000;
@@ -30,12 +31,11 @@ app.use("/", specialistRouter);
 app.use("/", bayerOrderRouter);
 app.use("/", localizationOrderRouter);
 app.use("/", profileRouter);
-app.use('/', favoritesRouter);
-app.use('/', estimatesRouter);
-app.use('/', commentBayersRouter);
+app.use("/", favoritesRouter);
+app.use("/", estimatesRouter);
+app.use("/", commentBayersRouter);
 app.use("/api/quiz", quizRouter);
-
-
+app.use("/", updateUserRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started port: ${PORT}`);

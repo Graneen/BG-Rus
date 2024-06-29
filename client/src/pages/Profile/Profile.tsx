@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import axios from "axios";
+import ProfileModal from "../../modal/modalUserData/modalUserData";
 
 import ProfileMenuTab from "../../commons/profileMenuTab/ProfileMenuTab";
 
@@ -33,18 +34,6 @@ export interface userFeedbacks {
   description: string;
   game_id: number;
 }
-export interface userFavoriteGames {
-  players: string;
-  time: string;
-  title: string;
-  id: number;
-}
-export interface userRecommendedGames {
-  title: string;
-  id: number;
-  description: string;
-  time: string;
-}
 export interface question {
   answers: string[];
   question: string;
@@ -54,24 +43,40 @@ export interface userQuestionsAndAnswers {
   game_id: number;
   questions: question[];
 }
-
+export interface GameCard {
+  id: number;
+  poster: string;
+  image1: string;
+  image2: string;
+  video: string;
+  title: string;
+  genre: string;
+  theme: string;
+  year: string;
+  author: string;
+  description: string;
+  difficulty: string;
+  players: string;
+  minPlayers: number;
+  maxPlayers: number;
+  time: string;
+}
 const Profile: React.FC = () => {
   const user = localStorage.getItem("user");
   const [userFavoriteGames, setUserFavoriteGames] = useState<
-    userFavoriteGames[]
+  GameCard[]
   >([]);
   const [userFeedbacks, setUserFeedbacks] = useState<userFeedbacks[]>([]);
   const [userQuestionsAndAnswers, setUserQuestionsAndAnswers] = useState<
     userQuestionsAndAnswers[]
   >([]);
   const [userRecommendedGames, setUserRecommendedGames] = useState<
-    userRecommendedGames[]
+  GameCard[]
   >([]);
 
   const [userMeetings, setUserMeetings] = useState<userMeeting[]>([]);
   const [userCamps, setUserCamps] = useState<userCamps[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-
   useEffect(() => {
     const profileData = async () => {
       try {
@@ -95,54 +100,59 @@ const Profile: React.FC = () => {
     };
     profileData();
   }, []);
-
   return (
     <>
       {currentUser ? (
         <div className="profile-page-container">
+          <div>
           <div className="upper-block">
-            <h2>Данные пользователя:</h2>
+            <h2 className="h2-profile">Данные пользователя:</h2>
             <p>Имя: {currentUser.name}</p>
             <p>Email: {currentUser.email}</p>
-            <button>Изменить данные</button>
+            <ProfileModal  setCurrentUser={setCurrentUser}/>
           </div>
           <div className="middle-block">
-            <div>
+            <div className="middle-block-data">
               {userMeetings && userMeetings.length ? (
                 <>
-                  <h2>Вы зарегитсрированы на игротеки:</h2>
+                  <h2 className="h2-profile">Вы зарегитсрированы на игротеки:</h2>
                   {userMeetings.map((userMeeting) => (
                     <div key={userMeeting.id} className="meeting-camp-box">
-                      <h2>{userMeeting.gameName}</h2>
+                      <h2 className="h2-profile">{userMeeting.gameName}</h2>
                       <p>
                         Дата проведения:{" "}
                         {userMeeting.date
                           .replace("T", " ")
                           .replace(".000Z", "")}
                       </p>
+                      {" "}
                       <p>Место проведения: {userMeeting.location}</p>
                     </div>
                   ))}
                 </>
               ) : null}
             </div>
-            <div>
+            <div className="middle-block-data">
               {userCamps && userCamps.length ? (
                 <>
-                  <h2>Вы зарегитсрированы на игрокемпы:</h2>
+                  <h2 className="h2-profile">Вы зарегитсрированы на игрокемпы:</h2>
                   {userCamps.map((userCamp) => (
                     <div key={userCamp.id} className="meeting-camp-box">
-                      <h2>{userCamp.title}</h2>
-                      <p>
+                      <h2 className="h2-profile">{userCamp.title}</h2>
+                      <p>Дата проведения:{" "} 
                         {userCamp.date.replace("T", " ").replace(".000Z", "")}
                       </p>
-                      <p>{userCamp.location}</p>
+                      {" "}
+                      <p>Место проведения: {userCamp.location}</p>
                     </div>
                   ))}
                 </>
               ) : null}
             </div>
           </div>
+
+          </div>
+
           <section className="block-guide">
             <ProfileMenuTab
               userFavoriteGames={userFavoriteGames}
