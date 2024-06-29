@@ -56,7 +56,7 @@ function App(): JSX.Element {
             <Route path={"profile"} element={<Profile/>}/>
             <Route path={"buyers"} element={<BuyerPage/>}/>
             <Route path={"localisations"} element={<LocalisationPage/>}/>
-            <Route path={"quiz"} element={<QuizPage/>}/>
+            <Route path={"quiz"} element={<QuizPage setQuiz={null}/>}/>
 
           </Route>
       </Routes>
