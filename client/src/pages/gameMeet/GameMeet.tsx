@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import ModalForm from "../../modal/modalForm/ModalForm";
 import { setGameSessionDetails } from "../../features/gameSessionSlice";
 import { useDispatch } from "react-redux";
 import Modal from "react-modal";
+import { generateUUID } from 'three/src/math/MathUtils.js';
+import { MapModal } from '../../commons/MapModal';
 import "./GameMeet.css";
 
 import ModalCalendar from "../../modal/modalCalendar/ModalCalendar";
+import Maps from "../../maps/Maps";
+import UsersGameSessions from "../../usersGameSessions/UsersGameSessions";
 
 
 
-interface gameMeetsData {
+export interface gameMeetsData {
   id: number;
   game_id: number;
   name: string;
   contacts: string;
-  gameName: string; 
-  maxPlayers: number; 
+  gameName: string;
+  maxPlayers: number;
   location: string;
   img: string;
   place: number[];
@@ -30,13 +33,15 @@ const GameMeet: React.FC = () => {
   const [showFormModal, setShowFormModal] = useState(false);
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [gameMeets, setGameMeets] = useState<gameMeetsData[]>([]);
-  const navigate = useNavigate();
+  const [mapModal, setMapModal] = useState<boolean>(false);
+  const [meetModal, setMeetModal] = useState<number>(0);
+  const [gameSessionsAll, setGameSessionsAll] = useState<boolean>(false)
+
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
     setShowCalendarModal(false);
     setShowFormModal(false);
-
   };
 
   const handleCreateSession = () => {
@@ -51,12 +56,12 @@ const GameMeet: React.FC = () => {
   };
 
   const handleSuccessfulFormSubmit = () => {
-    setShowFormModal(false); 
+    setShowFormModal(false);
     setShowCalendarModal(false);
   };
 
-  const handleViewCalendars = () => {
-    navigate("/calendars");
+  const handleViewSessions = () => {
+    setGameSessionsAll(true)
   };
 
   useEffect(() => {
@@ -65,99 +70,55 @@ const GameMeet: React.FC = () => {
   }, []);
 
 
-  
+
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/meets`);
+      try {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/meets`);
 
-            if (response.ok) {
-                const data: gameMeetsData[] = await response.json();
-                setGameMeets(data);
-            } else {
-                console.error('Ошибка при загрузке данных');
-            }
-        } catch (error) {
-            console.error(error);
+        if (response.ok) {
+          const data: gameMeetsData[] = await response.json();
+          setGameMeets(data);
+        } else {
+          console.error('Ошибка при загрузке данных');
         }
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     fetchData();
-}, []);
-
-
- 
-
-type ValuePiece = Date | null;
-type Value = ValuePiece | ValuePiece[];
-
-const [value, setValue] = useState<Value>(new Date());
-
-
-useEffect(() => {
-  const temp: Value = gameMeets.map(obj => obj.date)
-  setValue(temp)
-}, [gameMeets]);
-
-console.log(gameMeets)
+  }, []);
 
   return (
     <div >
-                <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                  <h2 className="text-3xl p-4 text-[#ffd700]">ВСЕ ИГРОТЕКИ МОСКВЫ</h2>
-                    {/* <Calendar /> */}
-                  <div className="mt-2 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-4">
-                        {gameMeets && gameMeets.map((game, index) => { 
-                            return (
-                              // <MediaCard key={ index } game={ game }/>
-                            <div className=" group relative p-4">
-                                <button key={index} onClick={() => navigate(`/game/${game.game_id}`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                    <img
-                                        src={game.img}
-                                        className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
-                                    />
-                                </button>
-                                <div className="mt-4 flex justify-between">
-                                    <div>
-                                        <h2 className="game-title">
-                                            {game.gameName}
-                                        </h2>
-                                        {/* <FavoritesButton favorites={game.Users.length} handler={() => dispatch(takeFavorites({ user_id: user, game_id: game.id, toggler: true }))} /> */}
-                                        <div className="game-descr pt-[1vh]">
-                                            <p> <strong>Место проведения: </strong> {game.location}</p>
-                                            <p> <strong>Запланированное число участников: </strong>{ game.maxPlayers}</p>
-                                            <p> <strong>Организатор: </strong> {game.name}</p>
-                                        </div>
-                                    </div>
-                                </div>
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 className="mt-5 text-3xl text-[#ffd700]">ЧТО ТАКОЕ ИГРОТЕКИ?</h2>
+      <div className="text-base leading-7 text-gray-400">Игротека - мероприятие на котором все желающие могут познакомиться с самыми разнообразными настольными играми и присоединиться к игре, даже если не знают никого за столом. Организаторы делают все, чтобы гости чуствовали себя комфортно на мероприятии и легко знакомились с новыми людьми. У нас на сайте вы можете найти и забронировать место за столом на Игротеке для себя и друзей в нужный день или в любимом месте, и узнать последние новости!</div>
+        <h2 className="mt-10 text-3xl text-[#ffd700]">ИГРОВЫЕ СЕССИИ НА КАРТЕ</h2>
+        <Maps gameMeets={gameMeets} mapModal={mapModal} setMapModal={setMapModal} setMeetModal={setMeetModal} />
+        <div className="sessions-buttons-block mt-10">
+          <button
+          className={`w-[50%] mt-5 py-2.5 px-5 button-create ${isButtonActive ? "" : "mt-5 py-2.5 px-5 button-create-inactive"}`}
+          onClick={handleCreateSession}
+          disabled={!isButtonActive}
+        >
+          Создать собственную игросессию
+          </button>
+          <a href='#sessions' className="w-[50%] mt-5 py-2.5 px-5 text-center bg-white text-black font-semibold py-2 px-4 rounded shadow-xl" onClick={handleViewSessions}>
+            Записаться на игросессии других пользователей
+          </a>
+        </div>
+        {gameSessionsAll ? <UsersGameSessions gameMeets={gameMeets}/> : <></>}
+      </div>
 
-                            </div>
-                        )})}
-                    </div>
-                </div>
-            
-            
-            
-            
-            
-            
-            
-            <button
-                className={`button-create ${isButtonActive ? "" : "button-create-inactive"}`}
-                onClick={handleCreateSession}
-                disabled={!isButtonActive}
-              >
-              Создать игровую сессию
-            </button>
-        
-      <button className="bg-black hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded shadow-xl" onClick={handleViewCalendars}>
-        Записаться на игровую сессию
-      </button>
-  
+
+      {mapModal ? <div className="absolute object-left" id={generateUUID()}><MapModal mapModal={mapModal} setMapModal={setMapModal} meetModal={meetModal} /></div> : <></>}
+
       <Modal isOpen={showCalendarModal} onRequestClose={handleCloseModal}>
         <ModalCalendar setGameSessionDetails={handleGameSessionDetails} closeModal={handleCloseModal} />
       </Modal>
-  
+
       <Modal isOpen={showFormModal} onRequestClose={handleCloseModal}>
         <ModalForm onCloseModal={handleSuccessfulFormSubmit} />
       </Modal>
