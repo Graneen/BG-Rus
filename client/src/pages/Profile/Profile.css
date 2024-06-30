@@ -13,7 +13,41 @@
     gap: 5vw;
 }
 .meeting-camp-box{
-    border: 1px solid red;
-    padding: 5px;
+    border: 1px solid blue;
     margin: 5px;
+    border-radius: 8px;
+    padding: 10px;
 }
+.upper-block{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    border: 1px solid blue;
+    border-radius: 8px;
+    padding: 15px;
+    gap: 5px;
+    /* width: 45%; */
+
+}
+.data-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .middle-block-data{
+    width: 45%;
+  }
+  .h2-profile{
+    padding-bottom: 2vh;
+  }
+  .user-data-profile{
+    color:black
+  }
+  .user-data-profile{
+    border:none;
+    
+  }

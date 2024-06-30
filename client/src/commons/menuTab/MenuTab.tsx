@@ -46,8 +46,6 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
   const [reviews, setReviews] = React.useState<feedBack[]>([]);
   const [newReview, setNewReview] = React.useState('');
   const user = localStorage.getItem('user');
-
-
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -116,8 +114,6 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
   React.useEffect(() => {
     fetchReviews();
   }, [card.list.boardGame.id]);
-    
-
 
     return (
         <Box sx={{ width: '100%' }}>

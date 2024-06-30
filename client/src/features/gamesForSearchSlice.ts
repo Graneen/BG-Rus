@@ -5,13 +5,7 @@ import $api from "../services/axiosConfig/axiosConfig";
 
 export type GameCard = {
     id: number,
-    title: string,
-    genre: string,
-    theme: string,
-    year: string,
-    difficulty: string,
-    minPlayers: number,
-    maxPlayers: number,
+    title: string
 }
 
 export interface GamesListState {
