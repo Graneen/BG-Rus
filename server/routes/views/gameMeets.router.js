@@ -17,7 +17,6 @@ router.post("/game-meetings/news", async (req, res) => {
         time,
       } = req.body;
 
-      console.log(req.body, 'fsfsfs');
   
       const newGameMeeting = await GameMeeting.create({
         game_id,

@@ -46,6 +46,8 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
   const [reviews, setReviews] = React.useState<feedBack[]>([]);
   const [newReview, setNewReview] = React.useState('');
   const user = localStorage.getItem('user');
+
+
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -66,22 +68,21 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             game_id: card.list.boardGame.id,
             description: newReview,
           };
-
-         
-
           const response = await axios.post(
             'http://localhost:3000/api/feedbacks',
             newFeedback
           );
           const newReviewData: feedBack = {
-            id: response.data.id,
-            user_id: response.data.user_id,
-            game_id: response.data.game_id,
-            description: response.data.description,
-            createdAt: response.data.createdAt,
-            updatedAt: response.data.updatedAt,
+            id: response.data.feedback.id,
+            user_id: response.data.feedback.user_id,
+            userName: response.data.userName,
+            game_id: response.data.feedback.game_id,
+            description: response.data.feedback.description,
+            createdAt: response.data.feedback.createdAt,
+            updatedAt: response.data.feedback.updatedAt,
           };
           setReviews([...reviews, newReviewData]);
+          console.log(newReviewData)
           updateGameCardState({
             ...card,
             list: {
@@ -89,6 +90,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
               feedBackGame: [...card.list.feedBackGame, newReviewData],
             },
           });
+          
           setNewReview('');
         } catch (error) {
           console.error('Error submitting review:', error);
@@ -115,6 +117,8 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
     fetchReviews();
   }, [card.list.boardGame.id]);
 
+  
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -131,12 +135,12 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
                 </iframe>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                  {reviews.length > 0 ? reviews.map((el: feedBack, i: number) => (
-        <div key={i}>
-          <h2>Отзыв №{i + 1} от {el.User ? el.User.name : 'Анонимный пользователь'}</h2>
-          <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
-            {el.description}
-          </div>
+                  {reviews.length > 0 ? reviews.map((el: feedBack) => (
+                  <div key={el.id}>
+                    <h2>Отзыв №{el.id + 1} от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
+                    <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
+                      {el.description}
+                    </div>
         </div>
       )) : <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>}
         <div>
