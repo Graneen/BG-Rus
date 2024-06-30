@@ -41,19 +41,13 @@ function a11yProps(index: number) {
   };
 }
 
-export default function MenuTab({
-  card,
-  updateGameCardState,
-}: {
-  card: boardGameState;
-  updateGameCardState: (updatedCard: boardGameState) => void;
-}) {
+export default function MenuTab({card, updateGameCardState,}: {card: boardGameState;updateGameCardState: (updatedCard: boardGameState) => void;}) {
   const [value, setValue] = React.useState(0);
   const [reviews, setReviews] = React.useState<feedBack[]>([]);
   const [newReview, setNewReview] = React.useState('');
   const user = localStorage.getItem('user');
 
-<<<<<<< HEAD
+
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -75,7 +69,7 @@ export default function MenuTab({
             description: newReview,
           };
 
-          console.log(newFeedback);
+         
 
           const response = await axios.post(
             'http://localhost:3000/api/feedbacks',
@@ -97,7 +91,6 @@ export default function MenuTab({
               feedBackGame: [...card.list.feedBackGame, newReviewData],
             },
           });
-          console.log(response, 'FEEDBACKS');
           setNewReview('');
         } catch (error) {
           console.error('Error submitting review:', error);
@@ -114,6 +107,7 @@ export default function MenuTab({
         `http://localhost:3000/api/feedbacks/${card.list.boardGame.id}`
       );
       setReviews(response.data);
+      console.log(response, 'ответ')
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
@@ -124,8 +118,7 @@ export default function MenuTab({
   }, [card.list.boardGame.id]);
     
 
-=======
->>>>>>> 030a64500abd106c206f430ffe1012dd4869f81b
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -142,14 +135,14 @@ export default function MenuTab({
                 </iframe>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-            {reviews.length > 0 ? reviews.map((el: feedBack, i: number) => (
-  <div key={i}>
-    <h2>Отзыв №{i + 1} от {el.User ? el.User.name : 'Анонимный пользователь'}</h2>
-    <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
-      {el.description}
-    </div>
-  </div>
-)) : <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>}
+                  {reviews.length > 0 ? reviews.map((el: feedBack, i: number) => (
+        <div key={i}>
+          <h2>Отзыв №{i + 1} от {el.User ? el.User.name : 'Анонимный пользователь'}</h2>
+          <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
+            {el.description}
+          </div>
+        </div>
+      )) : <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>}
         <div>
             <input
             type="text"

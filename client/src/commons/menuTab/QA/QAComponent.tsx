@@ -32,37 +32,35 @@ const QAComponent: React.FC<Props> = ({ gameId }) => {
 
   const fetchQuestions = async () => {
     try {
-        
-      const response = await axios.get('http://localhost:3000/questions');
+      const response = await axios.get('http://localhost:3000/questions', {
+        params: { game_id: gameId }
+      });
       setQuestions(response.data);
     } catch (error) {
       console.error('Error fetching questions:', error);
     }
   };
-
   
-
   const submitQuestion = async () => {
     try {
       await axios.post('http://localhost:3000/questions', { user_id: Number(user), game_id: gameId, description: newQuestion });
       setNewQuestion('');
       fetchQuestions();
-     
     } catch (error) {
       console.error('Error submitting question:', error);
     }
   };
-
+  
   const submitAnswer = async (questionId: number) => {
     try {
       await axios.post('http://localhost:3000/answers', { user_id: Number(user), question_id: questionId, description: newAnswer });
       setNewAnswer('');
       fetchQuestions();
-      
     } catch (error) {
       console.error('Error submitting answer:', error);
     }
   };
+  
 
   useEffect(() => {
     fetchQuestions();
