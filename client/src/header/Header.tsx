@@ -6,7 +6,7 @@ import "./Header.css";
 import UserIcon from "../commons/UserIcon.tsx";
 import DropDown from "../commons/DropDown.tsx";
 import logout from "../services/checkAuthService/logout.service.ts";
-import Search from '../commons/Search/Search.tsx';
+import Search from '../commons/SearchHeader/SearchHeader.tsx';
 
 function Header(): JSX.Element {
   const { user, setUser } = useContext(AuthContext);
