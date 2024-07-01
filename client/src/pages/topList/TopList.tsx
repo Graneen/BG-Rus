@@ -29,16 +29,6 @@ export interface BoardGameData {
     updatedAt: string
 }
 
-// export interface BoardGameData {
-//     Users: Array<{toggler: boolean, name: string}>;
-//     id: number;
-//     title: string;
-//     genre: string;
-//     theme: string;
-//     difficulty: string;
-//     poster: string;
-// }
-
 const TopList: React.FC = () => {
     const { user } = useContext(AuthContext);
 
@@ -48,7 +38,6 @@ const TopList: React.FC = () => {
 
     const [boardGameData, setBoardGameData] = useState<BoardGameData[] | null>(null);
     const [sortGames, setSortGames] = useState<BoardGameData[] | null>(null);
-    // console.log(takeTheFavorites)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -74,7 +63,7 @@ const TopList: React.FC = () => {
             <div className="bg-gray">
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <h2 className="text-3xl p-4 text-[#ffd700]">TOP-100 ЛУЧШИХ ИГР ПО ВЕРСИИ BGRUS</h2>
-                    <SearchTopList boardGameData={boardGameData} sortGames={sortGames} setSortGames={setSortGames} />
+                    <SearchTopList boardGameData={boardGameData} setSortGames={setSortGames} />
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         { sortGames 
                             ?
