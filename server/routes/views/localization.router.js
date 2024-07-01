@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { LocalizationOrder, User } = require('../../db/models'); 
 
-router.get('/localization-orders', async (req, res) => {
+router.get('/api/localization-orders', async (req, res) => {
   try {
     const orders = await LocalizationOrder.findAll();
     res.json(orders);
@@ -12,7 +12,7 @@ router.get('/localization-orders', async (req, res) => {
   }
 });
 
-router.post('/localization-orders', async (req, res) => {
+router.post('/api/localization-orders', async (req, res) => {
   try {
     console.log(req.body)
     const { userId, gameTitle, description } = req.body
@@ -31,7 +31,7 @@ router.post('/localization-orders', async (req, res) => {
   }
 });
 
-router.post('/localization-orders/:id/comments', async (req, res) => {
+router.post('/api/localization-orders/:id/comments', async (req, res) => {
   console.log(req.body)
   try {
     const order = await LocalizationOrder.findByPk(req.params.id);
@@ -63,7 +63,7 @@ router.post('/localization-orders/:id/comments', async (req, res) => {
   }
 });
 
-router.post('/localization-orders/:orderId/comments/:commentId/replies', async (req, res) => {
+router.post('/api/localization-orders/:orderId/comments/:commentId/replies', async (req, res) => {
   
   try {
     const order = await LocalizationOrder.findByPk(req.params.orderId);
@@ -109,7 +109,7 @@ console.log(newReply)
   }
 });
 
-      router.get('/localization-orders/:id/comments', async (req, res) => {
+      router.get('api/localization-orders/:id/comments', async (req, res) => {
         try {
           const orderId = req.params.id;
           const order = await LocalizationOrder.findByPk(orderId);
