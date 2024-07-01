@@ -1,4 +1,5 @@
 .main-content {
+  width: 100%;
   display: flex;
   align-items: center;
   }
@@ -22,10 +23,7 @@
   .guide:nth-of-type(2n) .guide_description {
     order: 2;
   }
-  .guide_image img{
-    order: 1;
-    border-radius: 50%;
-  }
+
   .guide_description {
     width: 53.5%;
     display: flex;
@@ -100,20 +98,23 @@
     transform: rotate(360deg);
     animation: arrow-active 300ms ease-in-out alternate infinite;
   }
-  @keyframes arrow-active {
+  /* @keyframes arrow-active {
     from {
       margin-left: 0;
     }
     to {
       margin-left: .25em;
     }
-  }
+  } */
   .guide_image {
-    width: 38.71%;
+    width: 400px;
+    height: 400px;
     user-select: none;
   }
   .guide_image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    order: 1;
+    border-radius: 100%;
   }
