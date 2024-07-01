@@ -17,7 +17,7 @@ router.post("/game-meetings/news", async (req, res) => {
         time,
       } = req.body;
 
-  
+  console.log(req.body, 'begin')
       const newGameMeeting = await GameMeeting.create({
         game_id,
         name,
@@ -30,7 +30,7 @@ router.post("/game-meetings/news", async (req, res) => {
         date,
         time,
       });
-
+console.log(newGameMeeting, 'new')
       return res.status(201).json(newGameMeeting);
     } catch (error) {
       console.error("Error creating Game Meeting:", error);
