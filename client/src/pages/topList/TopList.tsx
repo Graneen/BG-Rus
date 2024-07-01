@@ -8,22 +8,46 @@ import { AuthContext } from '../../app/App';
 import SearchTopList from '../../commons/SearchTopList/SearchTopList';
 
 export interface BoardGameData {
-    Users: Array<{toggler: boolean, name: string}>;
-    id: number;
-    title: string;
-    genre: string;
-    theme: string;
-    difficulty: string;
-    poster: string;
+    Users: Array<{toggler: boolean, name: string}> | [],
+    id: number,
+    title: string,
+    genre: string,
+    theme: string,
+    difficulty: string,
+    poster: string,
+    image1: string,
+    image2: string,
+    author: string,
+    minPlayers: number,
+    maxPlayers: number,
+    players: string,
+    time: string,
+    video: string,
+    year: string,
+    description: string,
+    createdAt: string,
+    updatedAt: string
 }
+
+// export interface BoardGameData {
+//     Users: Array<{toggler: boolean, name: string}>;
+//     id: number;
+//     title: string;
+//     genre: string;
+//     theme: string;
+//     difficulty: string;
+//     poster: string;
+// }
 
 const TopList: React.FC = () => {
     const { user } = useContext(AuthContext);
+
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const takeTheFavorites = useAppSelector(selectFavoritesCard);
+
     const [boardGameData, setBoardGameData] = useState<BoardGameData[] | null>(null);
     const [sortGames, setSortGames] = useState<BoardGameData[] | null>(null);
-    const navigate = useNavigate();
     // console.log(takeTheFavorites)
 
     useEffect(() => {
@@ -50,7 +74,7 @@ const TopList: React.FC = () => {
             <div className="bg-gray">
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <h2 className="text-3xl p-4 text-[#ffd700]">TOP-100 ЛУЧШИХ ИГР ПО ВЕРСИИ BGRUS</h2>
-                    <SearchTopList boardGameData={boardGameData} setSortGames={setSortGames} />
+                    <SearchTopList boardGameData={boardGameData} sortGames={sortGames} setSortGames={setSortGames} />
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         { sortGames 
                             ?
