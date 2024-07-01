@@ -11,6 +11,8 @@ interface TabPanelProps {
   index: number;
   value: number;
 }
+
+
 const tabStyler = {
     color: 'var(--goldenbeer)',
     fontFamily: 'ROSTOV',
@@ -123,7 +125,9 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
     } else {
       fetchReviews();
     }
-  }, []);
+  }, [card.list.boardGame.id]);
+
+  const filteredReviews = reviews.filter((review) => review.game_id === card.list.boardGame.id);
 
   
 
@@ -160,10 +164,10 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             Оставить отзыв
           </button>
         </div>
-        {reviews.length > 0 ? (
-          reviews.map((el: feedBack) => (
+        {filteredReviews.length > 0 ? (
+          filteredReviews.map((el) => (
             <div key={el.id}>
-              <h2>Отзыв №{el.id + 1} от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
+              <h2>Отзыв #{el.id} от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
               <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
                 {el.description}
               </div>

@@ -38,6 +38,8 @@ interface ModalFormProps {
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+
+      const imageUrl = imgInput || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJY6pNBO1wxk8BH5uPMKz7mLEzk-Y1z-9IMw&s";
       const response = await axios.post("http://localhost:3000/game-meetings/news", {
         game_id: null,
         name: nameInput,
@@ -45,7 +47,7 @@ interface ModalFormProps {
         gameName: gameNameInput,
         maxPlayers: maxPlayersInput,
         location: locationAddress,
-        img: imgInput || "",
+        img: imageUrl,
         place: placeInput ? placeInput.split(",").map((coord) => parseFloat(coord.trim())) : [0, 0],
         date,
         time: timeInput,
