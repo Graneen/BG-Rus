@@ -52,7 +52,12 @@ function SearchTopList({boardGameData, setSortGames}: {boardGameData: BoardGameD
     }));
 
     function handlerOpenSearch(): void {
-        startSort ? setStartSort(false) : setStartSort(true);
+        if (startSort) {
+            setStartSort(false);
+            setDataSort(initDataSort);
+        } else {
+            setStartSort(true);
+        }
     }
 
     function getValue({titleKey, titleValue}: {titleKey: string, titleValue: string}): void {
