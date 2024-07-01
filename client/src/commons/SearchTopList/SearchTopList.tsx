@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BoardGameData } from "../../pages/topList/TopList";
+import "./SearchTopList.css"
 
 type typesSearchFields = {
     id: number,
@@ -40,7 +41,7 @@ function SearchTopList({boardGameData, setSortGames}: {boardGameData: BoardGameD
     const allYears: string[] = ["Не выбрано", "1935", "1970", "1971", "1974", "1982", "1986", "1987", "1994", "1995", "1997", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
 
     const titlesKey: string[] = ["genre", "theme", "minPlayers", "maxPlayers", "difficulty", "year"];
-    const titlesForm: string[] = ["Жанр", "Тематика", "Минимальное количество игроков", "Максимальное количество игроков", "Сложность", "Год создания игры"];
+    const titlesForm: string[] = ["Жанр", "Тематика", "Min игроков", "Max игроков", "Сложность", "Год создания"];
     const titlesArray: string[][] = [allGenres, allThemes, allMinPlayers, allMaxPlayers, allDifficulties, allYears];
 
     const dataForSearchForms: typesSearchFields[] = titlesForm.map((titleForm: string, index: number) => ({
@@ -116,33 +117,38 @@ function SearchTopList({boardGameData, setSortGames}: {boardGameData: BoardGameD
     }, [dataSort, inputData])
 
     return (
-        <div>
-            <div onClick={handlerOpenSearch} className="cursor-pointer w-32">Сортировка игр</div>
-            {
-                startSort && 
-                <>
-                    <input
-                        type="text"
-                        className="text-black rounded-lg w-80"
-                        placeholder="Введите название игры"
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setInputData(event.target.value)}
-                    />
-                    <div className="ml-20">
-                        {dataForSearchForms.map((dataForm) => {
-                            return (
-                                <form key={dataForm.id}>
-                                    <label htmlFor={`${dataForm.titleKey}-select`}>{dataForm.titleForm}</label>
-                                    <select onChange={(e) => getValue({titleKey: dataForm.titleKey, titleValue: e.target.value})} name={`${dataForm.titleKey}`} id={`${dataForm.titleKey}-select`} className="text-black rounded-lg ml-2">
-                                        {dataForm.titleArray.map((genre, idx) => {
-                                            return <option key={idx} value={genre} className="text-black">{genre}</option>
-                                        })}
-                                    </select>
-                                </form>
-                            )
-                        })}
-                    </div>
-                </>
-            }
+        <div className="text-center">
+            <div
+                onClick={handlerOpenSearch}
+                className={`cursor-pointer w-36 mb-2 ml-5 p-2 rounded-full border-2 border-double ${startSort ? "text-amber-500 border-yellow-500" : "border-yellow-800"}`}
+            >Сортировка игр</div>
+            {startSort && 
+            <div className="border-sky-600 rounded-t-lg border-4 border-double">
+                <input
+                    type="text"
+                    className="text-black rounded-lg w-80 mt-2 ml-5 border-yellow-500 border-2"
+                    placeholder="Введите название игры"
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setInputData(event.target.value)}
+                />
+                <div className="m-2 flex md:flex-row flex-col justify-between flexboxStyle">
+                    {dataForSearchForms.map((dataForm) => {
+                        return (
+                            <form key={dataForm.id} className="m-1">
+                                <label htmlFor={`${dataForm.titleKey}-select`} className="m-1">{dataForm.titleForm}</label>
+                                <select
+                                    onChange={(e) => getValue({titleKey: dataForm.titleKey, titleValue: e.target.value})}
+                                    name={`${dataForm.titleKey}`}
+                                    id={`${dataForm.titleKey}-select`}
+                                    className="text-black rounded-lg ml-2 border-yellow-500 border-2">
+                                    {dataForm.titleArray.map((genre, idx) => {
+                                        return <option key={idx} value={genre} className="text-black">{genre}</option>
+                                    })}
+                                </select>
+                            </form>
+                        )
+                    })}
+                </div>
+            </div>}
         </div>
     );
 }
