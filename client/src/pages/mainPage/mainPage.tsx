@@ -10,6 +10,7 @@ import CarouselBlock from '../../carousel/CarouselBlock';
 function MainPage(): JSX.Element {
     const { user } = useContext(AuthContext);
     const [username, setUsername] = useState('');
+    const [quizFinished, setQuizFinished] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -31,6 +32,27 @@ function MainPage(): JSX.Element {
         }
         fetchData();
     },[user])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (user) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/quiz/${user}`);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log(data)
+                        setQuizFinished(data);
+                    } else {
+                        console.error('Ошибка при загрузке данных');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();
+    },[username])
 
 
     
@@ -67,7 +89,7 @@ function MainPage(): JSX.Element {
                 <div className="hero_description">
                     <h1>{user ? `ПРИВЕТ, ${username.toUpperCase()}!`: `ДАВАЙ ЗНАКОМИТЬСЯ?`}</h1>
                     <p className="hero_post-text">
-                        <span className="scroll-text">{user ? `скролль вниз и узнай, что нового в мире настолок` : `крути колесо мыши вниз, и пройди 3 простых шага`}</span>
+                        <span className="scroll-text">{quizFinished ? `скролль вниз и узнай, что нового в мире настолок` : `крути колесо мыши вниз, и пройди 3 простых шага`}</span>
                         <span className="scroll-icon">
                             <ArrowIcon/>
                         </span>
@@ -75,7 +97,7 @@ function MainPage(): JSX.Element {
                 </div>
                 <div className="height"></div>
             </section>
-                {user ? <CarouselBlock/> : <Steps />}
+                {quizFinished ? <CarouselBlock/> : <Steps />}
         </>);
 }
 

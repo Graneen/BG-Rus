@@ -46,7 +46,7 @@
     color: var(--accent);
     font-family: 'ROSTOV';
     text-transform: uppercase;
-    font-size: .77em;
+    font-size: 1.0em;
     font-weight: 600;
     letter-spacing: .37em;
   }
@@ -62,6 +62,7 @@
   .guide_description h1 {
     color: var(--goldenbeer);
     font-family: 'ROSTOV', normal;
+    letter-spacing: .07em;
     font-size: 3em;
     font-weight: 500;
   }
@@ -75,15 +76,16 @@
     display: flex;
   }
   .more_text {
-    font-size: .7rem;
+    font-size: 1.7rem;
+    margin-top: 2vh;
     margin-right: .6em;
     color: var(--accent);
     font-family: 'ROSTOV', normal;
     transition: all 150ms linear;
   }
   .more_icon {
-    width: .9em;
-    margin-top: -.035em;
+    width: 1.2em;
+    margin-top: 2em;
     transition: all 200ms ease-in-out;
   }
   .more_icon svg {

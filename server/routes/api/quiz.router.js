@@ -4,6 +4,21 @@ const { Quiz } = require("../../db/models");
 
 const quizRouter = express.Router();
 
+
+quizRouter.get('/:id', async (req, res) => {
+    const { id } = req.params
+    try {
+      const quizFinished = await Quiz.findOne({ where: { user_id: Number(id) }});
+      if (quizFinished) {
+        res.json(true)
+      }
+      return res.json(false);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
 quizRouter.post("/", async (req, res) => {
     try {
         const { finalyData: { user_id, theme, genre, players }} = req.body;

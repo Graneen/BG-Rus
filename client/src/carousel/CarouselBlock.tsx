@@ -2,37 +2,41 @@
 import { useState } from 'react';
 import '../steps/Steps.css'
 import { NavLink, useNavigate } from 'react-router-dom';
+import { Carousel } from 'antd';
+
+const contentStyle: React.CSSProperties = {
+    height: '560px',
+    width: '100%',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+};
 
 
 function CarouselBlock() {
-    const [ quiz, setQuiz ] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    function quizHandler() {
-        const user = localStorage.getItem("user");
-        if (user) {
-            quiz ? setQuiz(false) : setQuiz(true);
-        } else {
-            navigate("/login");
-        }
-    }
 
     return (
         <>
-            <section className="main-content">
-                <section className="guides">
-                        <div className="guide" id="guide1">
-                            <div className="guide_description">
-                                <div className="guide_number">01</div>
-                                <p className="hero_pre-text">КВИЗ</p>
-                                <h1>Какой ты игрок?</h1>
-                                    <CarouselBlock/>
-                            </div>
-                            <div className="guide_image"><img className="shadow-2xl shadow-[#f1f1f1]" src='https://trueimages.ru/img/e6/18/46b71766.png' alt="" /></div>
-                        </div>
-
-                </section>
-            </section>
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 className="mt-5 text-3xl text-[#ffd700]">ЧТО ТАКОЕ ИГРОТЕКИ?</h2>
+            <Carousel autoplay>
+                <div>
+                    <h3 style={contentStyle}>1</h3>
+                </div>
+                <div>
+                    <h3 style={contentStyle}>2</h3>
+                </div>
+                <div>
+                    <h3 style={contentStyle}>3</h3>
+                </div>
+                <div>
+                    <h3 style={contentStyle}>4</h3>
+                </div>
+            </Carousel>
+        </div>
         </>
     );
 }
