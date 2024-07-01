@@ -5,14 +5,15 @@ const { Question, Answer, User } = require('../../db/models');
 
 router.get('/questions', async (req, res) => {
   try {
+    const { game_id } = req.query;
     const questions = await Question.findAll({
+      where: { game_id },
       include: [
-        { model: User, attributes: ["name"] }, 
-        { model: Answer, include: { model: User, attributes: ["name"] } } 
+        { model: User, attributes: ["name"] },
+        { model: Answer, include: { model: User, attributes: ["name"] } }
       ],
     });
     res.json(questions);
-    console.log(questions)
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });

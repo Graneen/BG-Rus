@@ -11,6 +11,8 @@ interface TabPanelProps {
   index: number;
   value: number;
 }
+
+
 const tabStyler = {
     color: 'var(--goldenbeer)',
     fontFamily: 'ROSTOV',
@@ -41,17 +43,13 @@ function a11yProps(index: number) {
   };
 }
 
-export default function MenuTab({
-  card,
-  updateGameCardState,
-}: {
-  card: boardGameState;
-  updateGameCardState: (updatedCard: boardGameState) => void;
-}) {
+export default function MenuTab({card, updateGameCardState,}: {card: boardGameState;updateGameCardState: (updatedCard: boardGameState) => void;}) {
   const [value, setValue] = React.useState(0);
   const [reviews, setReviews] = React.useState<feedBack[]>([]);
   const [newReview, setNewReview] = React.useState('');
   const user = localStorage.getItem('user');
+
+
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -72,22 +70,23 @@ export default function MenuTab({
             game_id: card.list.boardGame.id,
             description: newReview,
           };
-
-          console.log(newFeedback);
-
           const response = await axios.post(
             'http://localhost:3000/api/feedbacks',
             newFeedback
           );
           const newReviewData: feedBack = {
-            id: response.data.id,
-            user_id: response.data.user_id,
-            game_id: response.data.game_id,
-            description: response.data.description,
-            createdAt: response.data.createdAt,
-            updatedAt: response.data.updatedAt,
+            id: response.data.feedback.id,
+            user_id: response.data.feedback.user_id,
+            userName: response.data.userName,
+            game_id: response.data.feedback.game_id,
+            description: response.data.feedback.description,
+            createdAt: response.data.feedback.createdAt,
+            updatedAt: response.data.feedback.updatedAt,
           };
           setReviews([...reviews, newReviewData]);
+          const updatedReviews = [...reviews, newReviewData];
+          localStorage.setItem('savedReviews', JSON.stringify(updatedReviews));
+          console.log(newReviewData)
           updateGameCardState({
             ...card,
             list: {
@@ -95,8 +94,8 @@ export default function MenuTab({
               feedBackGame: [...card.list.feedBackGame, newReviewData],
             },
           });
-          console.log(response, 'FEEDBACKS');
-          setNewReview('');
+          
+          setNewReview(() => '');
         } catch (error) {
           console.error('Error submitting review:', error);
         }
@@ -112,57 +111,75 @@ export default function MenuTab({
         `http://localhost:3000/api/feedbacks/${card.list.boardGame.id}`
       );
       setReviews(response.data);
+      localStorage.setItem('savedReviews', JSON.stringify(response.data));
+      console.log(response, 'ответ')
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
   };
 
   React.useEffect(() => {
-    fetchReviews();
+    const storedReviews = localStorage.getItem('savedReviews');
+    if (storedReviews) {
+      setReviews(JSON.parse(storedReviews));
+    } else {
+      fetchReviews();
+    }
   }, [card.list.boardGame.id]);
+
+  const filteredReviews = reviews.filter((review) => review.game_id === card.list.boardGame.id);
+
+  
+
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs">
-                    <Tab sx={tabStyler} label="Видеообзор" {...a11yProps(0)} />
-                    <Tab sx={tabStyler} {...a11yProps(0)} label="Отзывы" {...a11yProps(1)} />
-                    <Tab sx={tabStyler} label="Вопрос-ответ" {...a11yProps(2)} />
-                </Tabs>
-            </Box>
-            <CustomTabPanel value={value} index={0}>
-                <iframe className="w-full h-[70vh]" src={`https://www.youtube.com/embed/${card.list.boardGame.video.slice(17)}`}
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-                </iframe>
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-            {reviews.length > 0 ? reviews.map((el: feedBack, i: number) => (
-  <div key={i}>
-    <h2>Отзыв №{i + 1} от {el.User ? el.User.name : 'Анонимный пользователь'}</h2>
-    <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
-      {el.description}
-    </div>
-  </div>
-)) : <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>}
+      <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs">
+          <Tab sx={tabStyler} label="Видеообзор" {...a11yProps(0)} />
+          <Tab sx={tabStyler} {...a11yProps(0)} label="Отзывы" {...a11yProps(1)} />
+          <Tab sx={tabStyler} label="Вопрос-ответ" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        <iframe
+          className="w-full h-[70vh]"
+          src={`https://www.youtube.com/embed/${card.list.boardGame.video.slice(17)}`}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
         <div>
-            <input
+          <input
             type="text"
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
             placeholder="Оставьте отзыв"
-            className="border border-gray-300 rounded-md p-2 w-full text-black"
-            />
-            <button
+            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2"
+          />
+          <button
             onClick={submitReview}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2"
-            >
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          >
             Оставить отзыв
-            </button>
+          </button>
         </div>
-        </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-            <QAComponent gameId={card.list.boardGame.id} />
-        </CustomTabPanel>
-        </Box>
-    );
+        {filteredReviews.length > 0 ? (
+          filteredReviews.map((el) => (
+            <div key={el.id}>
+              <h2>Отзыв #{el.id} от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
+              <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
+                {el.description}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>
+        )}
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <QAComponent gameId={card.list.boardGame.id} />
+      </CustomTabPanel>
+    </Box>
+  );
 }
