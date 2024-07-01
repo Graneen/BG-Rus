@@ -7,6 +7,8 @@
 
 .game-title {
     color: var(--goldenbeer);
+    letter-spacing: .05em;
+    font-size: 1.3rem;
     font-family: 'ROSTOV', normal;
 }
 

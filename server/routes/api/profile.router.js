@@ -17,6 +17,19 @@ const {
   Quiz,
 } = require("../../db/models");
 
+
+router.get('/api/users/:id', async (req, res) => {
+  try {
+      const { id } = req.params;
+
+      const userData = await User.findOne({where: {id: Number(id)}});
+      console.log(userData.dataValues.name)
+      return res.json(userData.dataValues.name);
+  } catch (error) {
+      console.log({error: 'Ошибка при получении имени пользователя'});
+  }
+});
+
 router.get("/api/profile/:id", async (req, res) => {
   try {
     const user = req.params.id;
