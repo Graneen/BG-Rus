@@ -24,14 +24,15 @@ function Search() {
         setOpenListSearch(false);
     }
 
+    function handlerOpenSearch() {
+        setOpenSearch(true);
+        dispatch(getGames());
+    }
+
     function handlerFoundGame(gameId: number) {
         handlerButtonClose();
         navigate(`/game/${gameId}`);
     }
-
-    useEffect(() => {
-        dispatch(getGames());
-    }, [])
 
     return (
         <div>
@@ -40,7 +41,7 @@ function Search() {
                 <div className="w-56 flex justify-end relative">
                     <img
                         className="w-5 cursor-pointer"
-                        onClick={() => setOpenSearch(true)}
+                        onClick={handlerOpenSearch}
                         src="https://png.klev.club/uploads/posts/2024-03/png-klev-club-p-lupa-ikonka-png-30.png"
                         alt="search"
                     />
