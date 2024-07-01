@@ -82,6 +82,8 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             updatedAt: response.data.feedback.updatedAt,
           };
           setReviews([...reviews, newReviewData]);
+          const updatedReviews = [...reviews, newReviewData];
+          localStorage.setItem('savedReviews', JSON.stringify(updatedReviews));
           console.log(newReviewData)
           updateGameCardState({
             ...card,
@@ -91,7 +93,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             },
           });
           
-          setNewReview('');
+          setNewReview(() => '');
         } catch (error) {
           console.error('Error submitting review:', error);
         }
@@ -107,6 +109,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
         `http://localhost:3000/api/feedbacks/${card.list.boardGame.id}`
       );
       setReviews(response.data);
+      localStorage.setItem('savedReviews', JSON.stringify(response.data));
       console.log(response, 'ответ')
     } catch (error) {
       console.error('Error fetching reviews:', error);
@@ -114,54 +117,65 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
   };
 
   React.useEffect(() => {
-    fetchReviews();
-  }, [card.list.boardGame.id]);
+    const storedReviews = localStorage.getItem('savedReviews');
+    if (storedReviews) {
+      setReviews(JSON.parse(storedReviews));
+    } else {
+      fetchReviews();
+    }
+  }, []);
 
   
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs">
-                    <Tab sx={tabStyler} label="Видеообзор" {...a11yProps(0)} />
-                    <Tab sx={tabStyler} {...a11yProps(0)} label="Отзывы" {...a11yProps(1)} />
-                    <Tab sx={tabStyler} label="Вопрос-ответ" {...a11yProps(2)} />
-                </Tabs>
-            </Box>
-            <CustomTabPanel value={value} index={0}>
-                <iframe className="w-full h-[70vh]" src={`https://www.youtube.com/embed/${card.list.boardGame.video.slice(17)}`}
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-                </iframe>
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-                  {reviews.length > 0 ? reviews.map((el: feedBack) => (
-                  <div key={el.id}>
-                    <h2>Отзыв №{el.id + 1} от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
-                    <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
-                      {el.description}
-                    </div>
-        </div>
-      )) : <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>}
+      <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs">
+          <Tab sx={tabStyler} label="Видеообзор" {...a11yProps(0)} />
+          <Tab sx={tabStyler} {...a11yProps(0)} label="Отзывы" {...a11yProps(1)} />
+          <Tab sx={tabStyler} label="Вопрос-ответ" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        <iframe
+          className="w-full h-[70vh]"
+          src={`https://www.youtube.com/embed/${card.list.boardGame.video.slice(17)}`}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
         <div>
-            <input
+          <input
             type="text"
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
             placeholder="Оставьте отзыв"
-            className="border border-gray-300 rounded-md p-2 w-full text-black"
-            />
-            <button
+            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2"
+          />
+          <button
             onClick={submitReview}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2"
-            >
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          >
             Оставить отзыв
-            </button>
+          </button>
         </div>
-        </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-            <QAComponent gameId={card.list.boardGame.id} />
-        </CustomTabPanel>
-        </Box>
-    );
+        {reviews.length > 0 ? (
+          reviews.map((el: feedBack) => (
+            <div key={el.id}>
+              <h2>Отзыв №{el.id + 1} от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
+              <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
+                {el.description}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>
+        )}
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <QAComponent gameId={card.list.boardGame.id} />
+      </CustomTabPanel>
+    </Box>
+  );
 }

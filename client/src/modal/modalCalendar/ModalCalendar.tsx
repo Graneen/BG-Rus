@@ -23,6 +23,7 @@ const ModalCalendar: React.FC<ModalCalendarProps> = ({ setGameSessionDetails, cl
   };
 
   const handleCloseModal = () => {
+    
     closeModal();
     navigate("/events");
   };
