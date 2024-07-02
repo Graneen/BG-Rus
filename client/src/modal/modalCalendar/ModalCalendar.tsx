@@ -48,7 +48,7 @@ const ModalCalendar: React.FC<ModalCalendarProps> = ({ setGameSessionDetails, cl
             <input
               value={(selectedDate && selectedDate.toISOString().slice(0, 10)) || ""}
               readOnly
-              placeholder="Select Date"
+              placeholder="Выбрать дату"
               className="w-full px-3 py-2 rounded border border-black text-black" 
             />
             <FaCalendarAlt 
@@ -60,7 +60,7 @@ const ModalCalendar: React.FC<ModalCalendarProps> = ({ setGameSessionDetails, cl
             selected={selectedDate}
             onChange={handleDateChange}
             dateFormat="MM/dd/yyyy"
-            placeholderText="Select Date"
+            placeholderText="Выбрать дату"
             customInput={
               <div className="custom-input">
               

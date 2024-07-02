@@ -9,12 +9,11 @@ import "./ModalForm.css";
 
 
 interface ModalFormProps {
-  
- 
   onCloseModal: () => void;
+  updateGameMeets: (newGameMeet: gameMeetsData) => void;
   }
 
-  const ModalForm: React.FC<ModalFormProps> = ({ onCloseModal }) => {
+  const ModalForm: React.FC<ModalFormProps> = ({ onCloseModal, updateGameMeets }) => {
   const { date, gameName, maxPlayers, venue } = useSelector((state: RootState) => state.gameSession);
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
@@ -67,6 +66,7 @@ console.log('placeInput:', placeInput);
           venue: locationAddress,
         })
       );
+      updateGameMeets(response.data);
 
       setTimeout(() => {
         onCloseModal();
