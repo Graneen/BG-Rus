@@ -171,7 +171,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
         filteredReviews.map((el) => (
           <div key={el.id} className="mb-8">
             <div className="flex items-center mb-2">
-              <h2 className="mr-2">Отзыв #{el.id} от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
+              <h2 className="mr-2">Отзыв от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
             </div>
             <div className="bg-sky-500/50 p-2 rounded-lg max-w-[300px] overflow-hidden">
               {el.description}

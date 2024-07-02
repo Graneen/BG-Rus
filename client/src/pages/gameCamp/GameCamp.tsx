@@ -18,6 +18,8 @@ const GameCamp: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [showEmailModal, setShowEmailModal] = useState<boolean>(false);
 
+  
+
   useEffect(() => {
     const fetchGameCamps = async () => {
       try {
@@ -64,7 +66,8 @@ const GameCamp: React.FC = () => {
   
         console.log('Успешно:', response.data);
         setShowSuccessModal(true); 
-        setShowEmailModal(false); 
+        setShowEmailModal(false);
+        setUserEmail(''); 
       } else {
         setShowErrorModal(true);
         setErrorMessage('UserID не найден.');
