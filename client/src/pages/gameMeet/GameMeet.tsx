@@ -10,7 +10,6 @@ import "./GameMeet.css";
 import ModalCalendar from "../../modal/modalCalendar/ModalCalendar";
 import Maps from "../../maps/Maps";
 import UsersGameSessions from "../../usersGameSessions/UsersGameSessions";
-import CarouselBlock from "../../carousel/CarouselBlock";
 
 
 
