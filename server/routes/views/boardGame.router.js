@@ -9,7 +9,7 @@ const {
 } = require("../../db/models");
 
 router.get("/api/boardgames/:id", async (req, res) => {
-  // console.log(req.params)
+  console.log(req.params)
   const { id } = req.params;
   try {
     const boardGames = await BoardGame.findAll({

@@ -17,17 +17,42 @@ const {
   Quiz,
 } = require("../../db/models");
 
+router.get('/api/main/recommended/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      let recommendedGames = [];
+
+      const boardGames = await BoardGame.findAll({ where: { id } });
+      const searchGames = JSON.parse(JSON.stringify(boardGames));
+
+      const recommendedAndAddGames = searchGames.filter((game) => {
+        return (
+          quizTheme.some((theme) => game.theme.includes(theme)) ||
+          quizGenre.some((genre) => game.genre.includes(genre))
+        );
+      });
+
+      recommendedGames = recommendedAndAddGames
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4)
+        // console.log(recommendedGames)
+      return res.json(recommendedGames);
+  } catch (error) {
+      console.log({error: 'Ошибка при получении рекомендаций'});
+  }
+});
 
 router.get('/api/users/:id', async (req, res) => {
-  try {
+  // try {
       const { id } = req.params;
 
       const userData = await User.findOne({where: {id: Number(id)}});
-      console.log(userData.dataValues.name)
-      return res.json(userData.dataValues.name);
-  } catch (error) {
-      console.log({error: 'Ошибка при получении имени пользователя'});
-  }
+      const userDataClear = JSON.parse(JSON.stringify(userData))
+      // console.log({userData: userDataClear})
+      return res.json(userDataClear.name);
+  // } catch (error) {
+  //     console.log({error: 'Ошибка при получении имени пользователя'});
+  // }
 });
 
 router.get("/api/profile/:id", async (req, res) => {
@@ -170,5 +195,8 @@ router.get("/api/profile/:id", async (req, res) => {
     res.status(500).json({ error: "Error while get profile first data" });
   }
 });
+
+
+
 
 module.exports = router;
