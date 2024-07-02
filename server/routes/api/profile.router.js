@@ -17,14 +17,50 @@ const {
   Quiz,
 } = require("../../db/models");
 
+router.get('/api/main/recommended/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log({id})
+  try {
+    let recommendedGames = [];
+    const userQuiz = await Quiz.findOne({ where: { user_id: Number(id) } });
+    const userQuizResult = JSON.parse(JSON.stringify(userQuiz));
+    if (userQuizResult) {
+      const quizTheme = userQuizResult.theme.split(",");
+      const quizGenre = userQuizResult.genre.split(",");
+
+      const userSearchGames = await BoardGame.findAll({
+        where: {
+          minPlayers: { [Op.lte]: userQuizResult.players },
+          maxPlayers: { [Op.gte]: userQuizResult.players },
+        },
+      });
+      const searchGames = JSON.parse(JSON.stringify(userSearchGames));
+
+      const recommendedAndAddGames = searchGames.filter((game) => {
+        return (
+          quizTheme.some((theme) => game.theme.includes(theme)) ||
+          quizGenre.some((genre) => game.genre.includes(genre))
+        );
+      });
+
+      recommendedGames = recommendedAndAddGames
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 4);
+    }
+      return res.json(recommendedGames);
+  } catch (error) {
+      console.log({error: 'Ошибка при получении рекомендаций'});
+  }
+});
 
 router.get('/api/users/:id', async (req, res) => {
   try {
       const { id } = req.params;
 
       const userData = await User.findOne({where: {id: Number(id)}});
-      console.log(userData.dataValues.name)
-      return res.json(userData.dataValues.name);
+      const userDataClear = JSON.parse(JSON.stringify(userData))
+      // console.log({userData: userDataClear})
+      return res.json(userDataClear.name);
   } catch (error) {
       console.log({error: 'Ошибка при получении имени пользователя'});
   }
@@ -170,5 +206,8 @@ router.get("/api/profile/:id", async (req, res) => {
     res.status(500).json({ error: "Error while get profile first data" });
   }
 });
+
+
+
 
 module.exports = router;

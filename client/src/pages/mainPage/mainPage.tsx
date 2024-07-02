@@ -4,58 +4,123 @@ import Steps from '../../steps/Steps';
 
 import './mainPage.css';
 import { AuthContext } from '../../app/App';
-import CarouselBlock from '../../carousel/CarouselBlock';
+import { data } from '../../features/addToFavoritesSlice';
+import { gameMeetsData } from '../gameMeet/GameMeet';
 
 
 function MainPage(): JSX.Element {
     const { user } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [quizFinished, setQuizFinished] = useState<boolean>(false);
+    const [someFavorites, setSomeFavorites] = useState<data[]>([]);
+    const [someRecs, setSomeRecs] = useState([]);
+    const [someMeets, setSomeMeets] = useState([]);
+
 
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchUserData = async () => {
             try {
                 if (user) {
                     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/users/${user}`);
 
                     if (response.ok) {
                         const data = await response.json();
+                        console.log({usernameFetch: data})
                         setUsername(data);
                     } else {
-                        console.error('Ошибка при загрузке данных');
+                        console.error('Ошибка при загрузке данных об имени пользователя');
                     }
                 }
             } catch (error) {
                 console.error(error);
             }
         }
-        fetchData();
+        fetchUserData();
     },[user])
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchQuizFinishData = async () => {
             try {
-                if (user) {
+                if (username) {
                     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/quiz/${user}`);
 
                     if (response.ok) {
                         const data = await response.json();
-                        console.log(data)
-                        setQuizFinished(data);
+                        console.log(data.statusQuiz)
+                        setQuizFinished(data.statusQuiz);
                     } else {
-                        console.error('Ошибка при загрузке данных');
+                        console.error('Ошибка при загрузке данных о прохождении входного квиза');
                     }
                 }
             } catch (error) {
                 console.error(error);
             }
         }
-        fetchData();
-    },[username])
+        fetchQuizFinishData();
+    },[user, username])
 
+    useEffect(() => {
+        const fetchFavoritesData = async () => {
+            try {
+                if (user) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/favorite/${user}`);
 
+                    if (response.ok) {
+                        const data = await response.json();
+                        setSomeFavorites(data);
+                    } else {
+                        console.error('Ошибка при загрузке данны об избранном');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchFavoritesData();
+    },[user, username])
+
+    useEffect(() => {
+        const fetchRecsData = async () => {
+            try {
+                if (quizFinished) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/main/recommended/${user}`);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        setSomeRecs(data);
+                    } else {
+                        console.error('Ошибка при загрузке данных о рекомендованном');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchRecsData();
+    },[quizFinished, user])
+
+    useEffect(() => {
+        const fetchMeetsData = async () => {
+            try {
+                if (quizFinished) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/meets`);
+
+                    if (response.ok) {
+                      const data = await response.json();
+                      setSomeMeets(data.slice(0, 4));
+                    } else {
+                      console.error('Ошибка при загрузке данных');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchMeetsData();
+    },[quizFinished, user])
     
+    console.log({user, username, quizFinished, someRecs, someMeets})
     useEffect(() => {
         
         const header:HTMLElement | null = document.querySelector("header");
@@ -89,7 +154,7 @@ function MainPage(): JSX.Element {
                 <div className="hero_description">
                     <h1>{user ? `ПРИВЕТ, ${username.toUpperCase()}!`: `ДАВАЙ ЗНАКОМИТЬСЯ?`}</h1>
                     <p className="hero_post-text">
-                        <span className="scroll-text">{quizFinished ? `скролль вниз и узнай, что нового в мире настолок` : `крути колесо мыши вниз, и пройди 3 простых шага`}</span>
+                        <span className="scroll-text">{quizFinished ? `скролль вниз и посмотри обзоры на игры, которые мы тебе рекомендуем` : `крути колесо мыши вниз, и пройди 3 простых шага`}</span>
                         <span className="scroll-icon">
                             <ArrowIcon/>
                         </span>
@@ -97,7 +162,7 @@ function MainPage(): JSX.Element {
                 </div>
                 <div className="height"></div>
             </section>
-                {quizFinished ? <CarouselBlock/> : <Steps />}
+                <Steps quizFinished={quizFinished} someFavorites={someFavorites} someRecs={someRecs} someMeets={someMeets} setSomeMeets={setSomeMeets}/>
         </>);
 }
 
