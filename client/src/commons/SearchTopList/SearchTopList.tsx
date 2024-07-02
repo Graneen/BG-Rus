@@ -73,9 +73,6 @@ function SearchTopList({boardGameData, setSortGames}: {boardGameData: BoardGameD
         setDataSort(newdataSort);
     }
 
-//! импут подлинее, крестик чуть дальше от границы, жёлтый фон для крестика
-//! квиз 0 участников! переход со страницы квиза на страницу профиля, бордер радиус на выбранный жанр в квизе
-
     function sortHandle(textSearch: string): void {
         if (boardGameData) {
             let textSort = boardGameData;
