@@ -1,11 +1,61 @@
-import { useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ArrowIcon from '../../commons/ArrowIcon';
 import Steps from '../../steps/Steps';
 
 import './mainPage.css';
+import { AuthContext } from '../../app/App';
+import CarouselBlock from '../../carousel/CarouselBlock';
 
 
 function MainPage(): JSX.Element {
+    const { user } = useContext(AuthContext);
+    const [username, setUsername] = useState('');
+    const [quizFinished, setQuizFinished] = useState<boolean>(false);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (user) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/users/${user}`);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        setUsername(data);
+                    } else {
+                        console.error('Ошибка при загрузке данных');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();
+    },[user])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (user) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/quiz/${user}`);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log(data)
+                        setQuizFinished(data);
+                    } else {
+                        console.error('Ошибка при загрузке данных');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData();
+    },[username])
+
+
+    
     useEffect(() => {
         
         const header:HTMLElement | null = document.querySelector("header");
@@ -37,9 +87,9 @@ function MainPage(): JSX.Element {
                 <div className="bg-layer-3 MG"><img className="shadow-2xl" src="https://trueimages.ru/img/8c/46/d4710866.png" alt="Background" /></div>
                 <div className="bg-layer-4 VG"><img src="https://trueimages.ru/img/81/77/3ab71766.png" alt="Background" /></div>
                 <div className="hero_description">
-                    <h1>ДАВАЙ ЗНАКОМИТЬСЯ?</h1>
+                    <h1>{user ? `ПРИВЕТ, ${username.toUpperCase()}!`: `ДАВАЙ ЗНАКОМИТЬСЯ?`}</h1>
                     <p className="hero_post-text">
-                        <span className="scroll-text">крути колесо мыши вниз, и пройди 3 простых шага</span>
+                        <span className="scroll-text">{quizFinished ? `скролль вниз и узнай, что нового в мире настолок` : `крути колесо мыши вниз, и пройди 3 простых шага`}</span>
                         <span className="scroll-icon">
                             <ArrowIcon/>
                         </span>
@@ -47,7 +97,7 @@ function MainPage(): JSX.Element {
                 </div>
                 <div className="height"></div>
             </section>
-            <Steps />
+                {quizFinished ? <CarouselBlock/> : <Steps />}
         </>);
 }
 

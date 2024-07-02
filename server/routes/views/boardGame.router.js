@@ -24,7 +24,7 @@ router.get("/api/boardgames/:id", async (req, res) => {
         },
       },
     });
-    // console.log(JSON.parse(JSON.stringify(boardGames)).filter((el) => el.id === 41))
+    // console.log(JSON.parse(JSON.stringify(boardGames)))
     res.json(boardGames);
   } catch (error) {
     console.error(error);
