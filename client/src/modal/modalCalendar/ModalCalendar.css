@@ -34,26 +34,14 @@
 
 .calendar-icon {
   position: absolute;
-  top: -5%;
+  top: -160%;
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
+
 }
 
-.close-button {
-  float: right;
-  cursor: pointer;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #FFD700;
-  color: black;
-  border: none;
-  border-radius: 4px;
-}
 
-.close-button:hover {
-  background-color: #FFC400;
-}
 
 .button-next {
   margin-top: 20px;

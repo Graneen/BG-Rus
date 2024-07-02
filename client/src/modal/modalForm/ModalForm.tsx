@@ -115,8 +115,14 @@ console.log('placeInput:', placeInput);
     setPlaceInput(e.target.value);
   };
   return (
-    <div className="modal bg-black-200 px-4 py-4">
-      <div className="modal-content bg-yellow-200 p-4 rounded-md shadow-md">
+    <div
+    className="modal bg-black-200 px-4 py-4"
+    onClick={onCloseModal}
+  >
+    <div
+      className="modal-content bg-yellow-200 p-4 rounded-md shadow-md"
+      onClick={(e) => e.stopPropagation()}
+    >
         {showMessage && <div className="message">{message}</div>}
         <h3 className="text-black">Детали</h3>
         <form onSubmit={handleFormSubmit} className="text-black">

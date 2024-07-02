@@ -87,7 +87,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
           setReviews([...reviews, newReviewData]);
           const updatedReviews = [...reviews, newReviewData];
           localStorage.setItem('savedReviews', JSON.stringify(updatedReviews));
-          console.log(newReviewData)
+       
           updateGameCardState({
             ...card,
             list: {
