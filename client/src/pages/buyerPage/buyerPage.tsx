@@ -180,7 +180,7 @@ const BuyerPage: React.FC = () => {
           <p>{specialist.country}</p>
         </div>
         <button
-          className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded"
+          className="bg-yellow-300 text-white font-semibold py-2 px-4 rounded"
           onClick={handleBookSpecialist.bind(null, specialist.id)}
         >
           Воспользоваться услугами
@@ -223,12 +223,12 @@ const BuyerPage: React.FC = () => {
               <span className="font-semibold block mb-1">Ваше имя:</span>
               <input type="text" value={yourName} onChange={(e) => setYourName(e.target.value)} className="w-full rounded px-2 py-1 text-black" />
             </label>
-             <button type="submit" className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded">Добавить объявление</button>
+             <button type="submit" className="bg-yellow-300 text-white font-semibold py-2 px-4 rounded mt-6">Добавить объявление</button>
           </form>
         </div>
   
         <div className="bayer-orders-container">
-        <h1 className="text-4xl font-bold font-serif text-yellow-500">Все объявления</h1>
+        <h1 className="text-4xl font-bold font-serif text-yellow-300">Все объявления</h1>
           <div className="bayer-orders-grid grid grid-cols-1 gap-4">
             {allBayersOrders.map((order) => (
               <div key={order.id} className="bayer-order-card bg-gray-900 p-4 rounded shadow">
@@ -249,7 +249,7 @@ const BuyerPage: React.FC = () => {
                     </div>
                   )}
                   <button
-                    className="bayer-order-add-comment bg-yellow-500 text-white font-semibold py-2 px-4 rounded mt-4"
+                    className="bayer-order-add-comment bg-yellow-300 text-white font-semibold py-2 px-4 rounded mt-4"
                     onClick={() => {
                       setShowCommentInput(true);
                       setSelectedOrderId(order.id);
