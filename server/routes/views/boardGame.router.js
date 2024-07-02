@@ -9,7 +9,6 @@ const {
 } = require("../../db/models");
 
 router.get("/api/boardgames/:id", async (req, res) => {
-  console.log(req.params)
   const { id } = req.params;
   try {
     const boardGames = await BoardGame.findAll({
@@ -44,8 +43,8 @@ router.get("/api/boardgame/:id", async (req, res) => {
       }, 0) / rateArr
     ).toFixed(1);
     const estimationGame = { result, rateArr };
-    console.log("estimationGame", estimationGame);
-    console.log("boardGame", boardGame);
+    // console.log("estimationGame", estimationGame);
+    // console.log("boardGame", boardGame);
     const feedBackGame = await Feedback.findAll({ where: { game_id: id } });
 
     res.json({ boardGame, estimationGame, feedBackGame });

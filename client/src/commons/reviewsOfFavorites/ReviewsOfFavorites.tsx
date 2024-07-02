@@ -7,7 +7,7 @@ function ReviewsOfFavorites({someFavorites}: {someFavorites: GameCard[]}): JSX.E
 
     return (
         <>
-                <h2 className="text-3xl p-4 text-[#ffd700]">ИГРЫ У ВАС В ИЗБРАННОМ:</h2>
+                <h2 className="mb-10 text-3xl p-4 text-[#ffd700]">ИГРЫ У ВАС В ИЗБРАННОМ:</h2>
                 <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                             {(someFavorites && someFavorites.map((game: GameCard) => {
                                 return (
@@ -18,7 +18,7 @@ function ReviewsOfFavorites({someFavorites}: {someFavorites: GameCard[]}): JSX.E
                                 className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
                             />
                         </button>
-                        <div className="mt-4 flex justify-between">
+                        <div className="mt-4 mb-10 flex justify-between">
                             <div>
                                 <h2 className="game-title">
                                     {game.title}

@@ -17,7 +17,7 @@ router.get("/api/user/favorite/:id", async (req, res) => {
           id: gameId,
         },
       });
-        console.log(JSON.parse(JSON.stringify(favoriteGamesSearch)))
+        // console.log(JSON.parse(JSON.stringify(favoriteGamesSearch)))
         if (!favoriteGamesArray) { 
           return res.json([]);
         }

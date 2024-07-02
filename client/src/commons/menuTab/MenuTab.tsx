@@ -13,13 +13,6 @@ interface TabPanelProps {
 }
 
 
-const tabStyler = {
-    color: 'var(--goldenbeer)',
-    fontFamily: 'ROSTOV',
-    fontSize: '2.2em',
-    textTransform: 'capitalize'
-}
-
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -86,7 +79,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
           setReviews([...reviews, newReviewData]);
           const updatedReviews = [...reviews, newReviewData];
           localStorage.setItem('savedReviews', JSON.stringify(updatedReviews));
-          console.log(newReviewData)
+          // console.log(newReviewData)
           updateGameCardState({
             ...card,
             list: {

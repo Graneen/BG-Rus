@@ -19,11 +19,22 @@ const {
 
 router.get('/api/main/recommended/:id', async (req, res) => {
   const { id } = req.params;
+  console.log({id})
   try {
-      let recommendedGames = [];
+    let recommendedGames = [];
+    const userQuiz = await Quiz.findOne({ where: { user_id: Number(id) } });
+    const userQuizResult = JSON.parse(JSON.stringify(userQuiz));
+    if (userQuizResult) {
+      const quizTheme = userQuizResult.theme.split(",");
+      const quizGenre = userQuizResult.genre.split(",");
 
-      const boardGames = await BoardGame.findAll({ where: { id } });
-      const searchGames = JSON.parse(JSON.stringify(boardGames));
+      const userSearchGames = await BoardGame.findAll({
+        where: {
+          minPlayers: { [Op.lte]: userQuizResult.players },
+          maxPlayers: { [Op.gte]: userQuizResult.players },
+        },
+      });
+      const searchGames = JSON.parse(JSON.stringify(userSearchGames));
 
       const recommendedAndAddGames = searchGames.filter((game) => {
         return (
@@ -34,8 +45,8 @@ router.get('/api/main/recommended/:id', async (req, res) => {
 
       recommendedGames = recommendedAndAddGames
         .sort(() => Math.random() - 0.5)
-        .slice(0, 4)
-        // console.log(recommendedGames)
+        .slice(0, 4);
+    }
       return res.json(recommendedGames);
   } catch (error) {
       console.log({error: 'Ошибка при получении рекомендаций'});
@@ -43,16 +54,16 @@ router.get('/api/main/recommended/:id', async (req, res) => {
 });
 
 router.get('/api/users/:id', async (req, res) => {
-  // try {
+  try {
       const { id } = req.params;
 
       const userData = await User.findOne({where: {id: Number(id)}});
       const userDataClear = JSON.parse(JSON.stringify(userData))
       // console.log({userData: userDataClear})
       return res.json(userDataClear.name);
-  // } catch (error) {
-  //     console.log({error: 'Ошибка при получении имени пользователя'});
-  // }
+  } catch (error) {
+      console.log({error: 'Ошибка при получении имени пользователя'});
+  }
 });
 
 router.get("/api/profile/:id", async (req, res) => {

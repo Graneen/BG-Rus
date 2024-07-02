@@ -5,6 +5,7 @@ import Steps from '../../steps/Steps';
 import './mainPage.css';
 import { AuthContext } from '../../app/App';
 import { data } from '../../features/addToFavoritesSlice';
+import { gameMeetsData } from '../gameMeet/GameMeet';
 
 
 function MainPage(): JSX.Element {
@@ -12,7 +13,8 @@ function MainPage(): JSX.Element {
     const [username, setUsername] = useState('');
     const [quizFinished, setQuizFinished] = useState<boolean>(false);
     const [someFavorites, setSomeFavorites] = useState<data[]>([]);
-    const [someRecs, setSomeRecs] = useState([])
+    const [someRecs, setSomeRecs] = useState([]);
+    const [someMeets, setSomeMeets] = useState([]);
 
 
 
@@ -97,8 +99,28 @@ function MainPage(): JSX.Element {
         }
         fetchRecsData();
     },[quizFinished, user])
+
+    useEffect(() => {
+        const fetchMeetsData = async () => {
+            try {
+                if (quizFinished) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/meets`);
+
+                    if (response.ok) {
+                      const data = await response.json();
+                      setSomeMeets(data.slice(0, 4));
+                    } else {
+                      console.error('Ошибка при загрузке данных');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchMeetsData();
+    },[quizFinished, user])
     
-    console.log({user, username, quizFinished, someRecs})
+    console.log({user, username, quizFinished, someRecs, someMeets})
     useEffect(() => {
         
         const header:HTMLElement | null = document.querySelector("header");
@@ -140,7 +162,7 @@ function MainPage(): JSX.Element {
                 </div>
                 <div className="height"></div>
             </section>
-                <Steps quizFinished={quizFinished} someFavorites={someFavorites} someRecs={someRecs}/>
+                <Steps quizFinished={quizFinished} someFavorites={someFavorites} someRecs={someRecs} someMeets={someMeets} setSomeMeets={setSomeMeets}/>
         </>);
 }
 
