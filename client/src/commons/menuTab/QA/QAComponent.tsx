@@ -99,11 +99,11 @@ const QAComponent: React.FC<Props> = ({ gameId }) => {
           <button onClick={() => submitAnswer(question.id)} className="bg-black text-white py-2 px-4 rounded">Ответить</button>
 
           {question.Answers ? question.Answers.map((answer) => (
-  <div key={answer.id} className="bg-yellow-300 p-2 rounded mt-2 max-w-[250px]  ml-80">
-    <p className="font-semibold">Ответ от {answer.User ? answer.User.name : 'Unknown User'}:</p>
-    <p className="break-words">{answer.description}</p>
-  </div>
-)) : (
+          <div key={answer.id} className="bg-yellow-300 p-2 rounded mt-2 max-w-[250px]  ml-80">
+            <p className="font-semibold">Ответ от {answer.User ? answer.User.name : 'Unknown User'}:</p>
+            <p className="break-words">{answer.description}</p>
+        </div>
+      )) : (
   <p className="italic text-gray-600">Пока нет ответов на этот вопрос</p>
 )}
         </div>
