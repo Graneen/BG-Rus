@@ -75,11 +75,12 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             description: response.data.feedback.description,
             createdAt: response.data.feedback.createdAt,
             updatedAt: response.data.feedback.updatedAt,
-          };
+          }; 
+          setNewReview('');
           setReviews([...reviews, newReviewData]);
           const updatedReviews = [...reviews, newReviewData];
           localStorage.setItem('savedReviews', JSON.stringify(updatedReviews));
-          // console.log(newReviewData)
+          
           updateGameCardState({
             ...card,
             list: {
@@ -88,7 +89,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             },
           });
           
-          setNewReview(() => '');
+         
         } catch (error) {
           console.error('Error submitting review:', error);
         }
@@ -121,6 +122,8 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
   }, [card.list.boardGame.id]);
 
   const filteredReviews = reviews.filter((review) => review.game_id === card.list.boardGame.id);
+
+  
 
   
 
@@ -158,17 +161,19 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
           </button>
         </div>
         {filteredReviews.length > 0 ? (
-          filteredReviews.map((el) => (
-            <div key={el.id}>
-              <h2>Отзыв #{el.id} от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
-              <div className="my-[5vh] bg-sky-500/50 p-5 rounded-lg">
-                {el.description}
-              </div>
+        filteredReviews.map((el) => (
+          <div key={el.id} className="mb-8">
+            <div className="flex items-center mb-2">
+              <h2 className="mr-2">Отзыв от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
             </div>
-          ))
-        ) : (
-          <div>Никто пока не писал отзывов на эту игру, будьте первым!</div>
-        )}
+            <div className="bg-sky-500/50 p-2 rounded-lg max-w-[300px] overflow-hidden">
+              {el.description}
+            </div>
+          </div>
+        ))
+      ) : (
+  <p>Нет отзывов. Будь первым!</p>
+    )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <QAComponent gameId={card.list.boardGame.id} />

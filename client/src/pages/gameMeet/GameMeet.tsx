@@ -35,7 +35,8 @@ const GameMeet: React.FC = () => {
   const [gameMeets, setGameMeets] = useState<gameMeetsData[]>([]);
   const [mapModal, setMapModal] = useState<boolean>(false);
   const [meetModal, setMeetModal] = useState<number>(0);
-  const [gameSessionsAll, setGameSessionsAll] = useState<boolean>(false)
+  const [gameSessionsAll, setGameSessionsAll] = useState<boolean>(false);
+  const [organizerContacts, setOrganizerContacts] = useState<string | null>(null);
 
   const dispatch = useDispatch();
 
@@ -90,6 +91,10 @@ const GameMeet: React.FC = () => {
     fetchData();
   }, []);
 
+  const updateGameMeets = (newGameMeet) => {
+    setGameMeets((prevGameMeets) => [...prevGameMeets, newGameMeet]);
+  };
+
   return (
     <div >
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -98,7 +103,7 @@ const GameMeet: React.FC = () => {
 
 Иногда нам хочется поиграть в настольную игру, но покупать дорогостоящую коробку с игрой хочется не всегда – а вдруг игра не понравится, будет сложно разобраться в правилах или просто не получится собрать компанию? Производители настольных игр понимали эту проблему, поэтому и начали проводить игротеки у себя в магазинах и сотрудничать с антикафе. Сейчас же формат игротек сильно расширился и появились отдельные организаторы, проводящие игротеки и в других местах – барах, кальянных, ресторанах.Игротека - мероприятие на котором все желающие могут познакомиться с самыми разнообразными настольными играми и присоединиться к игре, даже если не знают никого за столом. Организаторы делают все, чтобы гости чуствовали себя комфортно на мероприятии и легко знакомились с новыми людьми. У нас на сайте вы можете найти и забронировать место за столом на Игротеке для себя и друзей в нужный день или в любимом месте, и узнать последние новости!</div>
         <h2 className="mt-10 text-3xl text-[#ffd700]">ИГРОВЫЕ СЕССИИ НА КАРТЕ</h2>
-        <Maps gameMeets={gameMeets} mapModal={mapModal} setMapModal={setMapModal} setMeetModal={setMeetModal} />
+        <Maps gameMeets={gameMeets} mapModal={mapModal} setMapModal={setMapModal} setMeetModal={setMeetModal} setOrganizerContacts={setOrganizerContacts}  />
         <div className="sessions-buttons-block mt-10">
           <button
           className={`w-[50%] mt-5 py-2.5 px-5 button-create ${isButtonActive ? "" : "mt-5 py-2.5 px-5 button-create-inactive"}`}
@@ -122,7 +127,7 @@ const GameMeet: React.FC = () => {
       </Modal>
 
       <Modal isOpen={showFormModal} onRequestClose={handleCloseModal}>
-        <ModalForm onCloseModal={handleSuccessfulFormSubmit} />
+      <ModalForm onCloseModal={handleSuccessfulFormSubmit} updateGameMeets={updateGameMeets} />
       </Modal>
     </div>
   );

@@ -49,7 +49,7 @@ const ModalMap: React.FC<ModalMapProps> = ({ isOpen, onClose, onLocationSelected
     isOpen && (
       <div className="modal">
         <div className="modal-content">
-          <h3>Выберите локацию</h3>
+          <h3>Скопируйте координаты, если хотите чтобы ваш заказ появился у нас на карте</h3>
           <YMaps>
             <Map
               defaultState={{

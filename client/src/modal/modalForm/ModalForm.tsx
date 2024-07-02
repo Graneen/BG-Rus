@@ -9,12 +9,11 @@ import "./ModalForm.css";
 
 
 interface ModalFormProps {
-  
- 
   onCloseModal: () => void;
+  updateGameMeets: (newGameMeet: gameMeetsData) => void;
   }
 
-  const ModalForm: React.FC<ModalFormProps> = ({ onCloseModal }) => {
+  const ModalForm: React.FC<ModalFormProps> = ({ onCloseModal, updateGameMeets }) => {
   const { date, gameName, maxPlayers, venue } = useSelector((state: RootState) => state.gameSession);
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
@@ -67,6 +66,7 @@ console.log('placeInput:', placeInput);
           venue: locationAddress,
         })
       );
+      updateGameMeets(response.data);
 
       setTimeout(() => {
         onCloseModal();
@@ -115,8 +115,14 @@ console.log('placeInput:', placeInput);
     setPlaceInput(e.target.value);
   };
   return (
-    <div className="modal bg-black-200 px-4 py-4">
-      <div className="modal-content bg-yellow-200 p-4 rounded-md shadow-md">
+    <div
+    className="modal bg-black-200 px-4 py-4"
+    onClick={onCloseModal}
+  >
+    <div
+      className="modal-content bg-yellow-200 p-4 rounded-md shadow-md"
+      onClick={(e) => e.stopPropagation()}
+    >
         {showMessage && <div className="message">{message}</div>}
         <h3 className="text-black">Детали</h3>
         <form onSubmit={handleFormSubmit} className="text-black">

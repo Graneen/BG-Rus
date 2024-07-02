@@ -48,7 +48,7 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
 
             {organizerContacts && (
             <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-70 flex items-center justify-center z-50">
-            <div className="bg-yellow-300 px-6 py-4 rounded-lg">
+          <div className="bg-yellow-300 px-6 py-4 rounded-lg">
             <p className="font-bold text-black mb-4">Контакты организатора:</p>
             <p className="text-black">{organizerContacts}</p>
             <button onClick={closeOrganizerContacts} className="mt-4 px-4 py-2 bg-black text-white rounded-lg">Закрыть</button>
