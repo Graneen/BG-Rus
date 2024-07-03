@@ -7,6 +7,7 @@ import axios from "axios";
 function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
     const navigate = useNavigate();
     const [organizerContacts, setOrganizerContacts] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const showOrganizerContacts = (contacts: string) => {
         setOrganizerContacts(contacts);
@@ -29,7 +30,11 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
                 userId: Number(userId)
             });
 
-            console.log('Successfully joined the game');
+            setSuccessMessage('Вы успешно присоединились к игровой сессии!');
+            setTimeout(() => {
+                setSuccessMessage(null);
+                        }, 1000);
+
         } catch (error) {
             console.error('Error joining the game:', error);
         }
@@ -38,6 +43,11 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
     return (
         <>
             <h2 id="sessions" className="mt-20 text-3xl text-[#ffd700]">РАСПИСАНИЕ ИГРОВЫХ СЕССИЙ</h2>
+            {successMessage && (
+                <div className="bg-green-500 text-white px-4 py-2 mb-4 rounded">
+                    {successMessage}
+                </div>
+            )}
             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-4">
                 {gameMeets && gameMeets.map((game, index) => {
                     return (
