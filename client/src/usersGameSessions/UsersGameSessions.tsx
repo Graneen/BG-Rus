@@ -24,7 +24,7 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
         }
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/meeting/players`, {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/meeting/players`, {
                 gameMeetingId,
                 userId: Number(userId)
             });
