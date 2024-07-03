@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Question, Answer, User } = require("../../db/models");
 
-router.get("api/questions", async (req, res) => {
+router.get("/api/questions", async (req, res) => {
   try {
     const { game_id } = req.query;
     const questions = await Question.findAll({
@@ -19,7 +19,7 @@ router.get("api/questions", async (req, res) => {
   }
 });
 
-router.post("api/questions", async (req, res) => {
+router.post("/api/questions", async (req, res) => {
   const { user_id, game_id, description } = req.body;
   try {
     const user = await User.findByPk(user_id);
@@ -36,7 +36,7 @@ router.post("api/questions", async (req, res) => {
   }
 });
 
-router.post("api/answers", async (req, res) => {
+router.post("/api/answers", async (req, res) => {
   const { user_id, question_id, description } = req.body;
   try {
     const user = await User.findByPk(user_id);

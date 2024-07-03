@@ -105,7 +105,7 @@ router.post(
   }
 );
 
-router.get("api/localization-orders/:id/comments", async (req, res) => {
+router.get("/api/localization-orders/:id/comments", async (req, res) => {
   try {
     const orderId = req.params.id;
     const order = await LocalizationOrder.findByPk(orderId);

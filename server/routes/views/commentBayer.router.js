@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { BayerOrder, User } = require("../../db/models");
 
-router.post("api/bayer-orders/:id/comments", async (req, res) => {
+router.post("/api/bayer-orders/:id/comments", async (req, res) => {
   try {
     const order = await BayerOrder.findByPk(req.params.id);
 
@@ -34,7 +34,7 @@ router.post("api/bayer-orders/:id/comments", async (req, res) => {
   }
 });
 
-router.get("api/bayer-orders/:id/comments", async (req, res) => {
+router.get("/api/bayer-orders/:id/comments", async (req, res) => {
   try {
     const orderId = req.params.id;
     const order = await BayerOrder.findByPk(orderId);

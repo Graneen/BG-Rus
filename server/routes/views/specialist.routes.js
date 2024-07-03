@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { SpecialistBuyer, User } = require("../../db/models");
 
-router.get("api/specialists", async (req, res) => {
+router.get("/api/specialists", async (req, res) => {
   try {
     const specialists = await SpecialistBuyer.findAll({
       include: {
@@ -17,7 +17,7 @@ router.get("api/specialists", async (req, res) => {
   }
 });
 
-router.post("api/specialists/:id", async (req, res) => {
+router.post("/api/specialists/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { user_id, phone } = req.body;
