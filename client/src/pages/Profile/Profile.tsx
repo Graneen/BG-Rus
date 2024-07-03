@@ -119,7 +119,9 @@ const Profile: React.FC = () => {
                     </h2>
                     {userMeetings.map((userMeeting) => (
                       <div key={userMeeting.id} className="meeting-camp-box">
-                        <h2 className="h2-profile">{userMeeting.gameName}</h2>
+                        <NavLink to="/events">
+                          <h2 className="h2-profile">{userMeeting.gameName}</h2>
+                        </NavLink>
                         <p>
                           Дата проведения:{" "}
                           {userMeeting.date
