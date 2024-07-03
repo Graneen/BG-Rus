@@ -17,6 +17,8 @@ export interface userMeeting {
   maxPlayers: number;
   location: string;
   date: string;
+  img:string;
+  time:string;
 }
 
 export interface userCamps {
@@ -106,13 +108,13 @@ const Profile: React.FC = () => {
       {currentUser ? (
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="mt-5 text-3xl text-[#ffd700]">ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ</h2>
-          <div className="w-3/12 p-6 bg-[#FBD784] rounded-lg shadow dark:bg-gray-800 flex items-center flex-col justify-center">
+          <div className="w-full p-6 bg-[#FBD784] rounded-lg shadow dark:bg-gray-800 flex items-center flex-col justify-center">
             <p className="m-2 text-gray-700 dark:text-gray-400">Имя: <strong className="font-bold text-[#183d50bb] text-2xl">{currentUser.name}</strong></p>
             <p className="m-2 text-gray-700 dark:text-gray-400">Email: <strong className="font-bold text-[#183d50bb] text-2xl">{currentUser.email}</strong></p>
             <ProfileModal setCurrentUser={setCurrentUser} />
           </div>
-          <h2 className="mt-10 text-3xl text-[#ffd700]">ЗАРЕГИСТРИРОВАН НА {userCamps.length} МЕРОПРИЯТИИ</h2>
-          <div className="mb-10 w-3/12">
+          <h2 className="mt-10 text-3xl text-[#ffd700]">ЗАРЕГИСТРИРОВАН НА {userCamps.length+userMeetings.length} МЕРОПРИЯТИИ</h2>
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {userCamps && userCamps.length ? (
               <>
                 {userCamps.map((userCamp) => (
@@ -125,7 +127,7 @@ const Profile: React.FC = () => {
                     </button>
                     <div className="mt-4 flex justify-between">
                       <div>
-                        <h2 className="game-title">
+                        <h2 className="game-title">Игрокемп:{" "}
                           {userCamp.title}
                         </h2>
                         <div className="game-descr pt-[1vh]">
@@ -135,43 +137,35 @@ const Profile: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  //   <div key={userCamp.id} className="meeting-camp-box">
-                  //     <NavLink to="/camps">
-                  //      <h2 className="h2-profile">{userCamp.title}</h2>
-                  //     </NavLink>
-                  //      <img src={userCamp.image1}></img>
-                  //     <p>
-                  //       Дата проведения:{" "}
-                  //       {userCamp.date.replace("T", " ").replace(".000Z", "")}
-                  //     </p>{" "}
-                  //     <p>Место проведения: {userCamp.location}</p>
-                  //  </div>
                 ))}
               </>
             ) : null}
-                          <div className="middle-block-data">
-                {userMeetings && userMeetings.length ? (
-                  <>
-                    <h2 className="h2-profile">
-                      Вы зарегитсрированы на игротеки:
-                    </h2>
-                    {userMeetings.map((userMeeting) => (
-                      <div key={userMeeting.id} className="meeting-camp-box">
-                        <NavLink to="/events">
-                          <h2 className="h2-profile">{userMeeting.gameName}</h2>
-                        </NavLink>
-                        <p>
-                          Дата проведения:{" "}
-                          {userMeeting.date
-                            .replace("T", " ")
-                            .replace(".000Z", "")}
-                        </p>{" "}
-                        <p>Место проведения: {userMeeting.location}</p>
+            {userMeetings && userMeetings.length ? (
+              <>
+                {userMeetings.map((userMeeting) => (
+                  <div key={userMeeting.id} className="group relative p-4">
+                    <button onClick={() => navigate(`/events#sessions`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
+                      <img
+                        src={userMeeting.img}
+                        className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
+                      />
+                    </button>
+                    <div className="mt-4 flex justify-between">
+                      <div>
+                        <h2 className="game-title">Игротека:{" "}
+                          {userMeeting.gameName}
+                        </h2>
+                        <div className="game-descr pt-[1vh]">
+                          <p> <strong>Дата проведения: </strong> {userMeeting.date.slice(0, 10)}</p>
+                          <p> <strong>Время проведения: </strong> {userMeeting.time}</p>
+                          <p>Место проведения: {userMeeting.location}</p>
+                        </div>
                       </div>
-                    ))}
-                  </>
-                ) : null}
-              </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : null}           
           </div>
           <section className="block-guide">
             <ProfileMenuTab
