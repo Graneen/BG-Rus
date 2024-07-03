@@ -1,39 +1,127 @@
-.page-container {
+.loading-spinner {
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 5px solid #2E9AFF;
-    justify-content: space-around;
 }
-.page-header {
-    color: var(--goldenbeer);
-	font-family: 'ROSTOV', normal;
-	font-size: 4em;
-	font-size: min(9vh, 4em);
-	text-transform: capitalize;
-	text-shadow: -3px 4px 5px rgb(85, 84, 84);
+.page-container {
+    width: 100%;
+    height: 165vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 5px solid #2E9AFF; */
+    justify-content: space-between;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    gap: 30vh;
 }
 .page-main {
     width: 100%;
-    height: 50vh;
-    border: 5px solid #ff932e;
+    height: 60vh;
+    /* border: 5px solid #ff932e; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30vh;
+}
+.image-descr-block {
+    height: 100%;
+    /* width: 100vw; */
     display: flex;
     flex-direction: wrap;
-    justify-content: center;
-    align-items: center;
+    gap: 5vw;
+    /* justify-content: center;
+    align-items: center; */
+    /* border: 5px solid #acffd8; */
 }
 .card-left {
-    width: 30%;
+    width: 80%;
     height: 50vh;
-    border: 5px solid #2eff51;
+    /* border: 5px solid #2eff51; */
+    display: flex;
+    align-items: center;
 }
 .main-image {
-    height: 300px;
+    height: 100%;
+    margin-bottom: 5vh;
+}
+.main-img {
+    max-height: 100%;
 }
 .card-right {
-    width: 30%;
+    width: 40%;
     height: 100%;
-    border: 5px solid #b6b6b6;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    /* border: 5px solid #b6b6b6; */
+}
+.page-header {
+	font-size: 3em;
+	text-shadow: -3px 4px 5px rgb(85, 84, 84);
+}
+.stars-container {
+    color: #b7b7b7;
+    font-size: 0.8em;
+}
+.game-desc {
+    font-family: 'Exo-2-Medium', normal;
+}
+.images-section {
+    flex: 1;
+    height: 100%;
+    
+}
+.image-bg {
+    height: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.preview-images {
+    display: flex;
+    height: 20vh;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 10px;
+    gap: 10px;
+}
+.preview-image {
+    margin: 10px;
+    max-height: 100%;
+    background-color: white;
+}
+.active-prev-img {
+    filter: grayscale(100%);
+    border: 3px solid #b7b7b7;
+}
+.block-guide {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+}
+.block-guide h1, h2 {
+    padding-bottom: 5vh;
+    color: var(--goldenbeer);
+	font-family: 'ROSTOV', normal;
+    text-transform: capitalize;
+}
+.video-block {
+    color: var(--goldenbeer);
+	font-family: 'ROSTOV', normal;
+	font-size: 2.2em;
+    width: 100%;
+    /* border: 3px solid #ff67cf; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.css-dev-only-do-not-override-m4timi {
+    margin-top: 10px;
+    width: 10vw;
 }

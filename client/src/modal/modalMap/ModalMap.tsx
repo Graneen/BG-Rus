@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Map, Placemark, YMaps } from "@pbe/react-yandex-maps";
 
-interface ModalMapProps {
+export interface ModalMapProps {
   isOpen: boolean;
   onClose: () => void;
   onLocationSelected: (location: { lat: number; lng: number }) => void;
@@ -42,13 +42,14 @@ const ModalMap: React.FC<ModalMapProps> = ({ isOpen, onClose, onLocationSelected
     const { coords } = e.get("coords");
     setSelectedLocation({ lat: coords[0], lng: coords[1] });
     onLocationSelected({ lat: coords[0], lng: coords[1] });
+    onClose(); 
   };
 
   return (
     isOpen && (
       <div className="modal">
         <div className="modal-content">
-          <h3>Выберите локацию</h3>
+          <h3>Скопируйте координаты, если хотите чтобы ваш заказ появился у нас на карте</h3>
           <YMaps>
             <Map
               defaultState={{

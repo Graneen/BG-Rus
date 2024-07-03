@@ -1,61 +1,97 @@
 .modal-full {
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-  }
-  
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .input-with-icon {
-    position: relative;
-  }
-  
-  .input-with-icon input {
-    padding: 7px 30px 7px 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    color: black;
-  }
-  
-  .calendar-icon {
-    position: absolute;
-    top: 78%;
-    right: 10px;
-    transform: translateY(-50%);
-    color: blue;
-  }
-  
-  .close-button,
-  .button-next {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .close-button {
-    float: right;
-  }
-  
-  .button-next {
-    width: 100px;
-    height: 40px;
-    margin-top: 10px;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  color: black;
+}
+
+.calendar-icon {
+  position: absolute;
+  top: -160%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+}
+
+
+
+.button-next {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #FFD700;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-next:hover {
+  background-color: #FFC400;
+}
+.react-datepicker {
+  font-family: Arial, sans-serif; 
+}
+
+.react-datepicker__triangle {
+  border-bottom-color: #FFD700 !important; 
+}
+
+.react-datepicker__header,
+.react-datepicker-time__header {
+  background-color: #FFD700; 
+}
+
+.react-datepicker__header {
+  border-bottom-color: #FFD700; 
+}
+
+
+
+.react-datepicker__day--in-range,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--selected {
+  color: black; 
+}
+
+.react-datepicker__day:hover {
+  background-color: #FFC400; 
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: #FFC400 !important; 
+}
+
+.react-datepicker__day--today {
+  color: #FFD700; 
+}
+
+
   

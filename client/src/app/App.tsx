@@ -12,11 +12,14 @@ import TopList from "../pages/topList/TopList.tsx";
 import GamePage from "../pages/gamePage/gamePage.tsx";
 import GameMeet from "../pages/gameMeet/GameMeet.tsx";
 import GameCamp from "../pages/gameCamp/GameCamp.tsx";
+import { checkAuth } from '../services/checkAuthService/checkAuth.service';
 
 import BuyerPage from "../pages/buyerPage/buyerPage.tsx";
 import LocalisationPage from "../pages/localisationPage/localisationPage.tsx";
+import QuizPage from "../pages/QuizPage/QuizPage.tsx";
 
-
+import Profile from "../pages/Profile/Profile.tsx";
+import ErrorPage from "../pages/ErrorPage/ErrorPage.tsx";
  
 export const AuthContext = createContext<AuthState>(defaultAuthState);
 
@@ -25,15 +28,18 @@ export const AuthContext = createContext<AuthState>(defaultAuthState);
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-
+    
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser) as User);
     }
   }, []);
 
-
-
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      checkAuth();
+    }
+  }, [])
 
   return (
     <>
@@ -41,17 +47,18 @@ function App(): JSX.Element {
      <Router>
       <Routes>
           <Route path='/' element={<Layout/>}>
-          <Route path={"/"} element={<MainPage/>}/>
+          <Route index element={<MainPage/>}/>
             <Route path={"login"} element={<Login />} />
             <Route path={"register"} element={<Register/>} />
             <Route path={"top"} element={<TopList/>} />
             <Route path={"game/:id"} element={<GamePage/>}/>
             <Route path={"events"} element={<GameMeet/>}/>
             <Route path={"camps"} element={<GameCamp/>}/>
-
+            <Route path={"profile"} element={<Profile/>}/>
             <Route path={"buyers"} element={<BuyerPage/>}/>
             <Route path={"localisations"} element={<LocalisationPage/>}/>
-
+            <Route path={"quiz"} element={<QuizPage setQuiz={null}/>}/>
+            <Route path={"*"} element={<ErrorPage/>}/>
           </Route>
       </Routes>
       </Router>

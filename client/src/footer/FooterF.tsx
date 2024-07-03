@@ -9,17 +9,15 @@ import { NavLink } from "react-router-dom";
 export function FooterF() {
   return (
     <Footer bgDark>
-      <div className="w-full">
-        <div className="w-full bg-[#0B1D26bb] px-4 py-6 sm:flex sm:items-center sm:justify-around">
-          <Footer.Copyright className="T-M" href="/" by="BgRus™" year={2024} />
-          <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+      <div className="w-full footer-body">
+        <div className=" px-4 py-6 sm:flex sm:items-center sm:justify-around">
+          <Footer.Copyright className="T-M" by="BgRus™" year={2024} />
           <NavLink
                         to="/"
-                        className={({ isActive }) => isActive ? "logo active" : "logo unactive"}
+                        className={({ isActive }) => isActive ? "logo active mr-[10vh] -mt-6" : "logo unactive mr-[10vh] -mt-6"}
                     >
                         BGRUS
                     </NavLink>
-          </div>
         </div>
       </div>
     </Footer>

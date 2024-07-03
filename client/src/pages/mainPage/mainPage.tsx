@@ -1,11 +1,127 @@
-import { useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ArrowIcon from '../../commons/ArrowIcon';
 import Steps from '../../steps/Steps';
 
 import './mainPage.css';
+import { AuthContext } from '../../app/App';
+import { GameCard } from '../../features/gameCardSlice';
+import { gameMeetsData } from '../gameMeet/GameMeet';
+
+
+
+
 
 
 function MainPage(): JSX.Element {
+    const { user } = useContext(AuthContext);
+    const [username, setUsername] = useState('');
+    const [quizFinished, setQuizFinished] = useState<boolean>(false);
+    const [someFavorites, setSomeFavorites] = useState<GameCard[]>([]);
+    const [someRecs, setSomeRecs] = useState<GameCard[]>([]);
+    const [someMeets, setSomeMeets] = useState<gameMeetsData[]>([]);
+
+
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                if (user) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/users/${user}`);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        setUsername(data);
+                    } else {
+                        console.error('Ошибка при загрузке данных об имени пользователя');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchUserData();
+    },[user])
+
+    useEffect(() => {
+        const fetchQuizFinishData = async () => {
+            try {
+                if (username) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/quiz/${user}`);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        setQuizFinished(data.statusQuiz);
+                    } else {
+                        console.error('Ошибка при загрузке данных о прохождении входного квиза');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchQuizFinishData();
+    },[user, username])
+
+    useEffect(() => {
+        const fetchFavoritesData = async () => {
+            try {
+                if (user) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/favorite/${user}`);
+
+                    if (response.ok) {
+                        const data: GameCard[] = await response.json();
+                        setSomeFavorites(data);
+                    } else {
+                        console.error('Ошибка при загрузке данны об избранном');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchFavoritesData();
+    },[user, username])
+
+    useEffect(() => {
+        const fetchRecsData = async () => {
+            try {
+                if (quizFinished) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/main/recommended/${user}`);
+
+                    if (response.ok) {
+                        const data: GameCard[] = await response.json();
+                        setSomeRecs(data);
+                    } else {
+                        console.error('Ошибка при загрузке данных о рекомендованном');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchRecsData();
+    },[quizFinished, user])
+
+    useEffect(() => {
+        const fetchMeetsData = async () => {
+            try {
+                if (quizFinished) {
+                    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/meets`);
+
+                    if (response.ok) {
+                        const data: gameMeetsData[] = await response.json();
+                      setSomeMeets(data.slice(0, 4));
+                    } else {
+                      console.error('Ошибка при загрузке данных');
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchMeetsData();
+    },[quizFinished, user])
+    
     useEffect(() => {
         
         const header:HTMLElement | null = document.querySelector("header");
@@ -32,14 +148,14 @@ function MainPage(): JSX.Element {
     return (
         <>
             <section className="hero" id="hero">
-                <div className="bg-layer-1 HG"><img src="https://res.cloudinary.com/coderabbi/image/upload/v1641892210/MNTN--figma/bg-layer-1_e7t1bk.png" alt="Background" /></div>
+                <div className="bg-layer-1 HG"><img src="https://furman.top/uploads/posts/2023-04/1682858362_furman-top-p-oboi-na-telefon-oblaka-belie-vkontakte-5.jpg" alt="Background" /></div>
                 <div className="bg-layer-2 BG Hero"></div>
-                <div className="bg-layer-3 MG"><img src="https://res.cloudinary.com/coderabbi/image/upload/v1641892219/MNTN--figma/bg-layer-3_xvue3k.png" alt="Background" /></div>
+                <div className="bg-layer-3 MG"><img className="shadow-2xl" src="https://trueimages.ru/img/8c/46/d4710866.png" alt="Background" /></div>
                 <div className="bg-layer-4 VG"><img src="https://trueimages.ru/img/81/77/3ab71766.png" alt="Background" /></div>
                 <div className="hero_description">
-                    <h1>ДАВАЙ ЗНАКОМИТЬСЯ?</h1>
+                    <h1>{user ? `ПРИВЕТ, ${username.toUpperCase()}!`: `ДАВАЙ ЗНАКОМИТЬСЯ?`}</h1>
                     <p className="hero_post-text">
-                        <span className="scroll-text">крути колесо мыши вниз, и пройди 3 простых шага</span>
+                        <span className="scroll-text">{quizFinished ? `скролль вниз и посмотри обзоры на игры, которые мы тебе рекомендуем` : `крути колесо мыши вниз, и пройди 3 простых шага`}</span>
                         <span className="scroll-icon">
                             <ArrowIcon/>
                         </span>
@@ -47,7 +163,7 @@ function MainPage(): JSX.Element {
                 </div>
                 <div className="height"></div>
             </section>
-            <Steps />
+                <Steps quizFinished={quizFinished} someFavorites={someFavorites} someRecs={someRecs} someMeets={someMeets} setSomeMeets={setSomeMeets}/>
         </>);
 }
 
