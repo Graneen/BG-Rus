@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import axios from "axios";
 import ProfileModal from "../../modal/modalUserData/modalUserData";
-
+import { NavLink } from "react-router-dom";
 import ProfileMenuTab from "../../commons/profileMenuTab/ProfileMenuTab";
 
 export interface User {
@@ -23,6 +23,7 @@ export interface userCamps {
   title: string;
   location: string;
   date: string;
+  image1: string;
 }
 
 export interface BoardGame {
@@ -63,16 +64,14 @@ export interface GameCard {
 }
 const Profile: React.FC = () => {
   const user = localStorage.getItem("user");
-  const [userFavoriteGames, setUserFavoriteGames] = useState<
-  GameCard[]
-  >([]);
+  const [userFavoriteGames, setUserFavoriteGames] = useState<GameCard[]>([]);
   const [userFeedbacks, setUserFeedbacks] = useState<userFeedbacks[]>([]);
   const [userQuestionsAndAnswers, setUserQuestionsAndAnswers] = useState<
     userQuestionsAndAnswers[]
   >([]);
-  const [userRecommendedGames, setUserRecommendedGames] = useState<
-  GameCard[]
-  >([]);
+  const [userRecommendedGames, setUserRecommendedGames] = useState<GameCard[]>(
+    []
+  );
 
   const [userMeetings, setUserMeetings] = useState<userMeeting[]>([]);
   const [userCamps, setUserCamps] = useState<userCamps[]>([]);
@@ -105,52 +104,59 @@ const Profile: React.FC = () => {
       {currentUser ? (
         <div className="profile-page-container">
           <div>
-          <div className="upper-block">
-            <h2 className="h2-profile">Данные пользователя:</h2>
-            <p>Имя: {currentUser.name}</p>
-            <p>Email: {currentUser.email}</p>
-            <ProfileModal  setCurrentUser={setCurrentUser}/>
-          </div>
-          <div className="middle-block">
-            <div className="middle-block-data">
-              {userMeetings && userMeetings.length ? (
-                <>
-                  <h2 className="h2-profile">Вы зарегитсрированы на игротеки:</h2>
-                  {userMeetings.map((userMeeting) => (
-                    <div key={userMeeting.id} className="meeting-camp-box">
-                      <h2 className="h2-profile">{userMeeting.gameName}</h2>
-                      <p>
-                        Дата проведения:{" "}
-                        {userMeeting.date
-                          .replace("T", " ")
-                          .replace(".000Z", "")}
-                      </p>
-                      {" "}
-                      <p>Место проведения: {userMeeting.location}</p>
-                    </div>
-                  ))}
-                </>
-              ) : null}
+            <div className="upper-block">
+              <h2 className="h2-profile">Данные пользователя:</h2>
+              <p>Имя: {currentUser.name}</p>
+              <p>Email: {currentUser.email}</p>
+              <ProfileModal setCurrentUser={setCurrentUser} />
             </div>
-            <div className="middle-block-data">
-              {userCamps && userCamps.length ? (
-                <>
-                  <h2 className="h2-profile">Вы зарегитсрированы на игрокемпы:</h2>
-                  {userCamps.map((userCamp) => (
-                    <div key={userCamp.id} className="meeting-camp-box">
-                      <h2 className="h2-profile">{userCamp.title}</h2>
-                      <p>Дата проведения:{" "} 
-                        {userCamp.date.replace("T", " ").replace(".000Z", "")}
-                      </p>
-                      {" "}
-                      <p>Место проведения: {userCamp.location}</p>
-                    </div>
-                  ))}
-                </>
-              ) : null}
+            <div className="middle-block">
+              <div className="middle-block-data">
+                {userMeetings && userMeetings.length ? (
+                  <>
+                    <h2 className="h2-profile">
+                      Вы зарегитсрированы на игротеки:
+                    </h2>
+                    {userMeetings.map((userMeeting) => (
+                      <div key={userMeeting.id} className="meeting-camp-box">
+                        <NavLink to="/events">
+                          <h2 className="h2-profile">{userMeeting.gameName}</h2>
+                        </NavLink>
+                        <p>
+                          Дата проведения:{" "}
+                          {userMeeting.date
+                            .replace("T", " ")
+                            .replace(".000Z", "")}
+                        </p>{" "}
+                        <p>Место проведения: {userMeeting.location}</p>
+                      </div>
+                    ))}
+                  </>
+                ) : null}
+              </div>
+              <div className="middle-block-data">
+                {userCamps && userCamps.length ? (
+                  <>
+                    <h2 className="h2-profile">
+                      Вы зарегитсрированы на игрокемпы:
+                    </h2>
+                    {userCamps.map((userCamp) => (
+                      <div key={userCamp.id} className="meeting-camp-box">
+                        <NavLink to="/camps">
+                          <h2 className="h2-profile">{userCamp.title}</h2>
+                        </NavLink>
+                        <img src={userCamp.image1}></img>
+                        <p>
+                          Дата проведения:{" "}
+                          {userCamp.date.replace("T", " ").replace(".000Z", "")}
+                        </p>{" "}
+                        <p>Место проведения: {userCamp.location}</p>
+                      </div>
+                    ))}
+                  </>
+                ) : null}
+              </div>
             </div>
-          </div>
-
           </div>
 
           <section className="block-guide">
