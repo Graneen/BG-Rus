@@ -94,7 +94,6 @@ const BuyerPage: React.FC = () => {
       setAllBayersOrders(prevOrders => [...prevOrders, response.data]);
       setGameTitle('');
       setYourName('');
-      console.log('Advertisement created:', response.data);
     } catch (error) {
       console.error('Error creating advertisement:', error);
     }
