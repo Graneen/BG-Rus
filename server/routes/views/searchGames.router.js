@@ -3,7 +3,7 @@ const { BoardGame } = require("../../db/models");
 
 const searchGamesRouter = express.Router();
 
-searchGamesRouter.get("api/search_game", async (req, res) => {
+searchGamesRouter.get("/api/search_game", async (req, res) => {
   try {
     const allGame = JSON.parse(
       JSON.stringify(await BoardGame.findAll({ attributes: ["id", "title"] }))

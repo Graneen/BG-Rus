@@ -5,7 +5,7 @@ const { User } = require("../../db/models");
 
 ///
 
-router.get("api/users", async (req, res) => {
+router.get("/api/users", async (req, res) => {
   try {
     const users = await User.findAll({
       attributes: ["id", "name", "email", "password"],

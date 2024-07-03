@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { GameMeeting } = require("../../db/models");
 
-router.post("api/game-meetings/news", async (req, res) => {
+router.post("/api/game-meetings/news", async (req, res) => {
   try {
     const {
       game_id,

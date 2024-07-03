@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { BayerOrder } = require("../../db/models");
 
-router.post("api/bayer-orders", async (req, res) => {
+router.post("/api/bayer-orders", async (req, res) => {
   try {
     const userId = req.body.userId;
 
@@ -19,7 +19,7 @@ router.post("api/bayer-orders", async (req, res) => {
   }
 });
 
-router.get("api/allBayersOrders", async (req, res) => {
+router.get("/api/allBayersOrders", async (req, res) => {
   try {
     const allOrders = await BayerOrder.findAll({
       order: [["createdAt", "DESC"]],
