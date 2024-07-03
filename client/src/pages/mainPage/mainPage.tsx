@@ -26,7 +26,6 @@ function MainPage(): JSX.Element {
 
                     if (response.ok) {
                         const data = await response.json();
-                        console.log({usernameFetch: data})
                         setUsername(data);
                     } else {
                         console.error('Ошибка при загрузке данных об имени пользователя');
@@ -47,7 +46,6 @@ function MainPage(): JSX.Element {
 
                     if (response.ok) {
                         const data = await response.json();
-                        console.log(data.statusQuiz)
                         setQuizFinished(data.statusQuiz);
                     } else {
                         console.error('Ошибка при загрузке данных о прохождении входного квиза');
@@ -120,7 +118,6 @@ function MainPage(): JSX.Element {
         fetchMeetsData();
     },[quizFinished, user])
     
-    // console.log({user, username, quizFinished, someRecs, someMeets})
     useEffect(() => {
         
         const header:HTMLElement | null = document.querySelector("header");

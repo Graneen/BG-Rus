@@ -1,3 +1,6 @@
+
+import { Fragment } from "react/jsx-runtime";
+import { data } from "../../features/addToFavoritesSlice";
 import { GameCard } from "../../features/gameCardSlice";
 
 
@@ -11,7 +14,7 @@ function VideosOfRecommended({ someRecs }: { someRecs: GameCard[] }): JSX.Elemen
                 {(someRecs && someRecs.map((game: GameCard) => {
                     return (
                         <>
-                        <div className="flex flex-wrap gap-5">
+                        <div key={game.id} className="flex flex-wrap gap-5">
                             <iframe
                                 className="w-auto h-[200px]"
                                 src={`https://www.youtube.com/embed/${game.video.slice(17)}`}

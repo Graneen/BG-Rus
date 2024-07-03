@@ -9,7 +9,6 @@ quizRouter.get('/:id', async (req, res) => {
     const { id } = req.params
     try {
       const quizFinished = await Quiz.findOne({ where: { user_id: Number(id) }});
-    //   console.log({quizFinished})
       if (quizFinished) {
         return res.json({statusQuiz: true})
       }

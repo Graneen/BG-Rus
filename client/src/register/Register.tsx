@@ -7,7 +7,6 @@ import Models3D from '../commons/Models3D';
 
 function RegisterForm(): JSX.Element {
   const { setUser } = useContext(AuthContext);
-  console.log(setUser)
     const [name, setName] = useState ('');
     const [email, setEmail] = useState ('');
     const [password, setPassword] = useState ('');
@@ -15,7 +14,7 @@ function RegisterForm(): JSX.Element {
 
     async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const response = await fetch (`${import.meta.env.VITE_REACT_APP_URL}/auth/register`, {
+        const response = await fetch (`${import.meta.env.VITE_REACT_APP_API_URL}/auth/register`, {
             method: 'POST',
             credentials: 'include',
             headers: {

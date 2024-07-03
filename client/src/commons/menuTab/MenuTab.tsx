@@ -69,7 +69,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             description: newReview,
           };
           const response = await axios.post(
-            `${import.meta.env.VITE_REACT_APP_URL}/api/feedbacks`,
+            `${import.meta.env.VITE_REACT_APP_API_URL}/feedbacks`,
             newFeedback
           );
           const newReviewData: feedBack = {
@@ -107,11 +107,10 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
   const fetchReviews = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_REACT_APP_URL}/api/feedbacks/${card.list.boardGame.id}`
+        `${import.meta.env.VITE_REACT_APP_API_URL}/feedbacks/${card.list.boardGame.id}`
       );
       setReviews(response.data);
       localStorage.setItem('savedReviews', JSON.stringify(response.data));
-      console.log(response, 'ответ')
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
@@ -154,7 +153,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
             placeholder="Оставьте отзыв"
-            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2"
+            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2 max-w-[300px]"
           />
           <button
             onClick={submitReview}
@@ -168,11 +167,11 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
           <div style={{maxHeight: "500px", overflow: "auto"}}>
            {filteredReviews.map((el) => (
           <div key={el.id} className="mb-8">
-            <div className="flex items-center mb-2">
+            <div className="mt-8">
               <h2 className="mr-2">Отзыв от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
             </div>
             <div className="bg-sky-500/50 p-2 rounded-lg max-w-[300px] overflow-hidden">
-              {el.description}
+            <div className="whitespace-normal break-words">{el.description}</div>
             </div>
           </div>
         ))}

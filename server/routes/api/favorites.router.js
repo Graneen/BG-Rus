@@ -5,7 +5,6 @@ const { FavoriteGames, BoardGame } = require("../../db/models");
 
 router.get("/api/user/favorite/:id", async (req, res) => {
   const { id } = req.params;
-  // console.log({userFavorite: id})
     try {
       const favoriteGamesArray = await FavoriteGames.findAll({
         where: { user_id: Number(id) },
@@ -17,7 +16,6 @@ router.get("/api/user/favorite/:id", async (req, res) => {
           id: gameId,
         },
       });
-        // console.log(JSON.parse(JSON.stringify(favoriteGamesSearch)))
         if (!favoriteGamesArray) { 
           return res.json([]);
         }

@@ -24,7 +24,7 @@ const GameCamp: React.FC = () => {
     const fetchGameCamps = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_URL}/api/gameCamps`);
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/gameCamps`);
         if (Array.isArray(response.data)) {
           setGameCamps(response.data);
         } else {
@@ -58,7 +58,7 @@ const GameCamp: React.FC = () => {
           'Content-Type': 'application/json',
         };
   
-        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/api/players`, {
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/players`, {
           userId: user.user,
           gameCampId: gameCampId,
           email: userEmail,
@@ -158,7 +158,7 @@ const GameCamp: React.FC = () => {
                     type="email"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
-                    placeholder="Enter your email"
+                    placeholder="Введите почту"
                     className="email-input w-full border border-gray-300 rounded p-2 mt-2"
                   />
                   <button className="email-submit-btn bg-black text-white font-semibold py-2 px-4 rounded mt-4" onClick={handleSubmitEmail}>Подтвердить</button>

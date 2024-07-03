@@ -2,7 +2,7 @@
 // const router = express.Router();
 // const { GameMeeting } = require("./../../db/models"); 
 
-// router.post("/game-meetings/news", async (req, res) => {
+// router.post("/api/game-meetings/news", async (req, res) => {
 //   try {
 //     const { game_id, name, gameName, maxPlayers, location, date, time } = req.body; 
 
