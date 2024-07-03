@@ -28,17 +28,17 @@ interface LocalizationState {
 }
 
 export const fetchOrders = createAsyncThunk('localization/fetchOrders', async () => {
-  const response = await axios.get<Order[]>(`${import.meta.env.VITE_REACT_APP_URL}/localization-orders`);
+  const response = await axios.get<Order[]>(`${import.meta.env.VITE_REACT_APP_API_URL}/localization-orders`);
   return response.data;
 });
 
 export const addOrder = createAsyncThunk('localization/addOrder', async ({ userId, gameTitle, description }: { userId: User | null; gameTitle: string; description: string }) => {
-  const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/localization-orders`, { userId: userId?.id, gameTitle, description });
+  const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/localization-orders`, { userId: userId?.id, gameTitle, description });
   return response.data;
 });
 
 export const addComment = createAsyncThunk('localization/addComment', async ({ orderId, userId, comment }: { orderId: number; userId: number; comment: string }) => {
-  const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/localization-orders/${orderId}/comments`, { userId, comment });
+  const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/localization-orders/${orderId}/comments`, { userId, comment });
   return response.data; 
 });
 

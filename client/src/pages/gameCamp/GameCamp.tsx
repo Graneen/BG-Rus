@@ -24,7 +24,7 @@ const GameCamp: React.FC = () => {
     const fetchGameCamps = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_URL}/api/gameCamps`);
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/gameCamps`);
         if (Array.isArray(response.data)) {
           setGameCamps(response.data);
         } else {
@@ -58,7 +58,7 @@ const GameCamp: React.FC = () => {
           'Content-Type': 'application/json',
         };
   
-        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/api/players`, {
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/players`, {
           userId: user.user,
           gameCampId: gameCampId,
           email: userEmail,

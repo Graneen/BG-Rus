@@ -10,7 +10,7 @@ export async function checkAuth() {
     try {
         const token: string = getCookie();
         if (!token) throw Error(`ошибка рефреш токена token = "${token}"`)
-        const response = await axios.post<AuthResponce>(`${import.meta.env.VITE_REACT_APP_URL}/auth/refresh`, {
+        const response = await axios.post<AuthResponce>(`${import.meta.env.VITE_REACT_APP_API_URL}/auth/refresh`, {
             refreshToken: token,
         }, {withCredentials: true});
 

@@ -69,7 +69,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             description: newReview,
           };
           const response = await axios.post(
-            `${import.meta.env.VITE_REACT_APP_URL}/api/feedbacks`,
+            `${import.meta.env.VITE_REACT_APP_API_URL}/feedbacks`,
             newFeedback
           );
           const newReviewData: feedBack = {
@@ -107,7 +107,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
   const fetchReviews = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_REACT_APP_URL}/api/feedbacks/${card.list.boardGame.id}`
+        `${import.meta.env.VITE_REACT_APP_API_URL}/feedbacks/${card.list.boardGame.id}`
       );
       setReviews(response.data);
       localStorage.setItem('savedReviews', JSON.stringify(response.data));
