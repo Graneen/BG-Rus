@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './gamePage.css'
-import { getGameCard, selectGameCard } from '../../features/gameCardSlice';
+import { boardGameState, getGameCard, selectGameCard } from '../../features/gameCardSlice';
 import { selectFavoritesCard, takeFavorites, takeFavorite } from '../../features/addToFavoritesSlice';
 import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
@@ -112,7 +112,9 @@ function GamePage() {
                         </div>
                     </div>
                     <section className="block-guide">
-                        <MenuTab card={card} />
+                        <MenuTab card={card} updateGameCardState={function (updatedCard: boardGameState): void {
+                            throw new Error('Function not implemented.');
+                        } } />
                     </section>
                     <section className="block-guide">
 
