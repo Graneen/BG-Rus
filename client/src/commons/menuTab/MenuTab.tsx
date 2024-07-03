@@ -153,7 +153,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
             placeholder="Оставьте отзыв"
-            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2"
+            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2 max-w-[300px]"
           />
           <button
             onClick={submitReview}
