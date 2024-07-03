@@ -1,3 +1,4 @@
+import { Fragment } from "react/jsx-runtime";
 import { data } from "../../features/addToFavoritesSlice";
 import { GameCard } from "../../features/gameCardSlice";
 
@@ -11,7 +12,7 @@ function VideosOfRecommended({ someRecs }: { someRecs: GameCard[] }): JSX.Elemen
             <div className="m-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                 {(someRecs && someRecs.map((game: GameCard) => {
                     return (
-                        <>
+                        <Fragment key={game.id}>
                             <iframe
                                 className="w-auto h-[200px]"
                                 src={`https://www.youtube.com/embed/${game.video.slice(17)}`}
@@ -21,7 +22,7 @@ function VideosOfRecommended({ someRecs }: { someRecs: GameCard[] }): JSX.Elemen
                             <div className="game-descr pt-[1vh]">
                                 <p>{game.description}</p>
                             </div>
-                        </>
+                        </Fragment>
                     )
                 }))}
             </div>

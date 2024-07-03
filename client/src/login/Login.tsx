@@ -26,7 +26,7 @@ function LoginForm(): JSX.Element {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const response = await fetch(`${import.meta.env.VITE_REACT_APP_URL}/auth/login`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/auth/login`, {
       method: 'POST',
       credentials: 'include',
       headers: {

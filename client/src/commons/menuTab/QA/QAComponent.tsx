@@ -31,7 +31,7 @@ const QAComponent: React.FC<Props> = ({ gameId }) => {
 
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_URL}/questions`, {
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/questions`, {
         params: { game_id: gameId }
       });
       setQuestions(response.data);
@@ -43,7 +43,7 @@ const QAComponent: React.FC<Props> = ({ gameId }) => {
   const submitQuestion = async () => {
     if (newQuestion.trim() !== '') {
       try {
-        await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/questions`, { user_id: Number(user), game_id: gameId, description: newQuestion });
+        await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/questions`, { user_id: Number(user), game_id: gameId, description: newQuestion });
         setNewQuestion('');
         fetchQuestions();
       } catch (error) {
@@ -58,7 +58,7 @@ const QAComponent: React.FC<Props> = ({ gameId }) => {
     const newAnswer = answerInputs[questionId]?.trim() || '';
     if (newAnswer !== '') {
       try {
-        await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/answers`, { user_id: Number(user), question_id: questionId, description: newAnswer });
+        await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/answers`, { user_id: Number(user), question_id: questionId, description: newAnswer });
         setAnswerInputs(prevState => ({ ...prevState, [questionId]: '' }));
         fetchQuestions();
       } catch (error) {
