@@ -43,9 +43,11 @@ import './LocalizationPage.css'
   const [allOrders, setAllOrders] = useState<Order[]>([]);
   const [gameTitle, setGameTitle] = useState('');
   const [translationNeed, setTranslationNeed] = useState('');
-  const [newCommentText, setNewCommentText] = useState('');
+  const [newCommentText, setNewCommentText] = useState<{ [key: number]: string }>({});
   const [replyingToComment, setReplyingToComment] = useState<string >('');
   const [replyText, setReplyText] = useState('');
+  
+  
   
   
 
@@ -59,13 +61,16 @@ import './LocalizationPage.css'
       });
 
       console.log('Order created:', response.data);
+      setAllOrders([response.data, ...allOrders]);
+      setGameTitle('');
+      setTranslationNeed('');
       fetchOrders();
     } catch (error) {
       console.error('Error creating order:', error);
     }
   };
 
-      const handleAddComment = async (orderId: number) => {
+      const handleAddComment = async (orderId: number, newCommentText: string) => {
     try {
       if (!user) {
         console.error('User not found. Please make sure the user is logged in.');
@@ -84,7 +89,10 @@ import './LocalizationPage.css'
 
       
       fetchOrders();
-      setNewCommentText('');
+      setNewCommentText((prevState) => ({
+        ...prevState,
+        [orderId]: '',
+      }));
     } catch (error) {
       console.error('Error adding comment:', error);
     }
@@ -100,7 +108,7 @@ import './LocalizationPage.css'
 
       
 
-      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/${orderId}/comments/${commentId}/replies`, {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/localization-orders/${orderId}/comments/${commentId}/replies`, {
         userId: Number(user),
         replies: replyText
       });
@@ -123,7 +131,7 @@ import './LocalizationPage.css'
         try {
           const response = await axios.get<Order[]>(`${import.meta.env.VITE_REACT_APP_API_URL}/localization-orders`);
           setAllOrders(response.data);
-          console.log(response.data, 'aaaa')
+         
         } catch (error) {
           console.error('Error fetching orders:', error);
           
@@ -174,12 +182,17 @@ import './LocalizationPage.css'
             Комментарий:
             <input
               type="text"
-              value={newCommentText}
-              onChange={(e) => setNewCommentText(e.target.value)}
+              value={newCommentText[order.id] || ''}
+              onChange={(e) => {
+                setNewCommentText((prevState) => ({
+                  ...prevState,
+                  [order.id]: e.target.value,
+                }));
+              }}
               className="w-full px-3 py-2 rounded border border-black text-black" 
             />
           </label>
-          <button onClick={() => handleAddComment(order.id)} className="bg-black text-white font-semibold py-2 px-4 rounded mt-2">Добавить комментарий</button>
+          <button onClick={() => handleAddComment(order.id, newCommentText[order.id] || '')} className="bg-black text-white font-semibold py-2 px-4 rounded mt-2">Добавить комментарий</button>
 
           <div className="mt-4">
             <h4 className="text-base font-semibold text-black">Комментарии:</h4>
