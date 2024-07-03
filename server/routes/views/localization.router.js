@@ -4,7 +4,9 @@ const { LocalizationOrder, User } = require("../../db/models");
 
 router.get("/api/localization-orders", async (req, res) => {
   try {
-    const orders = await LocalizationOrder.findAll();
+    const orders = await LocalizationOrder.findAll({
+      order: [['id', 'DESC']]
+    });
     res.json(orders);
   } catch (error) {
     console.error(error);
