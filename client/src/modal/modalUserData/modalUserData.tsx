@@ -9,7 +9,7 @@ import "./modalUserData.css";
 const style = {
   position: "absolute" as "absolute",
   top: "25%",
-  left: "40%",
+  left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
@@ -40,13 +40,17 @@ export default function ProfileModal({setCurrentUser}) {
 
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);
-        console.log("asdfasdasdasd",response.data);
-        
         setName(response.data.name)
         setEmail(response.data.email)
         setOpen(false);
         setCurrentUser(response.data)
-      } else {
+
+      }
+      if(response.status === 204){
+        setOpen(false);
+      }
+      
+      else {
         console.error("Ошибка при получении данных Modal-Profile");
       }
     } catch (error) {

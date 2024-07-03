@@ -102,36 +102,35 @@ export default function ProfileMenuTab({
         {userFavoriteGames&&userFavoriteGames.length?userFavoriteGames.map((userFavoriteGame) => (
           <div key={userFavoriteGame.id} className="profile-game-box">
             <div className="profile-block-guide">
-              <h1 className="page-header">{userFavoriteGame.title}</h1>
               <NavLink to={`/game/${userFavoriteGame.id}`}>
-                <button className="game-button-profile">Страница игры</button>
+              <h1 className="page-header">{userFavoriteGame.title}</h1>
               </NavLink>
               <div>
                 <div className="profile-image-descr-block">
-                  <div className="card-left">
-                    <div className="images-section">
+                  <div className="profile-card-left">
+                    <div className="profile-images-section">
                       <div
-                        className="main-image image-bg rounded-lg"
+                        className="profile-main-image"
                         onClick={handleMainPhotoClick}
                       >
                         <img
                           src={getImages(userFavoriteGame)[mainPhotoIndex]}
-                          className="main-img"
+                          className="profile-main-img"
                           alt="Заглавное изображение"
                         />
                       </div>
-                      <div className="preview-images">
+                      <div className="profile-preview-images">
                         {getImages(userFavoriteGame).map((photo, index) => (
                           <div
                             key={index}
                             className={
                               mainPhotoIndex === index
-                                ? `profile-active-prev-img rounded-lg  image-bg`
-                                : `image-bg rounded-lg`
+                                ? `profile-active-prev-img`
+                                : `profile-unactive-prev-img`
                             }
                           >
                             <img
-                              className="profile-preview-image"
+                              className="profile-preview-img"
                               src={photo}
                               alt={`Альтернативное изображение ${index}`}
                             />
@@ -168,7 +167,7 @@ export default function ProfileMenuTab({
         )):null}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <div className="recom-head-block" ><h2 className="recom-head-block-h2">Мы выбираем случайные 10 игр на основании ваших предпочтений</h2>
+        <div className="recom-head-block" ><h2 id="recom-head-block-h2">Мы выбираем случайные 10 игр на основании ваших предпочтений</h2>
         <NavLink to="/quiz">
           <button className="quiz-button">Изменить выборку игр</button>
         </NavLink></div>
@@ -176,36 +175,35 @@ export default function ProfileMenuTab({
         {userRecommendedGames&&userRecommendedGames.length?userRecommendedGames.map((userRecommendedGame) => (
           <div key={userRecommendedGame.id} className="profile-game-box">
             <div className="profile-block-guide">
-              <h1 className="page-header">{userRecommendedGame.title}</h1>
               <NavLink to={`/game/${userRecommendedGame.id}`}>
-                <button className="game-button-profile">Страница игры</button>
+              <h1 className="page-header">{userRecommendedGame.title}</h1>
               </NavLink>
-              <div>
+              
                 <div className="profile-image-descr-block">
-                  <div className="card-left">
-                    <div className="images-section">
+                  <div className="profile-card-left">
+                    <div className="profile-images-section">
                       <div
-                        className="main-image image-bg rounded-lg"
+                        className="profile-main-image"
                         onClick={handleMainPhotoClick}
                       >
                         <img
                           src={getImages(userRecommendedGame)[mainPhotoIndex]}
-                          className="main-img"
+                          className="profile-main-img"
                           alt="Заглавное изображение"
                         />
                       </div>
-                      <div className="preview-images">
+                      <div className="profile-preview-images">
                         {getImages(userRecommendedGame).map((photo, index) => (
                           <div
                             key={index}
                             className={
                               mainPhotoIndex === index
-                                ? `profile-active-prev-img rounded-lg  image-bg`
-                                : `image-bg rounded-lg`
+                                ? `profile-active-prev-img`
+                                : `profile-unactive-prev-img`
                             }
                           >
                             <img
-                              className="profile-preview-image"
+                              className="profile-preview-img"
                               src={photo}
                               alt={`Альтернативное изображение ${index}`}
                             />
@@ -236,7 +234,7 @@ export default function ProfileMenuTab({
                                                      handler={() => dispatch(takeFavorites({ user_id: user, game_id: userRecommendedGame.id, toggler: true}))}/> */}
                   </div>
                 </div>
-              </div>
+              
             </div>
           </div>
         )):null}
@@ -258,15 +256,15 @@ export default function ProfileMenuTab({
         {userQuestionsAndAnswers&&userQuestionsAndAnswers.length?userQuestionsAndAnswers.map((userQuestionAndAnswers) => (
           <div
             key={userQuestionAndAnswers.game_id}
-            className="meeting-camp-box"
+            className="profile-question-box"
           >
             <NavLink to={`/game/${userQuestionAndAnswers.game_id}`}>
               <h2 className="h2-profile" >Игра: {userQuestionAndAnswers.game}</h2>
             </NavLink>
-            <p>Ваш вопрос: {userQuestionAndAnswers.questions[0].question}</p>
+            <div className="profile-question">Ваш вопрос: {userQuestionAndAnswers.questions[0].question}</div>
             {userQuestionAndAnswers.questions[0].answers.map(
               (answer, index) => (
-                <p key={index}>Ответ: {answer}</p>
+                <div className="profile-answer" key={index}>Ответ: {answer}</div>
               )
             )}
           </div>
