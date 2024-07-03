@@ -7,7 +7,8 @@ router.post('/api/feedbacks', async (req, res) => {
     const { user_id, game_id, description } = req.body;
     
     const feedback = await Feedback.create({ user_id, game_id, description });
-    res.status(201).json(feedback);
+    const userName = JSON.parse(JSON.stringify(await User.findByPk(user_id)));
+    res.status(201).json({feedback, userName: userName.name});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

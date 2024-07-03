@@ -5,25 +5,39 @@ import FavoritesButton from '../../commons/FavoritesButton';
 import { selectFavoritesCard, takeFavorites } from '../../features/addToFavoritesSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AuthContext } from '../../app/App';
+import SearchTopList from '../../commons/SearchTopList/SearchTopList';
 
-interface BoardGameData {
-    Users: Array<{toggler: boolean, name: string}>;
-    id: number;
-    title: string;
-    genre: string;
-    theme: string;
-    difficulty: string;
-    poster: string;
+export interface BoardGameData {
+    Users: Array<{toggler: boolean, name: string}> | [],
+    id: number,
+    title: string,
+    genre: string,
+    theme: string,
+    difficulty: string,
+    poster: string,
+    image1: string,
+    image2: string,
+    author: string,
+    minPlayers: number,
+    maxPlayers: number,
+    players: string,
+    time: string,
+    video: string,
+    year: string,
+    description: string,
+    createdAt: string,
+    updatedAt: string
 }
 
 const TopList: React.FC = () => {
     const { user } = useContext(AuthContext);
+
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const takeTheFavorites = useAppSelector(selectFavoritesCard);
+
     const [boardGameData, setBoardGameData] = useState<BoardGameData[] | null>(null);
     const [sortGames, setSortGames] = useState<BoardGameData[] | null>(null);
-    const navigate = useNavigate();
-    // console.log(takeTheFavorites)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,35 +58,12 @@ const TopList: React.FC = () => {
         fetchData();
     }, [takeTheFavorites, user]);
 
-    // const titleGenre: string[] = ["Карточные", "Патигеймы", "Филеры", "Евроигры", "Социальные", "Кооперативные", "Полукооперативные", "Абстрактные", "Варгеймы", "Америтреши", "Контроли территорий", "Легаси", "Roll-and-write", "Dungeon Crawler"];
-    // const titleTheme: string[] = ["Исторические", "Экономические", "Фэнтэзи", "Приключения", "Научные", "Реализмы", "Семейные", "Вестерны", "Казуальные"];
-
-// console.log({titleGenre, titleTheme});
-    
-    function changeHandler(textSearch: string): void {
-        if (boardGameData) {
-            const filteredArray = boardGameData.filter((element: BoardGameData) => element.title.toLowerCase().includes(textSearch.toLowerCase()));
-            // console.log({filteredArray});
-            setSortGames(filteredArray);
-        } else {
-            alert("Список игр пуст!");
-        }
-    }
-
     return (
         <>
             <div className="bg-gray">
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                     <h2 className="text-3xl p-4 text-[#ffd700]">TOP-100 ЛУЧШИХ ИГР ПО ВЕРСИИ BGRUS</h2>
-                    <div>
-                        <div>Сортировка игр</div>
-                        <input
-                            type="text"
-                            className="text-black rounded-lg w-80"
-                            placeholder="Введите название игры"
-                            onChange={(event: React.ChangeEvent<HTMLInputElement> ) => changeHandler(event.target.value)}
-                        />
-                    </div>
+                    <SearchTopList boardGameData={boardGameData} setSortGames={setSortGames} />
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         { sortGames 
                             ?

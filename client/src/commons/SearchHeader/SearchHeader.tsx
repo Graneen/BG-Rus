@@ -24,37 +24,38 @@ function Search() {
         setOpenListSearch(false);
     }
 
+    function handlerOpenSearch() {
+        setOpenSearch(true);
+        dispatch(getGames());
+    }
+
     function handlerFoundGame(gameId: number) {
         handlerButtonClose();
         navigate(`/game/${gameId}`);
     }
 
-    useEffect(() => {
-        dispatch(getGames());
-    }, [])
-
     return (
         <div>
             { 
                 !openSearch ? 
-                <div className="w-56 flex justify-end relative">
+                <div className="w-64 flex justify-end relative">
                     <img
                         className="w-5 cursor-pointer"
-                        onClick={() => setOpenSearch(true)}
+                        onClick={handlerOpenSearch}
                         src="https://png.klev.club/uploads/posts/2024-03/png-klev-club-p-lupa-ikonka-png-30.png"
                         alt="search"
                     />
 
                 </div>
                 : 
-                <div className="w-56 relative">
+                <div className="w-64 relative">
                     <input
                         type="text"
                         className="text-black rounded-lg w-full"
                         placeholder="Введите название игры"
                         onChange={(event: React.ChangeEvent<HTMLInputElement> ) => changeHandler(event.target.value)}
                     />
-                    <span className="text-sky bg-gray-900 rounded-full p-0.5 cursor-pointer absolute right-0 w-7 text-center inset-y-2" onClick={handlerButtonClose}>
+                    <span className="text-[#183d50bb] hover:text-yellow-300 bg-yellow-300 hover:bg-[#0B1D26ff] font-black border-2 border-[#183d50bb] rounded-full cursor-pointer absolute right-1 w-7 text-center inset-y-1.5" onClick={handlerButtonClose}>
                         x
                     </span>
                     <div className="absolute overscroll-contain">

@@ -7,14 +7,15 @@ import ModalMap from "../modalMap/ModalMap";
 import axios from "axios"; 
 import "./ModalForm.css";
 
+import { gameMeetsData } from '../../pages/gameMeet/GameMeet';
+
 
 interface ModalFormProps {
-  
- 
   onCloseModal: () => void;
+  updateGameMeets: (newGameMeet: gameMeetsData) => void;
   }
 
-  const ModalForm: React.FC<ModalFormProps> = ({ onCloseModal }) => {
+  const ModalForm: React.FC<ModalFormProps> = ({ onCloseModal, updateGameMeets }) => {
   const { date, gameName, maxPlayers, venue } = useSelector((state: RootState) => state.gameSession);
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
@@ -38,6 +39,8 @@ interface ModalFormProps {
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+
+      const imageUrl = imgInput || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJY6pNBO1wxk8BH5uPMKz7mLEzk-Y1z-9IMw&s";
       const response = await axios.post("http://localhost:3000/game-meetings/news", {
         game_id: null,
         name: nameInput,
@@ -45,18 +48,16 @@ interface ModalFormProps {
         gameName: gameNameInput,
         maxPlayers: maxPlayersInput,
         location: locationAddress,
-        img: imgInput || "",
+        img: imageUrl,
         place: placeInput ? placeInput.split(",").map((coord) => parseFloat(coord.trim())) : [0, 0],
         date,
         time: timeInput,
       });
 
       displayMessage("Игровая сессия успешно создана!");
-      console.log("Game Meeting created:", response.data);
+     
 
-      console.log('contactsInput:', contactsInput);
-console.log('imgInput:', imgInput);
-console.log('placeInput:', placeInput);
+     
 
       dispatch(
         updateGameSession({
@@ -65,6 +66,7 @@ console.log('placeInput:', placeInput);
           venue: locationAddress,
         })
       );
+      updateGameMeets(response.data);
 
       setTimeout(() => {
         onCloseModal();
@@ -113,8 +115,14 @@ console.log('placeInput:', placeInput);
     setPlaceInput(e.target.value);
   };
   return (
-    <div className="modal bg-black-200 px-4 py-4">
-      <div className="modal-content bg-yellow-200 p-4 rounded-md shadow-md">
+    <div
+    className="modal bg-black-200 px-4 py-4"
+    onClick={onCloseModal}
+  >
+    <div
+      className="modal-content bg-yellow-200 p-4 rounded-md shadow-md"
+      onClick={(e) => e.stopPropagation()}
+    >
         {showMessage && <div className="message">{message}</div>}
         <h3 className="text-black">Детали</h3>
         <form onSubmit={handleFormSubmit} className="text-black">

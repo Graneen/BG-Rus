@@ -19,6 +19,7 @@ import LocalisationPage from "../pages/localisationPage/localisationPage.tsx";
 import QuizPage from "../pages/QuizPage/QuizPage.tsx";
 
 import Profile from "../pages/Profile/Profile.tsx";
+import ErrorPage from "../pages/ErrorPage/ErrorPage.tsx";
  
 export const AuthContext = createContext<AuthState>(defaultAuthState);
 
@@ -27,7 +28,7 @@ export const AuthContext = createContext<AuthState>(defaultAuthState);
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-
+    
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser) as User);
@@ -46,7 +47,7 @@ function App(): JSX.Element {
      <Router>
       <Routes>
           <Route path='/' element={<Layout/>}>
-          <Route path={"/"} element={<MainPage/>}/>
+          <Route index element={<MainPage/>}/>
             <Route path={"login"} element={<Login />} />
             <Route path={"register"} element={<Register/>} />
             <Route path={"top"} element={<TopList/>} />
@@ -57,7 +58,7 @@ function App(): JSX.Element {
             <Route path={"buyers"} element={<BuyerPage/>}/>
             <Route path={"localisations"} element={<LocalisationPage/>}/>
             <Route path={"quiz"} element={<QuizPage setQuiz={null}/>}/>
-
+            <Route path={"*"} element={<ErrorPage/>}/>
           </Route>
       </Routes>
       </Router>

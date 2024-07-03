@@ -18,6 +18,8 @@ const GameCamp: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [showEmailModal, setShowEmailModal] = useState<boolean>(false);
 
+  
+
   useEffect(() => {
     const fetchGameCamps = async () => {
       try {
@@ -64,7 +66,8 @@ const GameCamp: React.FC = () => {
   
         console.log('Успешно:', response.data);
         setShowSuccessModal(true); 
-        setShowEmailModal(false); 
+        setShowEmailModal(false);
+        setUserEmail(''); 
       } else {
         setShowErrorModal(true);
         setErrorMessage('UserID не найден.');
@@ -84,19 +87,18 @@ const GameCamp: React.FC = () => {
 
   return (
     
-      <div className="bg-gray py-6">
-        <div className="bg-yellow-400 text-black p-6 rounded-lg max-w-4xl mx-auto mb-6 mt-12">
-          <h2 className="text-xl font-semibold mb-4">Добро пожаловать в Игрокэмп!</h2>
-          <p className="text-sm">Игрокэмп (GameCamp) - это уникальное мероприятие или место, где участники могут погрузиться в мир увлекательных игровых событий и активностей. Обычно Игрокэмп представляет собой сборище игровых энтузиастов, участвующих в различных игровых мероприятиях, таких как турниры, квесты, конкурсы, обучающие мастер-классы и другие игровые форматы.
+    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+          <h2 className="mt-5 text-3xl text-[#ffd700]">ДОБРО ПОЖАЛОВАТЬ В ИГРОКЭМП!</h2>
+          <p className="text-base leading-7 text-gray-400">Игрокэмп (GameCamp) - это уникальное мероприятие или место, где участники могут погрузиться в мир увлекательных игровых событий и активностей. Обычно Игрокэмп представляет собой сборище игровых энтузиастов, участвующих в различных игровых мероприятиях, таких как турниры, квесты, конкурсы, обучающие мастер-классы и другие игровые форматы.
 
 В Игрокэмпе участники обычно имеют возможность встретиться, знакомиться с единомышленниками, делиться игровым опытом, соревноваться, учиться новым играм и просто проводить время в веселой и дружеской обстановке.
 
 Такие мероприятия могут быть проведены как в реальном мире (offline), так и в виртуальном пространстве (online), и их организаторы обычно стараются создать интересные и захватывающие форматы, чтобы привлечь участников и создать незабываемый опыт игрокам.
 
 Как правило, в Игрокэмпе каждый найдет что-то интересное для себя, включая возможность попробовать новые игры, улучшить свои навыки в уже известных играх, пообщаться с единомышленниками и просто хорошо провести время в игровой атмосфере.</p>
-        </div>
-  
-        <div className="max-w-4xl mx-auto">
+
+<h2 className="mt-10 text-3xl text-[#ffd700]">ИГРОКЭМПЫ</h2>
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-4">
           {loading ? (
             <div>Loading...</div>
           ) : error ? (
