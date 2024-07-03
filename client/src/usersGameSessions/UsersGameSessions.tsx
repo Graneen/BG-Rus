@@ -17,7 +17,7 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
     };
 
     const handleJoin = async (gameMeetingId: number) => {
-        const userId = localStorage.getItem('userId');
+        const userId = localStorage.getItem('user');
         if (!userId) {
             console.error('User ID is not available');
             return;
