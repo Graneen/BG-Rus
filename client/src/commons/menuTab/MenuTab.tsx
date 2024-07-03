@@ -111,7 +111,6 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
       );
       setReviews(response.data);
       localStorage.setItem('savedReviews', JSON.stringify(response.data));
-      console.log(response, 'ответ')
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }

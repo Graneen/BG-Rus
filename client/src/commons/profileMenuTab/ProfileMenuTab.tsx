@@ -10,12 +10,6 @@ import {
   userFeedbacks,
   userQuestionsAndAnswers,
 } from "../../pages/Profile/Profile";
-// import { selectFavoritesCard, takeFavorites, takeFavorite, getFavoriteStatus } from '../../features/addToFavoritesSlice';
-// import FavoritesButton from '../../commons/FavoritesButton'
-// import { useAppDispatch, useAppSelector } from '../../../src/hooks/redux'
-// const dispatch = useAppDispatch();
-// const user = localStorage.getItem("user");
-// const takeTheFavorites = useAppSelector(selectFavoritesCard);
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -157,8 +151,6 @@ export default function ProfileMenuTab({
                     <p className="text-[#ffd700]">
                       Среднее время игры: {userFavoriteGame.time}
                     </p>
-                    {/* <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
-                                                     handler={() => dispatch(takeFavorites({ user_id: user, game_id: userRecommendedGame.id, toggler: true}))}/> */}
                   </div>
                 </div>
               </div>
@@ -230,8 +222,6 @@ export default function ProfileMenuTab({
                     <p className="text-[#ffd700]">
                       Среднее время игры: {userRecommendedGame.time}
                     </p>
-                    {/* <FavoritesButton favorites={ (takeTheFavorites.statusFav.toggler) === true ? 1 : null }
-                                                     handler={() => dispatch(takeFavorites({ user_id: user, game_id: userRecommendedGame.id, toggler: true}))}/> */}
                   </div>
                 </div>
               
