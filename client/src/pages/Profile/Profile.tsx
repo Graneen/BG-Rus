@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import axios from "axios";
 import ProfileModal from "../../modal/modalUserData/modalUserData";
-import { NavLink, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import ProfileMenuTab from "../../commons/profileMenuTab/ProfileMenuTab";
-
 
 export interface User {
   name: string;
@@ -17,8 +16,8 @@ export interface userMeeting {
   maxPlayers: number;
   location: string;
   date: string;
-  img:string;
-  time:string;
+  img: string;
+  time: string;
 }
 
 export interface userCamps {
@@ -109,17 +108,33 @@ const Profile: React.FC = () => {
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="mt-5 text-3xl text-[#ffd700]">ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ</h2>
           <div className="w-full p-6 bg-[#FBD784] rounded-lg shadow dark:bg-gray-800 flex items-center flex-col justify-center">
-            <p className="m-2 text-gray-700 dark:text-gray-400">Имя: <strong className="font-bold text-[#183d50bb] text-2xl">{currentUser.name}</strong></p>
-            <p className="m-2 text-gray-700 dark:text-gray-400">Email: <strong className="font-bold text-[#183d50bb] text-2xl">{currentUser.email}</strong></p>
+            <p className="m-2 text-gray-700 dark:text-gray-400">
+              Имя:{" "}
+              <strong className="font-bold text-[#183d50bb] text-2xl">
+                {currentUser.name}
+              </strong>
+            </p>
+            <p className="m-2 text-gray-700 dark:text-gray-400">
+              Email:{" "}
+              <strong className="font-bold text-[#183d50bb] text-2xl">
+                {currentUser.email}
+              </strong>
+            </p>
             <ProfileModal setCurrentUser={setCurrentUser} />
           </div>
-          <h2 className="mt-10 text-3xl text-[#ffd700]">ЗАРЕГИСТРИРОВАН НА {userCamps.length+userMeetings.length} МЕРОПРИЯТИИ</h2>
+          <h2 className="mt-10 text-3xl text-[#ffd700]">
+            ЗАРЕГИСТРИРОВАН НА {userCamps.length + userMeetings.length}{" "}
+            МЕРОПРИЯТИИ
+          </h2>
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {userCamps && userCamps.length ? (
               <>
                 {userCamps.map((userCamp) => (
                   <div key={userCamp.id} className=" group relative p-4">
-                    <button onClick={() => navigate(`/camps`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
+                    <button
+                      onClick={() => navigate(`/camps`)}
+                      className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80"
+                    >
                       <img
                         src={userCamp.image1}
                         className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
@@ -127,11 +142,17 @@ const Profile: React.FC = () => {
                     </button>
                     <div className="mt-4 flex justify-between">
                       <div>
-                        <h2 className="game-title">Игрокемп:{" "}
-                          {userCamp.title}
+                        <h2 className="game-title">
+                          Игрокемп: {userCamp.title}
                         </h2>
                         <div className="game-descr pt-[1vh]">
-                          <p> <strong>Дата проведения: </strong> {userCamp.date.replace("T", " ").replace(".000Z", "")}</p>
+                          <p>
+                            {" "}
+                            <strong>Дата проведения: </strong>{" "}
+                            {userCamp.date
+                              .replace("T", " ")
+                              .replace(".000Z", "")}
+                          </p>
                           <p>Место проведения: {userCamp.location}</p>
                         </div>
                       </div>
@@ -144,7 +165,10 @@ const Profile: React.FC = () => {
               <>
                 {userMeetings.map((userMeeting) => (
                   <div key={userMeeting.id} className="group relative p-4">
-                    <button onClick={() => navigate(`/events#sessions`)} className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80">
+                    <button
+                      onClick={() => navigate(`/events#sessions`)}
+                      className="aspec t-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80"
+                    >
                       <img
                         src={userMeeting.img}
                         className="p-8 h-full w-full object-cover object-center lg:h-full lg:w-full"
@@ -152,12 +176,20 @@ const Profile: React.FC = () => {
                     </button>
                     <div className="mt-4 flex justify-between">
                       <div>
-                        <h2 className="game-title">Игротека:{" "}
-                          {userMeeting.gameName}
+                        <h2 className="game-title">
+                          Игротека: {userMeeting.gameName}
                         </h2>
                         <div className="game-descr pt-[1vh]">
-                          <p> <strong>Дата проведения: </strong> {userMeeting.date.slice(0, 10)}</p>
-                          <p> <strong>Время проведения: </strong> {userMeeting.time}</p>
+                          <p>
+                            {" "}
+                            <strong>Дата проведения: </strong>{" "}
+                            {userMeeting.date.slice(0, 10)}
+                          </p>
+                          <p>
+                            {" "}
+                            <strong>Время проведения: </strong>{" "}
+                            {userMeeting.time}
+                          </p>
                           <p>Место проведения: {userMeeting.location}</p>
                         </div>
                       </div>
@@ -165,7 +197,7 @@ const Profile: React.FC = () => {
                   </div>
                 ))}
               </>
-            ) : null}           
+            ) : null}
           </div>
           <section className="block-guide">
             <ProfileMenuTab
