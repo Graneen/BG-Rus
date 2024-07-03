@@ -7,7 +7,6 @@ import Models3D from '../commons/Models3D';
 
 function RegisterForm(): JSX.Element {
   const { setUser } = useContext(AuthContext);
-  console.log(setUser)
     const [name, setName] = useState ('');
     const [email, setEmail] = useState ('');
     const [password, setPassword] = useState ('');

@@ -19,7 +19,7 @@ const {
 
 router.get('/api/main/recommended/:id', async (req, res) => {
   const { id } = req.params;
-  console.log({id})
+
   try {
     let recommendedGames = [];
     const userQuiz = await Quiz.findOne({ where: { user_id: Number(id) } });
@@ -59,7 +59,7 @@ router.get('/api/users/:id', async (req, res) => {
 
       const userData = await User.findOne({where: {id: Number(id)}});
       const userDataClear = JSON.parse(JSON.stringify(userData))
-      // console.log({userData: userDataClear})
+
       return res.json(userDataClear.name);
   } catch (error) {
       console.log({error: 'Ошибка при получении имени пользователя'});
