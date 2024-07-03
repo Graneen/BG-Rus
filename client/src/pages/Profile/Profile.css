@@ -27,7 +27,8 @@
     border-radius: 8px;
     padding: 15px;
     gap: 5px;
-    /* width: 45%; */
+    width: fit-content;
+  
 
 }
 .data-button {
@@ -43,6 +44,8 @@
   }
   .h2-profile{
     padding-bottom: 2vh;
+    font-size: 20px;
+
   }
   .user-data-profile{
     color:black
