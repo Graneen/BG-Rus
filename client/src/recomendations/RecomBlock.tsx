@@ -1,5 +1,4 @@
 
-import { useState } from 'react';
 import '../steps/Steps.css'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Carousel } from 'antd';
@@ -14,7 +13,7 @@ const contentStyle: React.CSSProperties = {
 };
 
 
-function CarouselBlock() {
+function RecomBlock() {
     const navigate = useNavigate();
 
 
@@ -41,4 +40,4 @@ function CarouselBlock() {
     );
 }
 
-export default CarouselBlock;
+export default RecomBlock;

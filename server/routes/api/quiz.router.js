@@ -9,13 +9,14 @@ quizRouter.get('/:id', async (req, res) => {
     const { id } = req.params
     try {
       const quizFinished = await Quiz.findOne({ where: { user_id: Number(id) }});
+    //   console.log({quizFinished})
       if (quizFinished) {
-        res.json(true)
+        return res.json({statusQuiz: true})
       }
-      return res.json(false);
+      return res.json({statusQuiz: false});
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+      res.status(509).json({ message: 'Internal server error' });
     }
   });
 

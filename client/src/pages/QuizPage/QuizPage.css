@@ -3,6 +3,6 @@ h1, .bbb {
     font-family: 'ROSTOV', normal;
 }
 
-div {
+div, .aaa {
     font-family: 'Exo-2-Medium', normal;
 }
