@@ -12,13 +12,12 @@ interface TabPanelProps {
   value: number;
 }
 
+const CustomTabPanelStyles = {
+  
+};
 
-const tabStyler = {
-    color: 'var(--goldenbeer)',
-    fontFamily: 'ROSTOV',
-    fontSize: '2.2em',
-    textTransform: 'capitalize'
-}
+
+
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -30,6 +29,7 @@ function CustomTabPanel(props: TabPanelProps) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
+      style={CustomTabPanelStyles}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
@@ -132,10 +132,8 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
 
   
 
-  
-
     return (
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%',  marginTop: '-200px' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs">
           <Tab sx={tabStyler} label="Видеообзор" {...a11yProps(0)} />
@@ -145,14 +143,14 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
       </Box>
       <CustomTabPanel value={value} index={0}>
         <iframe
-          className="w-full h-[70vh]"
+          className="w-[80%] h-[60vh] ml-6"
           src={`https://www.youtube.com/embed/${card.list.boardGame.video.slice(17)}`}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <div>
+        <div >
           <input
             type="text"
             value={newReview}
@@ -167,8 +165,10 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             Оставить отзыв
           </button>
         </div>
+        
         {filteredReviews.length > 0 ? (
-        filteredReviews.map((el) => (
+          <div style={{maxHeight: "500px", overflow: "auto"}}>
+           {filteredReviews.map((el) => (
           <div key={el.id} className="mb-8">
             <div className="flex items-center mb-2">
               <h2 className="mr-2">Отзыв от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
@@ -177,13 +177,17 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
               {el.description}
             </div>
           </div>
-        ))
+        ))}
+          </div>
+        
       ) : (
-  <p>Нет отзывов. Будь первым!</p>
+      <p>Нет отзывов. Будь первым!</p>
     )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        <QAComponent gameId={card.list.boardGame.id} />
+        <div style={{ maxHeight: "500px", overflow: "auto" }}>
+         <QAComponent gameId={card.list.boardGame.id} />
+        </div>
       </CustomTabPanel>
     </Box>
   );

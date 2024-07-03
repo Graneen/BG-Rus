@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 
 
 const appRoot = document.getElementById('root');
+if (appRoot) {
 Modal.setAppElement(appRoot);
 
 ReactDOM.createRoot(appRoot!).render(
@@ -14,3 +15,6 @@ ReactDOM.createRoot(appRoot!).render(
     <App />
   </Provider>
 );
+} else {
+  console.error("App root element not found");
+}
