@@ -14,8 +14,6 @@ const {
 router.post("/api/profile/update", async (req, res) => {
   try {
     const { user, name, email, password } = req.body;
-
-    console.log("ПРИШЛО", user, name, email, password);
     if (user && (name.length || email.length || password.length)) {
       const findUser = await User.findByPk(Number(user));
 
@@ -47,7 +45,6 @@ router.post("/api/profile/update", async (req, res) => {
       return res.status(204).json({ message: "Поля не заполнены" });
     }
   } catch (error) {
-    console.log("Err register", error);
     res.status(500).json({ message: "Error, while create user" });
   }
 });

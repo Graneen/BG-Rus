@@ -40,7 +40,7 @@ app.use("/", estimatesRouter);
 app.use("/", commentBayersRouter);
 app.use("/api/quiz", quizRouter);
 app.use("/", updateUserRouter);
-app.use("/search_game", searchGamesRouter);
+app.use("/", searchGamesRouter);
 app.use("/", gameMeetsRouter);
 app.use("/", QARouter);
 app.use("/", feedbackRouter);
