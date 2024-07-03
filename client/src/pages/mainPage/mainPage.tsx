@@ -120,7 +120,7 @@ function MainPage(): JSX.Element {
         fetchMeetsData();
     },[quizFinished, user])
     
-    console.log({user, username, quizFinished, someRecs, someMeets})
+    // console.log({user, username, quizFinished, someRecs, someMeets})
     useEffect(() => {
         
         const header:HTMLElement | null = document.querySelector("header");
