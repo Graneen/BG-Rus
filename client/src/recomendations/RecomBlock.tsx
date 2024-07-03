@@ -1,6 +1,5 @@
 
 import '../steps/Steps.css'
-import { NavLink, useNavigate } from 'react-router-dom';
 import { Carousel } from 'antd';
 
 const contentStyle: React.CSSProperties = {
@@ -14,7 +13,7 @@ const contentStyle: React.CSSProperties = {
 
 
 function RecomBlock() {
-    const navigate = useNavigate();
+   
 
 
     return (
