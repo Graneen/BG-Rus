@@ -1,6 +1,6 @@
 import QuizPage from "../../pages/QuizPage/QuizPage";
 
-function Step01({quizHandler, quiz, setQuiz}: {quizHandler: void, quiz: boolean, setQuiz: React.Dispatch<React.SetStateAction<boolean>>}) {
+function Step01({quizHandler, quiz, setQuiz}: {quizHandler: () => void, quiz: boolean, setQuiz: React.Dispatch<React.SetStateAction<boolean>>}) {
     return (
         <>
             <div className="guide" id="guide1">

@@ -17,11 +17,6 @@ const CustomTabPanelStyles = {
 };
 
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 2a85c2babf0e4bf7c15eac384eada89df7467065
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
