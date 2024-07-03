@@ -11,9 +11,7 @@ const {
   findToken,
 } = require("../../middlewares/token-service");
 
-///auth
-
-router.post("api/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
@@ -41,7 +39,7 @@ router.post("api/login", async (req, res) => {
   }
 });
 
-router.post("api/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
     const findUser = await User.findOne({ where: { email } });
@@ -92,7 +90,7 @@ router.post("/logout", async (req, res) => {
   }
 });
 
-router.post("api/refresh", async (req, res) => {
+router.post("/refresh", async (req, res) => {
   try {
     const { refreshToken } = req.body;
 

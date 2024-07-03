@@ -26,7 +26,7 @@ const PORT = 3000;
 serverConfig(app);
 
 app.use("/", mainRouter);
-app.use("/auth", authRouter);
+app.use("/api/auth", authRouter);
 app.use("/", boardGameRouter);
 app.use("/", gameCampsRouter);
 app.use("/", playerCampRouter);
