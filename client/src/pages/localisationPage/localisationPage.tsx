@@ -100,7 +100,7 @@ import './LocalizationPage.css'
 
       
 
-      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/${orderId}/comments/${commentId}/replies`, {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/localization-orders/${orderId}/comments/${commentId}/replies`, {
         userId: Number(user),
         replies: replyText
       });
