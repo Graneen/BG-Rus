@@ -51,9 +51,8 @@ router.post("/register", async (req, res) => {
         password: hashedPassword,
         adminRights: false,
       });
-      console.log(user);
+
       req.session.user_sid = user.id;
-      console.log(req.session.user_sid);
 
       const tokens = generateToken({ id: user.id, email: user.email });
       await saveToken(user.id, tokens.refreshToken);
@@ -82,7 +81,7 @@ router.post("/logout", async (req, res) => {
     });
 
     const { token } = req.body;
-    // const { refreshToken } = req.cookies;
+    
     await logoutToken((refreshToken = token));
     res.clearCookie("refresh_token").sendStatus(204);
   } catch (error) {

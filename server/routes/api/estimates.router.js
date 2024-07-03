@@ -5,7 +5,7 @@ const { Estimation } = require("../../db/models");
 
 router.post("/api/rates", async (req, res) => {
   const { user_id, game_id, value } = req.body; 
-  console.log(req.body) 
+
     try {
       const findRate = await Estimation.findOne({where: {user_id, game_id: Number(game_id) }});
         if (!findRate) { 
@@ -15,7 +15,7 @@ router.post("/api/rates", async (req, res) => {
             value: value 
           });
           const estimationsArray = await Estimation.findAll({ where: { game_id: Number(game_id)}});
-          console.log({estimationsArray})
+
           const rateArr = estimationsArray.length;
           const result = (estimationsArray.reduce((acc, curr) => {
             return acc + Number(curr.value)
