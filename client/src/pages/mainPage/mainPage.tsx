@@ -4,17 +4,21 @@ import Steps from '../../steps/Steps';
 
 import './mainPage.css';
 import { AuthContext } from '../../app/App';
-import { data } from '../../features/addToFavoritesSlice';
+import { GameCard } from '../../features/gameCardSlice';
 import { gameMeetsData } from '../gameMeet/GameMeet';
+
+
+
+
 
 
 function MainPage(): JSX.Element {
     const { user } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [quizFinished, setQuizFinished] = useState<boolean>(false);
-    const [someFavorites, setSomeFavorites] = useState<data[]>([]);
-    const [someRecs, setSomeRecs] = useState([]);
-    const [someMeets, setSomeMeets] = useState([]);
+    const [someFavorites, setSomeFavorites] = useState<GameCard[]>([]);
+    const [someRecs, setSomeRecs] = useState<GameCard[]>([]);
+    const [someMeets, setSomeMeets] = useState<gameMeetsData[]>([]);
 
 
 
@@ -65,7 +69,7 @@ function MainPage(): JSX.Element {
                     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/favorite/${user}`);
 
                     if (response.ok) {
-                        const data = await response.json();
+                        const data: GameCard[] = await response.json();
                         setSomeFavorites(data);
                     } else {
                         console.error('Ошибка при загрузке данны об избранном');
@@ -85,7 +89,7 @@ function MainPage(): JSX.Element {
                     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/main/recommended/${user}`);
 
                     if (response.ok) {
-                        const data = await response.json();
+                        const data: GameCard[] = await response.json();
                         setSomeRecs(data);
                     } else {
                         console.error('Ошибка при загрузке данных о рекомендованном');
@@ -105,7 +109,7 @@ function MainPage(): JSX.Element {
                     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/meets`);
 
                     if (response.ok) {
-                      const data = await response.json();
+                        const data: gameMeetsData[] = await response.json();
                       setSomeMeets(data.slice(0, 4));
                     } else {
                       console.error('Ошибка при загрузке данных');
