@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { gameMeetsData } from "../pages/gameMeet/GameMeet";
 import dateRedactor from "../services/dateRedactor";
+import axios from "axios";
 
 function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
     const navigate = useNavigate();
@@ -13,6 +14,25 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
 
     const closeOrganizerContacts = () => {
         setOrganizerContacts(null);
+    };
+
+    const handleJoin = async (gameMeetingId: number) => {
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+            console.error('User ID is not available');
+            return;
+        }
+
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/meeting/players`, {
+                gameMeetingId,
+                userId: Number(userId)
+            });
+
+            console.log('Successfully joined the game');
+        } catch (error) {
+            console.error('Error joining the game:', error);
+        }
     };
 
     return (
@@ -38,6 +58,11 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
                                         <p><strong>Организатор: </strong>{game.name}</p>
                                         <p><strong>Цена: </strong>600 руб./чел.</p>
                                         <button onClick={() => showOrganizerContacts(game.contacts)} className="w-full flex items-center justify-center mt-5 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Связаться с организаторами</button>
+                                        <button
+                                        onClick={() => handleJoin(game.game_id)}
+                                        className="w-full flex items-center justify-center mt-5 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                        Учавствовать
+                                    </button>
                                     </div>
                                 </div>
                             </div>

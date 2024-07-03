@@ -153,7 +153,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
             placeholder="Оставьте отзыв"
-            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2"
+            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2 max-w-[300px]"
           />
           <button
             onClick={submitReview}
@@ -171,7 +171,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
               <h2 className="mr-2">Отзыв от {el.userName ? el.userName : 'Анонимный пользователь'}</h2>
             </div>
             <div className="bg-sky-500/50 p-2 rounded-lg max-w-[300px] overflow-hidden">
-              {el.description}
+            <div className="whitespace-normal break-words">{el.description}</div>
             </div>
           </div>
         ))}

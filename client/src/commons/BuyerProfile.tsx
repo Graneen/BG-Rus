@@ -1,7 +1,13 @@
 import { Specialist } from "../pages/buyerPage/buyerPage";
 import { Card } from "flowbite-react";
 
-export function BuyerProfile({ specialist, handleBookSpecialist }: { specialist: Specialist; handleBookSpecialist: void }) {
+interface BuyerProfileProps {
+  
+specialist: Specialist;
+  handleBookSpecialist: (specialistId: number) => void;
+}
+
+export function BuyerProfile({ specialist, handleBookSpecialist }: BuyerProfileProps) {
   return (
     <Card className="max-w-sm bg-[#FBD784]">
       <div className="flex justify-end px-4 pt-4">

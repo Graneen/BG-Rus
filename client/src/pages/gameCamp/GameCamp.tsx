@@ -158,7 +158,7 @@ const GameCamp: React.FC = () => {
                     type="email"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
-                    placeholder="Enter your email"
+                    placeholder="Введите почту"
                     className="email-input w-full border border-gray-300 rounded p-2 mt-2"
                   />
                   <button className="email-submit-btn bg-black text-white font-semibold py-2 px-4 rounded mt-4" onClick={handleSubmitEmail}>Подтвердить</button>

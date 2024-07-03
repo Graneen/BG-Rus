@@ -60,10 +60,10 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
         setShowQuizModal(true);
     }
 
-    function handlerCloseQuizModal(isCompleted: string | null) {
+    function handlerCloseQuizModal() { //* handlerCloseQuizModal(isCompleted: string | null)
         setTitleModal("");
         setShowQuizModal(false);
-        if (!setQuiz && isCompleted === "completed") navigate("/profile");
+        // if (!setQuiz && checkForNavigateInProfile) navigate("/profile");
     }
 
     
@@ -223,13 +223,13 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
                 </div> : <></>
             }
 
-            <Modal isOpen={showQuizModal}  onRequestClose={() => handlerCloseQuizModal(null)}>
+            <Modal isOpen={showQuizModal}  onRequestClose={() => handlerCloseQuizModal()}>
                 <div className="modal-full">
                     <div className="modal-content bg-neutral-900 text-center">
                         {titleModal === "completed" ?
                             <>
                                 <div className='text-black text-yellow-400'>{"Квиз пройден. Поздравляю! ⸜(｡˃ ᵕ ˂ )⸝♡"}</div>
-                                <button onClick={() => handlerCloseQuizModal(titleModal)} className='text-black text-yellow-400 rounded-full border-double bg-neutral-700 p-1 mt-2'>
+                                <button onClick={() => handlerCloseQuizModal()} className='text-black text-yellow-400 rounded-full border-double bg-neutral-700 p-1 mt-2'>
                                     <p>{"Ураа!"}</p>
                                 </button>
                                 
@@ -240,7 +240,7 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
                                 { titleModal === "maxText" ? <div className='text-black text-yellow-400'>{"Что ты делаешь? Мы же с тобой договорились, не более 3 пунктов. ¯ \\_(ツ)_/¯"}</div> : <></> }
                                 { titleModal === "minPlayers" ? <div className='text-black text-yellow-400'>{"Дорогой друг, как у тебя дела? (つ╥﹏╥)つ Неужели у тебя нет друзей с кем бы ты мог поиграть? Это не беда, наш сайт создан для того чтобы найти новых друзей. Присоединяйся к играм других пользователей и не о чём не беспокойся ┗(＾0＾)┓"}</div> : <></> }
                                 { titleModal === "maxPlayers" ? <div className='text-black text-yellow-400'>{"Дорогой друг, боюсь мы не сможем предложить игру на столь большую компанию. ▐ ⊙ ▃ ⊙ ▐"}</div> : <></> }
-                                <button onClick={() => handlerCloseQuizModal(null)} className='text-black text-yellow-400 rounded-full border-double bg-neutral-700 p-1 mt-2'>
+                                <button onClick={() => handlerCloseQuizModal()} className='text-black text-yellow-400 rounded-full border-double bg-neutral-700 p-1 mt-2'>
                                     <p>{"Больше так не буду..."}</p>
                                 </button>
                             </>

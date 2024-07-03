@@ -91,7 +91,7 @@ const BuyerPage: React.FC = () => {
         nameboard: gameTitle
       });
 
-      setAllBayersOrders(prevOrders => [...prevOrders, response.data]);
+      setAllBayersOrders(prevOrders => [response.data, ...prevOrders]);
       setGameTitle('');
       setYourName('');
     } catch (error) {
