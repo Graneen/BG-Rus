@@ -5,7 +5,6 @@ import Steps from '../../steps/Steps';
 import './mainPage.css';
 import { AuthContext } from '../../app/App';
 import { data } from '../../features/addToFavoritesSlice';
-import { gameMeetsData } from '../gameMeet/GameMeet';
 
 
 function MainPage(): JSX.Element {
