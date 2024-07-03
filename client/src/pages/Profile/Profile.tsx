@@ -149,6 +149,29 @@ const Profile: React.FC = () => {
                 ))}
               </>
             ) : null}
+                          <div className="middle-block-data">
+                {userMeetings && userMeetings.length ? (
+                  <>
+                    <h2 className="h2-profile">
+                      Вы зарегитсрированы на игротеки:
+                    </h2>
+                    {userMeetings.map((userMeeting) => (
+                      <div key={userMeeting.id} className="meeting-camp-box">
+                        <NavLink to="/events">
+                          <h2 className="h2-profile">{userMeeting.gameName}</h2>
+                        </NavLink>
+                        <p>
+                          Дата проведения:{" "}
+                          {userMeeting.date
+                            .replace("T", " ")
+                            .replace(".000Z", "")}
+                        </p>{" "}
+                        <p>Место проведения: {userMeeting.location}</p>
+                      </div>
+                    ))}
+                  </>
+                ) : null}
+              </div>
           </div>
           <section className="block-guide">
             <ProfileMenuTab
