@@ -4,6 +4,7 @@ const router = express.Router();
 const { PlayerMeeting } = require("../../db/models");
 
 router.post("/api/meeting/players", async (req, res) => {
+  console.log("yyyyyyyyyyyyyyyyyyyyyyyyy", req.body);
   try {
     const { gameMeetingId, userId } = req.body;
     console.log(req.body)
