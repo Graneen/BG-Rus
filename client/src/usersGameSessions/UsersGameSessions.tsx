@@ -24,7 +24,7 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
         }
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/players`, {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/api/meeting/players`, {
                 gameMeetingId,
                 userId: Number(userId)
             });
@@ -61,7 +61,7 @@ function UsersGameSessions({ gameMeets }: { gameMeets: gameMeetsData[] }) {
                                         <button
                                         onClick={() => handleJoin(game.game_id)}
                                         className="w-full flex items-center justify-center mt-5 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                        Участвовать
+                                        Учавствовать
                                     </button>
                                     </div>
                                 </div>
