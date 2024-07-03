@@ -41,7 +41,7 @@ interface ModalFormProps {
     try {
 
       const imageUrl = imgInput || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJY6pNBO1wxk8BH5uPMKz7mLEzk-Y1z-9IMw&s";
-      const response = await axios.post("http://localhost:3000/game-meetings/news", {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/game-meetings/news`, {
         game_id: null,
         name: nameInput,
         contacts: contactsInput || '',

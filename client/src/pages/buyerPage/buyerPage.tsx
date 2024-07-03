@@ -41,7 +41,7 @@ const BuyerPage: React.FC = () => {
   const [selectedSpecialist, setSelectedSpecialist] = useState<Specialist | null>(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/specialists')
+    axios.get(`${import.meta.env.VITE_REACT_APP_URL}/specialists`)
       .then(response => {
         setSpecialists(response.data);
       })
@@ -49,7 +49,7 @@ const BuyerPage: React.FC = () => {
         console.error('Error fetching specialists:', error);
       });
 
-    axios.get('http://localhost:3000/allBayersOrders')
+    axios.get(`${import.meta.env.VITE_REACT_APP_URL}/allBayersOrders`)
       .then(response => {
         setAllBayersOrders(response.data);
       })
@@ -61,7 +61,7 @@ const BuyerPage: React.FC = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/bayer-orders/${selectedOrderId}/comments`);
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_URL}/bayer-orders/${selectedOrderId}/comments`);
         setComments(prevComments => ({
           ...prevComments,
           [selectedOrderId!]: response.data
@@ -85,7 +85,7 @@ const BuyerPage: React.FC = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/bayer-orders', {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/bayer-orders`, {
         userId: Number(user),
         name: yourName,
         nameboard: gameTitle
@@ -107,7 +107,7 @@ const BuyerPage: React.FC = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:3000/bayer-orders/${selectedOrderId}/comments`, {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/bayer-orders/${selectedOrderId}/comments`, {
         userId: Number(user),
         comment: newCommentText
       });
@@ -146,7 +146,7 @@ const BuyerPage: React.FC = () => {
       const specialistId = form.get('specialistId');
 
       if (specialistId !== null && selectedSpecialist) {
-        const response = await axios.post(`http://localhost:3000/specialists/${specialistId}`, {
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/specialists/${specialistId}`, {
           user_id: Number(user),
           phone: phoneNumber
         });

@@ -22,7 +22,7 @@ const initialState: GamesListState = {
 
 export const getGames = createAsyncThunk("gamesList/getGames", async(_, {rejectWithValue}) => {
     try {
-        const gamesList = await $api.get("http://localhost:3000/search_game");
+        const gamesList = await $api.get(`${import.meta.env.VITE_REACT_APP_URL}/search_game`);
         
         return gamesList.data;
     } catch (error) {

@@ -15,7 +15,7 @@ function RegisterForm(): JSX.Element {
 
     async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const response = await fetch ('http://localhost:3000/auth/register', {
+        const response = await fetch (`${import.meta.env.VITE_REACT_APP_URL}/auth/register`, {
             method: 'POST',
             credentials: 'include',
             headers: {

@@ -144,7 +144,7 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
         if (Number(players) <= 0) return handlerCreateQuizModal("minPlayers");
         if (Number(players) > 100) return handlerCreateQuizModal("maxPlayers");
         
-        const apiResoult = await $api.post("http://localhost:3000/api/quiz", {finalyData});
+        const apiResoult = await $api.post(`${import.meta.env.VITE_REACT_APP_URL}/api/quiz`, {finalyData});
 
         if (apiResoult.status === 200) {
             handlerCreateQuizModal("completed");
