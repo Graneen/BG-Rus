@@ -1,6 +1,3 @@
-
-import { Fragment } from "react/jsx-runtime";
-import { data } from "../../features/addToFavoritesSlice";
 import { GameCard } from "../../features/gameCardSlice";
 
 

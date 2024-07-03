@@ -9,6 +9,9 @@ import { gameMeetsData } from '../gameMeet/GameMeet';
 
 
 
+
+
+
 function MainPage(): JSX.Element {
     const { user } = useContext(AuthContext);
     const [username, setUsername] = useState('');
