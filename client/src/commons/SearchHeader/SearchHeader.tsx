@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { GameCard, getGames, selectAllGames } from "../../features/gamesForSearchSlice";
 import { useNavigate } from "react-router-dom";

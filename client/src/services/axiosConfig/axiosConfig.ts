@@ -3,7 +3,7 @@ import { getCookie } from "../Cookie/getCookie";
 import { AuthResponce } from "../checkAuthService/checkAuth.service";
 import logout from "../checkAuthService/logout.service";
 
-// export const API_URL = "http://localhost:3000"
+// export const API_URL = `${import.meta.env.VITE_REACT_APP_URL}`;
 const $api = axios.create({
     withCredentials: true,
     // baseURL: API_URL,
@@ -22,7 +22,7 @@ $api.interceptors.response.use((config) => {
             const originalRequest = error.config;
     
             const token: string = getCookie();
-            const response = await axios.post<AuthResponce>("http://localhost:3000/auth/refresh", {
+            const response = await axios.post<AuthResponce>(`${import.meta.env.VITE_REACT_APP_URL}/auth/refresh`, {
                 refreshToken: token,
             }, {withCredentials: true});
             console.log({response});

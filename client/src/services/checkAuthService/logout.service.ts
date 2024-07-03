@@ -4,7 +4,7 @@ import { deleteAllCookies } from '../Cookie/deleteCookie.ts';
 export default async function logout(): Promise<void> {
     try {
         const token: string = getCookie();
-        const response = await fetch('http://localhost:3000/auth/logout', {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_URL}/auth/logout`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
