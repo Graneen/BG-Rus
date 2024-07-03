@@ -82,14 +82,14 @@ export default function ProfileMenuTab({
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs">
-          <Tab sx={tabStyler} label="Избранные игры" {...a11yProps(0)} />
+          <Tab sx={tabStyler} label="ИЗБРАННОЕ" {...a11yProps(0)} />
           <Tab
             sx={tabStyler}
-            label="Рекомендованные сегодня игры"
+            label="РЕКОМЕНДАЦИИ"
             {...a11yProps(1)}
           />
-          <Tab sx={tabStyler} label="Мои отзывы" {...a11yProps(2)} />
-          <Tab sx={tabStyler} label="Мои вопросы" {...a11yProps(3)} />
+          <Tab sx={tabStyler} label="ОТЗЫВЫ" {...a11yProps(2)} />
+          <Tab sx={tabStyler} label="ВОПРОСЫ-ОТВЕТЫ" {...a11yProps(3)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -159,9 +159,9 @@ export default function ProfileMenuTab({
         )):null}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <div className="recom-head-block" ><h2 id="recom-head-block-h2">Мы выбираем случайные 10 игр на основании ваших предпочтений</h2>
+        <div className="recom-head-block mb-10" ><h2 id="recom-head-block-h2">Мы выбираем случайные 10 игр на основании ваших предпочтений</h2>
         <NavLink to="/quiz">
-          <button className="quiz-button">Изменить выборку игр</button>
+          <button className="quiz-button bg-white text-black">Изменить выборку игр</button>
         </NavLink></div>
         
         {userRecommendedGames&&userRecommendedGames.length?userRecommendedGames.map((userRecommendedGame) => (
