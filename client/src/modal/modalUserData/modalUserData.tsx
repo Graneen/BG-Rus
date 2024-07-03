@@ -6,6 +6,10 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import "./modalUserData.css";
 
+interface ProfileModalProps {
+  setCurrentUser: React.Dispatch<React.SetStateAction<any>>;
+}
+
 const style = {
   position: "absolute" as "absolute",
   top: "25%",
@@ -20,11 +24,11 @@ const style = {
   pb: 3,
 };
 const user = localStorage.getItem("user");
-export default function ProfileModal({setCurrentUser}) {
+export default function ProfileModal({ setCurrentUser }: ProfileModalProps) {
   const [open, setOpen] = React.useState(false);
 
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>(localStorage.getItem('name') || '');
+  const [email, setEmail] = useState<string>(localStorage.getItem('email') || '');
   const [password, setPassword] = useState<string>("");
 
   const handleOpen = () => {
@@ -40,10 +44,13 @@ export default function ProfileModal({setCurrentUser}) {
 
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);
-        setName(response.data.name)
-        setEmail(response.data.email)
+        localStorage.setItem('name', response.data.name);
+      localStorage.setItem('email', response.data.email);
+        setName(response.data.name);
+        setEmail(response.data.email);
+        setPassword('');
         setOpen(false);
-        setCurrentUser(response.data)
+        setCurrentUser(response.data);
 
       }
       if(response.status === 204){
