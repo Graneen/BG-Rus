@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { YMaps, Map, Placemark, Clusterer } from '@pbe/react-yandex-maps';
 import { gameMeetsData } from '../pages/gameMeet/GameMeet';
 
-function Maps({ gameMeets, mapModal, setMapModal, setMeetModal, setContacts }: { gameMeets: gameMeetsData[], mapModal: boolean, setContacts: (contacts: string) => void }) {
+function Maps({ gameMeets, mapModal, setMapModal, setMeetModal, setContacts }: { gameMeets: gameMeetsData[], mapModal: boolean, setMapModal: (modalOpen: boolean) => void, setMeetModal: (meetData: gameMeetsData) => void, setContacts: (contacts: string) => void }) {
 
     const [organizerContacts, setOrganizerContacts] = useState<string | null>(null);
     const [showContactDetails, setShowContactDetails] = useState<boolean>(false);

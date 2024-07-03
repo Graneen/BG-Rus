@@ -14,7 +14,7 @@ export function FooterF() {
           <Footer.Copyright className="T-M" by="BgRus™" year={2024} />
           <NavLink
                         to="/"
-                        className={({ isActive }) => isActive ? "logo active mr-[10vh]" : "logo unactive mr-[10vh]"}
+                        className={({ isActive }) => isActive ? "logo active mr-[10vh] -mt-6" : "logo unactive mr-[10vh] -mt-6"}
                     >
                         BGRUS
                     </NavLink>

@@ -3,7 +3,25 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
 import dateRedactor from '../services/dateRedactor';
+import { useState } from 'react';
 
+interface MapModalProps {
+  mapModal: boolean;
+  setMapModal: (value: React.SetStateAction<boolean>) => void;
+  meetModal: GameMeetModalType; 
+}
+
+interface GameMeetModalType {
+  game_id: number;
+  gameName: string;
+  maxPlayers: number;
+  location: string;
+  img: string;
+  place: number[];
+  date: Date;
+  time: string;
+  name: string;
+}
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -17,11 +35,16 @@ const style = {
   p: 4,
 };
 
-export function MapModal({ setMapModal, meetModal }) {
-  const handleClose = () => setMapModal(false);
+export function MapModal({ mapModal,setMapModal, meetModal }: MapModalProps) {
+  const [open, setOpen] = useState(mapModal);
   const navigate = useNavigate();
 
-console.log({setMapModal, meetModal})
+  const handleClose = () => {
+    setOpen(false); 
+    setMapModal(false); 
+  };
+
+
   return (
     <>
       <div>

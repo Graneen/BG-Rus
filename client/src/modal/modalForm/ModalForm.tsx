@@ -7,6 +7,8 @@ import ModalMap from "../modalMap/ModalMap";
 import axios from "axios"; 
 import "./ModalForm.css";
 
+import { gameMeetsData } from '../../pages/gameMeet/GameMeet';
+
 
 interface ModalFormProps {
   onCloseModal: () => void;
@@ -53,11 +55,9 @@ interface ModalFormProps {
       });
 
       displayMessage("Игровая сессия успешно создана!");
-      console.log("Game Meeting created:", response.data);
+     
 
-      console.log('contactsInput:', contactsInput);
-console.log('imgInput:', imgInput);
-console.log('placeInput:', placeInput);
+     
 
       dispatch(
         updateGameSession({
