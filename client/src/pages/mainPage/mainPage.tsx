@@ -148,10 +148,10 @@ function MainPage(): JSX.Element {
     return (
         <>
             <section className="hero" id="hero">
-                <div className="bg-layer-1 HG"><img src="https://furman.top/uploads/posts/2023-04/1682858362_furman-top-p-oboi-na-telefon-oblaka-belie-vkontakte-5.jpg" alt="Background" /></div>
+                <div className="bg-layer-1 HG"><img src="./backgrounds/1682.jpg" alt="Background" /></div>
                 <div className="bg-layer-2 BG Hero"></div>
-                <div className="bg-layer-3 MG"><img className="shadow-2xl" src="https://trueimages.ru/img/8c/46/d4710866.png" alt="Background" /></div>
-                <div className="bg-layer-4 VG"><img src="https://trueimages.ru/img/81/77/3ab71766.png" alt="Background" /></div>
+                <div className="bg-layer-3 MG"><img className="shadow-2xl" src="./backgrounds/1640.png" alt="Background" /></div>
+                <div className="bg-layer-4 VG"><img src="./backgrounds/1611.png" alt="Background" /></div>
                 <div className="hero_description">
                     <h1>{user ? `ПРИВЕТ, ${username.toUpperCase()}!`: `ДАВАЙ ЗНАКОМИТЬСЯ?`}</h1>
                     <p className="hero_post-text">
