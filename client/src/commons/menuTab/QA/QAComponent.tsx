@@ -79,10 +79,10 @@ const QAComponent: React.FC<Props> = ({ gameId }) => {
 
   return (
     <div className="p-4 bg-none text-black">
-      <h1 className="text-2xl font-bold mb-4">Вопросы и ответы</h1>
+      <p className="text-white font-bold">В этом разделе вы можете задать вопрос, касающийся игры, даже самый глупый, не стесняйтесь - возможно, вам даже ответят:</p>
       <input type="text" value={newQuestion} onChange={(e) => setNewQuestion(e.target.value)} placeholder="Задать вопрос" 
-      className="p-2 rounded border border-yellow-400 bg-yellow-300 text-black mb-2"  />
-      <button onClick={submitQuestion} className="bg-black text-white py-2 px-4 rounded mb-4">Задать вопрос</button>
+      className="p-2 rounded border border-yellow-400 bg-white text-black mb-2 mr-5"  />
+      <button onClick={submitQuestion} className="bg-white text-black font-semibold py-2 px-4 rounded-lg mt-6">Задать вопрос</button>
 
       {questions.map((question) => (
         <div key={question.id} className="bg-gray p-4 rounded mb-4">
@@ -94,9 +94,9 @@ const QAComponent: React.FC<Props> = ({ gameId }) => {
             value={answerInputs[question.id] || ''} 
             onChange={(e) => handleAnswerChange(question.id, e.target.value)} 
             placeholder="Ответить" 
-            className="p-2 rounded border border-yellow-400 bg-yellow-300 text-black mb-2"  
+            className="p-2 rounded border border-yellow-400 bg-white text-black mb-2"  
           />
-          <button onClick={() => submitAnswer(question.id)} className="bg-black text-white py-2 px-4 rounded">Ответить</button>
+          <button onClick={() => submitAnswer(question.id)} className="bg-white text-black font-semibold py-2 px-4 rounded-lg mt-6">Ответить</button>
 
           {question.Answers ? question.Answers.map((answer) => (
           <div key={answer.id} className="bg-yellow-300 p-2 rounded mt-2 max-w-[250px]  ml-80">
