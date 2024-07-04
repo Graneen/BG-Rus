@@ -107,7 +107,7 @@ const Profile: React.FC = () => {
       {currentUser ? (
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="mt-5 text-3xl text-[#ffd700]">ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ</h2>
-          <div className="w-full p-6 bg-[#FBD784] rounded-lg shadow dark:bg-gray-800 flex items-center flex-col justify-center">
+          <div className="w-4/12 p-6 bg-[#FBD784] rounded-lg shadow dark:bg-gray-800 flex items-center flex-col justify-center">
             <p className="m-2 text-gray-700 dark:text-gray-400">
               Имя:{" "}
               <strong className="font-bold text-[#183d50bb] text-2xl">
