@@ -84,13 +84,13 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
           setNewReview('');
           setReviews([...reviews, newReviewData]);
           const updatedReviews = [...reviews, newReviewData];
-          localStorage.setItem('savedReviews', JSON.stringify(updatedReviews));
+          
           
           updateGameCardState({
             ...card,
             list: {
               ...card.list,
-              feedBackGame: [...card.list.feedBackGame, newReviewData],
+              feedBackGame: updatedReviews,
             },
           });
           
@@ -106,24 +106,16 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/feedbacks/${card.list.boardGame.id}`
-      );
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/feedbacks/${card.list.boardGame.id}`);
       setReviews(response.data);
-      localStorage.setItem('savedReviews', JSON.stringify(response.data));
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
   };
 
   React.useEffect(() => {
-    const storedReviews = localStorage.getItem('savedReviews');
-    if (storedReviews) {
-      setReviews(JSON.parse(storedReviews));
-    } else {
-      fetchReviews();
-    }
-  }, [card.list.boardGame.id]);
+  fetchReviews();
+}, [card.list.boardGame.id]);
 
   const filteredReviews = reviews.filter((review) => review.game_id === card.list.boardGame.id);
 
