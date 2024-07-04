@@ -16,7 +16,12 @@ router.post("/api/feedbacks", async (req, res) => {
 router.get("/api/feedbacks/:gameId", async (req, res) => {
   try {
     const { gameId } = req.params;
-    const feedbacks = await Feedback.findAll({ where: { game_id: gameId } });
+    const feedbacks = await Feedback.findAll({ 
+      where: { game_id: gameId },
+      order: [
+        ['createdAt', 'DESC'] 
+      ]
+    });
     res.status(200).json(feedbacks);
   } catch (error) {
     res.status(400).json({ message: error.message });
