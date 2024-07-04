@@ -13,7 +13,7 @@ interface TabPanelProps {
 }
 
 const CustomTabPanelStyles = {
-  
+  maxHeight: '300px',
 };
 
 
@@ -82,7 +82,8 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             updatedAt: response.data.feedback.updatedAt,
           }; 
           setNewReview('');
-          setReviews([...reviews, newReviewData]);
+          
+          setReviews([newReviewData, ...reviews]);
           const updatedReviews = [...reviews, newReviewData];
           
           
@@ -157,7 +158,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
         </div>
         
         {filteredReviews.length > 0 ? (
-          <div style={{maxHeight: "500px", overflow: "auto"}}>
+          <div style={{maxHeight: "430px", overflow: "auto"}}>
            {filteredReviews.map((el) => (
           <div key={el.id} className="mb-8">
             <div className="mt-8">
