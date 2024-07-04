@@ -199,7 +199,6 @@ const BuyerPage: React.FC = () => {
           </div>
         )}
               <div className="m-20 center-content flex justify-between items-start">
-        {/* <div className="add-advert-container bg-gray-900 text-white p-4 rounded shadow"> */}
         <h2 className="mt-5 text-3xl text-[#ffd700]">ДОБАВИТЬ ЗАЯВКУ НА ЗАКАЗ:</h2>
           <form className="advert-form" onSubmit={handleAddAdvertisement}>
             <label className="mb-2">
@@ -210,12 +209,12 @@ const BuyerPage: React.FC = () => {
               <span className="font-semibold block mb-1">Ваше имя:</span>
               <input type="text" value={yourName} onChange={(e) => setYourName(e.target.value)} className="w-full rounded-lg px-2 py-1 text-black" />
             </label>
-            <button type="submit" className="bg-yellow-300 text-white font-semibold py-2 px-4 rounded-lg mt-6">Добавить объявление</button>
+            <button type="submit" className="bg-yellow-300 text-black font-semibold py-2 px-4 rounded-lg mt-6">Добавить объявление</button>
           </form>
         </div>
 
         <div className="bayer-orders-container">
-        <h2 className="mt-5 text-3xl text-[#ffd700]">АКУТАЛЬНЫЕ ЗАЯВКИ ПОЛЬЗОВАТЕЛЕЙ</h2>
+        <h2 className="mt-5 text-3xl text-[#ffd700]">АКУТАЛЬНЫЕ ЗАЯВКИ ПОЛЬЗОВАТЕЛЕЙ:</h2>
           <div className="bayer-orders-grid grid grid-cols-1 gap-4 rounded-lg">
             {allBayersOrders.map((order) => (
               <div key={order.id} className="bayer-order-card bg-gray-900 p-4 rounded-lg shadow">
