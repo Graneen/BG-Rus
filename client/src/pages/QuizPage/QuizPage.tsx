@@ -178,7 +178,7 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
                     </button>
                     })}
                      {isGenreDescriptionOpen && (
-                <div className="genre-description p-2 bg-yellow-500 text-black mt-2 rounded-lg">
+                <div className="bg-yellow-300 text-white font-semibold py-2 px-4 rounded-lg mt-6">
                     <p>{selectedGenreDescription}</p>
                 </div>
             )}
@@ -208,7 +208,7 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
                 />
             </div>
             <button
-                className="mt-5 rounded-full border-double p-2 bg-sky-500 hover:bg-yellow-500 hover:text-black active:text-yellow-500 active:bg-neutral-900"
+                className="bg-yellow-300 text-black font-semibold py-2 px-4 rounded-lg mt-6"
                 onClick={handlerFinaly}
             >Зафиксировать результат</button>
             
@@ -216,7 +216,7 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
                 <div>
                     <button
                         onClick={() => setQuiz(false)}
-                        className="mt-2 rounded-full border-double p-2 bg-sky-500 hover:bg-yellow-500 hover:text-black active:text-yellow-500 active:bg-neutral-900"
+                        className="mt-2 bg-yellow-300 text-black font-semibold py-2 px-4 rounded-lg mt-6"
                     >
                         {"Закрыть квиз"}
                     </button>
@@ -229,18 +229,18 @@ function QuizPage({setQuiz}: {setQuiz: React.Dispatch<React.SetStateAction<boole
                         {titleModal === "completed" ?
                             <>
                                 <div className='text-black text-yellow-400'>{"Квиз пройден. Поздравляю! ⸜(｡˃ ᵕ ˂ )⸝♡"}</div>
-                                <button onClick={() => handlerCloseQuizModal("completed")} className='text-black text-yellow-400 rounded-full border-double bg-neutral-700 p-1 mt-2'>
+                                <button onClick={() => handlerCloseQuizModal("completed")} className='bg-yellow-300 text-black font-semibold py-2 px-4 rounded-lg mt-6'>
                                     <p>{"Ураа!"}</p>
                                 </button>
                                 
                             </>
                             :
                             <>
-                                { titleModal === "minText" ? <div className='text-black text-yellow-400'>{"Дорогой друг ты что-то пропустил, давай вернёмся и выясним что именно было пропущенно. ⸜(｡˃ ᵕ ˂ )⸝♡"}</div> : <></> }
+                                { titleModal === "minText" ? <div className='text-black text-yellow-400'>{"Дорогой друг, ты что-то пропустил, давай вернёмся и выясним что именно было пропущенно. ⸜(｡˃ ᵕ ˂ )⸝♡"}</div> : <></> }
                                 { titleModal === "maxText" ? <div className='text-black text-yellow-400'>{"Что ты делаешь? Мы же с тобой договорились, не более 3 пунктов. ¯ \\_(ツ)_/¯"}</div> : <></> }
                                 { titleModal === "minPlayers" ? <div className='text-black text-yellow-400'>{"Дорогой друг, как у тебя дела? (つ╥﹏╥)つ Неужели у тебя нет друзей с кем бы ты мог поиграть? Это не беда, наш сайт создан для того чтобы найти новых друзей. Присоединяйся к играм других пользователей и не о чём не беспокойся ┗(＾0＾)┓"}</div> : <></> }
                                 { titleModal === "maxPlayers" ? <div className='text-black text-yellow-400'>{"Дорогой друг, боюсь мы не сможем предложить игру на столь большую компанию. ▐ ⊙ ▃ ⊙ ▐"}</div> : <></> }
-                                <button onClick={() => handlerCloseQuizModal(null)} className='text-black text-yellow-400 rounded-full border-double bg-neutral-700 p-1 mt-2'>
+                                <button onClick={() => handlerCloseQuizModal(null)} className='bg-yellow-300 text-black font-semibold py-2 px-4 rounded-lg mt-6'>
                                     <p>{"Больше так не буду..."}</p>
                                 </button>
                             </>

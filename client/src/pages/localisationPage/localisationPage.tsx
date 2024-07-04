@@ -214,7 +214,7 @@ import './LocalizationPage.css'
                       className="w-full px-2 py-1 rounded border border-black text-black"
                     />
                     <button onClick={() => handleReplyComment(order.id,comment.commentId)} className="bg-yellow-500 text-black font-semibold py-1 px-2 rounded mt-1">Ответить</button>
-                    <button onClick={() => setReplyingToComment('')} className="bg-black text-black font-semibold py-1 px-2 rounded ml-2">Отменить</button>
+                    <button onClick={() => setReplyingToComment('')} className="bg-black text-white font-semibold py-1 px-2 rounded ml-2">Отменить</button>
                   </div>
                 ) : (
                   <button onClick={() => setReplyingToComment(comment.commentId)} className="bg-black text-white font-semibold py-1 px-2 rounded mt-1">Ответить</button>

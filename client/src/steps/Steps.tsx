@@ -10,17 +10,15 @@ import { GameCard } from '../features/gameCardSlice';
 import { gameMeetsData } from '../pages/gameMeet/GameMeet';
 import RecentMeets from '../commons/reviewsOfFavorites/RecentMeets';
 
-function Steps({
-    quizFinished, 
-    someFavorites, 
-    someRecs, 
-    someMeets
-}: {
-    quizFinished: boolean; 
-    someFavorites: GameCard[]; 
-    someRecs: GameCard[]; 
+interface StepsProps {
+    quizFinished: boolean;
+    someFavorites: GameCard[];
+    someRecs: GameCard[];
     someMeets: gameMeetsData[];
-}) {
+    setSomeMeets: React.Dispatch<React.SetStateAction<gameMeetsData[]>>;
+}
+
+function Steps({ quizFinished, someFavorites, someRecs, someMeets }: StepsProps) { 
     const [ quiz, setQuiz ] = useState<boolean>(false);
     const navigate = useNavigate();
 

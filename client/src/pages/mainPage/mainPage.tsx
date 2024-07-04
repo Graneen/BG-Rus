@@ -4,17 +4,21 @@ import Steps from '../../steps/Steps';
 
 import './mainPage.css';
 import { AuthContext } from '../../app/App';
-import { data } from '../../features/addToFavoritesSlice';
+import { GameCard } from '../../features/gameCardSlice';
 import { gameMeetsData } from '../gameMeet/GameMeet';
+
+
+
+
 
 
 function MainPage(): JSX.Element {
     const { user } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [quizFinished, setQuizFinished] = useState<boolean>(false);
-    const [someFavorites, setSomeFavorites] = useState<data[]>([]);
-    const [someRecs, setSomeRecs] = useState([]);
-    const [someMeets, setSomeMeets] = useState([]);
+    const [someFavorites, setSomeFavorites] = useState<GameCard[]>([]);
+    const [someRecs, setSomeRecs] = useState<GameCard[]>([]);
+    const [someMeets, setSomeMeets] = useState<gameMeetsData[]>([]);
 
 
 
@@ -26,7 +30,6 @@ function MainPage(): JSX.Element {
 
                     if (response.ok) {
                         const data = await response.json();
-                        console.log({usernameFetch: data})
                         setUsername(data);
                     } else {
                         console.error('Ошибка при загрузке данных об имени пользователя');
@@ -47,7 +50,6 @@ function MainPage(): JSX.Element {
 
                     if (response.ok) {
                         const data = await response.json();
-                        console.log(data.statusQuiz)
                         setQuizFinished(data.statusQuiz);
                     } else {
                         console.error('Ошибка при загрузке данных о прохождении входного квиза');
@@ -67,7 +69,7 @@ function MainPage(): JSX.Element {
                     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/user/favorite/${user}`);
 
                     if (response.ok) {
-                        const data = await response.json();
+                        const data: GameCard[] = await response.json();
                         setSomeFavorites(data);
                     } else {
                         console.error('Ошибка при загрузке данны об избранном');
@@ -87,7 +89,7 @@ function MainPage(): JSX.Element {
                     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/main/recommended/${user}`);
 
                     if (response.ok) {
-                        const data = await response.json();
+                        const data: GameCard[] = await response.json();
                         setSomeRecs(data);
                     } else {
                         console.error('Ошибка при загрузке данных о рекомендованном');
@@ -107,7 +109,7 @@ function MainPage(): JSX.Element {
                     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/meets`);
 
                     if (response.ok) {
-                      const data = await response.json();
+                        const data: gameMeetsData[] = await response.json();
                       setSomeMeets(data.slice(0, 4));
                     } else {
                       console.error('Ошибка при загрузке данных');
@@ -120,7 +122,6 @@ function MainPage(): JSX.Element {
         fetchMeetsData();
     },[quizFinished, user])
     
-    console.log({user, username, quizFinished, someRecs, someMeets})
     useEffect(() => {
         
         const header:HTMLElement | null = document.querySelector("header");
@@ -147,10 +148,10 @@ function MainPage(): JSX.Element {
     return (
         <>
             <section className="hero" id="hero">
-                <div className="bg-layer-1 HG"><img src="https://furman.top/uploads/posts/2023-04/1682858362_furman-top-p-oboi-na-telefon-oblaka-belie-vkontakte-5.jpg" alt="Background" /></div>
+                <div className="bg-layer-1 HG"><img src="./backgrounds/1682.jpg" alt="Background" /></div>
                 <div className="bg-layer-2 BG Hero"></div>
-                <div className="bg-layer-3 MG"><img className="shadow-2xl" src="https://trueimages.ru/img/8c/46/d4710866.png" alt="Background" /></div>
-                <div className="bg-layer-4 VG"><img src="https://trueimages.ru/img/81/77/3ab71766.png" alt="Background" /></div>
+                <div className="bg-layer-3 MG"><img className="shadow-2xl" src="./backgrounds/1640.png" alt="Background" /></div>
+                <div className="bg-layer-4 VG"><img src="./backgrounds/1611.png" alt="Background" /></div>
                 <div className="hero_description">
                     <h1>{user ? `ПРИВЕТ, ${username.toUpperCase()}!`: `ДАВАЙ ЗНАКОМИТЬСЯ?`}</h1>
                     <p className="hero_post-text">
