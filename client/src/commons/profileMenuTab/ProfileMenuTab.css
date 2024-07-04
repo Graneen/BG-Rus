@@ -17,11 +17,11 @@
   margin-bottom: 5px;
 }
 .profile-question-box{
-  border: 1px solid blue;
-  margin: 5px;
+  margin-bottom: 15px;
   border-radius: 8px;
   padding: 10px;
-  width: 50%;
+  width: 60vw;
+  background-color:orange;
 }
 .profile-question{
   border-radius: 3px;
@@ -38,7 +38,7 @@
   color:white;
   width: 50%;
   overflow-wrap: break-word;
-  margin-bottom: 5px;
+  margin-top: 10px;
   margin-left: 50%;
   padding: 5px;
 }
