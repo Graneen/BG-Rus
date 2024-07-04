@@ -122,10 +122,10 @@ function SearchTopList({boardGameData, setSortGames}: {boardGameData: BoardGameD
         <div className="text-center">
             <div
                 onClick={handlerOpenSearch}
-                className={`cursor-pointer w-36 mb-2 ml-5 p-2 rounded-full border-2 border-double ${startSort ? "text-amber-500 border-yellow-500" : "border-yellow-800"}`}
+                className={`cursor-pointer ml-5 mb-5 w-[200px] bg-white text-black font-semibold py-2 px-4 rounded-lg mt-6 ${startSort ? "text-amber-500 border-yellow-500" : "border-yellow-800"}`}
             >Сортировка игр</div>
             {startSort && 
-            <div className="border-sky-600 rounded-t-lg border-4 border-double">
+            <div className="border-yellow-500 rounded-lg border-2">
                 <input
                     type="text"
                     className="text-black rounded-lg w-80 mt-2 ml-5 border-yellow-500 border-2"

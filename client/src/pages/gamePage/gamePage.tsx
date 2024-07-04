@@ -111,7 +111,7 @@ function GamePage() {
                             </div>
                         </div>
                     </div>
-                    <section className="block-guide">
+                    <section className="block-guide mt-10">
                         <MenuTab card={card} updateGameCardState={function (): void {
                             throw new Error('Function not implemented.');
                         } } />

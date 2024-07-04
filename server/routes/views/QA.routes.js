@@ -11,6 +11,7 @@ router.get("/api/questions", async (req, res) => {
         { model: User, attributes: ["name"] },
         { model: Answer, include: { model: User, attributes: ["name"] } },
       ],
+      order: [["createdAt", "DESC"]]
     });
     res.json(questions);
   } catch (error) {

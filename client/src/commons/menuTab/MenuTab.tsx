@@ -13,7 +13,7 @@ interface TabPanelProps {
 }
 
 const CustomTabPanelStyles = {
-  
+  maxHeight: '300px',
 };
 
 
@@ -82,15 +82,16 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
             updatedAt: response.data.feedback.updatedAt,
           }; 
           setNewReview('');
-          setReviews([...reviews, newReviewData]);
+          
+          setReviews([newReviewData, ...reviews]);
           const updatedReviews = [...reviews, newReviewData];
-          localStorage.setItem('savedReviews', JSON.stringify(updatedReviews));
+          
           
           updateGameCardState({
             ...card,
             list: {
               ...card.list,
-              feedBackGame: [...card.list.feedBackGame, newReviewData],
+              feedBackGame: updatedReviews,
             },
           });
           
@@ -106,24 +107,16 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/feedbacks/${card.list.boardGame.id}`
-      );
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/feedbacks/${card.list.boardGame.id}`);
       setReviews(response.data);
-      localStorage.setItem('savedReviews', JSON.stringify(response.data));
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
   };
 
   React.useEffect(() => {
-    const storedReviews = localStorage.getItem('savedReviews');
-    if (storedReviews) {
-      setReviews(JSON.parse(storedReviews));
-    } else {
-      fetchReviews();
-    }
-  }, [card.list.boardGame.id]);
+  fetchReviews();
+}, [card.list.boardGame.id]);
 
   const filteredReviews = reviews.filter((review) => review.game_id === card.list.boardGame.id);
 
@@ -148,23 +141,24 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <div >
+        <p className="text-white font-bold">В этом разделе любой пользователь нашего сайта может оставить свой отзыв об игре, не ограничивая себя:</p>
           <input
             type="text"
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
             placeholder="Оставьте отзыв"
-            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2 max-w-[300px]"
+            className="border border-gray-300 rounded-md p-2 w-full text-black mb-2 mr-10 max-w-[300px]"
           />
           <button
             onClick={submitReview}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            className="bg-white text-black font-semibold py-2 px-4 rounded-lg mt-6"
           >
             Оставить отзыв
           </button>
         </div>
         
         {filteredReviews.length > 0 ? (
-          <div style={{maxHeight: "500px", overflow: "auto"}}>
+          <div style={{maxHeight: "430px", overflow: "auto"}}>
            {filteredReviews.map((el) => (
           <div key={el.id} className="mb-8">
             <div className="mt-8">
@@ -178,7 +172,7 @@ export default function MenuTab({card, updateGameCardState,}: {card: boardGameSt
           </div>
         
       ) : (
-      <p>Нет отзывов. Будь первым!</p>
+      <p className="mt-10">Пока об этой игре нет отзывов. Будь первым!</p>
     )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
